@@ -1,6 +1,6 @@
 import "../../faust.config";
 import React from "react";
-import { CacheProvider } from "@emotion/react";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import createEmotionCache from "../utility/createEmotionCache";
 import lightTheme from "../styles/theme/lightTheme";
@@ -10,11 +10,13 @@ import "../styles/globals.css";
 import { AppProps } from "next/app";
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp({ 
-  Component, 
-  pageProps, 
-  emotionCache = clientSideEmotionCache 
-}: AppProps | any) {
+export type FaustAppProps = AppProps & { emotionCache: EmotionCache };
+
+export default function MyApp({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: FaustAppProps) {
   const router = useRouter();
 
   return (

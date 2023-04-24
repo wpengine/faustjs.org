@@ -2,6 +2,7 @@ import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../utility/createEmotionCache';
+import { FaustAppProps } from './_app';
 
 export default class MyDocument extends Document {
   render() {
@@ -58,7 +59,7 @@ MyDocument.getInitialProps = async (ctx) => {
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (App) =>
-        function EnhanceApp(props) {
+        function EnhanceApp(props: FaustAppProps) {
           return <App emotionCache={cache} {...props} />;
         },
     });
