@@ -16,7 +16,6 @@
     "@emotion/styled": "^11.10.6",
     "@faustwp/cli": "0.2.7",
     "@faustwp/core": "0.2.7",
-    "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "add": "^2.0.6",
