@@ -6,6 +6,9 @@ import createEmotionCache from "../utility/createEmotionCache";
 import lightTheme from "../styles/theme/lightTheme";
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
+import { WordPressBlocksProvider } from '@faustwp/blocks';
+import blocks from '../wp-blocks';
+
 import "../styles/globals.css";
 import { AppProps } from "next/app";
 const clientSideEmotionCache = createEmotionCache();
@@ -21,12 +24,14 @@ export default function MyApp({
 
   return (
     <FaustProvider pageProps={pageProps}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
-          <Component {...pageProps} key={router.asPath} />
-        </ThemeProvider>
-      </CacheProvider>
+      <WordPressBlocksProvider config={{ blocks }}>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
+            <Component {...pageProps} key={router.asPath} />
+          </ThemeProvider>
+        </CacheProvider>
+      </WordPressBlocksProvider>
     </FaustProvider>
   );
 }
