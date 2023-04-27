@@ -5,6 +5,7 @@ import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemFragmentFragment,
 } from "../__generated__/graphql";
+import { Grid } from "@mui/material";
 
 type HeaderProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment["title"];
@@ -18,24 +19,28 @@ export default function Header({
   menuItems,
 }: HeaderProps) {
   return (
-    <header className={style.header}>
-      <div className="container">
-        <Link href="/" className={style.brand}>
-          <h2 className={style.siteTitle}>{siteTitle}</h2>
-          <p className={style.siteDescription}>{siteDescription}</p>
-        </Link>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <header>
+          <div className="container">
+            <Link href="/" className={style.brand}>
+              <h2 className={style.siteTitle}>{siteTitle}</h2>
+              <p className={style.siteDescription}>{siteDescription}</p>
+            </Link>
 
-        <nav className={style.nav}>
-          <ul>
-            {menuItems.map((item) => (
-              <li key={item.id}>
-                <Link href={item.uri}>{item.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </header>
+            <nav className={style.nav}>
+              <ul>
+                {menuItems.map((item) => (
+                  <li key={item.id}>
+                    <Link href={item.uri}>{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </Grid>
+    </Grid>
   );
 }
 
