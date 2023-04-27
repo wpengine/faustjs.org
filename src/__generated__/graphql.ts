@@ -7016,6 +7016,14 @@ export type GenerateAuthorizationCodePayload = {
   error?: Maybe<Scalars['String']>;
 };
 
+/** Types of styles to load */
+export enum GlobalStylesheetTypesEnum {
+  BaseLayoutStyles = 'BASE_LAYOUT_STYLES',
+  Presets = 'PRESETS',
+  Styles = 'STYLES',
+  Variables = 'VARIABLES'
+}
+
 /** Content node with hierarchical (parent/child) relationships */
 export type HierarchicalContentNode = {
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
@@ -10864,6 +10872,8 @@ export type RootQuery = {
   discussionSettings?: Maybe<DiscussionSettings>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
+  /** Returns the stylesheet resulting of merging core, theme, and user data. */
+  globalStylesheet?: Maybe<Scalars['String']>;
   /** An object of the mediaItem Type.  */
   mediaItem?: Maybe<MediaItem>;
   /**
@@ -11034,6 +11044,12 @@ export type RootQueryContentTypesArgs = {
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryGlobalStylesheetArgs = {
+  types?: InputMaybe<Array<InputMaybe<GlobalStylesheetTypesEnum>>>;
 };
 
 
@@ -14200,6 +14216,9 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   revisions?: Maybe<UserToRevisionsConnection>;
   /** Connection between the User type and the UserRole type */
   roles?: Maybe<UserToUserRoleConnection>;
+  /** Whether the Toolbar should be displayed when the user is viewing the site. */
+  shouldShowAdminToolbar?: Maybe<Scalars['Boolean']>;
+  shouldShowFaustToolbar?: Maybe<Scalars['Boolean']>;
   /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
   slug?: Maybe<Scalars['String']>;
   templates?: Maybe<Array<Maybe<Scalars['String']>>>;
