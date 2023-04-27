@@ -28,18 +28,7 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
       />
 
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          1
-        </Grid>
-        <Grid item xs={12}>
-          2
-        </Grid>
-        <Grid item xs={12}>
-          3
-        </Grid>
-        <Grid item xs={12}>
-          4
-        </Grid>
+        <p>Gutenberg blocks go here.</p>
       </Grid>
 
       <Footer />
