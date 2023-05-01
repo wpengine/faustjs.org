@@ -7,7 +7,6 @@ import Footer from "../components/footer";
 import style from "../styles/front-page.module.css";
 import { GetHomePageQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
-import { Button } from "@mui/material";
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { title: siteTitle, description: siteDescription } =
