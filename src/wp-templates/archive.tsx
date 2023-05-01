@@ -7,16 +7,17 @@ import { GetArchiveQuery } from "../__generated__/graphql.js";
 import { Header, Footer, EntryHeader } from "../components/index.js";
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
+  const { data } = props;
   const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { archiveType } = props.data.nodeByUri;
+    data.generalSettings;
+  const menuItems = data.primaryMenuItems.nodes;
+  const { archiveType } = data.nodeByUri;
 
   if (archiveType !== "Category" && archiveType !== "Tag") {
     return <>Archive not found</>;
   }
 
-  const { name, posts } = props.data.nodeByUri;
+  const { name, posts } = data.nodeByUri;
 
   return (
     <>

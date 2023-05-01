@@ -6,15 +6,17 @@ import { GetPageQuery } from "../__generated__/graphql.js";
 import { Header, Footer, EntryHeader } from "../components/index.js";
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
+  const { data, loading } = props;
+
   // Loading state for previews
-  if (props.loading) {
+  if (loading) {
     return <>Loading...</>;
   }
 
   const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { title, content } = props.data.page;
+    data.generalSettings;
+  const menuItems = data.primaryMenuItems.nodes;
+  const { title, content } = data.page;
 
   return (
     <>
@@ -30,6 +32,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
 
       <main className="container">
         <EntryHeader title={title} />
+        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 

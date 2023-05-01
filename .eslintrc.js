@@ -58,6 +58,8 @@ module.exports = {
         'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
         'no-underscore-dangle': ['error', { 'allow': ['__schema'] }],
         'import/extensions': ['error', 'ignorePackages'],
+        'react/jsx-props-no-spreading': 'off',
+        'react/function-component-definition': 'off'
     },
     settings: {
         react: {

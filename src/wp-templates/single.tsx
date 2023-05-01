@@ -6,12 +6,14 @@ import { GetPostQuery } from "../__generated__/graphql.js";
 import { Header, Footer, EntryHeader } from "../components/index.js";
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
+  const { data, loading } = props;
+
   // Loading state for previews
-  if (props.loading) {
+  if (loading) {
     return <>Loading...</>;
   }
 
-  const { post, generalSettings, primaryMenuItems } = props.data;
+  const { post, generalSettings, primaryMenuItems } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
   const { title, content, date, author } = post;
@@ -30,6 +32,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
 
       <main className="container">
         <EntryHeader title={title} date={date} author={author.node.name} />
+        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 
