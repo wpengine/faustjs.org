@@ -1,10 +1,8 @@
-import { gql } from "../__generated__";
 import Head from "next/head";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import { GetPostQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
+import { gql } from "../__generated__";
+import { GetPostQuery } from "../__generated__/graphql";
+import { Header, Footer, EntryHeader } from "../components";
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
   // Loading state for previews

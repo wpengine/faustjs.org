@@ -1,11 +1,9 @@
-import { gql } from "../__generated__";
 import Link from "next/link";
 import Head from "next/head";
-import Header from "../components/header";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import { GetArchiveQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
+import { gql } from "../__generated__";
+import { GetArchiveQuery } from "../__generated__/graphql";
+import { Header, Footer, EntryHeader } from "../components";
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { title: siteTitle, description: siteDescription } =
