@@ -1,8 +1,9 @@
+import React from "react";
 import Head from "next/head";
 import { FaustTemplate } from "@faustwp/core";
-import { gql } from "../__generated__";
-import { GetPostQuery } from "../__generated__/graphql";
-import { Header, Footer, EntryHeader } from "../components";
+import { gql } from "../__generated__/index.js";
+import { GetPostQuery } from "../__generated__/graphql.js";
+import { Header, Footer, EntryHeader } from "../components/index.js";
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
   // Loading state for previews

@@ -1,3 +1,3 @@
-export { EntryHeader } from './EntryHeader';
-export { Header } from './Header';
-export { Footer } from './Footer';
+export { EntryHeader } from "./EntryHeader.js";
+export { Header } from "./Header.js";
+export { Footer } from "./Footer.js";

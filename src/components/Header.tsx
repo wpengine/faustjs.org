@@ -1,9 +1,10 @@
-import { gql } from "../__generated__";
+import React from "react";
 import Link from "next/link";
+import { gql } from "../__generated__/index.js";
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemFragmentFragment,
-} from "../__generated__/graphql";
+} from "../__generated__/graphql.js";
 import styles from "../styles/components/Footer.module.scss";
 
 type HeaderProps = {
@@ -12,11 +13,7 @@ type HeaderProps = {
   menuItems: PrimaryMenuItemFragmentFragment[];
 };
 
-export function Header({
-  siteTitle,
-  siteDescription,
-  menuItems,
-}: HeaderProps) {
+export function Header({ siteTitle, siteDescription, menuItems }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className="container">

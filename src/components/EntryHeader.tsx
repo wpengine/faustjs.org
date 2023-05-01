@@ -1,3 +1,4 @@
+import React from "react";
 import style from "../styles/components/EntryHeader.module.scss";
 
 type EntryHeaderProps = {

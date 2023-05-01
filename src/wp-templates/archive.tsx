@@ -1,9 +1,10 @@
+import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { FaustTemplate } from "@faustwp/core";
-import { gql } from "../__generated__";
-import { GetArchiveQuery } from "../__generated__/graphql";
-import { Header, Footer, EntryHeader } from "../components";
+import { gql } from "../__generated__/index.js";
+import { GetArchiveQuery } from "../__generated__/graphql.js";
+import { Header, Footer, EntryHeader } from "../components/index.js";
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { title: siteTitle, description: siteDescription } =
@@ -16,7 +17,6 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   }
 
   const { name, posts } = props.data.nodeByUri;
-  const htmlTitle = `${archiveType}: ${name} - ${siteTitle}`;
 
   return (
     <>
@@ -48,7 +48,7 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   );
 };
 
-Component.variables = (seedQuery, ctx) => {
+Component.variables = (seedQuery) => {
   return {
     uri: seedQuery.uri,
   };
