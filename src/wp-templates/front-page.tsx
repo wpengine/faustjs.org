@@ -7,7 +7,7 @@ import Footer from "../components/footer";
 import style from "../styles/front-page.module.css";
 import { GetHomePageQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
-import { Button, Grid } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 import styled from "@emotion/styled";
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
@@ -21,17 +21,21 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
-        menuItems={menuItems}
-      />
+      <Container>
+        <Header
+          siteTitle={siteTitle}
+          siteDescription={siteDescription}
+          menuItems={menuItems}
+        />
 
-      <Grid container spacing={2}>
-        <p>Gutenberg blocks go here.</p>
-      </Grid>
+        <Grid container spacing={2}>
+          <p>Gutenberg blocks go here.</p>
+        </Grid>
+      </Container>
 
-      <Footer />
+      <Container>
+        <Footer />
+      </Container>
     </>
   );
 };
