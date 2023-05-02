@@ -1,18 +1,17 @@
-import { gql } from "../__generated__";
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Header from "../components/header";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import style from "../styles/front-page.module.css";
-import { GetHomePageQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
-import { Button } from "@mui/material";
+import { gql } from "__generated__";
+import { GetHomePageQuery } from "__generated__/graphql";
+import { Header, Footer, EntryHeader } from "components";
+import style from "styles/templates/front-page.module.scss";
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
+  const { data } = props;
   const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
+    data.generalSettings;
+  const menuItems = data.primaryMenuItems.nodes;
 
   return (
     <>

@@ -1,10 +1,11 @@
-import { gql } from "../__generated__";
+import React from "react";
 import Link from "next/link";
-import style from "./header.module.css";
+import { gql } from "__generated__";
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemFragmentFragment,
-} from "../__generated__/graphql";
+} from "__generated__/graphql";
+import styles from "styles/components/Footer.module.scss";
 
 type HeaderProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment["title"];
@@ -12,20 +13,16 @@ type HeaderProps = {
   menuItems: PrimaryMenuItemFragmentFragment[];
 };
 
-export default function Header({
-  siteTitle,
-  siteDescription,
-  menuItems,
-}: HeaderProps) {
+export function Header({ siteTitle, siteDescription, menuItems }: HeaderProps) {
   return (
-    <header className={style.header}>
+    <header className={styles.header}>
       <div className="container">
-        <Link href="/" className={style.brand}>
-          <h2 className={style.siteTitle}>{siteTitle}</h2>
-          <p className={style.siteDescription}>{siteDescription}</p>
+        <Link href="/" className={styles.brand}>
+          <h2 className={styles.siteTitle}>{siteTitle}</h2>
+          <p className={styles.siteDescription}>{siteDescription}</p>
         </Link>
 
-        <nav className={style.nav}>
+        <nav className={styles.nav}>
           <ul>
             {menuItems.map((item) => (
               <li key={item.id}>
