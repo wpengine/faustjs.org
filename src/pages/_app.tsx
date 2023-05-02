@@ -1,13 +1,13 @@
-import "../../faust.config.js";
+import "faust.config";
 import React from "react";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import createEmotionCache from "../utility/createEmotionCache.js";
-import lightTheme from "../styles/theme/lightTheme.js";
-import "../styles/globals.scss";
+import createEmotionCache from "utility/createEmotionCache";
+import lightTheme from "styles/theme/lightTheme";
+import "styles/global.scss";
 
 const clientSideEmotionCache = createEmotionCache();
 

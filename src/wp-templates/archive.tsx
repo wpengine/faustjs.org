@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { FaustTemplate } from "@faustwp/core";
-import { gql } from "../__generated__/index.js";
-import { GetArchiveQuery } from "../__generated__/graphql.js";
-import { Header, Footer, EntryHeader } from "../components/index.js";
+import { gql } from "__generated__";
+import { GetArchiveQuery } from "__generated__/graphql";
+import { Header, Footer, EntryHeader } from "components";
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { data } = props;

@@ -1,11 +1,13 @@
-import frontPage from "./front-page.js";
-import page from "./page.js";
-import single from "./single.js";
-import archive from "./archive.js";
+import frontPage from "./front-page";
+import page from "./page";
+import single from "./single";
+import archive from "./archive";
 
-export default {
+const templates = {
   "front-page": frontPage,
   page,
   single,
   archive,
 };
+
+export default templates;

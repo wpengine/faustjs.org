@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { gql } from "../__generated__/index.js";
+import { gql } from "__generated__";
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemFragmentFragment,
-} from "../__generated__/graphql.js";
-import styles from "../styles/components/Footer.module.scss";
+} from "__generated__/graphql";
+import styles from "styles/components/Footer.module.scss";
 
 type HeaderProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment["title"];
