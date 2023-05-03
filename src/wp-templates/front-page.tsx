@@ -9,6 +9,7 @@ import { GetHomePageQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
 import { Button, Container, Grid } from "@mui/material";
 import styled from "@emotion/styled";
+import Content from "../components/content";
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { title: siteTitle, description: siteDescription } =
@@ -21,19 +22,19 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Container>
+      <Container maxWidth={false} sx={{ backgroundColor: "#002838" }}>
         <Header
           siteTitle={siteTitle}
           siteDescription={siteDescription}
           menuItems={menuItems}
         />
-
-        <Grid container spacing={2}>
-          <p>Gutenberg blocks go here.</p>
-        </Grid>
       </Container>
 
-      <Container maxWidth={false} sx={{ backgroundColor: "#002838" }}>
+      <Container sx={{ mt: 4 }}>
+        <Content />
+      </Container>
+
+      <Container maxWidth={false} sx={{ backgroundColor: "#002838", mt: 4 }}>
         <Footer />
       </Container>
     </>
