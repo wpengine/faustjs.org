@@ -1,12 +1,4 @@
-import {
-  Box,
-  Grid,
-  Icon,
-  List,
-  Link,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, List, Link, Container, Typography } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
 
 type LinkList = {
@@ -17,7 +9,7 @@ type LinkList = {
 type LinkListItem = {
   text: string;
   url: string;
-  icon: string;
+  isExternalLink: boolean;
 };
 
 export default function Footer() {
@@ -32,63 +24,18 @@ export default function Footer() {
       links: [
         {
           text: "@faustwp/core",
-          url: "#",
-          icon: "",
+          url: "https://faustjs.org/docs/changelog/faustwp-core",
+          isExternalLink: false,
         },
         {
           text: "@faustwp/cli",
-          url: "#",
-          icon: "",
+          url: "https://faustjs.org/docs/changelog/faustwp-cli",
+          isExternalLink: false,
         },
         {
           text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-      ],
-    },
-    {
-      title: "WP Engine",
-      links: [
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-      ],
-    },
-    {
-      title: "Community",
-      links: [
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
-        },
-        {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
+          url: "https://faustjs.org/docs/changelog/faustwp",
+          isExternalLink: false,
         },
       ],
     },
@@ -96,19 +43,64 @@ export default function Footer() {
       title: "Docs",
       links: [
         {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
+          text: "Getting Started",
+          url: "https://faustjs.org/docs/getting-started",
+          isExternalLink: false,
         },
         {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
+          text: "Example Project",
+          url: "https://faustjs.org/docs/next/guides/project-walkthrough",
+          isExternalLink: false,
         },
         {
-          text: "FaustWP Plugin",
-          url: "#",
-          icon: "",
+          text: "Privacy Policy",
+          url: "https://faustjs.org/docs/privacy-policy",
+          isExternalLink: false,
+        },
+      ],
+    },
+    {
+      title: "Community",
+      links: [
+        {
+          text: "GitHub",
+          url: "https://github.com/wpengine/faustjs?ref=faustjs",
+          isExternalLink: true,
+        },
+        {
+          text: "Twitter",
+          url: "https://twitter.com/wpengine",
+          isExternalLink: true,
+        },
+        {
+          text: "YouTube",
+          url: "https://www.youtube.com/channel/UCh1WuL54XFb9ZI6m6goFv1g?ref=faustjs",
+          isExternalLink: true,
+        },
+        {
+          text: "Headless WordPress Discord",
+          url: "https://discord.gg/J2khkF9XYK",
+          isExternalLink: true,
+        },
+      ],
+    },
+    {
+      title: "WP Engine",
+      links: [
+        {
+          text: "Developers",
+          url: "https://developers.wpengine.com/?ref=faustjs",
+          isExternalLink: false,
+        },
+        {
+          text: "We're Hiring!",
+          url: "https://wpengine.careers/?ref=faustjs",
+          isExternalLink: false,
+        },
+        {
+          text: "Headless WordPress Hosting",
+          url: "https://wpengine.com/atlas?ref=faustjs",
+          isExternalLink: true,
         },
       ],
     },
@@ -116,11 +108,18 @@ export default function Footer() {
 
   const generateLinkGroups = () => {
     return linkListGroup.map((group: LinkList) => (
-      <Grid item xs={12} lg={3}>
+      <Grid item xs={12} lg={3} key={group.title}>
         <Typography>{group.title}</Typography>
-        {group.links.map((item: LinkListItem) => (
-          <Link href={item.url}>{item.text}</Link>
-        ))}
+        <List sx={{ display: "flex", flexDirection: "column" }}>
+          {group.links.map((item: LinkListItem) => (
+            <Link key={item.text} href={item.url}>
+              {item.text}
+              {item.isExternalLink ? (
+                <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
+              ) : null}
+            </Link>
+          ))}
+        </List>
       </Grid>
     ));
   };
