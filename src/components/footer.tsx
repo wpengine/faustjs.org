@@ -141,7 +141,6 @@ export default function Footer() {
         <Grid container direction="column" alignItems="center">
           <Grid
             container
-            xs={12}
             sx={{
               display: "flex",
               flexDirection: "row",
