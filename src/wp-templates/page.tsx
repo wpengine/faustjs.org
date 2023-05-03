@@ -1,22 +1,21 @@
-import React from "react";
+import { gql } from "../__generated__";
 import Head from "next/head";
+import EntryHeader from "../components/entry-header";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import { GetPageQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
-import { gql } from "__generated__";
-import { GetPageQuery } from "__generated__/graphql";
-import { Header, Footer, EntryHeader } from "components";
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
-  const { data, loading } = props;
-
   // Loading state for previews
-  if (loading) {
+  if (props.loading) {
     return <>Loading...</>;
   }
 
   const { title: siteTitle, description: siteDescription } =
-    data.generalSettings;
-  const menuItems = data.primaryMenuItems.nodes;
-  const { title, content } = data.page;
+    props.data.generalSettings;
+  const menuItems = props.data.primaryMenuItems.nodes;
+  const { title, content } = props.data.page;
 
   return (
     <>
@@ -32,7 +31,6 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
 
       <main className="container">
         <EntryHeader title={title} />
-        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 

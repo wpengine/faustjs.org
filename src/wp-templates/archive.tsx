@@ -1,23 +1,24 @@
-import React from "react";
+import { gql } from "../__generated__";
 import Link from "next/link";
 import Head from "next/head";
+import Header from "../components/header";
+import EntryHeader from "../components/entry-header";
+import Footer from "../components/footer";
+import { GetArchiveQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
-import { gql } from "__generated__";
-import { GetArchiveQuery } from "__generated__/graphql";
-import { Header, Footer, EntryHeader } from "components";
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
-  const { data } = props;
   const { title: siteTitle, description: siteDescription } =
-    data.generalSettings;
-  const menuItems = data.primaryMenuItems.nodes;
-  const { archiveType } = data.nodeByUri;
+    props.data.generalSettings;
+  const menuItems = props.data.primaryMenuItems.nodes;
+  const { archiveType } = props.data.nodeByUri;
 
   if (archiveType !== "Category" && archiveType !== "Tag") {
     return <>Archive not found</>;
   }
 
-  const { name, posts } = data.nodeByUri;
+  const { name, posts } = props.data.nodeByUri;
+  const htmlTitle = `${archiveType}: ${name} - ${siteTitle}`;
 
   return (
     <>
@@ -49,7 +50,7 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   );
 };
 
-Component.variables = (seedQuery) => {
+Component.variables = (seedQuery, ctx) => {
   return {
     uri: seedQuery.uri,
   };

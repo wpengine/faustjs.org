@@ -1,17 +1,20 @@
-import React from "react";
+import { gql } from "../__generated__";
 import Head from "next/head";
 import Link from "next/link";
+import Header from "../components/header";
+import EntryHeader from "../components/entry-header";
+import Footer from "../components/footer";
+import style from "../styles/front-page.module.css";
+import { GetHomePageQuery } from "../__generated__/graphql";
 import { FaustTemplate } from "@faustwp/core";
-import { gql } from "__generated__";
-import { GetHomePageQuery } from "__generated__/graphql";
-import { Header, Footer, EntryHeader } from "components";
-import style from "styles/templates/front-page.module.scss";
+import { Button, Container, Grid } from "@mui/material";
+import styled from "@emotion/styled";
+import Content from "../components/content";
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
-  const { data } = props;
   const { title: siteTitle, description: siteDescription } =
-    data.generalSettings;
-  const menuItems = data.primaryMenuItems.nodes;
+    props.data.generalSettings;
+  const menuItems = props.data.primaryMenuItems.nodes;
 
   return (
     <>
@@ -19,65 +22,21 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
-        menuItems={menuItems}
-      />
+      <Container maxWidth={false} sx={{ backgroundColor: "#002838" }}>
+        <Header
+          siteTitle={siteTitle}
+          siteDescription={siteDescription}
+          menuItems={menuItems}
+        />
+      </Container>
 
-      <main className="container">
-        <EntryHeader title="Welcome to the Faust Scaffold Blueprint" />
+      <Container sx={{ mt: 4 }}>
+        <Content />
+      </Container>
 
-        <section className={style.cardGrid}>
-          <Link
-            href="https://faustjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={style.card}
-          >
-            <h3>Documentation →</h3>
-            <p>
-              Learn more about Faust.js through guides and reference
-              documentation.
-            </p>
-          </Link>
-
-          <Link
-            href="https://my.wpengine.com/atlas#/create/blueprint"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={style.card}
-          >
-            <h3>Blueprints →</h3>
-            <p>Explore production ready Faust.js starter projects.</p>
-          </Link>
-
-          <Link
-            href="https://wpengine.com/atlas"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={style.card}
-          >
-            <h3>Deploy →</h3>
-            <p>
-              Deploy your Faust.js app to Atlas along with your WordPress
-              instance.
-            </p>
-          </Link>
-
-          <Link
-            href="https://github.com/wpengine/faustjs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={style.card}
-          >
-            <h3>Contribute →</h3>
-            <p>Visit us on GitHub to explore how you can contribute!</p>
-          </Link>
-        </section>
-      </main>
-
-      <Footer />
+      <Container maxWidth={false} sx={{ backgroundColor: "#002838", mt: 4 }}>
+        <Footer />
+      </Container>
     </>
   );
 };
