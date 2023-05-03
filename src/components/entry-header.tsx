@@ -1,5 +1,4 @@
-import React from "react";
-import style from "styles/components/EntryHeader.module.scss";
+import style from "./entry-header.module.css";
 
 type EntryHeaderProps = {
   title: string;
@@ -7,7 +6,7 @@ type EntryHeaderProps = {
   author?: string;
 };
 
-export function EntryHeader({ title, date, author }: EntryHeaderProps) {
+export default function EntryHeader({ title, date, author }: EntryHeaderProps) {
   return (
     <div className={style.entry}>
       {title && <h2 className={style.title}>{title}</h2>}
