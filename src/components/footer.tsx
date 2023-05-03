@@ -109,7 +109,7 @@ export default function Footer() {
   const generateLinkGroups = () => {
     return linkListGroup.map((group: LinkList) => (
       <Grid item xs={12} lg={3} key={group.title}>
-        <Typography>{group.title}</Typography>
+        <Typography variant="h6">{group.title}</Typography>
         <List sx={{ display: "flex", flexDirection: "column" }}>
           {group.links.map((item: LinkListItem) => (
             <Link key={item.text} href={item.url}>
@@ -152,7 +152,7 @@ export default function Footer() {
           </Grid>
 
           <Grid item xs={12} sx={{ mt: 4 }}>
-            <Typography color="textSecondary" variant="subtitle2">
+            <Typography color="white" variant="subtitle1">
               &copy; 2013-{new Date().getFullYear()} WPEngine, Inc. All rights
               reserved. Powered by Faust.
             </Typography>
