@@ -3,9 +3,11 @@ import page from "./page";
 import single from "./single";
 import archive from "./archive";
 
-export default {
+const templates = {
   "front-page": frontPage,
   page,
   single,
   archive,
 };
+
+export default templates;

@@ -1,6 +1,7 @@
-import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
+import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { WordPressTemplateProps } from "../types";
+import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
+import { WordPressTemplateProps } from "types";
 
 export default function Page(props: WordPressTemplateProps) {
   return <WordPressTemplate {...props} />;

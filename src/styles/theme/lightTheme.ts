@@ -1,30 +1,29 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 const lightTheme = createTheme({
   palette: {
-    mode: 'light',
+    mode: "light",
     primary: {
-      main: '#ffffff',
-      contrastText: '#002838',
+      main: "#ffffff",
+      contrastText: "#002838",
     },
     secondary: {
-      main: '#7a1ba6',
+      main: "#7a1ba6",
     },
     text: {
-      primary: '#002838',
-      secondary: '#002838',
-      disabled: 'rgba(0,40,45,0.38)',
-
+      primary: "#002838",
+      secondary: "#002838",
+      disabled: "rgba(0,40,45,0.38)",
     },
     background: {
-      default: '#ffffff',
+      default: "#ffffff",
     },
     error: {
-      main: '#d21b46',
+      main: "#d21b46",
     },
   },
   typography: {
-    fontFamily: 'Open Sans, tahoma, sans-serif',
+    fontFamily: "Open Sans, tahoma, sans-serif",
   },
 });
 
