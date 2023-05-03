@@ -129,14 +129,14 @@ export default function Footer() {
       sx={{
         width: "100%",
         height: "auto",
-        backgroundColor: "primary.main",
         paddingTop: "1rem",
         paddingBottom: "1rem",
+        backgroundColor: "inherit",
       }}
     >
       <Container
         maxWidth="lg"
-        sx={{ mt: 4, backgroundColor: "#002838", color: "white", py: 2, px: 2 }}
+        sx={{ mt: 4, backgroundColor: "inherit", color: "white", py: 2, px: 2 }}
       >
         <Grid container direction="column" alignItems="center">
           <Grid

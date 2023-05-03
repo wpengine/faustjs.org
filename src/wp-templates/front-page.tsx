@@ -33,7 +33,7 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         </Grid>
       </Container>
 
-      <Container>
+      <Container maxWidth={false} sx={{ backgroundColor: "#002838" }}>
         <Footer />
       </Container>
     </>
