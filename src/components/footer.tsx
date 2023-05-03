@@ -108,7 +108,7 @@ export default function Footer() {
 
   const generateLinkGroups = () => {
     return linkListGroup.map((group: LinkList) => (
-      <Grid item xs={12} lg={3} key={group.title}>
+      <Grid item xs={12} md={6} lg={3} key={group.title}>
         <Typography variant="h6">{group.title}</Typography>
         <List sx={{ display: "flex", flexDirection: "column" }}>
           {group.links.map((item: LinkListItem) => (
