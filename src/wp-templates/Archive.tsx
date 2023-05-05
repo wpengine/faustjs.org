@@ -9,7 +9,7 @@ import { Header, EntryHeader, Footer } from 'components';
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { data } = props;
   const { generalSettings, primaryMenuItems, nodeByUri } = data;
-  const { title: siteTitle, description: siteDescription } = generalSettings;
+  const { title: siteTitle } = generalSettings;
   const menuItems = primaryMenuItems.nodes;
   const { archiveType } = nodeByUri;
 
@@ -27,7 +27,6 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
 
       <Header
         siteTitle={siteTitle}
-        siteDescription={siteDescription}
         menuItems={menuItems}
       />
 

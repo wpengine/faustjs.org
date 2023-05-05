@@ -14,7 +14,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
   }
 
   const { post, generalSettings, primaryMenuItems } = data;
-  const { title: siteTitle, description: siteDescription } = generalSettings;
+  const { title: siteTitle } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
   const { title, content, date, author } = post;
 
@@ -26,7 +26,6 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
 
       <Header
         siteTitle={siteTitle}
-        siteDescription={siteDescription}
         menuItems={menuItems}
       />
 

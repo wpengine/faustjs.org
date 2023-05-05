@@ -14,7 +14,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
   }
 
   const { page, generalSettings, primaryMenuItems } = data;
-  const { title: siteTitle, description: siteDescription } = generalSettings;
+  const { title: siteTitle } = generalSettings;
   const menuItems = primaryMenuItems.nodes;
   const { title, content } = page;
 
@@ -26,7 +26,6 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
 
       <Header
         siteTitle={siteTitle}
-        siteDescription={siteDescription}
         menuItems={menuItems}
       />
 
