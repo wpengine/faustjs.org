@@ -4,6 +4,9 @@
     "paths": {
       "faust.config": [
         "../faust.config"
+      ],
+      "WordPressGlobalStylesheet": [
+        "../globalStylesheet.css"
       ]
     },
     "target": "es5",

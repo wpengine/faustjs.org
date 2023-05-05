@@ -7,6 +7,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import createEmotionCache from "utility/createEmotionCache";
 import lightTheme from "styles/theme/lightTheme";
+import "WordPressGlobalStylesheet"; // `../globalStylesheet.css`
 import "styles/global.scss";
 
 const clientSideEmotionCache = createEmotionCache();
