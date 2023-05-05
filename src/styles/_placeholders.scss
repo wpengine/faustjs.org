@@ -1,0 +1,44 @@
+// Sass placeholders
+// https://sass-lang.com/documentation/style-rules/placeholder-selectors
+
+@import "breakpoints";
+
+%visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+%hidden {
+  // Always visible for smaller viewports.
+  @media (min-width: $breakpoint-small) {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+%button {
+  background-color: var(--color--accent);
+  border-radius: var(--border-radius);
+  border: var(--border--light);
+  color: var(--main--background-color);
+  font-size: 92%;
+  padding: 0.75rem 1.1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 2px solid var(--color--accent);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color--accent);
+    background-color: var(--main--background-color);
+  }
+}
+
+%transitionIfAllowed {
+  transition: all 0.2s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

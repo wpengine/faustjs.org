@@ -1,15 +1,15 @@
-import React from "react";
-import { FaustTemplate } from "@faustwp/core";
-import Head from "next/head";
-import { Container } from "@mui/material";
-import { gql } from "__generated__";
-import { GetHomePageQuery } from "__generated__/graphql";
-import { Header, Content, Footer } from "components";
+import React from 'react';
+import { FaustTemplate } from '@faustwp/core';
+import Head from 'next/head';
+import { Container } from '@mui/material';
+import { gql } from '__generated__';
+import { GetHomePageQuery } from '__generated__/graphql';
+import { Header, Content, Footer } from 'components';
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { data } = props;
   const { generalSettings, primaryMenuItems } = data;
-  const { title: siteTitle, description: siteDescription } = generalSettings;
+  const { title: siteTitle } = generalSettings;
   const menuItems = primaryMenuItems.nodes;
 
   return (
@@ -18,10 +18,9 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Container maxWidth={false} sx={{ backgroundColor: "#002838" }}>
+      <Container maxWidth={false} sx={{ backgroundColor: 'var(--color--dark-blue)' }}>
         <Header
           siteTitle={siteTitle}
-          siteDescription={siteDescription}
           menuItems={menuItems}
         />
       </Container>
@@ -30,7 +29,7 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <Content />
       </Container>
 
-      <Container maxWidth={false} sx={{ backgroundColor: "#002838", mt: 4 }}>
+      <Container maxWidth={false} sx={{ backgroundColor: 'var(--color--dark-blue)', mt: 4 }}>
         <Footer />
       </Container>
     </>

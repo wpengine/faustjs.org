@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid, Typography } from "@mui/material";
+import React from 'react';
+import { Grid, Typography } from '@mui/material';
 
 export function Content() {
   return (

@@ -1,0 +1,11 @@
+// Classes in this file can be optionally added to menu items from within WordPress.
+// Appearance --> Menus --> Screen Options --> CSS Classes
+
+@import "../breakpoints";
+@import "../placeholders";
+
+.button {
+  a {
+    @extend %button;
+  }
+}

@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n    fragment HeaderGeneralSettingsFragment on GeneralSettings {\n      title\n      description\n    }\n  ": types.HeaderGeneralSettingsFragmentFragmentDoc,
     "\n    fragment PrimaryMenuItemFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  ": types.PrimaryMenuItemFragmentFragmentDoc,
+    "\n    fragment NavigationMenuItemFragment on MenuItem {\n      id\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  ": types.NavigationMenuItemFragmentFragmentDoc,
     "\n  query GetExamplePage {\n    generalSettings {\n      title\n      description\n    }\n    primaryMenuItems: menuItems(where: { location: PRIMARY }) {\n      nodes {\n        id\n        uri\n        path\n        label\n        parentId\n        cssClasses\n        menu {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n": types.GetExamplePageDocument,
     "\n  query GetArchive($uri: String!) {\n    nodeByUri(uri: $uri) {\n      archiveType: __typename\n      ... on Category {\n        name\n        posts {\n          nodes {\n            id\n            title\n            uri\n          }\n        }\n      }\n      ... on Tag {\n        name\n        posts {\n          nodes {\n            id\n            title\n            uri\n          }\n        }\n      }\n    }\n    generalSettings {\n      title\n      description\n    }\n    primaryMenuItems: menuItems(where: { location: PRIMARY }) {\n      nodes {\n        id\n        uri\n        path\n        label\n        parentId\n        cssClasses\n        menu {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n": types.GetArchiveDocument,
     "\n  query GetHomePage {\n    generalSettings {\n      title\n      description\n    }\n    primaryMenuItems: menuItems(where: { location: PRIMARY }) {\n      nodes {\n        id\n        uri\n        path\n        label\n        parentId\n        cssClasses\n        menu {\n          node {\n            name\n          }\n        }\n      }\n    }\n  }\n": types.GetHomePageDocument,
@@ -44,6 +45,10 @@ export function gql(source: "\n    fragment HeaderGeneralSettingsFragment on Gen
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    fragment PrimaryMenuItemFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  "): (typeof documents)["\n    fragment PrimaryMenuItemFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    fragment NavigationMenuItemFragment on MenuItem {\n      id\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  "): (typeof documents)["\n    fragment NavigationMenuItemFragment on MenuItem {\n      id\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
