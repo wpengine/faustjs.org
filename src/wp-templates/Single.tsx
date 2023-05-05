@@ -24,10 +24,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        menuItems={menuItems}
-      />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
         <EntryHeader title={title} date={date} author={author.node.name} />

@@ -18,18 +18,19 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Container maxWidth={false} sx={{ backgroundColor: 'var(--color--dark-blue)' }}>
-        <Header
-          siteTitle={siteTitle}
-          menuItems={menuItems}
-        />
+      <Container
+        maxWidth={false}
+        sx={{ backgroundColor: 'var(--color--dark-blue)' }}>
+        <Header siteTitle={siteTitle} menuItems={menuItems} />
       </Container>
 
       <Container sx={{ mt: 4 }}>
         <Content />
       </Container>
 
-      <Container maxWidth={false} sx={{ backgroundColor: 'var(--color--dark-blue)', mt: 4 }}>
+      <Container
+        maxWidth={false}
+        sx={{ backgroundColor: 'var(--color--dark-blue)', mt: 4 }}>
         <Footer />
       </Container>
     </>
