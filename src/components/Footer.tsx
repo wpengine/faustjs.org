@@ -29,7 +29,7 @@ export function Footer() {
           isExternalLink: false,
         },
         {
-          text: 'FaustWP Plugin',
+          text: 'Faust.js™ WordPress Plugin',
           url: 'https://faustjs.org/docs/changelog/faustwp',
           isExternalLink: false,
         },
@@ -152,7 +152,7 @@ export function Footer() {
           <Grid item xs={12} sx={{ mt: 4 }}>
             <Typography color="white" variant="subtitle1">
               &copy; 2013-{new Date().getFullYear()} WPEngine, Inc. All rights
-              reserved. Powered by Faust.
+              reserved. Powered by Faust.js™.
             </Typography>
           </Grid>
         </Grid>
