@@ -107,22 +107,27 @@ export function Footer() {
       <Grid item xs={12} md={6} lg={3} key={group.title}>
         <Typography variant="h6">{group.title}</Typography>
         <List sx={{ display: 'flex', flexDirection: 'column' }}>
-          {group.links.map((item: LinkListItem) =>
-            item.isExternalLink ? (
-              <Link
-                key={item.text}
-                href={item.url}
-                target="_blank"
-                rel="noreferrer">
+          {group.links.map((item: LinkListItem) => {
+            const linkAttrs = {
+              key: item.text,
+              href: item.url,
+            };
+
+            const externalLinkAttrs = {
+              target: '_blank',
+              rel: 'noreferrer',
+              ...linkAttrs,
+            };
+
+            return item.isExternalLink ? (
+              <Link {...externalLinkAttrs}>
                 {item.text}
                 <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
               </Link>
             ) : (
-              <Link key={item.text} href={item.url}>
-                {item.text}
-              </Link>
-            ),
-          )}
+              <Link {...linkAttrs}>{item.text}</Link>
+            );
+          })}
         </List>
       </Grid>
     ));
