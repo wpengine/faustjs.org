@@ -7,7 +7,7 @@ type LinkList = {
   links: LinkListItem[];
 };
 
-type LinkListItem = {
+export type LinkListItem = {
   text: string;
   url: string;
   ariaLabel?: string;
