@@ -10,9 +10,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from '@mui/material';
 import styles from 'styles/components/Header.module.scss';
@@ -21,7 +19,7 @@ import { LinkListItem } from './Footer';
 
 const cx = classNames.bind(styles);
 
-const pages = ['test', 'test2'];
+const pages = ['test', 'test2', 'Community'];
 
 const leftMenuItems: LinkListItem[] = [
   {
@@ -32,7 +30,7 @@ const leftMenuItems: LinkListItem[] = [
 
 const rightMenuItems: LinkListItem[] = [
   {
-    text: 'Products',
+    text: 'Help!!!!!!!',
     url: '/',
   },
 ];
