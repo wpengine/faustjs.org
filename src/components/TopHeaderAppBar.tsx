@@ -219,7 +219,7 @@ export function TopHeaderAppBar({ siteTitle, menuItems }) {
             ))}
           </Box>
 
-          <Search>
+          <Search sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
