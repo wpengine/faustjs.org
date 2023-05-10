@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import classNames from 'classnames/bind';
-import { SkipNavigationLink, NavigationMenu } from 'components';
+import { SkipNavigationLink } from 'components';
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemFragmentFragment,
@@ -21,7 +20,7 @@ export function Header({ siteTitle = 'Faust.js', menuItems }: HeaderProps) {
   return (
     <header className={cx('component')}>
       <SkipNavigationLink />
-      <TopHeaderAppBar siteTitle={siteTitle} />
+      <TopHeaderAppBar siteTitle={siteTitle} menuItems={menuItems} />
     </header>
   );
 }

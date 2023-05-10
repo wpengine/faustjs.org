@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function TopHeaderAppBar({ siteTitle }) {
+export function TopHeaderAppBar({ siteTitle, menuItems }) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -77,7 +77,7 @@ export function TopHeaderAppBar({ siteTitle }) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href="/">
@@ -95,7 +95,7 @@ export function TopHeaderAppBar({ siteTitle }) {
                 fill="white"
               />
             </svg>
-            <span>{siteTitle}</span>
+            <span className={cx('title')}>{siteTitle}</span>
           </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
