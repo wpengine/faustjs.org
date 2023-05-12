@@ -18,14 +18,14 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
   // const { title, content } = reference;
 
   // DEBUGGING CODE - REMOVE
-  // const title = 'test';
-  // const content = 'content';
-  // const date = 'Wednesday';
-  // const author = {
-  //   node: {
-  //     name: 'meow'
-  //   }
-  // }
+  const title = 'test';
+  const content = 'content';
+  const date = 'Wednesday';
+  const author = {
+    node: {
+      name: 'meow'
+    }
+  }
 
   return (
     <>
@@ -99,4 +99,5 @@ Component.query = gql(`
     }
   }
 `);
+
 export default Component;
