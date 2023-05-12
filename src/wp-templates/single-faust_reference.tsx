@@ -12,20 +12,10 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const { generalSettings, primaryMenuItems } = props.data;
+  const { generalSettings, primaryMenuItems, reference } = props.data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
-  // const { title, content } = reference;
-
-  // DEBUGGING CODE - REMOVE
-  const title = 'test';
-  const content = 'content';
-  const date = 'Wednesday';
-  const author = {
-    node: {
-      name: 'meow'
-    }
-  }
+  const { title, content } = reference;
 
   return (
     <>
@@ -40,7 +30,7 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
       />
 
       <main className="container">
-        <EntryHeader title={title} date={date} author={author.node.name} />
+        <EntryHeader title={title} />
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 
@@ -51,7 +41,7 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
 
 Component.variables = (seedQuery, ctx) => {
   return {
-    uri: seedQuery.uri,
+    databaseId: seedQuery.databaseId,
     asPreview: ctx?.asPreview,
   };
 };
