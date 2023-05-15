@@ -117,8 +117,6 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="/"
               sx={{
                 mr: 2,
                 flexGrow: 1,
@@ -185,8 +183,6 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
