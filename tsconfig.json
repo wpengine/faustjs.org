@@ -1,5 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "faust.config": [
+        "../faust.config"
+      ],
+      "WordPressGlobalStylesheet": [
+        "../globalStylesheet.css"
+      ]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -26,7 +35,6 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "src/__generated__"
+    "node_modules"
   ]
 }

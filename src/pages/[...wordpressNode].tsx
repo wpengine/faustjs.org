@@ -1,6 +1,7 @@
-import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { WordPressTemplateProps } from "../types";
+import React from 'react';
+import { getWordPressProps, WordPressTemplate } from '@faustwp/core';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { WordPressTemplateProps } from 'types';
 
 export default function Page(props: WordPressTemplateProps) {
   return <WordPressTemplate {...props} />;
@@ -13,6 +14,6 @@ export const getStaticProps: GetStaticProps = (ctx) => {
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 };

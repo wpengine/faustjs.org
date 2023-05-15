@@ -1,21 +1,22 @@
-import { gql } from "../__generated__";
-import Head from "next/head";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import { GetPageQuery } from "../__generated__/graphql";
-import { FaustTemplate } from "@faustwp/core";
+import React from 'react';
+import { FaustTemplate } from '@faustwp/core';
+import Head from 'next/head';
+import { gql } from '__generated__';
+import { GetPageQuery } from '__generated__/graphql';
+import { Header, EntryHeader, Footer } from 'components';
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
+  const { data, loading } = props;
+
   // Loading state for previews
-  if (props.loading) {
+  if (loading) {
     return <>Loading...</>;
   }
 
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { title, content } = props.data.page;
+  const { page, generalSettings, primaryMenuItems } = data;
+  const { title: siteTitle } = generalSettings;
+  const menuItems = primaryMenuItems.nodes;
+  const { title, content } = page;
 
   return (
     <>
@@ -23,14 +24,11 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
-        menuItems={menuItems}
-      />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
         <EntryHeader title={title} />
+        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 

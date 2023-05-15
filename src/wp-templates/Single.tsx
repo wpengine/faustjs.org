@@ -1,19 +1,20 @@
-import { gql } from "../__generated__";
-import Head from "next/head";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import { GetPostQuery } from "../__generated__/graphql";
-import { FaustTemplate } from "@faustwp/core";
+import React from 'react';
+import { FaustTemplate } from '@faustwp/core';
+import Head from 'next/head';
+import { gql } from '__generated__';
+import { GetPostQuery } from '__generated__/graphql';
+import { Header, EntryHeader, Footer } from 'components';
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
+  const { data, loading } = props;
+
   // Loading state for previews
-  if (props.loading) {
+  if (loading) {
     return <>Loading...</>;
   }
 
-  const { post, generalSettings, primaryMenuItems } = props.data;
-  const { title: siteTitle, description: siteDescription } = generalSettings;
+  const { post, generalSettings, primaryMenuItems } = data;
+  const { title: siteTitle } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
   const { title, content, date, author } = post;
 
@@ -23,14 +24,11 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
-        menuItems={menuItems}
-      />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
         <EntryHeader title={title} date={date} author={author.node.name} />
+        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 

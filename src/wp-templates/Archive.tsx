@@ -1,24 +1,23 @@
-import { gql } from "../__generated__";
-import Link from "next/link";
-import Head from "next/head";
-import Header from "../components/header";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import { GetArchiveQuery } from "../__generated__/graphql";
-import { FaustTemplate } from "@faustwp/core";
+import React from 'react';
+import { FaustTemplate } from '@faustwp/core';
+import Link from 'next/link';
+import Head from 'next/head';
+import { gql } from '__generated__';
+import { GetArchiveQuery } from '__generated__/graphql';
+import { Header, EntryHeader, Footer } from 'components';
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
-  const menuItems = props.data.primaryMenuItems.nodes;
-  const { archiveType } = props.data.nodeByUri;
+  const { data } = props;
+  const { generalSettings, primaryMenuItems, nodeByUri } = data;
+  const { title: siteTitle } = generalSettings;
+  const menuItems = primaryMenuItems.nodes;
+  const { archiveType } = nodeByUri;
 
-  if (archiveType !== "Category" && archiveType !== "Tag") {
+  if (archiveType !== 'Category' && archiveType !== 'Tag') {
     return <>Archive not found</>;
   }
 
-  const { name, posts } = props.data.nodeByUri;
-  const htmlTitle = `${archiveType}: ${name} - ${siteTitle}`;
+  const { name, posts } = nodeByUri;
 
   return (
     <>
@@ -26,11 +25,7 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
         <title>{`${archiveType}: ${name} - ${siteTitle}`}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
-        menuItems={menuItems}
-      />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
         <EntryHeader title={`Archive for ${archiveType}: ${name}`} />
@@ -50,7 +45,7 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   );
 };
 
-Component.variables = (seedQuery, ctx) => {
+Component.variables = (seedQuery) => {
   return {
     uri: seedQuery.uri,
   };

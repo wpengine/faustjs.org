@@ -1,11 +1,13 @@
-import frontPage from "./front-page";
-import page from "./page";
-import single from "./single";
-import archive from "./archive";
+import FrontPage from './FrontPage';
+import Page from './Page';
+import Single from './Single';
+import Archive from './Archive';
 
-export default {
-  "front-page": frontPage,
-  page,
-  single,
-  archive,
+const templates = {
+  'front-page': FrontPage,
+  page: Page,
+  single: Single,
+  archive: Archive,
 };
+
+export default templates;
