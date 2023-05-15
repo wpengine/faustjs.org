@@ -77,7 +77,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function TopHeaderAppBar({ siteTitle, menuItems }) {
+export function TopHeaderAppBar({ siteTitle }) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
