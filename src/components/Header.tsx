@@ -20,7 +20,7 @@ export function Header({ siteTitle = 'Faust.js', menuItems }: HeaderProps) {
   return (
     <header className={cx('component')}>
       <SkipNavigationLink />
-      <TopHeaderAppBar siteTitle={siteTitle} menuItems={menuItems} />
+      <TopHeaderAppBar siteTitle={siteTitle} />
     </header>
   );
 }
