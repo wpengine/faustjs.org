@@ -15,6 +15,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from '@mui/material';
 import styles from 'styles/components/Header.module.scss';
 import LaunchIcon from '@mui/icons-material/Launch';
+import { HeaderGeneralSettingsFragmentFragment } from '__generated__/graphql';
 import { LinkListItem } from './Footer';
 
 const cx = classNames.bind(styles);
@@ -30,10 +31,14 @@ const leftMenuItems: LinkListItem[] = [
 
 const rightMenuItems: LinkListItem[] = [
   {
-    text: 'Help!!!!!!!',
+    text: 'Support Link',
     url: '/',
   },
 ];
+
+type TopHeaderAppBarProps = {
+  siteTitle: HeaderGeneralSettingsFragmentFragment['title'];
+};
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -77,7 +82,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function TopHeaderAppBar({ siteTitle }) {
+export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
