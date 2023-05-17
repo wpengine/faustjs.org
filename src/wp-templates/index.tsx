@@ -2,7 +2,7 @@ import FrontPage from './FrontPage';
 import Page from './Page';
 import Single from './Single';
 import SingleFaustReference from './SingleFaustReference';
-import SingleFaustHowToGuide from './SingleFaustHowToGuide';
+import SingleFaustExplanation from './SingleFaustExplanation';
 import Archive from './Archive';
 
 const templates = {
@@ -10,7 +10,7 @@ const templates = {
   page: Page,
   single: Single,
   'single-faust_reference': SingleFaustReference,
-  'single-faust_how_to_guide': SingleFaustHowToGuide,
+  'single-faust_explanation': SingleFaustExplanation,
   archive: Archive,
 };
 
