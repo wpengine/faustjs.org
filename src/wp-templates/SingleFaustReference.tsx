@@ -3,8 +3,10 @@ import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
-import { DocsSidebarMenuItemFragmentFragment } from '__generated__/graphql';
-import { GetReferenceQuery } from '__generated__/graphql';
+import {
+  DocsSidebarMenuItemFragmentFragment,
+  GetReferenceQuery,
+} from '__generated__/graphql';
 import { Header, Footer, EntryHeader, DocsSidebar, Main } from 'components';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
