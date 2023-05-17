@@ -6270,8 +6270,8 @@ export type CreateCommentPayload = {
   success?: Maybe<Scalars['Boolean']>;
 };
 
-/** Input for the createExplanations mutation. */
-export type CreateExplanationsInput = {
+/** Input for the createExplanation mutation. */
+export type CreateExplanationInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']>;
   /** The content of the object */
@@ -6290,13 +6290,13 @@ export type CreateExplanationsInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-/** The payload for the createExplanations mutation. */
-export type CreateExplanationsPayload = {
-  __typename?: 'CreateExplanationsPayload';
+/** The payload for the createExplanation mutation. */
+export type CreateExplanationPayload = {
+  __typename?: 'CreateExplanationPayload';
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']>;
   /** The Post object mutation type. */
-  explanations?: Maybe<Explanations>;
+  explanation?: Maybe<Explanation>;
 };
 
 /** Input for the createHowToGuide mutation. */
@@ -6689,27 +6689,27 @@ export type DeleteCommentPayload = {
   deletedId?: Maybe<Scalars['ID']>;
 };
 
-/** Input for the deleteExplanations mutation. */
-export type DeleteExplanationsInput = {
+/** Input for the deleteExplanation mutation. */
+export type DeleteExplanationInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']>;
   /** Whether the object should be force deleted instead of being moved to the trash */
   forceDelete?: InputMaybe<Scalars['Boolean']>;
-  /** The ID of the explanations to delete */
+  /** The ID of the explanation to delete */
   id: Scalars['ID'];
   /** Override the edit lock when another user is editing the post */
   ignoreEditLock?: InputMaybe<Scalars['Boolean']>;
 };
 
-/** The payload for the deleteExplanations mutation. */
-export type DeleteExplanationsPayload = {
-  __typename?: 'DeleteExplanationsPayload';
+/** The payload for the deleteExplanation mutation. */
+export type DeleteExplanationPayload = {
+  __typename?: 'DeleteExplanationPayload';
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']>;
   /** The ID of the deleted object */
   deletedId?: Maybe<Scalars['ID']>;
   /** The object before it was deleted */
-  explanations?: Maybe<Explanations>;
+  explanation?: Maybe<Explanation>;
 };
 
 /** Input for the deleteHowToGuide mutation. */
@@ -7062,9 +7062,9 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']>;
 };
 
-/** The explanations type */
-export type Explanations = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
-  __typename?: 'Explanations';
+/** The explanation type */
+export type Explanation = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+  __typename?: 'Explanation';
   /** @deprecated Deprecated in favor of using Next.js pages */
   conditionalTags?: Maybe<ConditionalTags>;
   /** The content of the post. */
@@ -7095,7 +7095,7 @@ export type Explanations = ContentNode & DatabaseIdentifier & MenuItemLinkable &
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of the databaseId field
    */
-  explanationsId: Scalars['Int'];
+  explanationId: Scalars['Int'];
   /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
   featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
   /** The database identifier for the featured image node assigned to the content node */
@@ -7122,8 +7122,8 @@ export type Explanations = ContentNode & DatabaseIdentifier & MenuItemLinkable &
   modified?: Maybe<Scalars['String']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']>;
-  /** Connection between the Explanations type and the explanations type */
-  preview?: Maybe<ExplanationsToPreviewConnectionEdge>;
+  /** Connection between the Explanation type and the explanation type */
+  preview?: Maybe<ExplanationToPreviewConnectionEdge>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
@@ -7142,20 +7142,20 @@ export type Explanations = ContentNode & DatabaseIdentifier & MenuItemLinkable &
 };
 
 
-/** The explanations type */
-export type ExplanationsContentArgs = {
+/** The explanation type */
+export type ExplanationContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** The explanations type */
-export type ExplanationsEditorBlocksArgs = {
+/** The explanation type */
+export type ExplanationEditorBlocksArgs = {
   flat?: InputMaybe<Scalars['Boolean']>;
 };
 
 
-/** The explanations type */
-export type ExplanationsEnqueuedScriptsArgs = {
+/** The explanation type */
+export type ExplanationEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7163,8 +7163,8 @@ export type ExplanationsEnqueuedScriptsArgs = {
 };
 
 
-/** The explanations type */
-export type ExplanationsEnqueuedStylesheetsArgs = {
+/** The explanation type */
+export type ExplanationEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -7172,31 +7172,31 @@ export type ExplanationsEnqueuedStylesheetsArgs = {
 };
 
 
-/** The explanations type */
-export type ExplanationsTitleArgs = {
+/** The explanation type */
+export type ExplanationTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** Connection to explanations Nodes */
-export type ExplanationsConnection = {
-  /** A list of edges (relational context) between RootQuery and connected explanations Nodes */
-  edges: Array<ExplanationsConnectionEdge>;
-  /** A list of connected explanations Nodes */
-  nodes: Array<Explanations>;
+/** Connection to explanation Nodes */
+export type ExplanationConnection = {
+  /** A list of edges (relational context) between RootQuery and connected explanation Nodes */
+  edges: Array<ExplanationConnectionEdge>;
+  /** A list of connected explanation Nodes */
+  nodes: Array<Explanation>;
   /** Information about pagination in a connection. */
-  pageInfo: ExplanationsConnectionPageInfo;
+  pageInfo: ExplanationConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected explanations */
-export type ExplanationsConnectionEdge = {
+/** Edge between a Node and a connected explanation */
+export type ExplanationConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']>;
-  /** The connected explanations Node */
-  node: Explanations;
+  /** The connected explanation Node */
+  node: Explanation;
 };
 
-/** Page Info on the connected ExplanationsConnectionEdge */
-export type ExplanationsConnectionPageInfo = {
+/** Page Info on the connected ExplanationConnectionEdge */
+export type ExplanationConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']>;
   /** When paginating forwards, are there more items? */
@@ -7208,7 +7208,7 @@ export type ExplanationsConnectionPageInfo = {
 };
 
 /** The Type of Identifier used to fetch a single resource. Default is ID. */
-export enum ExplanationsIdType {
+export enum ExplanationIdType {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
   /** Identify a resource by the (hashed) Global ID. */
@@ -7219,13 +7219,13 @@ export enum ExplanationsIdType {
   Uri = 'URI'
 }
 
-/** Connection between the Explanations type and the explanations type */
-export type ExplanationsToPreviewConnectionEdge = Edge & ExplanationsConnectionEdge & OneToOneConnection & {
-  __typename?: 'ExplanationsToPreviewConnectionEdge';
+/** Connection between the Explanation type and the explanation type */
+export type ExplanationToPreviewConnectionEdge = Edge & ExplanationConnectionEdge & OneToOneConnection & {
+  __typename?: 'ExplanationToPreviewConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']>;
   /** The node of the connection, without the edges */
-  node: Explanations;
+  node: Explanation;
 };
 
 /** The general setting type */
@@ -8301,7 +8301,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Category | Explanations | HowToGuide | Page | Post | Reference | Tag | Tutorial;
+export type MenuItemObjectUnion = Category | Explanation | HowToGuide | Page | Post | Reference | Tag | Tutorial;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -10523,8 +10523,8 @@ export type RootMutation = {
   createCategory?: Maybe<CreateCategoryPayload>;
   /** The createComment mutation */
   createComment?: Maybe<CreateCommentPayload>;
-  /** The createExplanations mutation */
-  createExplanations?: Maybe<CreateExplanationsPayload>;
+  /** The createExplanation mutation */
+  createExplanation?: Maybe<CreateExplanationPayload>;
   /** The createHowToGuide mutation */
   createHowToGuide?: Maybe<CreateHowToGuidePayload>;
   /** The createMediaItem mutation */
@@ -10547,8 +10547,8 @@ export type RootMutation = {
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
   deleteComment?: Maybe<DeleteCommentPayload>;
-  /** The deleteExplanations mutation */
-  deleteExplanations?: Maybe<DeleteExplanationsPayload>;
+  /** The deleteExplanation mutation */
+  deleteExplanation?: Maybe<DeleteExplanationPayload>;
   /** The deleteHowToGuide mutation */
   deleteHowToGuide?: Maybe<DeleteHowToGuidePayload>;
   /** The deleteMediaItem mutation */
@@ -10583,8 +10583,8 @@ export type RootMutation = {
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** The updateComment mutation */
   updateComment?: Maybe<UpdateCommentPayload>;
-  /** The updateExplanations mutation */
-  updateExplanations?: Maybe<UpdateExplanationsPayload>;
+  /** The updateExplanation mutation */
+  updateExplanation?: Maybe<UpdateExplanationPayload>;
   /** The updateHowToGuide mutation */
   updateHowToGuide?: Maybe<UpdateHowToGuidePayload>;
   /** The updateMediaItem mutation */
@@ -10621,8 +10621,8 @@ export type RootMutationCreateCommentArgs = {
 
 
 /** The root mutation */
-export type RootMutationCreateExplanationsArgs = {
-  input: CreateExplanationsInput;
+export type RootMutationCreateExplanationArgs = {
+  input: CreateExplanationInput;
 };
 
 
@@ -10693,8 +10693,8 @@ export type RootMutationDeleteCommentArgs = {
 
 
 /** The root mutation */
-export type RootMutationDeleteExplanationsArgs = {
-  input: DeleteExplanationsInput;
+export type RootMutationDeleteExplanationArgs = {
+  input: DeleteExplanationInput;
 };
 
 
@@ -10801,8 +10801,8 @@ export type RootMutationUpdateCommentArgs = {
 
 
 /** The root mutation */
-export type RootMutationUpdateExplanationsArgs = {
-  input: UpdateExplanationsInput;
+export type RootMutationUpdateExplanationArgs = {
+  input: UpdateExplanationInput;
 };
 
 
@@ -10868,8 +10868,6 @@ export type RootMutationUpdateUserArgs = {
 /** The root entry point into the Graph */
 export type RootQuery = {
   __typename?: 'RootQuery';
-  /** Connection between the RootQuery type and the explanations type */
-  allExplanations?: Maybe<RootQueryToExplanationsConnection>;
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
   /** Connection between the RootQuery type and the category type */
@@ -10890,13 +10888,15 @@ export type RootQuery = {
   contentTypes?: Maybe<RootQueryToContentTypeConnection>;
   /** Fields of the &#039;DiscussionSettings&#039; settings group */
   discussionSettings?: Maybe<DiscussionSettings>;
-  /** An object of the explanations Type.  */
-  explanations?: Maybe<Explanations>;
+  /** An object of the explanation Type.  */
+  explanation?: Maybe<Explanation>;
   /**
-   * A explanations object
+   * A explanation object
    * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
    */
-  explanationsBy?: Maybe<Explanations>;
+  explanationBy?: Maybe<Explanation>;
+  /** Connection between the RootQuery type and the explanation type */
+  explanations?: Maybe<RootQueryToExplanationConnection>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
   /** Returns the stylesheet resulting of merging core, theme, and user data. */
@@ -11015,16 +11015,6 @@ export type RootQuery = {
 
 
 /** The root entry point into the Graph */
-export type RootQueryAllExplanationsArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RootQueryToExplanationsConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
 export type RootQueryCategoriesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -11094,19 +11084,29 @@ export type RootQueryContentTypesArgs = {
 
 
 /** The root entry point into the Graph */
-export type RootQueryExplanationsArgs = {
+export type RootQueryExplanationArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
-  idType?: InputMaybe<ExplanationsIdType>;
+  idType?: InputMaybe<ExplanationIdType>;
 };
 
 
 /** The root entry point into the Graph */
-export type RootQueryExplanationsByArgs = {
-  explanationsId?: InputMaybe<Scalars['Int']>;
+export type RootQueryExplanationByArgs = {
+  explanationId?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['ID']>;
   slug?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryExplanationsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<RootQueryToExplanationConnectionWhereArgs>;
 };
 
 
@@ -11827,29 +11827,29 @@ export type RootQueryToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheet
   startCursor?: Maybe<Scalars['String']>;
 };
 
-/** Connection between the RootQuery type and the explanations type */
-export type RootQueryToExplanationsConnection = Connection & ExplanationsConnection & {
-  __typename?: 'RootQueryToExplanationsConnection';
-  /** Edges for the RootQueryToExplanationsConnection connection */
-  edges: Array<RootQueryToExplanationsConnectionEdge>;
+/** Connection between the RootQuery type and the explanation type */
+export type RootQueryToExplanationConnection = Connection & ExplanationConnection & {
+  __typename?: 'RootQueryToExplanationConnection';
+  /** Edges for the RootQueryToExplanationConnection connection */
+  edges: Array<RootQueryToExplanationConnectionEdge>;
   /** The nodes of the connection, without the edges */
-  nodes: Array<Explanations>;
+  nodes: Array<Explanation>;
   /** Information about pagination in a connection. */
-  pageInfo: RootQueryToExplanationsConnectionPageInfo;
+  pageInfo: RootQueryToExplanationConnectionPageInfo;
 };
 
 /** An edge in a connection */
-export type RootQueryToExplanationsConnectionEdge = Edge & ExplanationsConnectionEdge & {
-  __typename?: 'RootQueryToExplanationsConnectionEdge';
+export type RootQueryToExplanationConnectionEdge = Edge & ExplanationConnectionEdge & {
+  __typename?: 'RootQueryToExplanationConnectionEdge';
   /** A cursor for use in pagination */
   cursor?: Maybe<Scalars['String']>;
   /** The item at the end of the edge */
-  node: Explanations;
+  node: Explanation;
 };
 
-/** Page Info on the &quot;RootQueryToExplanationsConnection&quot; */
-export type RootQueryToExplanationsConnectionPageInfo = ExplanationsConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToExplanationsConnectionPageInfo';
+/** Page Info on the &quot;RootQueryToExplanationConnection&quot; */
+export type RootQueryToExplanationConnectionPageInfo = ExplanationConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToExplanationConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']>;
   /** When paginating forwards, are there more items? */
@@ -11860,8 +11860,8 @@ export type RootQueryToExplanationsConnectionPageInfo = ExplanationsConnectionPa
   startCursor?: Maybe<Scalars['String']>;
 };
 
-/** Arguments for filtering the RootQueryToExplanationsConnection connection */
-export type RootQueryToExplanationsConnectionWhereArgs = {
+/** Arguments for filtering the RootQueryToExplanationConnection connection */
+export type RootQueryToExplanationConnectionWhereArgs = {
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -14011,15 +14011,15 @@ export type UpdateCommentPayload = {
   success?: Maybe<Scalars['Boolean']>;
 };
 
-/** Input for the updateExplanations mutation. */
-export type UpdateExplanationsInput = {
+/** Input for the updateExplanation mutation. */
+export type UpdateExplanationInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']>;
   /** The content of the object */
   content?: InputMaybe<Scalars['String']>;
   /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date?: InputMaybe<Scalars['String']>;
-  /** The ID of the explanations object */
+  /** The ID of the explanation object */
   id: Scalars['ID'];
   /** Override the edit lock when another user is editing the post */
   ignoreEditLock?: InputMaybe<Scalars['Boolean']>;
@@ -14035,13 +14035,13 @@ export type UpdateExplanationsInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-/** The payload for the updateExplanations mutation. */
-export type UpdateExplanationsPayload = {
-  __typename?: 'UpdateExplanationsPayload';
+/** The payload for the updateExplanation mutation. */
+export type UpdateExplanationPayload = {
+  __typename?: 'UpdateExplanationPayload';
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']>;
   /** The Post object mutation type. */
-  explanations?: Maybe<Explanations>;
+  explanation?: Maybe<Explanation>;
 };
 
 /** Input for the updateHowToGuide mutation. */
@@ -15295,7 +15295,7 @@ export type GetArchiveQueryVariables = Exact<{
 }>;
 
 
-export type GetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', name?: string | null, archiveType: 'Category', posts?: { __typename?: 'CategoryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'ContentType', archiveType: 'ContentType' } | { __typename?: 'Explanations', archiveType: 'Explanations' } | { __typename?: 'HowToGuide', archiveType: 'HowToGuide' } | { __typename?: 'MediaItem', archiveType: 'MediaItem' } | { __typename?: 'Page', archiveType: 'Page' } | { __typename?: 'Post', archiveType: 'Post' } | { __typename?: 'PostFormat', archiveType: 'PostFormat' } | { __typename?: 'Reference', archiveType: 'Reference' } | { __typename?: 'Tag', name?: string | null, archiveType: 'Tag', posts?: { __typename?: 'TagToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'Tutorial', archiveType: 'Tutorial' } | { __typename?: 'User', archiveType: 'User' } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
+export type GetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', name?: string | null, archiveType: 'Category', posts?: { __typename?: 'CategoryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'ContentType', archiveType: 'ContentType' } | { __typename?: 'Explanation', archiveType: 'Explanation' } | { __typename?: 'HowToGuide', archiveType: 'HowToGuide' } | { __typename?: 'MediaItem', archiveType: 'MediaItem' } | { __typename?: 'Page', archiveType: 'Page' } | { __typename?: 'Post', archiveType: 'Post' } | { __typename?: 'PostFormat', archiveType: 'PostFormat' } | { __typename?: 'Reference', archiveType: 'Reference' } | { __typename?: 'Tag', name?: string | null, archiveType: 'Tag', posts?: { __typename?: 'TagToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'Tutorial', archiveType: 'Tutorial' } | { __typename?: 'User', archiveType: 'User' } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -15317,6 +15317,17 @@ export type GetPostQueryVariables = Exact<{
 
 
 export type GetPostQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', title?: string | null, content?: string | null, date?: string | null, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null } } | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
+
+export type GetExplanationQueryVariables = Exact<{
+  databaseId: Scalars['ID'];
+  asPreview?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type GetExplanationQuery = { __typename?: 'RootQuery', explanation?: { __typename?: 'Explanation', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'UnknownBlock', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
+      { __typename?: 'MenuItem' }
+      & { ' $fragmentRefs'?: { 'DocsSidebarMenuItemFragmentFragment': DocsSidebarMenuItemFragmentFragment } }
+    )> } | null };
 
 export type GetHowToGuideQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -15349,5 +15360,6 @@ export const GetArchiveDocument = {"kind":"Document","definitions":[{"kind":"Ope
 export const GetHomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetHomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomePageQuery, GetHomePageQueryVariables>;
 export const GetPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"page"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPageQuery, GetPageQueryVariables>;
 export const GetPostDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPost"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPostQuery, GetPostQueryVariables>;
+export const GetExplanationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetExplanation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"explanation"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetExplanationQuery, GetExplanationQueryVariables>;
 export const GetHowToGuideDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetHowToGuide"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"howToGuide"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetHowToGuideQuery, GetHowToGuideQueryVariables>;
 export const GetReferenceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetReference"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reference"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetReferenceQuery, GetReferenceQueryVariables>;
