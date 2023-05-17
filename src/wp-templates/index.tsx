@@ -2,7 +2,7 @@ import FrontPage from './FrontPage';
 import Page from './Page';
 import Single from './Single';
 import SingleFaustReference from './SingleFaustReference';
-import SingleFaustExplanation from './SingleFaustExplanation';
+import SingleFaustHowToGuide from './SingleFaustHowToGuide';
 import Archive from './Archive';
 
 const templates = {
