@@ -6,12 +6,14 @@ import { Header, Footer, EntryHeader } from '../components';
 import { GetReferenceQuery } from '../__generated__/graphql';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
+  const { loading, data } = props;
+
   // Loading state for previews
-  if (props.loading) {
+  if (loading) {
     return <>Loading...</>;
   }
 
-  const { generalSettings, primaryMenuItems, reference } = props.data;
+  const { generalSettings, primaryMenuItems, reference } = data;
   const { title: siteTitle } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
   const { title, content } = reference;
@@ -26,7 +28,10 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
 
       <main className="container">
         <EntryHeader title={title} />
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
       </main>
 
       <Footer />
