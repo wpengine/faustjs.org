@@ -1,12 +1,9 @@
-import { gql } from "../__generated__";
-import Head from "next/head";
-import {
-  Header,
-  Footer,
-  EntryHeader,
-} from "../components";
-import { GetReferenceQuery } from "../__generated__/graphql";
-import { FaustTemplate } from "@faustwp/core";
+import React from 'react';
+import Head from 'next/head';
+import { FaustTemplate } from '@faustwp/core';
+import { gql } from '../__generated__';
+import { Header, Footer, EntryHeader } from '../components';
+import { GetReferenceQuery } from '../__generated__/graphql';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
   // Loading state for previews
@@ -25,10 +22,7 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header
-        siteTitle={siteTitle}
-        menuItems={menuItems}
-      />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
         <EntryHeader title={title} />
