@@ -3,11 +3,15 @@ import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '../__generated__';
-import { Header, Footer, EntryHeader, DocsSidebar, Main } from '../components';
 import { GetReferenceQuery } from '../__generated__/graphql';
+// import { FragmentType, useFragment } from '../__generated__/fragment-masking';
+
+import { Header, Footer, EntryHeader, DocsSidebar, Main } from '../components';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
   const { loading, data } = props;
+
+  console.log(data);
 
   // Loading state for previews
   if (loading) {
@@ -98,6 +102,11 @@ Component.query = gql(`
             name
           }
         }
+      }
+    }
+    docsSidebarMenuItems: menuItems(where: {location: SIDEBAR}) {
+      nodes {
+        ...DocsSidebarMenuItemFragment
       }
     }
   }
