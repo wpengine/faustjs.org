@@ -1,8 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
+import { Container, Grid } from '@mui/material';
 import { gql } from '../__generated__';
-import { Header, Footer, EntryHeader } from '../components';
+import { Header, Footer, EntryHeader, DocsSidebar } from '../components';
 import { GetReferenceQuery } from '../__generated__/graphql';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
@@ -26,13 +27,23 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
 
       <Header siteTitle={siteTitle} menuItems={menuItems} />
 
-      <main className="container">
-        <EntryHeader title={title} />
-        <div
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-      </main>
+      <Container sx={{ mt: 4 }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ display: 'flex', flexDirection: 'row' }}>
+          <Grid item xs={12} md={4}>
+            <DocsSidebar />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <EntryHeader title={title} />
+            <div
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          </Grid>
+        </Grid>
+      </Container>
 
       <Footer />
     </>
