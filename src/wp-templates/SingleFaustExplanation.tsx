@@ -5,11 +5,11 @@ import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import {
   DocsSidebarMenuItemFragmentFragment,
-  GetExplanationsQuery,
+  GetExplanationQuery,
 } from '__generated__/graphql';
 import { Header, Footer, EntryHeader, DocsSidebar, Main } from 'components';
 
-const Component: FaustTemplate<GetExplanationsQuery> = (props) => {
+const Component: FaustTemplate<GetExplanationQuery> = (props) => {
   const { loading, data } = props;
 
   // Loading state for previews
@@ -21,11 +21,11 @@ const Component: FaustTemplate<GetExplanationsQuery> = (props) => {
     generalSettings,
     primaryMenuItems,
     docsSidebarMenuItems,
-    explanations,
+    explanation,
   } = data;
   const { title: siteTitle } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
-  const { title, content } = explanations;
+  const { title, content } = explanation;
 
   return (
     <>
@@ -72,8 +72,8 @@ Component.variables = (seedQuery, ctx) => {
 };
 
 Component.query = gql(`
-  query GetExplanations($databaseId: ID!, $asPreview: Boolean = false) {
-    explanations(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+  query GetExplanation($databaseId: ID!, $asPreview: Boolean = false) {
+    explanation(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
       ... on NodeWithEditorBlocks {
