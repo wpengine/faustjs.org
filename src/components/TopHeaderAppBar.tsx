@@ -31,8 +31,25 @@ const leftMenuItems: LinkListItem[] = [
 
 const rightMenuItems: LinkListItem[] = [
   {
-    text: 'Support Link',
-    url: '/',
+    text: 'GitHub',
+    url: 'https://github.com/wpengine/faustjs?ref=faustjs',
+    title: 'Faustjs GitHub',
+    ariaLabel: 'Click to go to the Faustjs GitHub',
+    isExternalLink: true,
+  },
+  {
+    text: 'WordPress Plugin',
+    url: 'https://wordpress.org/plugins/faustwp/',
+    title: 'Faustjs WordPress Plugin',
+    ariaLabel: 'Click to go to the Faustjs Headless Plugin',
+    isExternalLink: true,
+  },
+  {
+    text: 'Discord',
+    url: 'https://discord.com/invite/J2khkF9XYK',
+    title: 'Faustjs Discord',
+    ariaLabel: 'Click to go to the Faustjs Discord',
+    isExternalLink: true,
   },
 ];
 
@@ -117,8 +134,6 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="/"
               sx={{
                 mr: 2,
                 flexGrow: 1,
@@ -185,8 +200,6 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -215,9 +228,11 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
             {rightMenuItems.map((item) => (
               <Link
                 href={item.url}
+                title={item.title}
+                aria-label={item.ariaLabel}
                 key={item.url}
                 sx={{ color: '#fff', mr: 2 }}>
-                {item.text} <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
+                {item.text} <LaunchIcon sx={{ ml: 1, fontSize: '1em' }} />
               </Link>
             ))}
           </Box>

@@ -152,7 +152,7 @@ export function Footer() {
             return item.isExternalLink ? (
               <Link {...externalLinkAttrs}>
                 {item.text}
-                <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
+                <LaunchIcon sx={{ ml: 1, fontSize: '1em' }} />
               </Link>
             ) : (
               <Link {...linkAttrs}>{item.text}</Link>
@@ -170,7 +170,7 @@ export function Footer() {
         height: 'auto',
         paddingTop: '1rem',
         paddingBottom: '1rem',
-        backgroundColor: 'inherit',
+        backgroundColor: 'var(--footer--background-color)',
       }}>
       <Container
         maxWidth="lg"

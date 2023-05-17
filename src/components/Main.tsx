@@ -1,26 +1,19 @@
 import React, { PropsWithChildren } from 'react';
-import classNames from 'classnames/bind';
+import { Box } from '@mui/material';
 import * as SELECTORS from 'constants/selectors';
-import styles from 'styles/components/Main.module.scss';
 
-const cx = classNames.bind(styles);
-
-function Main(
-  props: PropsWithChildren<{
-    className?: string;
-  }>,
-) {
-  const { className, children } = props;
+export function Main(props: PropsWithChildren<{}>) {
+  const { children } = props;
 
   return (
-    <main
+    <Box
       id={SELECTORS.MAIN_CONTENT_ID}
       tabIndex={-1}
-      className={cx(['component', className])}
+      sx={{
+        pb: 4,
+      }}
       {...props}>
       {children}
-    </main>
+    </Box>
   );
 }
-
-export default Main;
