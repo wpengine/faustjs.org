@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
+import { TypedDocumentNode } from '@apollo/client';
 import { Container, Grid } from '@mui/material';
 import { gql } from '../__generated__';
 import { Header, Footer, EntryHeader, DocsSidebar } from '../components';
@@ -100,11 +101,11 @@ Component.query = gql(`
       }
     }
     docsSidebar: menuItems(where: {location: SIDEBAR}) {
-        nodes {
-          ...DocsSidebarMenuItemFragment
-        }
+      nodes {
+        ...DocsSidebarMenuItemFragment
+      }
     }
   }
-`);
+`) as TypedDocumentNode;
 
 export default Component;
