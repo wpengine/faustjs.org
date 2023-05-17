@@ -2,7 +2,6 @@ import FrontPage from './FrontPage';
 import Page from './Page';
 import Single from './Single';
 import SingleFaustReference from './SingleFaustReference';
-import SingleFaustTutorial from './SingleFaustTutorial';
 import Archive from './Archive';
 
 const templates = {
@@ -10,7 +9,6 @@ const templates = {
   page: Page,
   single: Single,
   'single-faust_reference': SingleFaustReference,
-  'single-faust_tutorial': SingleFaustTutorial,
   archive: Archive,
 };
 
