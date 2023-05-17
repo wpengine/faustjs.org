@@ -1,10 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
-import { TypedDocumentNode } from '@apollo/client';
 import { Container, Grid } from '@mui/material';
 import { gql } from '../__generated__';
-import { Header, Footer, EntryHeader, DocsSidebar } from '../components';
+import { Header, Footer, EntryHeader, DocsSidebar, Main } from '../components';
 import { GetReferenceQuery } from '../__generated__/graphql';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
@@ -28,23 +27,25 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
 
       <Header siteTitle={siteTitle} menuItems={menuItems} />
 
-      <Container sx={{ mt: 4 }}>
-        <Grid
-          container
-          spacing={2}
-          sx={{ display: 'flex', flexDirection: 'row' }}>
-          <Grid item xs={12} md={4}>
-            <DocsSidebar />
+      <Main>
+        <Container sx={{ mt: 4 }}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Grid item xs={12} md={4}>
+              <DocsSidebar />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <EntryHeader title={title} />
+              <div
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={8}>
-            <EntryHeader title={title} />
-            <div
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Main>
 
       <Footer />
     </>
@@ -59,7 +60,6 @@ Component.variables = (seedQuery, ctx) => {
 };
 
 Component.query = gql(`
-  ${DocsSidebar.fragments.entry}
   query GetReference($databaseId: ID!, $asPreview: Boolean = false) {
     reference(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
@@ -100,12 +100,7 @@ Component.query = gql(`
         }
       }
     }
-    docsSidebar: menuItems(where: {location: SIDEBAR}) {
-      nodes {
-        ...DocsSidebarMenuItemFragment
-      }
-    }
   }
-`) as TypedDocumentNode;
+`);
 
 export default Component;
