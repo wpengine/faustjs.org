@@ -170,7 +170,7 @@ export function Footer() {
         height: 'auto',
         paddingTop: '1rem',
         paddingBottom: '1rem',
-        backgroundColor: 'inherit',
+        backgroundColor: 'var(--footer--background-color)',
       }}>
       <Container
         maxWidth="lg"
