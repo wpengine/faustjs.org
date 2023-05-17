@@ -58,6 +58,7 @@ Component.variables = (seedQuery, ctx) => {
 };
 
 Component.query = gql(`
+  ${DocsSidebar.fragments.entry}
   query GetReference($databaseId: ID!, $asPreview: Boolean = false) {
     reference(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
@@ -97,6 +98,11 @@ Component.query = gql(`
           }
         }
       }
+    }
+    docsSidebar: menuItems(where: {location: SIDEBAR}) {
+        nodes {
+          ...DocsSidebarMenuItemFragment
+        }
     }
   }
 `);

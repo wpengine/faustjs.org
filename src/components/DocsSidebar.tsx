@@ -7,7 +7,7 @@ export function DocsSidebar() {
 
 DocsSidebar.fragments = {
   entry: gql(`
-    fragment SidebarMenuItemFragment on MenuItem {
+    fragment DocsSidebarMenuItemFragment on MenuItem {
       id
       uri
       path
