@@ -2,23 +2,21 @@ import React from 'react';
 import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
-import { gql } from '../__generated__';
-import { GetReferenceQuery } from '../__generated__/graphql';
-// import { FragmentType, useFragment } from '../__generated__/fragment-masking';
-
-import { Header, Footer, EntryHeader, DocsSidebar, Main } from '../components';
+import { gql } from '__generated__';
+import { DocsSidebarMenuItemFragmentFragment } from '__generated__/graphql';
+import { GetReferenceQuery } from '__generated__/graphql';
+import { Header, Footer, EntryHeader, DocsSidebar, Main } from 'components';
 
 const Component: FaustTemplate<GetReferenceQuery> = (props) => {
   const { loading, data } = props;
-
-  console.log(data);
 
   // Loading state for previews
   if (loading) {
     return <>Loading...</>;
   }
 
-  const { generalSettings, primaryMenuItems, reference } = data;
+  const { generalSettings, primaryMenuItems, docsSidebarMenuItems, reference } =
+    data;
   const { title: siteTitle } = generalSettings;
   const { nodes: menuItems } = primaryMenuItems;
   const { title, content } = reference;
@@ -38,7 +36,11 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
             spacing={2}
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12} md={4}>
-              <DocsSidebar />
+              <DocsSidebar
+                menuItems={
+                  docsSidebarMenuItems.nodes as DocsSidebarMenuItemFragmentFragment[]
+                }
+              />
             </Grid>
             <Grid item xs={12} md={8}>
               <EntryHeader title={title} />
@@ -104,7 +106,7 @@ Component.query = gql(`
         }
       }
     }
-    docsSidebarMenuItems: menuItems(where: {location: SIDEBAR}) {
+    docsSidebarMenuItems: menuItems(where: {location: DOCS_SIDEBAR}) {
       nodes {
         ...DocsSidebarMenuItemFragment
       }
