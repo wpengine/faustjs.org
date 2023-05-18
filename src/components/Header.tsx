@@ -1,13 +1,13 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 import { SkipNavigationLink } from 'components';
+import classNames from 'classnames/bind';
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemFragmentFragment,
 } from '__generated__/graphql';
-import styles from 'styles/components/Header.module.scss';
 import { gql } from '../__generated__';
 import { TopHeaderAppBar } from './TopHeaderAppBar';
+import styles from 'styles/components/Header.module.scss';
 
 const cx = classNames.bind(styles);
 

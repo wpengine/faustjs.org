@@ -1,9 +1,28 @@
-// Skip link specific styles. Intentionally separate from this theme's sr-only class.
 .component {
-  color: var(--color--white);
-  background-color: var(--color--black);
+  color: #fff;
+  background-color: #000;
   padding: 0.5rem 0.8rem !important;
   position: relative;
   margin: 0.5rem !important;
   z-index: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+
+  &:focus {
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: auto;
+    clip: auto;
+  }
 }
