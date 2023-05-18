@@ -6,8 +6,8 @@ import {
   PrimaryMenuItemFragmentFragment,
 } from '__generated__/graphql';
 import { gql } from '__generated__';
-import { TopHeaderAppBar } from './TopHeaderAppBar';
 import styles from 'styles/components/Header.module.scss';
+import { TopHeaderAppBar } from './TopHeaderAppBar';
 
 const cx = classNames.bind(styles);
 

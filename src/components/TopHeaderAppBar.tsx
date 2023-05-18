@@ -15,8 +15,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 import { HeaderGeneralSettingsFragmentFragment } from '__generated__/graphql';
-import { LinkListItem } from './Footer';
 import styles from 'styles/components/Header.module.scss';
+import { LinkListItem } from './Footer';
 
 const cx = classNames.bind(styles);
 
