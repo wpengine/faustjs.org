@@ -4,5 +4,4 @@ export { Footer } from './Footer';
 export { Content } from './Content';
 export { Main } from './Main';
 export { SkipNavigationLink } from './SkipNavigationLink';
-export { NavigationMenu } from './NavigationMenu';
 export { DocsSidebar } from './DocsSidebar';
