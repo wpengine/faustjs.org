@@ -1,71 +1,15 @@
-// CSS Variables
-// See `_breakpoints.scss` for media query breakpoint variables.
+// Custom CSS Variables
 
 :root {
   // Color Definitions.
   --color--black: #000;
-  --color--almost-black: #111;
   --color--white: #fff;
-  --color--offwhite: #e1e1e1;
-  --color--neutral: rgba(175, 184, 193, 0.2);
-  --color--slate: #0a2540;
-  --color--orange: #ff9d00;
-  --color--purple: #5b43ae;
-  --color--dark-purple: #3a228f;
   --color--dark-blue: #002838;
+  --color--gray-1: #dddddd;
 
   // Color Assignments.
-  --color--accent: var(--color--purple);
-  --color--accent--dark: var(--color--almost-black);
-  --color--title: var(--color--purple);
-
-  // Header.
-  --header--color: var(--color--white);
-  --header--background-color: var(--color--dark-blue);
-
-  // Navigation.
-  --navigation-menu--color: var(--color--white);
-  --navigation-menu--color--hover: var(--color--white);
-  --navigation-menu--background-color: transparent;
-  --dropdown--background-color: var(--color--white);
-
-  // Main.
-  --main--color: var(--color--black);
-  --main--background-color: var(--color--white);
-
-  // Footer.
-  --footer--color: var(--color--white);
-  --footer--background-color: var(--color--black);
-
-  // Heading.
-  --heading--color: var(--color--accent);
-
-  // Link.
-  --link--color: var(--color--white);
-
-  // Borders.
-  --border--light: 1px solid var(--color--neutral);
-  --border--extra-light: 1px solid var(--color--offwhite);
-  --border-radius: 3px;
-
-  // Code.
-  --code--color: var(--color--black);
-  --code--background-color: var(--color--neutral);
-
-  // Type.
-  --font-weight--light: 300;
-  --font-weight--medium: 400;
-  --font-weight--bold: 700;
-  --primary-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-
-  // Spacing.
-  --content--max-width: 620px;
-  --section--padding-y: 3rem;
-  --container--padding-x: 15px;
-  --container--max-width: 1000px;
-
-  // Shadows.
-  --shadow--large: 0 50px 120px -40px rgba(150, 150, 150, 0.2),
-    0 20px 60px -30px rgba(0, 0, 0, 0.5);
+  --faust--header-background-color: var(--color--dark-blue);
+  --faust--footer-background-color: var(--color--dark-blue);
+  --faust--code-border-color: var(--color--gray-1);
+  --faust--header-logo-color: var(--color--white);
 }

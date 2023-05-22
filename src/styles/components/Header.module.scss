@@ -1,88 +1,19 @@
-@import "../breakpoints";
-@import "../placeholders";
-
 .component {
-  color: var(--header--color);
-  background-color: var(--header--background-color);
-  position: relative;
-  z-index: 2; // Pull dropdown menus to the foreground to sit above <Main />.
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 1rem 0;
-  gap: 1rem;
+  background-color: var(--faust--header-background-color);
 }
 
 .brand {
-  font-size: 1.6rem;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-
-  img {
-    user-select: none;
-  }
 }
 
 .logo {
-  float: left;
-  margin-left: var(--space-around);
-  padding-right: 12px;
+  margin-right: 1rem;
 }
 
 .title {
-  text-decoration: none;
-  display: flex;
-  gap: 0.75rem;
-  flex-direction: column;
-  max-width: 15rem;
-  font-family: var(--primary-font-family);
-  color: var(--header--color);
-  white-space: nowrap;
-}
-
-.nav-toggle {
-  align-items: center;
-  background-color: transparent;
-  border: 0.1rem solid var(--header--color);
-  border-radius: var(--border-radius);
-  color: var(--header--color);
-  cursor: pointer;
-  display: flex;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s ease-in;
-  user-select: none;
-  font-size: 2rem;
-
-  @extend %transitionIfAllowed;
-
-  &:hover,
-  &:focus {
-    color: var(--header--background-color);
-    background-color: var(--header--color);
-  }
-
-  @media (min-width: $breakpoint-small) {
-    display: none !important;
-  }
-}
-
-.primary-navigation {
-  display: none;
-  width: 100%;
-
-  &.show {
-    display: block;
-  }
-
-  @media (min-width: $breakpoint-small) {
-    display: block;
-    width: auto;
-  }
+  color: var(--faust--header-logo-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  align-self: center;
+  margin-right: 1rem;
 }
