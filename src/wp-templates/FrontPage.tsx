@@ -8,9 +8,8 @@ import { Header, Content, Footer } from 'components';
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { data } = props;
-  const { generalSettings, primaryMenuItems } = data;
+  const { generalSettings, primaryMenuItems, secondaryMenuItems } = data;
   const { title: siteTitle } = generalSettings;
-  const menuItems = primaryMenuItems.nodes;
 
   return (
     <>
@@ -21,7 +20,11 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
       <Container
         maxWidth={false}
         sx={{ backgroundColor: 'var(--color--dark-blue)' }}>
-        <Header siteTitle={siteTitle} menuItems={menuItems} />
+        <Header
+          siteTitle={siteTitle}
+          primaryMenuItems={primaryMenuItems.nodes}
+          secondaryMenuItems={secondaryMenuItems.nodes}
+        />
       </Container>
 
       <Container sx={{ mt: 4 }}>
@@ -43,19 +46,14 @@ Component.query = gql(`
       title
       description
     }
-    primaryMenuItems: menuItems(where: { location: PRIMARY }) {
+    primaryMenuItems: menuItems(where: {location: PRIMARY}) {
       nodes {
-        id
-        uri
-        path
-        label
-        parentId
-        cssClasses
-        menu {
-          node {
-            name
-          }
-        }
+        ...PrimaryMenuItemsFragment
+      }
+    }
+    secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
+      nodes {
+        ...SecondaryMenuItemsFragment
       }
     }
   }

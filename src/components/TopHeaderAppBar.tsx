@@ -14,47 +14,19 @@ import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
-import { HeaderGeneralSettingsFragmentFragment } from '__generated__/graphql';
+import {
+  HeaderGeneralSettingsFragmentFragment,
+  PrimaryMenuItemsFragmentFragment,
+  SecondaryMenuItemsFragmentFragment,
+} from '__generated__/graphql';
 import styles from 'styles/components/Header.module.scss';
-import { LinkListItem } from './Footer';
 
 const cx = classNames.bind(styles);
 
-const pages = ['test', 'test2', 'Community'];
-
-const leftMenuItems: LinkListItem[] = [
-  {
-    text: 'Products',
-    url: '/',
-  },
-];
-
-const rightMenuItems: LinkListItem[] = [
-  {
-    text: 'GitHub',
-    url: 'https://github.com/wpengine/faustjs?ref=faustjs',
-    title: 'Faustjs GitHub',
-    ariaLabel: 'Click to go to the Faustjs GitHub',
-    isExternalLink: true,
-  },
-  {
-    text: 'WordPress Plugin',
-    url: 'https://wordpress.org/plugins/faustwp/',
-    title: 'Faustjs WordPress Plugin',
-    ariaLabel: 'Click to go to the Faustjs Headless Plugin',
-    isExternalLink: true,
-  },
-  {
-    text: 'Discord',
-    url: 'https://discord.com/invite/J2khkF9XYK',
-    title: 'Faustjs Discord',
-    ariaLabel: 'Click to go to the Faustjs Discord',
-    isExternalLink: true,
-  },
-];
-
 type TopHeaderAppBarProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment['title'];
+  primaryMenuItems: PrimaryMenuItemsFragmentFragment[];
+  secondaryMenuItems: SecondaryMenuItemsFragmentFragment[];
 };
 
 const Search = styled('div')(({ theme }) => ({
@@ -99,7 +71,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
+export function TopHeaderAppBar({
+  siteTitle,
+  primaryMenuItems,
+  secondaryMenuItems,
+}: TopHeaderAppBarProps) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -144,9 +120,9 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}>
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {primaryMenuItems.map((item) => (
+                <MenuItem key={item.id} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{item.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -177,25 +153,17 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
           </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {leftMenuItems.map((item) => (
-              <Link
-                href={item.url}
-                key={item.url}
-                sx={{ color: '#fff', mr: 2 }}>
-                {item.text} <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
+            {primaryMenuItems.map((item) => (
+              <Link href={item.uri} key={item.id} sx={{ color: '#fff', mr: 2 }}>
+                {item.label} <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
               </Link>
             ))}
           </Box>
 
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            {rightMenuItems.map((item) => (
-              <Link
-                href={item.url}
-                title={item.title}
-                aria-label={item.ariaLabel}
-                key={item.url}
-                sx={{ color: '#fff', mr: 2 }}>
-                {item.text} <LaunchIcon sx={{ ml: 1, fontSize: '1em' }} />
+            {secondaryMenuItems.map((item) => (
+              <Link href={item.uri} key={item.id} sx={{ color: '#fff', mr: 2 }}>
+                {item.label} <LaunchIcon sx={{ ml: 1, fontSize: '1em' }} />
               </Link>
             ))}
           </Box>

@@ -4,7 +4,7 @@ import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import {
-  DocsSidebarMenuItemFragmentFragment,
+  DocsSidebarMenuItemsFragmentFragment,
   GetTutorialQuery,
 } from '__generated__/graphql';
 import { Header, Footer, EntryHeader, DocsSidebar, Main } from 'components';
@@ -17,10 +17,14 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const { generalSettings, primaryMenuItems, docsSidebarMenuItems, tutorial } =
-    data;
+  const {
+    generalSettings,
+    primaryMenuItems,
+    secondaryMenuItems,
+    docsSidebarMenuItems,
+    tutorial,
+  } = data;
   const { title: siteTitle } = generalSettings;
-  const { nodes: menuItems } = primaryMenuItems;
   const { title, content } = tutorial;
 
   return (
@@ -29,7 +33,11 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header siteTitle={siteTitle} menuItems={menuItems} />
+      <Header
+        siteTitle={siteTitle}
+        primaryMenuItems={primaryMenuItems.nodes}
+        secondaryMenuItems={secondaryMenuItems.nodes}
+      />
 
       <Main>
         <Container sx={{ mt: 4 }}>
@@ -40,7 +48,7 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
             <Grid item xs={12} md={4}>
               <DocsSidebar
                 menuItems={
-                  docsSidebarMenuItems.nodes as DocsSidebarMenuItemFragmentFragment[]
+                  docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
                 }
               />
             </Grid>
@@ -95,22 +103,17 @@ Component.query = gql(`
     }
     primaryMenuItems: menuItems(where: {location: PRIMARY}) {
       nodes {
-        id
-        uri
-        path
-        label
-        parentId
-        cssClasses
-        menu {
-          node {
-            name
-          }
-        }
+        ...PrimaryMenuItemsFragment
+      }
+    }
+    secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
+      nodes {
+        ...SecondaryMenuItemsFragment
       }
     }
     docsSidebarMenuItems: menuItems(where: {location: DOCS_SIDEBAR}) {
       nodes {
-        ...DocsSidebarMenuItemFragment
+        ...DocsSidebarMenuItemsFragment
       }
     }
   }

@@ -47,5 +47,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "sass": "^1.62.1",
     "typescript": "^5.0.2"
+  },
+  "resolutions": {
+    "@graphql-typed-document-node/core": "3.2.0"
   }
 }

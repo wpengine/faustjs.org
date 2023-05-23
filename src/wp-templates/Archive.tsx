@@ -8,9 +8,9 @@ import { Header, EntryHeader, Footer } from 'components';
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { data } = props;
-  const { generalSettings, primaryMenuItems, nodeByUri } = data;
+  const { generalSettings, primaryMenuItems, secondaryMenuItems, nodeByUri } =
+    data;
   const { title: siteTitle } = generalSettings;
-  const menuItems = primaryMenuItems.nodes;
   const { archiveType } = nodeByUri;
 
   if (archiveType !== 'Category' && archiveType !== 'Tag') {
@@ -25,7 +25,11 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
         <title>{`${archiveType}: ${name} - ${siteTitle}`}</title>
       </Head>
 
-      <Header siteTitle={siteTitle} menuItems={menuItems} />
+      <Header
+        siteTitle={siteTitle}
+        primaryMenuItems={primaryMenuItems.nodes}
+        secondaryMenuItems={secondaryMenuItems.nodes}
+      />
 
       <main className="container">
         <EntryHeader title={`Archive for ${archiveType}: ${name}`} />
@@ -82,17 +86,12 @@ Component.query = gql(`
     }
     primaryMenuItems: menuItems(where: { location: PRIMARY }) {
       nodes {
-        id
-        uri
-        path
-        label
-        parentId
-        cssClasses
-        menu {
-          node {
-            name
-          }
-        }
+        ...PrimaryMenuItemsFragment
+      }
+    }
+    secondaryMenuItems: menuItems(where: { location: SECONDARY }) {
+      nodes {
+        ...SecondaryMenuItemsFragment
       }
     }
   }
