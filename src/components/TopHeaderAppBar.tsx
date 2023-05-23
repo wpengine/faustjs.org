@@ -18,8 +18,8 @@ import {
   PrimaryMenuItemsFragmentFragment,
   SecondaryMenuItemsFragmentFragment,
 } from '__generated__/graphql';
-import { Link } from './Link';
 import styles from 'styles/components/Header.module.scss';
+import { Link } from './Link';
 
 const cx = classNames.bind(styles);
 
