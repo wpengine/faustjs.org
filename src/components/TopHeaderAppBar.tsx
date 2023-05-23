@@ -12,13 +12,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
-import { Link } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemsFragmentFragment,
   SecondaryMenuItemsFragmentFragment,
 } from '__generated__/graphql';
+import { Link } from './Link';
 import styles from 'styles/components/Header.module.scss';
 
 const cx = classNames.bind(styles);
