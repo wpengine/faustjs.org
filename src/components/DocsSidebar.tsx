@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { flatListToHierarchical } from '@faustwp/core';
-import { DocsSidebarMenuItemFragmentFragment } from '__generated__/graphql';
+import { DocsSidebarMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '../__generated__';
 
 type DocsSidebarProps = {
-  menuItems: DocsSidebarMenuItemFragmentFragment[];
+  menuItems: DocsSidebarMenuItemsFragmentFragment[];
 };
 
 export function DocsSidebar(props: DocsSidebarProps) {
