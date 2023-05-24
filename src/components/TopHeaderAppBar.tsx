@@ -87,6 +87,8 @@ export function TopHeaderAppBar({
     setAnchorElNav(null);
   };
 
+  console.log({ primaryMenuItems, secondaryMenuItems });
+
   return (
     <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
       <Container maxWidth="xl">
@@ -110,9 +112,7 @@ export function TopHeaderAppBar({
               transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}>
+              sx={{ display: { xs: 'block', md: 'none' } }}>
               {primaryMenuItems.map((item) => (
                 <MenuItem key={item.id} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{item.label}</Typography>
@@ -143,7 +143,11 @@ export function TopHeaderAppBar({
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {primaryMenuItems.map((item) => (
-              <Link href={item.uri} key={item.id} sx={{ color: '#fff', mr: 2 }}>
+              <Link
+                href={item.uri}
+                key={item.id}
+                target={item.target}
+                sx={{ mr: 2 }}>
                 {item.label}
               </Link>
             ))}
@@ -170,7 +174,7 @@ export function TopHeaderAppBar({
                 className={cx('social-navigation-link')}
                 href={item.uri}
                 key={item.id}
-                sx={{ color: '#fff', ml: 2 }}>
+                target={item.target}>
                 {item.label}
               </Link>
             ))}

@@ -22,21 +22,22 @@ $icon-size: 24px;
 
 .social-navigation-link {
   color: transparent;
-  display: inline-block;
-  height: $icon-size;
-  line-height: $icon-size;
+  display: inline-flex;
+  margin-left: 0.8rem;
   overflow: hidden;
   position: relative;
   text-align: center;
   text-decoration: none;
   width: $icon-size;
+  height: $icon-size;
+  line-height: $icon-size;
 
   &::after {
     background-color: var(--faust--icon-color);
     content: '';
     height: 100%;
     left: 0;
-    opacity: 0.9;
+    opacity: 0.8;
     position: absolute;
     top: 0;
     width: 100%;
