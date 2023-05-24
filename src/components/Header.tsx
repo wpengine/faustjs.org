@@ -62,6 +62,8 @@ Header.fragments = {
       id
       uri
       label
+      description
+      target
     }
   `),
 };

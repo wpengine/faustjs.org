@@ -155,15 +155,7 @@ export function TopHeaderAppBar({
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {primaryMenuItems.map((item) => (
               <Link href={item.uri} key={item.id} sx={{ color: '#fff', mr: 2 }}>
-                {item.label} <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
-              </Link>
-            ))}
-          </Box>
-
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            {secondaryMenuItems.map((item) => (
-              <Link href={item.uri} key={item.id} sx={{ color: '#fff', mr: 2 }}>
-                {item.label} <LaunchIcon sx={{ ml: 1, fontSize: '1em' }} />
+                {item.label}
               </Link>
             ))}
           </Box>
@@ -182,6 +174,18 @@ export function TopHeaderAppBar({
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+            {secondaryMenuItems.map((item) => (
+              <Link
+                className={cx('social-navigation-link')}
+                href={item.uri}
+                key={item.id}
+                sx={{ color: '#fff', ml: 2 }}>
+                {item.label}
+              </Link>
+            ))}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
