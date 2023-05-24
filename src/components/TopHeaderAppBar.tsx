@@ -12,7 +12,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
-import LaunchIcon from '@mui/icons-material/Launch';
 import {
   HeaderGeneralSettingsFragmentFragment,
   PrimaryMenuItemsFragmentFragment,
