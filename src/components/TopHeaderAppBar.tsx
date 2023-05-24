@@ -114,9 +114,15 @@ export function TopHeaderAppBar({
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}>
               {primaryMenuItems.map((item) => (
-                <MenuItem key={item.id} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{item.label}</Typography>
-                </MenuItem>
+                <Link
+                  href={item.uri}
+                  key={item.id}
+                  target={item.target}
+                  sx={{ display: { color: '#000' } }}>
+                  <MenuItem key={item.id} onClick={handleCloseNavMenu}>
+                    {item.label}
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
