@@ -105,15 +105,9 @@ export function TopHeaderAppBar({
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
               keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
@@ -129,11 +123,7 @@ export function TopHeaderAppBar({
 
           <Link
             href="/"
-            sx={{
-              display: { xs: 'flex' },
-              mr: 1,
-              textDecoration: 'none',
-            }}>
+            sx={{ display: { xs: 'flex' }, mr: 1, textDecoration: 'none' }}>
             <svg
               className={cx('logo')}
               width="50"
