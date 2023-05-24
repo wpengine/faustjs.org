@@ -87,8 +87,6 @@ export function TopHeaderAppBar({
     setAnchorElNav(null);
   };
 
-  console.log({ primaryMenuItems, secondaryMenuItems });
-
   return (
     <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
       <Container maxWidth="xl">
