@@ -50,6 +50,7 @@ Header.fragments = {
       label
       parentId
       cssClasses
+      target
       menu {
         node {
           name
@@ -62,7 +63,6 @@ Header.fragments = {
       id
       uri
       label
-      description
       target
     }
   `),
