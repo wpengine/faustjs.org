@@ -2,12 +2,14 @@
   "private": true,
   "scripts": {
     "predev": "npm run generate",
-    "dev": "concurrently \"faust dev\" \"npm run watch-codegen\"",
+    "prebuild": "npm run generate && npm run codegen",
+    "prestart": "npm run generate && npm run codegen",
+    "dev": "concurrently \"faust dev\" \"npm run codegen-watch\"",
     "build": "faust build",
     "generate": "faust generatePossibleTypes && faust generateGlobalStylesheet",
     "start": "faust start",
     "codegen": "graphql-codegen",
-    "watch-codegen": "graphql-codegen -w",
+    "codegen-watch": "graphql-codegen -w",
     "lint": "eslint ./src --report-unused-disable-directives",
     "lint-fix": "eslint ./src --fix"
   },

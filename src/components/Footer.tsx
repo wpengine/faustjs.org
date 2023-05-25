@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Grid, List, Link, Container, Typography } from '@mui/material';
+import { Box, Grid, List, Container, Typography } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
+import { Link } from './Link';
 
 type LinkList = {
   title: string;

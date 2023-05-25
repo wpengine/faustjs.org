@@ -13,9 +13,8 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const { post, generalSettings, primaryMenuItems } = data;
+  const { post, generalSettings, primaryMenuItems, secondaryMenuItems } = data;
   const { title: siteTitle } = generalSettings;
-  const { nodes: menuItems } = primaryMenuItems;
   const { title, content, date, author } = post;
 
   return (
@@ -24,7 +23,11 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header siteTitle={siteTitle} menuItems={menuItems} />
+      <Header
+        siteTitle={siteTitle}
+        primaryMenuItems={primaryMenuItems.nodes}
+        secondaryMenuItems={secondaryMenuItems.nodes}
+      />
 
       <main className="container">
         <EntryHeader title={title} date={date} author={author.node.name} />
@@ -60,19 +63,14 @@ Component.query = gql(`
       title
       description
     }
-    primaryMenuItems: menuItems(where: { location: PRIMARY }) {
+    primaryMenuItems: menuItems(where: {location: PRIMARY}) {
       nodes {
-        id
-        uri
-        path
-        label
-        parentId
-        cssClasses
-        menu {
-          node {
-            name
-          }
-        }
+        ...PrimaryMenuItemsFragment
+      }
+    }
+    secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
+      nodes {
+        ...SecondaryMenuItemsFragment
       }
     }
   }

@@ -1,3 +1,5 @@
+$icon-size: 24px;
+
 .component {
   background-color: var(--faust--header-background-color);
 }
@@ -16,4 +18,46 @@
   font-weight: 700;
   align-self: center;
   margin-right: 1rem;
+}
+
+.social-navigation-link {
+  color: transparent;
+  display: inline-flex;
+  margin-left: 0.8rem;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: $icon-size;
+  height: $icon-size;
+  line-height: $icon-size;
+
+  &::after {
+    background-color: var(--faust--icon-color);
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    opacity: 1;
+  }
+
+  &[href*='github.com']::after {
+    mask: url('/icons/github.svg');
+  }
+
+  &[href*='discord.gg']::after,
+  &[href*='discord.com']::after {
+    mask: url('/icons/discord.svg');
+  }
+
+  &[href*='wordpress.org']::after {
+    mask: url('/icons/wordpress.svg');
+  }
 }

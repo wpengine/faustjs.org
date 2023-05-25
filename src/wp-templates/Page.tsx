@@ -13,9 +13,8 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const { page, generalSettings, primaryMenuItems } = data;
+  const { page, generalSettings, primaryMenuItems, secondaryMenuItems } = data;
   const { title: siteTitle } = generalSettings;
-  const menuItems = primaryMenuItems.nodes;
   const { title, content } = page;
 
   return (
@@ -24,7 +23,11 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header siteTitle={siteTitle} menuItems={menuItems} />
+      <Header
+        siteTitle={siteTitle}
+        primaryMenuItems={primaryMenuItems.nodes}
+        secondaryMenuItems={secondaryMenuItems.nodes}
+      />
 
       <main className="container">
         <EntryHeader title={title} />
@@ -54,19 +57,14 @@ Component.query = gql(`
       title
       description
     }
-    primaryMenuItems: menuItems(where: { location: PRIMARY }) {
+    primaryMenuItems: menuItems(where: {location: PRIMARY}) {
       nodes {
-        id
-        uri
-        path
-        label
-        parentId
-        cssClasses
-        menu {
-          node {
-            name
-          }
-        }
+        ...PrimaryMenuItemsFragment
+      }
+    }
+    secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
+      nodes {
+        ...SecondaryMenuItemsFragment
       }
     }
   }
