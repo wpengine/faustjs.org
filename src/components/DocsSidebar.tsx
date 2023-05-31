@@ -66,7 +66,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', mt: 8 }}>
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}

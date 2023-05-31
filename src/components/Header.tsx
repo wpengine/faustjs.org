@@ -20,10 +20,7 @@ export function Header({ siteTitle = 'Faust.js', menuItems }: HeaderProps) {
   return (
     <header className={cx('component')}>
       <SkipNavigationLink />
-      <TopHeaderAppBar
-        siteTitle={siteTitle}
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      />
+      <TopHeaderAppBar menuItems={menuItems} siteTitle={siteTitle} />
     </header>
   );
 }

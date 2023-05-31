@@ -14,20 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
-import { HeaderGeneralSettingsFragmentFragment } from '__generated__/graphql';
+import {
+  PrimaryMenuItemFragmentFragment,
+  HeaderGeneralSettingsFragmentFragment,
+} from '__generated__/graphql';
 import styles from 'styles/components/Header.module.scss';
 import { LinkListItem } from './Footer';
 
 const cx = classNames.bind(styles);
-
-const pages = ['test', 'test2', 'Community'];
-
-const leftMenuItems: LinkListItem[] = [
-  {
-    text: 'Products',
-    url: '/',
-  },
-];
 
 const rightMenuItems: LinkListItem[] = [
   {
@@ -55,6 +49,7 @@ const rightMenuItems: LinkListItem[] = [
 
 type TopHeaderAppBarProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment['title'];
+  menuItems: PrimaryMenuItemFragmentFragment[];
 };
 
 const Search = styled('div')(({ theme }) => ({
@@ -99,7 +94,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
+export function TopHeaderAppBar({
+  siteTitle,
+  menuItems,
+}: TopHeaderAppBarProps) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -144,9 +142,16 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}>
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {menuItems.map((item) => (
+                <MenuItem key={item.id} onClick={handleCloseNavMenu}>
+                  <Link
+                    href={item.uri}
+                    title={item.label}
+                    aria-label={item.label}
+                    sx={{ color: 'black' }}
+                    key={item.id}>
+                    {item.label}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -177,12 +182,9 @@ export function TopHeaderAppBar({ siteTitle }: TopHeaderAppBarProps) {
           </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {leftMenuItems.map((item) => (
-              <Link
-                href={item.url}
-                key={item.url}
-                sx={{ color: '#fff', mr: 2 }}>
-                {item.text} <LaunchIcon sx={{ ml: 1 }} fontSize="small" />
+            {menuItems.map((item) => (
+              <Link href={item.uri} key={item.id} sx={{ color: '#fff', mr: 2 }}>
+                {item.label}
               </Link>
             ))}
           </Box>
