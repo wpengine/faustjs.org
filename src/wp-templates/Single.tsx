@@ -13,7 +13,16 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const { post, generalSettings, primaryMenuItems, secondaryMenuItems } = data;
+  const {
+    post,
+    generalSettings,
+    primaryMenuItems,
+    secondaryMenuItems,
+    footer1MenuItems,
+    footer2MenuItems,
+    footer3MenuItems,
+    footer4MenuItems,
+  } = data;
   const { title: siteTitle } = generalSettings;
   const { title, content, date, author } = post;
 
@@ -35,7 +44,12 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </main>
 
-      <Footer />
+      <Footer
+        footer1MenuItems={footer1MenuItems}
+        footer2MenuItems={footer2MenuItems}
+        footer3MenuItems={footer3MenuItems}
+        footer4MenuItems={footer4MenuItems}
+      />
     </>
   );
 };
@@ -71,6 +85,26 @@ Component.query = gql(`
     secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
       nodes {
         ...SecondaryMenuItemsFragment
+      }
+    }
+    footer1MenuItems: menuItems(where: {location: FOOTER_1}) {
+      nodes {
+        ...Footer1MenuItemsFragment
+      }
+    }
+    footer2MenuItems: menuItems(where: {location: FOOTER_2}) {
+      nodes {
+        ...Footer2MenuItemsFragment
+      }
+    }
+    footer3MenuItems: menuItems(where: {location: FOOTER_3}) {
+      nodes {
+        ...Footer3MenuItemsFragment
+      }
+    }
+    footer4MenuItems: menuItems(where: {location: FOOTER_4}) {
+      nodes {
+        ...Footer4MenuItemsFragment
       }
     }
   }
