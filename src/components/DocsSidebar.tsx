@@ -5,9 +5,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import { Typography } from '@mui/material';
-import Link from 'next/link';
 import { DocsSidebarMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '../__generated__';
+import { Link } from './Link';
 
 type DocsSidebarProps = {
   menuItems: DocsSidebarMenuItemsFragmentFragment[];
