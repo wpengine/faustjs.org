@@ -54,6 +54,12 @@ export enum AvatarRatingEnum {
   X = 'X'
 }
 
+/** Block that supports Anchor field */
+export type BlockWithSupportsAnchor = {
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
+};
+
 /** The category type */
 export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Category';
@@ -1527,11 +1533,11 @@ export enum ContentTypesOfTagEnum {
 }
 
 /** A block used for editing the site */
-export type CoreArchives = EditorBlock & {
+export type CoreArchives = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreArchives';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreArchives Block Type */
   attributes?: Maybe<CoreArchivesAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1551,7 +1557,7 @@ export type CoreArchives = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreArchives Block Type */
 export type CoreArchivesAttributes = {
   __typename?: 'CoreArchivesAttributes';
   /** The &quot;align&quot; field on the &quot;CoreArchives&quot; block */
@@ -1577,11 +1583,13 @@ export type CoreArchivesAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreAudio = EditorBlock & {
+export type CoreAudio = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreAudio';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreAudio Block Type */
   attributes?: Maybe<CoreAudioAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1601,11 +1609,13 @@ export type CoreAudio = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreAudioAttributes = {
+/** Attributes of the CoreAudio Block Type */
+export type CoreAudioAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreAudioAttributes';
   /** The &quot;align&quot; field on the &quot;CoreAudio&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;autoplay&quot; field on the &quot;CoreAudio&quot; block */
   autoplay?: Maybe<Scalars['Boolean']>;
   /** The &quot;caption&quot; field on the &quot;CoreAudio&quot; block */
@@ -1627,11 +1637,11 @@ export type CoreAudioAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreAvatar = EditorBlock & {
+export type CoreAvatar = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreAvatar';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreAvatar Block Type */
   attributes?: Maybe<CoreAvatarAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1651,7 +1661,7 @@ export type CoreAvatar = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreAvatar Block Type */
 export type CoreAvatarAttributes = {
   __typename?: 'CoreAvatarAttributes';
   /** The &quot;align&quot; field on the &quot;CoreAvatar&quot; block */
@@ -1675,11 +1685,11 @@ export type CoreAvatarAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreBlock = EditorBlock & {
+export type CoreBlock = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreBlock';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreBlock Block Type */
   attributes?: Maybe<CoreBlockAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1699,7 +1709,7 @@ export type CoreBlock = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreBlock Block Type */
 export type CoreBlockAttributes = {
   __typename?: 'CoreBlockAttributes';
   /** The &quot;lock&quot; field on the &quot;CoreBlock&quot; block */
@@ -1709,11 +1719,13 @@ export type CoreBlockAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreButton = EditorBlock & {
+export type CoreButton = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreButton';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreButton Block Type */
   attributes?: Maybe<CoreButtonAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1733,9 +1745,11 @@ export type CoreButton = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreButtonAttributes = {
+/** Attributes of the CoreButton Block Type */
+export type CoreButtonAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreButtonAttributes';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreButton&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreButton&quot; block */
@@ -1771,11 +1785,13 @@ export type CoreButtonAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreButtons = EditorBlock & {
+export type CoreButtons = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreButtons';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreButtons Block Type */
   attributes?: Maybe<CoreButtonsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1795,11 +1811,13 @@ export type CoreButtons = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreButtonsAttributes = {
+/** Attributes of the CoreButtons Block Type */
+export type CoreButtonsAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreButtonsAttributes';
   /** The &quot;align&quot; field on the &quot;CoreButtons&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreButtons&quot; block */
   className?: Maybe<Scalars['String']>;
   /** The &quot;fontFamily&quot; field on the &quot;CoreButtons&quot; block */
@@ -1815,11 +1833,11 @@ export type CoreButtonsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCalendar = EditorBlock & {
+export type CoreCalendar = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCalendar';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCalendar Block Type */
   attributes?: Maybe<CoreCalendarAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1839,7 +1857,7 @@ export type CoreCalendar = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCalendar Block Type */
 export type CoreCalendarAttributes = {
   __typename?: 'CoreCalendarAttributes';
   /** The &quot;align&quot; field on the &quot;CoreCalendar&quot; block */
@@ -1865,11 +1883,11 @@ export type CoreCalendarAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCategories = EditorBlock & {
+export type CoreCategories = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCategories';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCategories Block Type */
   attributes?: Maybe<CoreCategoriesAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1889,7 +1907,7 @@ export type CoreCategories = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCategories Block Type */
 export type CoreCategoriesAttributes = {
   __typename?: 'CoreCategoriesAttributes';
   /** The &quot;align&quot; field on the &quot;CoreCategories&quot; block */
@@ -1917,11 +1935,13 @@ export type CoreCategoriesAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCode = EditorBlock & {
+export type CoreCode = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCode';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCode Block Type */
   attributes?: Maybe<CoreCodeAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -1941,9 +1961,11 @@ export type CoreCode = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreCodeAttributes = {
+/** Attributes of the CoreCode Block Type */
+export type CoreCodeAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreCodeAttributes';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCode&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;borderColor&quot; field on the &quot;CoreCode&quot; block */
@@ -1977,11 +1999,13 @@ export type CoreCodeAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreColumn = EditorBlock & {
+export type CoreColumn = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreColumn';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreColumn Block Type */
   attributes?: Maybe<CoreColumnAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2001,11 +2025,13 @@ export type CoreColumn = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreColumnAttributes = {
+/** Attributes of the CoreColumn Block Type */
+export type CoreColumnAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreColumnAttributes';
   /** The &quot;allowedBlocks&quot; field on the &quot;CoreColumn&quot; block */
   allowedBlocks?: Maybe<Scalars['BlockAttributesObject']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreColumn&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;borderColor&quot; field on the &quot;CoreColumn&quot; block */
@@ -2035,11 +2061,13 @@ export type CoreColumnAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreColumns = EditorBlock & {
+export type CoreColumns = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreColumns';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreColumns Block Type */
   attributes?: Maybe<CoreColumnsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2059,11 +2087,13 @@ export type CoreColumns = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreColumnsAttributes = {
+/** Attributes of the CoreColumns Block Type */
+export type CoreColumnsAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreColumnsAttributes';
   /** The &quot;align&quot; field on the &quot;CoreColumns&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreColumns&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;borderColor&quot; field on the &quot;CoreColumns&quot; block */
@@ -2093,11 +2123,11 @@ export type CoreColumnsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentAuthorName = EditorBlock & {
+export type CoreCommentAuthorName = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentAuthorName';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentAuthorName Block Type */
   attributes?: Maybe<CoreCommentAuthorNameAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2117,7 +2147,7 @@ export type CoreCommentAuthorName = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentAuthorName Block Type */
 export type CoreCommentAuthorNameAttributes = {
   __typename?: 'CoreCommentAuthorNameAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentAuthorName&quot; block */
@@ -2145,11 +2175,11 @@ export type CoreCommentAuthorNameAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentContent = EditorBlock & {
+export type CoreCommentContent = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentContent';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentContent Block Type */
   attributes?: Maybe<CoreCommentContentAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2169,7 +2199,7 @@ export type CoreCommentContent = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentContent Block Type */
 export type CoreCommentContentAttributes = {
   __typename?: 'CoreCommentContentAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentContent&quot; block */
@@ -2193,11 +2223,11 @@ export type CoreCommentContentAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentDate = EditorBlock & {
+export type CoreCommentDate = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentDate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentDate Block Type */
   attributes?: Maybe<CoreCommentDateAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2217,7 +2247,7 @@ export type CoreCommentDate = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentDate Block Type */
 export type CoreCommentDateAttributes = {
   __typename?: 'CoreCommentDateAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentDate&quot; block */
@@ -2243,11 +2273,11 @@ export type CoreCommentDateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentEditLink = EditorBlock & {
+export type CoreCommentEditLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentEditLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentEditLink Block Type */
   attributes?: Maybe<CoreCommentEditLinkAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2267,7 +2297,7 @@ export type CoreCommentEditLink = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentEditLink Block Type */
 export type CoreCommentEditLinkAttributes = {
   __typename?: 'CoreCommentEditLinkAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentEditLink&quot; block */
@@ -2291,11 +2321,11 @@ export type CoreCommentEditLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentReplyLink = EditorBlock & {
+export type CoreCommentReplyLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentReplyLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentReplyLink Block Type */
   attributes?: Maybe<CoreCommentReplyLinkAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2315,7 +2345,7 @@ export type CoreCommentReplyLink = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentReplyLink Block Type */
 export type CoreCommentReplyLinkAttributes = {
   __typename?: 'CoreCommentReplyLinkAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentReplyLink&quot; block */
@@ -2337,11 +2367,11 @@ export type CoreCommentReplyLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentTemplate = EditorBlock & {
+export type CoreCommentTemplate = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentTemplate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentTemplate Block Type */
   attributes?: Maybe<CoreCommentTemplateAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2361,7 +2391,7 @@ export type CoreCommentTemplate = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentTemplate Block Type */
 export type CoreCommentTemplateAttributes = {
   __typename?: 'CoreCommentTemplateAttributes';
   /** The &quot;align&quot; field on the &quot;CoreCommentTemplate&quot; block */
@@ -2379,11 +2409,11 @@ export type CoreCommentTemplateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreComments = EditorBlock & {
+export type CoreComments = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreComments';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreComments Block Type */
   attributes?: Maybe<CoreCommentsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2403,7 +2433,7 @@ export type CoreComments = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreComments Block Type */
 export type CoreCommentsAttributes = {
   __typename?: 'CoreCommentsAttributes';
   /** The &quot;align&quot; field on the &quot;CoreComments&quot; block */
@@ -2431,11 +2461,11 @@ export type CoreCommentsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPagination = EditorBlock & {
+export type CoreCommentsPagination = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentsPagination';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentsPagination Block Type */
   attributes?: Maybe<CoreCommentsPaginationAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2455,7 +2485,7 @@ export type CoreCommentsPagination = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentsPagination Block Type */
 export type CoreCommentsPaginationAttributes = {
   __typename?: 'CoreCommentsPaginationAttributes';
   /** The &quot;align&quot; field on the &quot;CoreCommentsPagination&quot; block */
@@ -2483,11 +2513,11 @@ export type CoreCommentsPaginationAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPaginationNext = EditorBlock & {
+export type CoreCommentsPaginationNext = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentsPaginationNext';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentsPaginationNext Block Type */
   attributes?: Maybe<CoreCommentsPaginationNextAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2507,7 +2537,7 @@ export type CoreCommentsPaginationNext = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentsPaginationNext Block Type */
 export type CoreCommentsPaginationNextAttributes = {
   __typename?: 'CoreCommentsPaginationNextAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentsPaginationNext&quot; block */
@@ -2529,11 +2559,11 @@ export type CoreCommentsPaginationNextAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPaginationNumbers = EditorBlock & {
+export type CoreCommentsPaginationNumbers = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentsPaginationNumbers';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentsPaginationNumbers Block Type */
   attributes?: Maybe<CoreCommentsPaginationNumbersAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2553,7 +2583,7 @@ export type CoreCommentsPaginationNumbers = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentsPaginationNumbers Block Type */
 export type CoreCommentsPaginationNumbersAttributes = {
   __typename?: 'CoreCommentsPaginationNumbersAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentsPaginationNumbers&quot; block */
@@ -2573,11 +2603,11 @@ export type CoreCommentsPaginationNumbersAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsPaginationPrevious = EditorBlock & {
+export type CoreCommentsPaginationPrevious = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentsPaginationPrevious';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentsPaginationPrevious Block Type */
   attributes?: Maybe<CoreCommentsPaginationPreviousAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2597,7 +2627,7 @@ export type CoreCommentsPaginationPrevious = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentsPaginationPrevious Block Type */
 export type CoreCommentsPaginationPreviousAttributes = {
   __typename?: 'CoreCommentsPaginationPreviousAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreCommentsPaginationPrevious&quot; block */
@@ -2619,11 +2649,11 @@ export type CoreCommentsPaginationPreviousAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCommentsTitle = EditorBlock & {
+export type CoreCommentsTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCommentsTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCommentsTitle Block Type */
   attributes?: Maybe<CoreCommentsTitleAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2643,7 +2673,7 @@ export type CoreCommentsTitle = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreCommentsTitle Block Type */
 export type CoreCommentsTitleAttributes = {
   __typename?: 'CoreCommentsTitleAttributes';
   /** The &quot;align&quot; field on the &quot;CoreCommentsTitle&quot; block */
@@ -2677,11 +2707,13 @@ export type CoreCommentsTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreCover = EditorBlock & {
+export type CoreCover = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreCover';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreCover Block Type */
   attributes?: Maybe<CoreCoverAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2701,8 +2733,8 @@ export type CoreCover = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreCoverAttributes = {
+/** Attributes of the CoreCover Block Type */
+export type CoreCoverAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreCoverAttributes';
   /** The &quot;align&quot; field on the &quot;CoreCover&quot; block */
   align?: Maybe<Scalars['String']>;
@@ -2710,6 +2742,8 @@ export type CoreCoverAttributes = {
   allowedBlocks?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;alt&quot; field on the &quot;CoreCover&quot; block */
   alt?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundType&quot; field on the &quot;CoreCover&quot; block */
   backgroundType?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreCover&quot; block */
@@ -2757,11 +2791,11 @@ export type CoreCoverAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreEmbed = EditorBlock & {
+export type CoreEmbed = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreEmbed';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreEmbed Block Type */
   attributes?: Maybe<CoreEmbedAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2781,7 +2815,7 @@ export type CoreEmbed = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreEmbed Block Type */
 export type CoreEmbedAttributes = {
   __typename?: 'CoreEmbedAttributes';
   /** The &quot;align&quot; field on the &quot;CoreEmbed&quot; block */
@@ -2807,11 +2841,13 @@ export type CoreEmbedAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreFile = EditorBlock & {
+export type CoreFile = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreFile';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreFile Block Type */
   attributes?: Maybe<CoreFileAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2831,11 +2867,13 @@ export type CoreFile = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreFileAttributes = {
+/** Attributes of the CoreFile Block Type */
+export type CoreFileAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreFileAttributes';
   /** The &quot;align&quot; field on the &quot;CoreFile&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreFile&quot; block */
   className?: Maybe<Scalars['String']>;
   /** The &quot;displayPreview&quot; field on the &quot;CoreFile&quot; block */
@@ -2863,11 +2901,11 @@ export type CoreFileAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreFreeform = EditorBlock & {
+export type CoreFreeform = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreFreeform';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreFreeform Block Type */
   attributes?: Maybe<CoreFreeformAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2887,7 +2925,7 @@ export type CoreFreeform = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreFreeform Block Type */
 export type CoreFreeformAttributes = {
   __typename?: 'CoreFreeformAttributes';
   /** The &quot;content&quot; field on the &quot;CoreFreeform&quot; block */
@@ -2897,11 +2935,13 @@ export type CoreFreeformAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreGallery = EditorBlock & {
+export type CoreGallery = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreGallery';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreGallery Block Type */
   attributes?: Maybe<CoreGalleryAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2921,13 +2961,15 @@ export type CoreGallery = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreGalleryAttributes = {
+/** Attributes of the CoreGallery Block Type */
+export type CoreGalleryAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreGalleryAttributes';
   /** The &quot;align&quot; field on the &quot;CoreGallery&quot; block */
   align?: Maybe<Scalars['String']>;
   /** The &quot;allowResize&quot; field on the &quot;CoreGallery&quot; block */
   allowResize?: Maybe<Scalars['Boolean']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreGallery&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;caption&quot; field on the &quot;CoreGallery&quot; block */
@@ -2963,11 +3005,13 @@ export type CoreGalleryAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreGroup = EditorBlock & {
+export type CoreGroup = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreGroup';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreGroup Block Type */
   attributes?: Maybe<CoreGroupAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -2987,11 +3031,13 @@ export type CoreGroup = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreGroupAttributes = {
+/** Attributes of the CoreGroup Block Type */
+export type CoreGroupAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreGroupAttributes';
   /** The &quot;align&quot; field on the &quot;CoreGroup&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreGroup&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;borderColor&quot; field on the &quot;CoreGroup&quot; block */
@@ -3017,11 +3063,13 @@ export type CoreGroupAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreHeading = EditorBlock & {
+export type CoreHeading = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreHeading';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreHeading Block Type */
   attributes?: Maybe<CoreHeadingAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3041,11 +3089,13 @@ export type CoreHeading = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreHeadingAttributes = {
+/** Attributes of the CoreHeading Block Type */
+export type CoreHeadingAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreHeadingAttributes';
   /** The &quot;align&quot; field on the &quot;CoreHeading&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreHeading&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreHeading&quot; block */
@@ -3073,11 +3123,11 @@ export type CoreHeadingAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreHomeLink = EditorBlock & {
+export type CoreHomeLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreHomeLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreHomeLink Block Type */
   attributes?: Maybe<CoreHomeLinkAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3097,7 +3147,7 @@ export type CoreHomeLink = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreHomeLink Block Type */
 export type CoreHomeLinkAttributes = {
   __typename?: 'CoreHomeLinkAttributes';
   /** The &quot;className&quot; field on the &quot;CoreHomeLink&quot; block */
@@ -3115,11 +3165,11 @@ export type CoreHomeLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreHtml = EditorBlock & {
+export type CoreHtml = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreHtml';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreHtml Block Type */
   attributes?: Maybe<CoreHtmlAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3139,7 +3189,7 @@ export type CoreHtml = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreHtml Block Type */
 export type CoreHtmlAttributes = {
   __typename?: 'CoreHtmlAttributes';
   /** The &quot;content&quot; field on the &quot;CoreHtml&quot; block */
@@ -3149,11 +3199,13 @@ export type CoreHtmlAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreImage = EditorBlock & {
+export type CoreImage = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreImage';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreImage Block Type */
   attributes?: Maybe<CoreImageAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3173,19 +3225,23 @@ export type CoreImage = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreImageAttributes = {
+/** Attributes of the CoreImage Block Type */
+export type CoreImageAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreImageAttributes';
   /** The &quot;align&quot; field on the &quot;CoreImage&quot; block */
   align?: Maybe<Scalars['String']>;
   /** The &quot;alt&quot; field on the &quot;CoreImage&quot; block */
   alt?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;borderColor&quot; field on the &quot;CoreImage&quot; block */
   borderColor?: Maybe<Scalars['String']>;
   /** The &quot;caption&quot; field on the &quot;CoreImage&quot; block */
   caption?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreImage&quot; block */
   className?: Maybe<Scalars['String']>;
+  /** The &quot;cssClassName&quot; field on the &quot;CoreImage&quot; block */
+  cssClassName?: Maybe<Scalars['String']>;
   /** The &quot;height&quot; field on the &quot;CoreImage&quot; block */
   height?: Maybe<Scalars['Float']>;
   /** The &quot;href&quot; field on the &quot;CoreImage&quot; block */
@@ -3217,11 +3273,11 @@ export type CoreImageAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLatestComments = EditorBlock & {
+export type CoreLatestComments = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreLatestComments';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreLatestComments Block Type */
   attributes?: Maybe<CoreLatestCommentsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3241,7 +3297,7 @@ export type CoreLatestComments = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreLatestComments Block Type */
 export type CoreLatestCommentsAttributes = {
   __typename?: 'CoreLatestCommentsAttributes';
   /** The &quot;align&quot; field on the &quot;CoreLatestComments&quot; block */
@@ -3263,11 +3319,11 @@ export type CoreLatestCommentsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLatestPosts = EditorBlock & {
+export type CoreLatestPosts = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreLatestPosts';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreLatestPosts Block Type */
   attributes?: Maybe<CoreLatestPostsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3287,7 +3343,7 @@ export type CoreLatestPosts = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreLatestPosts Block Type */
 export type CoreLatestPostsAttributes = {
   __typename?: 'CoreLatestPostsAttributes';
   /** The &quot;addLinkToFeaturedImage&quot; field on the &quot;CoreLatestPosts&quot; block */
@@ -3347,11 +3403,11 @@ export type CoreLatestPostsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLegacyWidget = EditorBlock & {
+export type CoreLegacyWidget = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreLegacyWidget';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreLegacyWidget Block Type */
   attributes?: Maybe<CoreLegacyWidgetAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3371,7 +3427,7 @@ export type CoreLegacyWidget = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreLegacyWidget Block Type */
 export type CoreLegacyWidgetAttributes = {
   __typename?: 'CoreLegacyWidgetAttributes';
   /** The &quot;id&quot; field on the &quot;CoreLegacyWidget&quot; block */
@@ -3385,11 +3441,13 @@ export type CoreLegacyWidgetAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreList = EditorBlock & {
+export type CoreList = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreList';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreList Block Type */
   attributes?: Maybe<CoreListAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3409,9 +3467,11 @@ export type CoreList = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreListAttributes = {
+/** Attributes of the CoreList Block Type */
+export type CoreListAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreListAttributes';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreList&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreList&quot; block */
@@ -3443,11 +3503,11 @@ export type CoreListAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreListItem = EditorBlock & {
+export type CoreListItem = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreListItem';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreListItem Block Type */
   attributes?: Maybe<CoreListItemAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3467,7 +3527,7 @@ export type CoreListItem = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreListItem Block Type */
 export type CoreListItemAttributes = {
   __typename?: 'CoreListItemAttributes';
   /** The &quot;className&quot; field on the &quot;CoreListItem&quot; block */
@@ -3487,11 +3547,11 @@ export type CoreListItemAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreLoginout = EditorBlock & {
+export type CoreLoginout = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreLoginout';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreLoginout Block Type */
   attributes?: Maybe<CoreLoginoutAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3511,7 +3571,7 @@ export type CoreLoginout = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreLoginout Block Type */
 export type CoreLoginoutAttributes = {
   __typename?: 'CoreLoginoutAttributes';
   /** The &quot;className&quot; field on the &quot;CoreLoginout&quot; block */
@@ -3525,11 +3585,13 @@ export type CoreLoginoutAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreMediaText = EditorBlock & {
+export type CoreMediaText = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreMediaText';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreMediaText Block Type */
   attributes?: Maybe<CoreMediaTextAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3549,11 +3611,13 @@ export type CoreMediaText = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreMediaTextAttributes = {
+/** Attributes of the CoreMediaText Block Type */
+export type CoreMediaTextAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreMediaTextAttributes';
   /** The &quot;align&quot; field on the &quot;CoreMediaText&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreMediaText&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreMediaText&quot; block */
@@ -3607,11 +3671,11 @@ export type CoreMediaTextAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreMissing = EditorBlock & {
+export type CoreMissing = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreMissing';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreMissing Block Type */
   attributes?: Maybe<CoreMissingAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3631,7 +3695,7 @@ export type CoreMissing = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreMissing Block Type */
 export type CoreMissingAttributes = {
   __typename?: 'CoreMissingAttributes';
   /** The &quot;lock&quot; field on the &quot;CoreMissing&quot; block */
@@ -3645,11 +3709,11 @@ export type CoreMissingAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreMore = EditorBlock & {
+export type CoreMore = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreMore';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreMore Block Type */
   attributes?: Maybe<CoreMoreAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3669,7 +3733,7 @@ export type CoreMore = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreMore Block Type */
 export type CoreMoreAttributes = {
   __typename?: 'CoreMoreAttributes';
   /** The &quot;customText&quot; field on the &quot;CoreMore&quot; block */
@@ -3681,11 +3745,11 @@ export type CoreMoreAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNavigation = EditorBlock & {
+export type CoreNavigation = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreNavigation';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreNavigation Block Type */
   attributes?: Maybe<CoreNavigationAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3705,7 +3769,7 @@ export type CoreNavigation = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreNavigation Block Type */
 export type CoreNavigationAttributes = {
   __typename?: 'CoreNavigationAttributes';
   /** The &quot;align&quot; field on the &quot;CoreNavigation&quot; block */
@@ -3761,11 +3825,11 @@ export type CoreNavigationAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNavigationLink = EditorBlock & {
+export type CoreNavigationLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreNavigationLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreNavigationLink Block Type */
   attributes?: Maybe<CoreNavigationLinkAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3785,7 +3849,7 @@ export type CoreNavigationLink = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreNavigationLink Block Type */
 export type CoreNavigationLinkAttributes = {
   __typename?: 'CoreNavigationLinkAttributes';
   /** The &quot;className&quot; field on the &quot;CoreNavigationLink&quot; block */
@@ -3821,11 +3885,11 @@ export type CoreNavigationLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNavigationSubmenu = EditorBlock & {
+export type CoreNavigationSubmenu = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreNavigationSubmenu';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreNavigationSubmenu Block Type */
   attributes?: Maybe<CoreNavigationSubmenuAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3845,7 +3909,7 @@ export type CoreNavigationSubmenu = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreNavigationSubmenu Block Type */
 export type CoreNavigationSubmenuAttributes = {
   __typename?: 'CoreNavigationSubmenuAttributes';
   /** The &quot;className&quot; field on the &quot;CoreNavigationSubmenu&quot; block */
@@ -3875,11 +3939,11 @@ export type CoreNavigationSubmenuAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreNextpage = EditorBlock & {
+export type CoreNextpage = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreNextpage';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreNextpage Block Type */
   attributes?: Maybe<CoreNextpageAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3899,7 +3963,7 @@ export type CoreNextpage = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreNextpage Block Type */
 export type CoreNextpageAttributes = {
   __typename?: 'CoreNextpageAttributes';
   /** The &quot;lock&quot; field on the &quot;CoreNextpage&quot; block */
@@ -3907,11 +3971,11 @@ export type CoreNextpageAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePageList = EditorBlock & {
+export type CorePageList = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePageList';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePageList Block Type */
   attributes?: Maybe<CorePageListAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3931,7 +3995,7 @@ export type CorePageList = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePageList Block Type */
 export type CorePageListAttributes = {
   __typename?: 'CorePageListAttributes';
   /** The &quot;className&quot; field on the &quot;CorePageList&quot; block */
@@ -3951,11 +4015,11 @@ export type CorePageListAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePageListItem = EditorBlock & {
+export type CorePageListItem = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePageListItem';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePageListItem Block Type */
   attributes?: Maybe<CorePageListItemAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -3975,7 +4039,7 @@ export type CorePageListItem = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePageListItem Block Type */
 export type CorePageListItemAttributes = {
   __typename?: 'CorePageListItemAttributes';
   /** The &quot;className&quot; field on the &quot;CorePageListItem&quot; block */
@@ -3995,11 +4059,13 @@ export type CorePageListItemAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreParagraph = EditorBlock & {
+export type CoreParagraph = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreParagraph';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreParagraph Block Type */
   attributes?: Maybe<CoreParagraphAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4019,11 +4085,13 @@ export type CoreParagraph = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreParagraphAttributes = {
+/** Attributes of the CoreParagraph Block Type */
+export type CoreParagraphAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreParagraphAttributes';
   /** The &quot;align&quot; field on the &quot;CoreParagraph&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreParagraph&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreParagraph&quot; block */
@@ -4053,11 +4121,11 @@ export type CoreParagraphAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePattern = EditorBlock & {
+export type CorePattern = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePattern';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePattern Block Type */
   attributes?: Maybe<CorePatternAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4077,7 +4145,7 @@ export type CorePattern = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePattern Block Type */
 export type CorePatternAttributes = {
   __typename?: 'CorePatternAttributes';
   /** The &quot;className&quot; field on the &quot;CorePattern&quot; block */
@@ -4089,11 +4157,11 @@ export type CorePatternAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostAuthor = EditorBlock & {
+export type CorePostAuthor = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostAuthor';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostAuthor Block Type */
   attributes?: Maybe<CorePostAuthorAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4113,7 +4181,7 @@ export type CorePostAuthor = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostAuthor Block Type */
 export type CorePostAuthorAttributes = {
   __typename?: 'CorePostAuthorAttributes';
   /** The &quot;avatarSize&quot; field on the &quot;CorePostAuthor&quot; block */
@@ -4149,11 +4217,11 @@ export type CorePostAuthorAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostAuthorBiography = EditorBlock & {
+export type CorePostAuthorBiography = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostAuthorBiography';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostAuthorBiography Block Type */
   attributes?: Maybe<CorePostAuthorBiographyAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4173,7 +4241,7 @@ export type CorePostAuthorBiography = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostAuthorBiography Block Type */
 export type CorePostAuthorBiographyAttributes = {
   __typename?: 'CorePostAuthorBiographyAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CorePostAuthorBiography&quot; block */
@@ -4197,11 +4265,11 @@ export type CorePostAuthorBiographyAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostAuthorName = EditorBlock & {
+export type CorePostAuthorName = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostAuthorName';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostAuthorName Block Type */
   attributes?: Maybe<CorePostAuthorNameAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4221,7 +4289,7 @@ export type CorePostAuthorName = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostAuthorName Block Type */
 export type CorePostAuthorNameAttributes = {
   __typename?: 'CorePostAuthorNameAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CorePostAuthorName&quot; block */
@@ -4249,11 +4317,11 @@ export type CorePostAuthorNameAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostComments = EditorBlock & {
+export type CorePostComments = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostComments';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostComments Block Type */
   attributes?: Maybe<CorePostCommentsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4273,7 +4341,7 @@ export type CorePostComments = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostComments Block Type */
 export type CorePostCommentsAttributes = {
   __typename?: 'CorePostCommentsAttributes';
   /** The &quot;align&quot; field on the &quot;CorePostComments&quot; block */
@@ -4297,11 +4365,11 @@ export type CorePostCommentsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostCommentsForm = EditorBlock & {
+export type CorePostCommentsForm = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostCommentsForm';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostCommentsForm Block Type */
   attributes?: Maybe<CorePostCommentsFormAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4321,7 +4389,7 @@ export type CorePostCommentsForm = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostCommentsForm Block Type */
 export type CorePostCommentsFormAttributes = {
   __typename?: 'CorePostCommentsFormAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CorePostCommentsForm&quot; block */
@@ -4343,11 +4411,11 @@ export type CorePostCommentsFormAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostContent = EditorBlock & {
+export type CorePostContent = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostContent';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostContent Block Type */
   attributes?: Maybe<CorePostContentAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4367,7 +4435,7 @@ export type CorePostContent = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostContent Block Type */
 export type CorePostContentAttributes = {
   __typename?: 'CorePostContentAttributes';
   /** The &quot;align&quot; field on the &quot;CorePostContent&quot; block */
@@ -4387,11 +4455,11 @@ export type CorePostContentAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostDate = EditorBlock & {
+export type CorePostDate = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostDate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostDate Block Type */
   attributes?: Maybe<CorePostDateAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4411,7 +4479,7 @@ export type CorePostDate = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostDate Block Type */
 export type CorePostDateAttributes = {
   __typename?: 'CorePostDateAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CorePostDate&quot; block */
@@ -4441,11 +4509,11 @@ export type CorePostDateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostExcerpt = EditorBlock & {
+export type CorePostExcerpt = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostExcerpt';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostExcerpt Block Type */
   attributes?: Maybe<CorePostExcerptAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4465,7 +4533,7 @@ export type CorePostExcerpt = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostExcerpt Block Type */
 export type CorePostExcerptAttributes = {
   __typename?: 'CorePostExcerptAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CorePostExcerpt&quot; block */
@@ -4493,11 +4561,11 @@ export type CorePostExcerptAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostFeaturedImage = EditorBlock & {
+export type CorePostFeaturedImage = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostFeaturedImage';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostFeaturedImage Block Type */
   attributes?: Maybe<CorePostFeaturedImageAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4517,7 +4585,7 @@ export type CorePostFeaturedImage = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostFeaturedImage Block Type */
 export type CorePostFeaturedImageAttributes = {
   __typename?: 'CorePostFeaturedImageAttributes';
   /** The &quot;align&quot; field on the &quot;CorePostFeaturedImage&quot; block */
@@ -4557,11 +4625,11 @@ export type CorePostFeaturedImageAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostNavigationLink = EditorBlock & {
+export type CorePostNavigationLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostNavigationLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostNavigationLink Block Type */
   attributes?: Maybe<CorePostNavigationLinkAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4581,7 +4649,7 @@ export type CorePostNavigationLink = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostNavigationLink Block Type */
 export type CorePostNavigationLinkAttributes = {
   __typename?: 'CorePostNavigationLinkAttributes';
   /** The &quot;arrow&quot; field on the &quot;CorePostNavigationLink&quot; block */
@@ -4613,11 +4681,11 @@ export type CorePostNavigationLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostTemplate = EditorBlock & {
+export type CorePostTemplate = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostTemplate';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostTemplate Block Type */
   attributes?: Maybe<CorePostTemplateAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4637,7 +4705,7 @@ export type CorePostTemplate = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostTemplate Block Type */
 export type CorePostTemplateAttributes = {
   __typename?: 'CorePostTemplateAttributes';
   /** The &quot;align&quot; field on the &quot;CorePostTemplate&quot; block */
@@ -4663,11 +4731,11 @@ export type CorePostTemplateAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostTerms = EditorBlock & {
+export type CorePostTerms = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostTerms';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostTerms Block Type */
   attributes?: Maybe<CorePostTermsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4687,7 +4755,7 @@ export type CorePostTerms = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostTerms Block Type */
 export type CorePostTermsAttributes = {
   __typename?: 'CorePostTermsAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CorePostTerms&quot; block */
@@ -4719,11 +4787,11 @@ export type CorePostTermsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePostTitle = EditorBlock & {
+export type CorePostTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePostTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePostTitle Block Type */
   attributes?: Maybe<CorePostTitleAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4743,7 +4811,7 @@ export type CorePostTitle = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CorePostTitle Block Type */
 export type CorePostTitleAttributes = {
   __typename?: 'CorePostTitleAttributes';
   /** The &quot;align&quot; field on the &quot;CorePostTitle&quot; block */
@@ -4777,11 +4845,13 @@ export type CorePostTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePreformatted = EditorBlock & {
+export type CorePreformatted = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePreformatted';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePreformatted Block Type */
   attributes?: Maybe<CorePreformattedAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4801,9 +4871,11 @@ export type CorePreformatted = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CorePreformattedAttributes = {
+/** Attributes of the CorePreformatted Block Type */
+export type CorePreformattedAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CorePreformattedAttributes';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CorePreformatted&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CorePreformatted&quot; block */
@@ -4825,11 +4897,13 @@ export type CorePreformattedAttributes = {
 };
 
 /** A block used for editing the site */
-export type CorePullquote = EditorBlock & {
+export type CorePullquote = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CorePullquote';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CorePullquote Block Type */
   attributes?: Maybe<CorePullquoteAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4849,11 +4923,13 @@ export type CorePullquote = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CorePullquoteAttributes = {
+/** Attributes of the CorePullquote Block Type */
+export type CorePullquoteAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CorePullquoteAttributes';
   /** The &quot;align&quot; field on the &quot;CorePullquote&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CorePullquote&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;borderColor&quot; field on the &quot;CorePullquote&quot; block */
@@ -4881,11 +4957,11 @@ export type CorePullquoteAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQuery = EditorBlock & {
+export type CoreQuery = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQuery';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQuery Block Type */
   attributes?: Maybe<CoreQueryAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4905,7 +4981,7 @@ export type CoreQuery = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQuery Block Type */
 export type CoreQueryAttributes = {
   __typename?: 'CoreQueryAttributes';
   /** The &quot;align&quot; field on the &quot;CoreQuery&quot; block */
@@ -4929,11 +5005,11 @@ export type CoreQueryAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryNoResults = EditorBlock & {
+export type CoreQueryNoResults = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQueryNoResults';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQueryNoResults Block Type */
   attributes?: Maybe<CoreQueryNoResultsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -4953,7 +5029,7 @@ export type CoreQueryNoResults = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQueryNoResults Block Type */
 export type CoreQueryNoResultsAttributes = {
   __typename?: 'CoreQueryNoResultsAttributes';
   /** The &quot;align&quot; field on the &quot;CoreQueryNoResults&quot; block */
@@ -4977,11 +5053,11 @@ export type CoreQueryNoResultsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPagination = EditorBlock & {
+export type CoreQueryPagination = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQueryPagination';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQueryPagination Block Type */
   attributes?: Maybe<CoreQueryPaginationAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5001,7 +5077,7 @@ export type CoreQueryPagination = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQueryPagination Block Type */
 export type CoreQueryPaginationAttributes = {
   __typename?: 'CoreQueryPaginationAttributes';
   /** The &quot;align&quot; field on the &quot;CoreQueryPagination&quot; block */
@@ -5029,11 +5105,11 @@ export type CoreQueryPaginationAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPaginationNext = EditorBlock & {
+export type CoreQueryPaginationNext = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQueryPaginationNext';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQueryPaginationNext Block Type */
   attributes?: Maybe<CoreQueryPaginationNextAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5053,7 +5129,7 @@ export type CoreQueryPaginationNext = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQueryPaginationNext Block Type */
 export type CoreQueryPaginationNextAttributes = {
   __typename?: 'CoreQueryPaginationNextAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreQueryPaginationNext&quot; block */
@@ -5075,11 +5151,11 @@ export type CoreQueryPaginationNextAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPaginationNumbers = EditorBlock & {
+export type CoreQueryPaginationNumbers = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQueryPaginationNumbers';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQueryPaginationNumbers Block Type */
   attributes?: Maybe<CoreQueryPaginationNumbersAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5099,7 +5175,7 @@ export type CoreQueryPaginationNumbers = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQueryPaginationNumbers Block Type */
 export type CoreQueryPaginationNumbersAttributes = {
   __typename?: 'CoreQueryPaginationNumbersAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreQueryPaginationNumbers&quot; block */
@@ -5119,11 +5195,11 @@ export type CoreQueryPaginationNumbersAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryPaginationPrevious = EditorBlock & {
+export type CoreQueryPaginationPrevious = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQueryPaginationPrevious';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQueryPaginationPrevious Block Type */
   attributes?: Maybe<CoreQueryPaginationPreviousAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5143,7 +5219,7 @@ export type CoreQueryPaginationPrevious = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQueryPaginationPrevious Block Type */
 export type CoreQueryPaginationPreviousAttributes = {
   __typename?: 'CoreQueryPaginationPreviousAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreQueryPaginationPrevious&quot; block */
@@ -5165,11 +5241,11 @@ export type CoreQueryPaginationPreviousAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQueryTitle = EditorBlock & {
+export type CoreQueryTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQueryTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQueryTitle Block Type */
   attributes?: Maybe<CoreQueryTitleAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5189,7 +5265,7 @@ export type CoreQueryTitle = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreQueryTitle Block Type */
 export type CoreQueryTitleAttributes = {
   __typename?: 'CoreQueryTitleAttributes';
   /** The &quot;align&quot; field on the &quot;CoreQueryTitle&quot; block */
@@ -5223,11 +5299,13 @@ export type CoreQueryTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreQuote = EditorBlock & {
+export type CoreQuote = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreQuote';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreQuote Block Type */
   attributes?: Maybe<CoreQuoteAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5247,17 +5325,21 @@ export type CoreQuote = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreQuoteAttributes = {
+/** Attributes of the CoreQuote Block Type */
+export type CoreQuoteAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreQuoteAttributes';
   /** The &quot;align&quot; field on the &quot;CoreQuote&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreQuote&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;citation&quot; field on the &quot;CoreQuote&quot; block */
   citation?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreQuote&quot; block */
   className?: Maybe<Scalars['String']>;
+  /** The &quot;cssClassName&quot; field on the &quot;CoreQuote&quot; block */
+  cssClassName?: Maybe<Scalars['String']>;
   /** The &quot;fontFamily&quot; field on the &quot;CoreQuote&quot; block */
   fontFamily?: Maybe<Scalars['String']>;
   /** The &quot;fontSize&quot; field on the &quot;CoreQuote&quot; block */
@@ -5275,11 +5357,11 @@ export type CoreQuoteAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreReadMore = EditorBlock & {
+export type CoreReadMore = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreReadMore';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreReadMore Block Type */
   attributes?: Maybe<CoreReadMoreAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5299,7 +5381,7 @@ export type CoreReadMore = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreReadMore Block Type */
 export type CoreReadMoreAttributes = {
   __typename?: 'CoreReadMoreAttributes';
   /** The &quot;backgroundColor&quot; field on the &quot;CoreReadMore&quot; block */
@@ -5327,11 +5409,11 @@ export type CoreReadMoreAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreRss = EditorBlock & {
+export type CoreRss = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreRss';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreRss Block Type */
   attributes?: Maybe<CoreRssAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5351,7 +5433,7 @@ export type CoreRss = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreRss Block Type */
 export type CoreRssAttributes = {
   __typename?: 'CoreRssAttributes';
   /** The &quot;align&quot; field on the &quot;CoreRss&quot; block */
@@ -5379,11 +5461,11 @@ export type CoreRssAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSearch = EditorBlock & {
+export type CoreSearch = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSearch';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSearch Block Type */
   attributes?: Maybe<CoreSearchAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5403,7 +5485,7 @@ export type CoreSearch = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreSearch Block Type */
 export type CoreSearchAttributes = {
   __typename?: 'CoreSearchAttributes';
   /** The &quot;align&quot; field on the &quot;CoreSearch&quot; block */
@@ -5447,11 +5529,13 @@ export type CoreSearchAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSeparator = EditorBlock & {
+export type CoreSeparator = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSeparator';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSeparator Block Type */
   attributes?: Maybe<CoreSeparatorAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5471,15 +5555,19 @@ export type CoreSeparator = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreSeparatorAttributes = {
+/** Attributes of the CoreSeparator Block Type */
+export type CoreSeparatorAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreSeparatorAttributes';
   /** The &quot;align&quot; field on the &quot;CoreSeparator&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreSeparator&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreSeparator&quot; block */
   className?: Maybe<Scalars['String']>;
+  /** The &quot;cssClassName&quot; field on the &quot;CoreSeparator&quot; block */
+  cssClassName?: Maybe<Scalars['String']>;
   /** The &quot;gradient&quot; field on the &quot;CoreSeparator&quot; block */
   gradient?: Maybe<Scalars['String']>;
   /** The &quot;lock&quot; field on the &quot;CoreSeparator&quot; block */
@@ -5491,11 +5579,11 @@ export type CoreSeparatorAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreShortcode = EditorBlock & {
+export type CoreShortcode = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreShortcode';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreShortcode Block Type */
   attributes?: Maybe<CoreShortcodeAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5515,7 +5603,7 @@ export type CoreShortcode = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreShortcode Block Type */
 export type CoreShortcodeAttributes = {
   __typename?: 'CoreShortcodeAttributes';
   /** The &quot;lock&quot; field on the &quot;CoreShortcode&quot; block */
@@ -5525,11 +5613,11 @@ export type CoreShortcodeAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSiteLogo = EditorBlock & {
+export type CoreSiteLogo = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSiteLogo';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSiteLogo Block Type */
   attributes?: Maybe<CoreSiteLogoAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5549,7 +5637,7 @@ export type CoreSiteLogo = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreSiteLogo Block Type */
 export type CoreSiteLogoAttributes = {
   __typename?: 'CoreSiteLogoAttributes';
   /** The &quot;align&quot; field on the &quot;CoreSiteLogo&quot; block */
@@ -5571,11 +5659,11 @@ export type CoreSiteLogoAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSiteTagline = EditorBlock & {
+export type CoreSiteTagline = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSiteTagline';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSiteTagline Block Type */
   attributes?: Maybe<CoreSiteTaglineAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5595,7 +5683,7 @@ export type CoreSiteTagline = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreSiteTagline Block Type */
 export type CoreSiteTaglineAttributes = {
   __typename?: 'CoreSiteTaglineAttributes';
   /** The &quot;align&quot; field on the &quot;CoreSiteTagline&quot; block */
@@ -5621,11 +5709,11 @@ export type CoreSiteTaglineAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSiteTitle = EditorBlock & {
+export type CoreSiteTitle = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSiteTitle';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSiteTitle Block Type */
   attributes?: Maybe<CoreSiteTitleAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5645,7 +5733,7 @@ export type CoreSiteTitle = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreSiteTitle Block Type */
 export type CoreSiteTitleAttributes = {
   __typename?: 'CoreSiteTitleAttributes';
   /** The &quot;align&quot; field on the &quot;CoreSiteTitle&quot; block */
@@ -5677,11 +5765,11 @@ export type CoreSiteTitleAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSocialLink = EditorBlock & {
+export type CoreSocialLink = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSocialLink';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSocialLink Block Type */
   attributes?: Maybe<CoreSocialLinkAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5701,7 +5789,7 @@ export type CoreSocialLink = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreSocialLink Block Type */
 export type CoreSocialLinkAttributes = {
   __typename?: 'CoreSocialLinkAttributes';
   /** The &quot;className&quot; field on the &quot;CoreSocialLink&quot; block */
@@ -5719,11 +5807,13 @@ export type CoreSocialLinkAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSocialLinks = EditorBlock & {
+export type CoreSocialLinks = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSocialLinks';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSocialLinks Block Type */
   attributes?: Maybe<CoreSocialLinksAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5743,11 +5833,13 @@ export type CoreSocialLinks = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreSocialLinksAttributes = {
+/** Attributes of the CoreSocialLinks Block Type */
+export type CoreSocialLinksAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreSocialLinksAttributes';
   /** The &quot;align&quot; field on the &quot;CoreSocialLinks&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreSocialLinks&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreSocialLinks&quot; block */
@@ -5781,11 +5873,13 @@ export type CoreSocialLinksAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreSpacer = EditorBlock & {
+export type CoreSpacer = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreSpacer';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreSpacer Block Type */
   attributes?: Maybe<CoreSpacerAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5805,9 +5899,11 @@ export type CoreSpacer = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreSpacerAttributes = {
+/** Attributes of the CoreSpacer Block Type */
+export type CoreSpacerAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreSpacerAttributes';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreSpacer&quot; block */
   className?: Maybe<Scalars['String']>;
   /** The &quot;height&quot; field on the &quot;CoreSpacer&quot; block */
@@ -5821,11 +5917,13 @@ export type CoreSpacerAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTable = EditorBlock & {
+export type CoreTable = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreTable';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreTable Block Type */
   attributes?: Maybe<CoreTableAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5845,11 +5943,13 @@ export type CoreTable = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreTableAttributes = {
+/** Attributes of the CoreTable Block Type */
+export type CoreTableAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreTableAttributes';
   /** The &quot;align&quot; field on the &quot;CoreTable&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreTable&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;body&quot; field on the &quot;CoreTable&quot; block */
@@ -5881,11 +5981,11 @@ export type CoreTableAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTagCloud = EditorBlock & {
+export type CoreTagCloud = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreTagCloud';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreTagCloud Block Type */
   attributes?: Maybe<CoreTagCloudAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5905,7 +6005,7 @@ export type CoreTagCloud = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreTagCloud Block Type */
 export type CoreTagCloudAttributes = {
   __typename?: 'CoreTagCloudAttributes';
   /** The &quot;align&quot; field on the &quot;CoreTagCloud&quot; block */
@@ -5931,11 +6031,11 @@ export type CoreTagCloudAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTemplatePart = EditorBlock & {
+export type CoreTemplatePart = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreTemplatePart';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreTemplatePart Block Type */
   attributes?: Maybe<CoreTemplatePartAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5955,7 +6055,7 @@ export type CoreTemplatePart = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreTemplatePart Block Type */
 export type CoreTemplatePartAttributes = {
   __typename?: 'CoreTemplatePartAttributes';
   /** The &quot;align&quot; field on the &quot;CoreTemplatePart&quot; block */
@@ -5975,11 +6075,11 @@ export type CoreTemplatePartAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTermDescription = EditorBlock & {
+export type CoreTermDescription = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreTermDescription';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreTermDescription Block Type */
   attributes?: Maybe<CoreTermDescriptionAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -5999,7 +6099,7 @@ export type CoreTermDescription = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreTermDescription Block Type */
 export type CoreTermDescriptionAttributes = {
   __typename?: 'CoreTermDescriptionAttributes';
   /** The &quot;align&quot; field on the &quot;CoreTermDescription&quot; block */
@@ -6023,11 +6123,11 @@ export type CoreTermDescriptionAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreTextColumns = EditorBlock & {
+export type CoreTextColumns = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreTextColumns';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreTextColumns Block Type */
   attributes?: Maybe<CoreTextColumnsAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -6047,7 +6147,7 @@ export type CoreTextColumns = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreTextColumns Block Type */
 export type CoreTextColumnsAttributes = {
   __typename?: 'CoreTextColumnsAttributes';
   /** The &quot;className&quot; field on the &quot;CoreTextColumns&quot; block */
@@ -6063,11 +6163,13 @@ export type CoreTextColumnsAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreVerse = EditorBlock & {
+export type CoreVerse = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreVerse';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreVerse Block Type */
   attributes?: Maybe<CoreVerseAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -6087,9 +6189,11 @@ export type CoreVerse = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreVerseAttributes = {
+/** Attributes of the CoreVerse Block Type */
+export type CoreVerseAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreVerseAttributes';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreVerse&quot; block */
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreVerse&quot; block */
@@ -6113,11 +6217,13 @@ export type CoreVerseAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreVideo = EditorBlock & {
+export type CoreVideo = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreVideo';
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreVideo Block Type */
   attributes?: Maybe<CoreVideoAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -6137,11 +6243,13 @@ export type CoreVideo = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
-export type CoreVideoAttributes = {
+/** Attributes of the CoreVideo Block Type */
+export type CoreVideoAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreVideoAttributes';
   /** The &quot;align&quot; field on the &quot;CoreVideo&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The anchor field for the block. */
+  anchor?: Maybe<Scalars['String']>;
   /** The &quot;autoplay&quot; field on the &quot;CoreVideo&quot; block */
   autoplay?: Maybe<Scalars['Boolean']>;
   /** The &quot;caption&quot; field on the &quot;CoreVideo&quot; block */
@@ -6173,11 +6281,11 @@ export type CoreVideoAttributes = {
 };
 
 /** A block used for editing the site */
-export type CoreWidgetGroup = EditorBlock & {
+export type CoreWidgetGroup = EditorBlock & PageEditorBlock & PostEditorBlock & {
   __typename?: 'CoreWidgetGroup';
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
-  /** Attributes of the %s Block Type */
+  /** Attributes of the CoreWidgetGroup Block Type */
   attributes?: Maybe<CoreWidgetGroupAttributes>;
   /** The name of the category the Block belongs to */
   blockEditorCategoryName?: Maybe<Scalars['String']>;
@@ -6197,7 +6305,7 @@ export type CoreWidgetGroup = EditorBlock & {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Attributes of the %s Block Type */
+/** Attributes of the CoreWidgetGroup Block Type */
 export type CoreWidgetGroupAttributes = {
   __typename?: 'CoreWidgetGroupAttributes';
   /** The &quot;className&quot; field on the &quot;CoreWidgetGroup&quot; block */
@@ -7226,6 +7334,90 @@ export type ExplanationToPreviewConnectionEdge = Edge & ExplanationConnectionEdg
   cursor?: Maybe<Scalars['String']>;
   /** The node of the connection, without the edges */
   node: Explanation;
+};
+
+export type FaustExplanationEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
+};
+
+export type FaustHowToGuideEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
+};
+
+export type FaustReferenceEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
+};
+
+export type FaustTutorialEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
 };
 
 /** The general setting type */
@@ -8370,8 +8562,14 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 export enum MenuLocationEnum {
   /** Put the menu in the docs-sidebar location */
   DocsSidebar = 'DOCS_SIDEBAR',
-  /** Put the menu in the footer location */
-  Footer = 'FOOTER',
+  /** Put the menu in the footer-1 location */
+  Footer_1 = 'FOOTER_1',
+  /** Put the menu in the footer-2 location */
+  Footer_2 = 'FOOTER_2',
+  /** Put the menu in the footer-3 location */
+  Footer_3 = 'FOOTER_3',
+  /** Put the menu in the footer-4 location */
+  Footer_4 = 'FOOTER_4',
   /** Put the menu in the primary location */
   Primary = 'PRIMARY',
   /** Put the menu in the secondary location */
@@ -8574,6 +8772,54 @@ export type NodeWithExcerptExcerptArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
+/** Node that has FaustExplanation content blocks associated with it */
+export type NodeWithFaustExplanationEditorBlocks = {
+  /** List of FaustExplanation editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FaustExplanationEditorBlock>>>;
+};
+
+
+/** Node that has FaustExplanation content blocks associated with it */
+export type NodeWithFaustExplanationEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Node that has FaustHowToGuide content blocks associated with it */
+export type NodeWithFaustHowToGuideEditorBlocks = {
+  /** List of FaustHowToGuide editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FaustHowToGuideEditorBlock>>>;
+};
+
+
+/** Node that has FaustHowToGuide content blocks associated with it */
+export type NodeWithFaustHowToGuideEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Node that has FaustReference content blocks associated with it */
+export type NodeWithFaustReferenceEditorBlocks = {
+  /** List of FaustReference editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FaustReferenceEditorBlock>>>;
+};
+
+
+/** Node that has FaustReference content blocks associated with it */
+export type NodeWithFaustReferenceEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Node that has FaustTutorial content blocks associated with it */
+export type NodeWithFaustTutorialEditorBlocks = {
+  /** List of FaustTutorial editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FaustTutorialEditorBlock>>>;
+};
+
+
+/** Node that has FaustTutorial content blocks associated with it */
+export type NodeWithFaustTutorialEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** A node that can have a featured image set */
 export type NodeWithFeaturedImage = {
   /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
@@ -8601,6 +8847,30 @@ export type NodeWithPageAttributes = {
   id: Scalars['ID'];
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: Maybe<Scalars['Int']>;
+};
+
+/** Node that has Page content blocks associated with it */
+export type NodeWithPageEditorBlocks = {
+  /** List of Page editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<PageEditorBlock>>>;
+};
+
+
+/** Node that has Page content blocks associated with it */
+export type NodeWithPageEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Node that has Post content blocks associated with it */
+export type NodeWithPostEditorBlocks = {
+  /** List of Post editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<PostEditorBlock>>>;
+};
+
+
+/** Node that has Post content blocks associated with it */
+export type NodeWithPostEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** A node that can have revisions */
@@ -8661,7 +8931,7 @@ export enum OrderEnum {
 }
 
 /** The page type */
-export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithPageEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Page';
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
@@ -8691,8 +8961,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   desiredSlug?: Maybe<Scalars['String']>;
   /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
   editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /** List of editor blocks */
-  editorBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** List of Page editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<PageEditorBlock>>>;
   /** The RSS enclosure for the object */
   enclosure?: Maybe<Scalars['String']>;
   /** Connection between the ContentNode type and the EnqueuedScript type */
@@ -8863,6 +9133,27 @@ export type PageConnectionPageInfo = {
   hasPreviousPage: Scalars['Boolean'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
+};
+
+export type PageEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
 };
 
 /** The Type of Identifier used to fetch a single resource. Default is ID. */
@@ -9051,7 +9342,7 @@ export enum PluginStatusEnum {
 }
 
 /** The post type */
-export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Post';
   /** Connection between the NodeWithAuthor type and the User type */
   author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
@@ -9079,8 +9370,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   desiredSlug?: Maybe<Scalars['String']>;
   /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
   editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /** List of editor blocks */
-  editorBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** List of Post editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<PostEditorBlock>>>;
   /** The RSS enclosure for the object */
   enclosure?: Maybe<Scalars['String']>;
   /** Connection between the ContentNode type and the EnqueuedScript type */
@@ -9293,6 +9584,27 @@ export type PostConnectionPageInfo = {
   hasPreviousPage: Scalars['Boolean'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
+};
+
+export type PostEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
 };
 
 /** The postFormat type */
@@ -13922,29 +14234,6 @@ export type UniformResourceIdentifiable = {
   uri?: Maybe<Scalars['String']>;
 };
 
-/** A block used for resolving blocks not found in the WordPress registry */
-export type UnknownBlock = EditorBlock & {
-  __typename?: 'UnknownBlock';
-  /** The API version of the Gutenberg Block */
-  apiVersion?: Maybe<Scalars['Int']>;
-  /** The name of the category the Block belongs to */
-  blockEditorCategoryName?: Maybe<Scalars['String']>;
-  /** The id of the Block */
-  clientId?: Maybe<Scalars['String']>;
-  /** CSS Classnames to apply to the block */
-  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
-  /** The inner blocks of the Block */
-  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
-  /** Whether the block is Dynamic (server rendered) */
-  isDynamic: Scalars['Boolean'];
-  /** The name of the block */
-  name?: Maybe<Scalars['String']>;
-  /** The parent id of the Block */
-  parentClientId?: Maybe<Scalars['String']>;
-  /** The rendered HTML for the block */
-  renderedHtml?: Maybe<Scalars['String']>;
-};
-
 /** Input for the updateCategory mutation. */
 export type UpdateCategoryInput = {
   /** The slug that the category will be an alias of */
@@ -15343,7 +15632,7 @@ export type GetExplanationQueryVariables = Exact<{
 }>;
 
 
-export type GetExplanationQuery = { __typename?: 'RootQuery', explanation?: { __typename?: 'Explanation', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'UnknownBlock', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
+export type GetExplanationQuery = { __typename?: 'RootQuery', explanation?: { __typename?: 'Explanation', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
       { __typename?: 'MenuItem' }
       & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
     )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
@@ -15360,7 +15649,7 @@ export type GetHowToGuideQueryVariables = Exact<{
 }>;
 
 
-export type GetHowToGuideQuery = { __typename?: 'RootQuery', howToGuide?: { __typename?: 'HowToGuide', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'UnknownBlock', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
+export type GetHowToGuideQuery = { __typename?: 'RootQuery', howToGuide?: { __typename?: 'HowToGuide', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
       { __typename?: 'MenuItem' }
       & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
     )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
@@ -15377,7 +15666,7 @@ export type GetReferenceQueryVariables = Exact<{
 }>;
 
 
-export type GetReferenceQuery = { __typename?: 'RootQuery', reference?: { __typename?: 'Reference', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'UnknownBlock', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
+export type GetReferenceQuery = { __typename?: 'RootQuery', reference?: { __typename?: 'Reference', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
       { __typename?: 'MenuItem' }
       & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
     )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
@@ -15394,7 +15683,7 @@ export type GetTutorialQueryVariables = Exact<{
 }>;
 
 
-export type GetTutorialQuery = { __typename?: 'RootQuery', tutorial?: { __typename?: 'Tutorial', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'UnknownBlock', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
+export type GetTutorialQuery = { __typename?: 'RootQuery', tutorial?: { __typename?: 'Tutorial', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
       { __typename?: 'MenuItem' }
       & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
     )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
