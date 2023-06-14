@@ -22,7 +22,10 @@ export function DocsSidebar(props: DocsSidebarProps) {
 
       return (
         <>
-          <Typography variant="h6" component="h3" sx={{ fontWeight: 'bold' }}>
+          <Typography
+            variant="body1"
+            component="h3"
+            sx={{ fontWeight: 'bold' }}>
             {label}
           </Typography>
           {children.length ? (
@@ -40,7 +43,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
                         opacity: '0.6',
                         borderLeft: '1px solid #ccc',
                         pl: '1rem',
-                        py: '0.25rem',
+                        py: '0.2rem',
                       }}
                       href={child.path ?? ''}>
                       {child.label ?? ''}
@@ -55,14 +58,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
     });
   }
 
-  return (
-    <>
-      <Typography variant="h6" component="h3" sx={{ mb: 2 }}>
-        Documentation
-      </Typography>
-      {renderMenu(hierarchicalMenuItems)}
-    </>
-  );
+  return <>{renderMenu(hierarchicalMenuItems)}</>;
 }
 
 DocsSidebar.fragments = {
