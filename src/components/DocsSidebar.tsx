@@ -17,51 +17,52 @@ export function DocsSidebar(props: DocsSidebarProps) {
 
   const hierarchicalMenuItems = flatListToHierarchical(menuItems);
 
-  function renderMenu(items: Array<{}>) {
-    return (
-      <TreeView
-        aria-label="file system navigator"
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
-        sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
-        {items.map((item: any) => {
-          const { id, path, label, children } = item;
-          return (
-            <TreeItem nodeId={id} label={label}>
-              <TreeItem nodeId="2" label="Calendar" />
-            </TreeItem>
-            // <TreeItem nodeId="5" label="Documents">
-            //   <TreeItem nodeId="10" label="OSS" />
-            //   <TreeItem nodeId="6" label="MUI">
-            //     <TreeItem nodeId="8" label="index.js" />
-            //   </TreeItem>
-            // </TreeItem>
-          );
-        })}
-      </TreeView>
-      // <ul>
-      //   {items.map((item: any) => {
-      //     const { id, path, label, children } = item;
+  // const renderTree = () => {
+  //   return (
+  //     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+  //       {Array.isArray(nodes.children)
+  //         ? nodes.children.map((node) => renderTree(node))
+  //         : null}
+  //     </TreeItem>
+  //   );
+  // };
 
-      //     return (
-      //       <li key={id}>
-      //         <Link href={path ?? ''}>{label ?? ''}</Link>
-      //         {children.length ? renderMenu(children) : null}
-      //       </li>
-      //     );
-      //   })}
-      // </ul>
-    );
+  function renderMenu(items: Array<{}>) {
+    return items.map((item: any) => {
+      const { id, path, label, children } = item;
+      return (
+        <TreeItem nodeId={id} label={label}>
+          <TreeItem nodeId="2" label="Calendar" />
+        </TreeItem>
+        //   <TreeItem nodeId="6" label="MUI">
+        //     <TreeItem nodeId="8" label="index.js" />
+        //   </TreeItem>
+      );
+    });
   }
+  // return (
+  //       <li key={id}>
+  //         <Link href={path ?? ''}>{label ?? ''}</Link>
+  //         {children.length ? renderMenu(children) : null}
+  //       </li>
+  //     );
 
   return (
-    <aside>
-      <nav
-        role="navigation"
-        aria-label={`${menuItems[0]?.menu?.node?.name} menu`}>
-        {renderMenu(hierarchicalMenuItems)}
-      </nav>
-    </aside>
+    <TreeView
+      aria-label="Documentation Menu"
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+      defaultExpanded={['root']}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
+      {renderMenu(hierarchicalMenuItems)}
+    </TreeView>
+    // <aside>
+    //   <nav
+    //     role="navigation"
+    //     aria-label={`${menuItems[0]?.menu?.node?.name} menu`}>
+    //     {renderMenu(hierarchicalMenuItems)}
+    //   </nav>
+    // </aside>
   );
 }
 
