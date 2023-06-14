@@ -1,17 +1,8 @@
 import React from 'react';
 import { flatListToHierarchical } from '@faustwp/core';
-import TreeView from '@mui/lab/TreeView';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import TreeItem from '@mui/lab/TreeItem';
 import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 import { DocsSidebarMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '../__generated__';
 import { Link } from './Link';
@@ -63,17 +54,11 @@ export function DocsSidebar(props: DocsSidebarProps) {
       );
     });
   }
-  // return (
-  //       <li key={id}>
-  //         <Link href={path ?? ''}>{label ?? ''}</Link>
-  //         {children.length ? renderMenu(children) : null}
-  //       </li>
-  //     );
 
   return (
     <>
       <Typography variant="h6" component="h3" sx={{ mb: 2 }}>
-        Documentation Menu
+        Documentation
       </Typography>
       {renderMenu(hierarchicalMenuItems)}
     </>
