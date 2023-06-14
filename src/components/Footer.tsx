@@ -35,13 +35,14 @@ export function Footer({
       footer3MenuItems,
       footer4MenuItems,
     ];
-    console.log({ columns });
 
     return columns.map((column, i) => {
+      const columnTitle = column?.nodes[0].menu.node.name;
+
       return (
-        <Grid item xs={12} md={6} lg={3} key={`footer${i}`}>
+        <Grid item xs={12} md={6} lg={3} key={columnTitle}>
           <Typography variant="h6" sx={{ fontWeight: '600' }}>
-            {column?.nodes[0].menu.node.name}
+            {columnTitle}
           </Typography>
           <List sx={{ display: 'flex', flexDirection: 'column' }}>
             {column?.nodes.map((menuItem: any) => (
