@@ -89,22 +89,22 @@ Component.query = gql(`
     }
     footer1MenuItems: menuItems(where: {location: FOOTER_1}) {
       nodes {
-        ...Footer1MenuItemsFragment
+        ...FooterMenuItemsFragment
       }
     }
     footer2MenuItems: menuItems(where: {location: FOOTER_2}) {
       nodes {
-        ...Footer2MenuItemsFragment
+        ...FooterMenuItemsFragment
       }
     }
     footer3MenuItems: menuItems(where: {location: FOOTER_3}) {
       nodes {
-        ...Footer3MenuItemsFragment
+        ...FooterMenuItemsFragment
       }
     }
     footer4MenuItems: menuItems(where: {location: FOOTER_4}) {
       nodes {
-        ...Footer4MenuItemsFragment
+        ...FooterMenuItemsFragment
       }
     }
   }

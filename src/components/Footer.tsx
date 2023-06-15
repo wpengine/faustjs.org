@@ -106,59 +106,20 @@ export function Footer({
 }
 
 Footer.fragments = {
-  footer1MenuItemsFragment: gql(`
-    fragment Footer1MenuItemsFragment on MenuItem {
-      id
-      uri
-      path
-      label
-      parentId
-      cssClasses
-      target
-      menu {
-        node {
-          name
-        }
-      }
-    }
-  `),
-  footer2MenuItemsFragment: gql(`
-    fragment Footer2MenuItemsFragment on MenuItem {
-      id
-      uri
-      label
-      target
-      menu {
-        node {
-          name
-        }
-      }
-    }
-  `),
-  footer3MenuItemsFragment: gql(`
-    fragment Footer3MenuItemsFragment on MenuItem {
-      id
-      uri
-      label
-      target
-      menu {
-        node {
-          name
-        }
-      }
-    }
-  `),
-  footer4MenuItemsFragment: gql(`
-    fragment Footer4MenuItemsFragment on MenuItem {
-      id
-      uri
-      label
-      target
-      menu {
-        node {
-          name
-        }
-      }
-    }
+  footerMenuItemsFragment: gql(`
+     fragment FooterMenuItemsFragment on MenuItem {
+       id
+       uri
+       path
+       label
+       parentId
+       cssClasses
+       target
+       menu {
+         node {
+           name
+         }
+       }
+     }
   `),
 };
