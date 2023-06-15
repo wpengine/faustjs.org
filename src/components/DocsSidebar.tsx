@@ -1,8 +1,6 @@
 import React from 'react';
 import { flatListToHierarchical } from '@faustwp/core';
-import { Typography } from '@mui/material';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import { Typography, ListItem, List } from '@mui/material';
 import { DocsSidebarMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '../__generated__';
 import { Link } from './Link';
@@ -11,14 +9,19 @@ type DocsSidebarProps = {
   menuItems: DocsSidebarMenuItemsFragmentFragment[];
 };
 
+type MenuItem = {
+  id: string;
+  path: string;
+  children: MenuItem[];
+};
+
 export function DocsSidebar(props: DocsSidebarProps) {
   const { menuItems } = props;
-
   const hierarchicalMenuItems = flatListToHierarchical(menuItems);
 
-  function renderMenu(items: Array<{}>) {
+  function renderMenu(items: MenuItem[]) {
     return items.map((item: any) => {
-      const { id, path, label, children } = item;
+      const { label, children } = item;
 
       return (
         <>
