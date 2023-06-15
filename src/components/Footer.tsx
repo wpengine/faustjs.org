@@ -86,7 +86,15 @@ export function Footer({
           </Grid>
         </Grid>
 
-        <Grid item xs={12} sx={{ mt: 4 }}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            mt: 4,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Typography color="white" variant="subtitle1">
             &copy; 2013-{new Date().getFullYear()} WPEngine, Inc. All rights
             reserved. Powered by Faust.js™.
