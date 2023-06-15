@@ -7,8 +7,8 @@ import {
   SecondaryMenuItemsFragmentFragment,
 } from '__generated__/graphql';
 import { gql } from '__generated__';
-import { TopHeaderAppBar } from './TopHeaderAppBar';
 import { Box } from '@mui/material';
+import { TopHeaderAppBar } from './TopHeaderAppBar';
 
 type HeaderProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment['title'];
