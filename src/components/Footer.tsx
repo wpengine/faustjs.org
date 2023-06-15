@@ -36,18 +36,18 @@ export function Footer({
       footer4MenuItems,
     ];
 
-    return columns.map((column, i) => {
+    return columns.map((column) => {
       const columnTitle = column?.nodes[0].menu.node.name;
 
       return (
         <Grid item xs={12} md={6} lg={3} key={columnTitle}>
-          <Typography variant="h6" sx={{ fontWeight: '600' }}>
-            {columnTitle}
-          </Typography>
+          <Typography variant="h6">{columnTitle}</Typography>
           <List sx={{ display: 'flex', flexDirection: 'column' }}>
-            {column?.nodes.map((menuItem: any) => (
-              <ListItem disableGutters dense>
-                <Link href={menuItem.uri}>{menuItem.label}</Link>
+            {column?.nodes.map((item: any) => (
+              <ListItem key={item.id} disableGutters dense>
+                <Link key={item.id} href={item.uri} target={item.target}>
+                  {item.label}
+                </Link>
               </ListItem>
             ))}
           </List>
