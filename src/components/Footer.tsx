@@ -7,20 +7,15 @@ import {
   Typography,
   ListItem,
 } from '@mui/material';
-import {
-  Footer1MenuItemsFragmentFragment,
-  Footer2MenuItemsFragmentFragment,
-  Footer3MenuItemsFragmentFragment,
-  Footer4MenuItemsFragmentFragment,
-} from '__generated__/graphql';
+import { FooterMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '__generated__';
 import { Link } from './Link';
 
 type FooterProps = {
-  footer1MenuItems: Footer1MenuItemsFragmentFragment[] | any;
-  footer2MenuItems: Footer2MenuItemsFragmentFragment[] | any;
-  footer3MenuItems: Footer3MenuItemsFragmentFragment[] | any;
-  footer4MenuItems: Footer4MenuItemsFragmentFragment[] | any;
+  footer1MenuItems: FooterMenuItemsFragmentFragment[] | any;
+  footer2MenuItems: FooterMenuItemsFragmentFragment[] | any;
+  footer3MenuItems: FooterMenuItemsFragmentFragment[] | any;
+  footer4MenuItems: FooterMenuItemsFragmentFragment[] | any;
 };
 export function Footer({
   footer1MenuItems,
