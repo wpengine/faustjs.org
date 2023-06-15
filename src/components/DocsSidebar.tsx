@@ -9,17 +9,11 @@ type DocsSidebarProps = {
   menuItems: DocsSidebarMenuItemsFragmentFragment[];
 };
 
-type MenuItem = {
-  id: string;
-  path: string;
-  children: MenuItem[];
-};
-
 export function DocsSidebar(props: DocsSidebarProps) {
   const { menuItems } = props;
   const hierarchicalMenuItems = flatListToHierarchical(menuItems);
 
-  function renderMenu(items: MenuItem[]) {
+  function renderMenu(items: any) {
     return items.map((item: any) => {
       const { label, children } = item;
 
