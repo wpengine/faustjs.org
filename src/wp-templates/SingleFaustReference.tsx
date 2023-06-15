@@ -44,7 +44,7 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
       />
 
       <Main>
-        <Container sx={{ mt: 4 }}>
+        <Container sx={{ py: 4 }}>
           <Grid
             container
             spacing={2}

@@ -13,7 +13,7 @@ import {
 } from '__generated__/graphql';
 import classNames from 'classnames/bind';
 import * as React from 'react';
-import styles from 'styles/components/Header.module.scss';
+import styles from 'styles/components/TopHeaderAppBar.module.scss';
 import HeaderSearch from './HeaderSearch';
 import { Link } from './Link';
 
