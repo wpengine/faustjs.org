@@ -37,8 +37,8 @@ export function DocsSidebar(props: DocsSidebarProps) {
                           opacity: '1.0',
                         },
                         color: 'black',
-                        opacity: '0.6',
-                        borderLeft: '1px solid #ccc',
+                        opacity: '0.5',
+                        borderLeft: '1px solid #000',
                         pl: '1rem',
                         py: '0.2rem',
                       }}
