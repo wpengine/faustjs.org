@@ -5566,6 +5566,8 @@ export type CoreSeparatorAttributes = BlockWithSupportsAnchor & {
   backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreSeparator&quot; block */
   className?: Maybe<Scalars['String']>;
+  /** The &quot;cssClassName&quot; field on the &quot;CoreSeparator&quot; block */
+  cssClassName?: Maybe<Scalars['String']>;
   /** The &quot;gradient&quot; field on the &quot;CoreSeparator&quot; block */
   gradient?: Maybe<Scalars['String']>;
   /** The &quot;lock&quot; field on the &quot;CoreSeparator&quot; block */
@@ -8560,8 +8562,14 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 export enum MenuLocationEnum {
   /** Put the menu in the docs-sidebar location */
   DocsSidebar = 'DOCS_SIDEBAR',
-  /** Put the menu in the footer location */
-  Footer = 'FOOTER',
+  /** Put the menu in the footer-1 location */
+  Footer_1 = 'FOOTER_1',
+  /** Put the menu in the footer-2 location */
+  Footer_2 = 'FOOTER_2',
+  /** Put the menu in the footer-3 location */
+  Footer_3 = 'FOOTER_3',
+  /** Put the menu in the footer-4 location */
+  Footer_4 = 'FOOTER_4',
   /** Put the menu in the primary location */
   Primary = 'PRIMARY',
   /** Put the menu in the secondary location */
