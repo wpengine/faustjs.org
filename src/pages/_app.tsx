@@ -8,6 +8,7 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import createEmotionCache from 'utility/createEmotionCache';
 import lightTheme from 'styles/theme/lightTheme';
 // import 'WordPressGlobalStylesheet';
+import '@faustwp/core/dist/css/toolbar.css';
 import 'styles/global.scss';
 
 const clientSideEmotionCache = createEmotionCache();
