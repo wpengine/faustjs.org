@@ -84,12 +84,7 @@ export function FeatureBlock({
           }}>
           <Typography>{codeResultTitle}</Typography>
           {isImage ? (
-            <Image
-              // eslint-disable-next-line import/no-dynamic-require, global-require
-              src={codeResult}
-              alt=""
-              style={{ width: '100%' }}
-            />
+            <Image src={codeResult} alt="" style={{ width: '100%' }} />
           ) : (
             <Typography variant="body2">{codeResult}</Typography>
           )}
