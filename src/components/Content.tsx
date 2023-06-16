@@ -45,7 +45,7 @@ export function Content() {
         <FeatureBlock
           title="WP Templates"
           // codeSnippetTitle="Code Snippet"
-          codeSnippet="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
+          codeSnippet="Closely implement the behavior of the WordPress Template Hierarchy via a Javascript/GraphQL frontend configuration."
           isImage={false}
           codeResultTitle="Code Result"
           codeResult="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
