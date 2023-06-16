@@ -8,7 +8,7 @@ export function HeroBanner() {
       <Grid item xs={12} sx={{ textAlign: 'center' }}>
         <Image
           // eslint-disable-next-line global-require, import/no-absolute-path
-          src={require('/public/icons/placeholder.svg')}
+          src={require('/public/images/faust-logo-256x256.png')}
           alt="Faust.js Logo"
           width={100}
           height={100}
