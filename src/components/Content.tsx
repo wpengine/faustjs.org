@@ -14,11 +14,11 @@ export function Content() {
         <FeatureBlock
           title="Faust Toolbar"
           // codeSnippetTitle="Code Snippet"
-          codeSnippet="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
+          codeSnippet="A familiar publisher experience, providing a cohesive experience with wp-admin.\n\nEasily extensible with built in filters, empowering developers to customize for different use cases."
           isImage={false}
           codeResultTitle="Code Result"
           codeResult="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
-          altBlockColor="#ebedf063"
+          altBlockColor=""
         />
 
         <FeatureBlock
@@ -39,7 +39,7 @@ export function Content() {
           isImage={false}
           codeResultTitle="Code Result"
           codeResult="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
-          altBlockColor="#ebedf063"
+          altBlockColor=""
         />
 
         <FeatureBlock
