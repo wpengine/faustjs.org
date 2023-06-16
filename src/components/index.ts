@@ -6,3 +6,4 @@ export { Main } from './Main';
 export { SkipNavigationLink } from './SkipNavigationLink';
 export { DocsSidebar } from './DocsSidebar';
 export { Link } from './Link';
+export { Container } from './Container';
