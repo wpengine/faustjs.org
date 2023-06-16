@@ -22,6 +22,10 @@ const Component: FaustTemplate<GetHowToGuideQuery> = (props) => {
     primaryMenuItems,
     secondaryMenuItems,
     docsSidebarMenuItems,
+    footer1MenuItems,
+    footer2MenuItems,
+    footer3MenuItems,
+    footer4MenuItems,
     howToGuide,
   } = data;
   const { title: siteTitle } = generalSettings;
@@ -63,7 +67,12 @@ const Component: FaustTemplate<GetHowToGuideQuery> = (props) => {
         </Container>
       </Main>
 
-      <Footer />
+      <Footer
+        footer1MenuItems={footer1MenuItems}
+        footer2MenuItems={footer2MenuItems}
+        footer3MenuItems={footer3MenuItems}
+        footer4MenuItems={footer4MenuItems}
+      />
     </>
   );
 };
@@ -114,6 +123,26 @@ Component.query = gql(`
     docsSidebarMenuItems: menuItems(where: {location: DOCS_SIDEBAR}) {
       nodes {
         ...DocsSidebarMenuItemsFragment
+      }
+    }
+    footer1MenuItems: menuItems(where: {location: FOOTER_1}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer2MenuItems: menuItems(where: {location: FOOTER_2}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer3MenuItems: menuItems(where: {location: FOOTER_3}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer4MenuItems: menuItems(where: {location: FOOTER_4}) {
+      nodes {
+        ...FooterMenuItemsFragment
       }
     }
   }

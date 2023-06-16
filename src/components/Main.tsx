@@ -11,6 +11,7 @@ export function Main(props: PropsWithChildren<{}>) {
       tabIndex={-1}
       sx={{
         pb: 4,
+        backgroundColor: 'var(--faust--main-background-color)',
       }}
       {...props}>
       {children}

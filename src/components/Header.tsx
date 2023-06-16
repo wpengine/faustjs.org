@@ -7,10 +7,8 @@ import {
   SecondaryMenuItemsFragmentFragment,
 } from '__generated__/graphql';
 import { gql } from '__generated__';
-import styles from 'styles/components/Header.module.scss';
+import { Box } from '@mui/material';
 import { TopHeaderAppBar } from './TopHeaderAppBar';
-
-const cx = classNames.bind(styles);
 
 type HeaderProps = {
   siteTitle: HeaderGeneralSettingsFragmentFragment['title'];
@@ -24,14 +22,14 @@ export function Header({
   secondaryMenuItems,
 }: HeaderProps) {
   return (
-    <header className={cx('component')}>
+    <Box>
       <SkipNavigationLink />
       <TopHeaderAppBar
         siteTitle={siteTitle}
         primaryMenuItems={primaryMenuItems}
         secondaryMenuItems={secondaryMenuItems}
       />
-    </header>
+    </Box>
   );
 }
 

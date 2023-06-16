@@ -8,7 +8,15 @@ import { Header, Content, Footer } from 'components';
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { data } = props;
-  const { generalSettings, primaryMenuItems, secondaryMenuItems } = data;
+  const {
+    generalSettings,
+    primaryMenuItems,
+    secondaryMenuItems,
+    footer1MenuItems,
+    footer2MenuItems,
+    footer3MenuItems,
+    footer4MenuItems,
+  } = data;
   const { title: siteTitle } = generalSettings;
 
   return (
@@ -34,7 +42,12 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
       <Container
         maxWidth={false}
         sx={{ backgroundColor: 'var(--color--dark-blue)', mt: 4 }}>
-        <Footer />
+        <Footer
+          footer1MenuItems={footer1MenuItems}
+          footer2MenuItems={footer2MenuItems}
+          footer3MenuItems={footer3MenuItems}
+          footer4MenuItems={footer4MenuItems}
+        />
       </Container>
     </>
   );
@@ -54,6 +67,26 @@ Component.query = gql(`
     secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
       nodes {
         ...SecondaryMenuItemsFragment
+      }
+    }
+    footer1MenuItems: menuItems(where: {location: FOOTER_1}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer2MenuItems: menuItems(where: {location: FOOTER_2}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer3MenuItems: menuItems(where: {location: FOOTER_3}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer4MenuItems: menuItems(where: {location: FOOTER_4}) {
+      nodes {
+        ...FooterMenuItemsFragment
       }
     }
   }
