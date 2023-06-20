@@ -7,8 +7,16 @@ import { Header, EntryHeader, Footer, Link } from 'components';
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { data } = props;
-  const { generalSettings, primaryMenuItems, secondaryMenuItems, nodeByUri } =
-    data;
+  const {
+    generalSettings,
+    primaryMenuItems,
+    secondaryMenuItems,
+    footer1MenuItems,
+    footer2MenuItems,
+    footer3MenuItems,
+    footer4MenuItems,
+    nodeByUri,
+  } = data;
   const { title: siteTitle } = generalSettings;
   const { archiveType } = nodeByUri;
 
@@ -43,7 +51,12 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
         </ul>
       </main>
 
-      <Footer />
+      <Footer
+        footer1MenuItems={footer1MenuItems}
+        footer2MenuItems={footer2MenuItems}
+        footer3MenuItems={footer3MenuItems}
+        footer4MenuItems={footer4MenuItems}
+      />
     </>
   );
 };
@@ -91,6 +104,26 @@ Component.query = gql(`
     secondaryMenuItems: menuItems(where: { location: SECONDARY }) {
       nodes {
         ...SecondaryMenuItemsFragment
+      }
+    }
+    footer1MenuItems: menuItems(where: {location: FOOTER_1}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer2MenuItems: menuItems(where: {location: FOOTER_2}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer3MenuItems: menuItems(where: {location: FOOTER_3}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer4MenuItems: menuItems(where: {location: FOOTER_4}) {
+      nodes {
+        ...FooterMenuItemsFragment
       }
     }
   }
