@@ -30,7 +30,15 @@ const SEARCH_RESULTS_QUERY = gql(`
 `);
 
 export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
-  const { generalSettings, primaryMenuItems, secondaryMenuItems } = data;
+  const {
+    generalSettings,
+    primaryMenuItems,
+    secondaryMenuItems,
+    footer1MenuItems,
+    footer2MenuItems,
+    footer3MenuItems,
+    footer4MenuItems,
+  } = data;
   const { title: siteTitle } = generalSettings;
   const router = useRouter();
   const { data: searchResultsData, loading } = useQuery(SEARCH_RESULTS_QUERY, {
@@ -85,7 +93,12 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
         </Container>
       </main>
 
-      <Footer />
+      <Footer
+        footer1MenuItems={footer1MenuItems}
+        footer2MenuItems={footer2MenuItems}
+        footer3MenuItems={footer3MenuItems}
+        footer4MenuItems={footer4MenuItems}
+      />
     </>
   );
 };
@@ -104,6 +117,26 @@ query Get404Page {
     secondaryMenuItems: menuItems(where: {location: SECONDARY}) {
       nodes {
         ...SecondaryMenuItemsFragment
+      }
+    }
+    footer1MenuItems: menuItems(where: {location: FOOTER_1}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer2MenuItems: menuItems(where: {location: FOOTER_2}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer3MenuItems: menuItems(where: {location: FOOTER_3}) {
+      nodes {
+        ...FooterMenuItemsFragment
+      }
+    }
+    footer4MenuItems: menuItems(where: {location: FOOTER_4}) {
+      nodes {
+        ...FooterMenuItemsFragment
       }
     }
   }
