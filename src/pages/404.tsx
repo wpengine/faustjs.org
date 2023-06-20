@@ -3,7 +3,7 @@ import { FaustTemplate, getNextStaticProps } from '@faustwp/core';
 import Head from 'next/head';
 import { gql } from '__generated__';
 import { Get404PageQuery } from '__generated__/graphql';
-import { Header, EntryHeader, Footer, Link, Container } from 'components';
+import { Header, EntryHeader, Footer, Link, Container, Main } from 'components';
 import { GetStaticPropsContext } from 'next';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
@@ -61,7 +61,7 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
         secondaryMenuItems={secondaryMenuItems.nodes}
       />
 
-      <main className="container">
+      <Main>
         <Container>
           <MUIContainer maxWidth="md" sx={{ marginBottom: '4rem' }}>
             <EntryHeader title="404 Not Found" />
@@ -91,7 +91,7 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
             )}
           </MUIContainer>
         </Container>
-      </main>
+      </Main>
 
       <Footer
         footer1MenuItems={footer1MenuItems}
