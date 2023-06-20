@@ -1,3 +1,4 @@
+import React from 'react';
 import { gql } from '@apollo/client';
 import Image from 'next/image';
 
@@ -36,15 +37,15 @@ export function FeaturedImage({
   }
   const { altText } = image || '';
 
-  width = width || image?.mediaDetails?.width;
-  height = height || image?.mediaDetails?.height;
+  const imageWidth = width || image?.mediaDetails?.width;
+  const imageHeight = height || image?.mediaDetails?.height;
 
   return src && width && height ? (
     <figure className={[styles['featured-image'], className].join(' ')}>
       <Image
         src={src}
-        width={width}
-        height={height}
+        width={imageWidth}
+        height={imageHeight}
         alt={altText}
         objectFit="cover"
         layout="responsive"

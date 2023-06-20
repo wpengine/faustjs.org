@@ -15,9 +15,9 @@ import {
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import styles from 'styles/components/TopHeaderAppBar.module.scss';
+import { Typography } from '@mui/material';
 import HeaderSearch from './HeaderSearch';
 import { Link } from './Link';
-import { Typography } from '@mui/material';
 
 const cx = classNames.bind(styles);
 
@@ -97,7 +97,7 @@ export function TopHeaderAppBar({
             sx={{ display: { xs: 'flex' }, mr: 1, textDecoration: 'none' }}>
             <Image
               className={cx('logo')}
-              src={'/images/faust-logo-256x256.png'}
+              src="/images/faust-logo-256x256.png"
               alt="Faust.js Logo"
               width={42}
               height={42}

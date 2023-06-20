@@ -14,7 +14,6 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  console.log({ data });
   const {
     page,
     generalSettings,
@@ -26,7 +25,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle } = generalSettings;
-  const { title, content, featuredImage } = page;
+  const { title, content } = page;
 
   return (
     <>
@@ -47,7 +46,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
             spacing={2}
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12}>
-              <EntryHeader title={title} image={featuredImage?.node} />
+              <EntryHeader title={title} />
               <div
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: content }}
@@ -79,7 +78,6 @@ Component.query = gql(`
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
-      ...FeaturedImageFragment
     }
     generalSettings {
       title
