@@ -15,9 +15,6 @@ const lightTheme = createTheme({
       secondary: '#002838',
       disabled: 'rgba(0,40,45,0.38)',
     },
-    background: {
-      default: '#002838',
-    },
     error: {
       main: '#d21b46',
     },
