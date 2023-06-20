@@ -13805,8 +13805,8 @@ export type Template_Blank = ContentTemplate & {
 };
 
 /** The template assigned to the node */
-export type Template_BlogAlternative = ContentTemplate & {
-  __typename?: 'Template_BlogAlternative';
+export type Template_NoTitle = ContentTemplate & {
+  __typename?: 'Template_NoTitle';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };

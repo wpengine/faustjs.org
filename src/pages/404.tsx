@@ -7,7 +7,11 @@ import { Header, EntryHeader, Footer, Link, Container } from 'components';
 import { GetStaticPropsContext } from 'next';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { CircularProgress } from '@mui/material';
+import {
+  Container as MUIContainer,
+  Box,
+  CircularProgress,
+} from '@mui/material';
 
 const SEARCH_RESULTS_QUERY = gql(`
   query SEARCH_RESULTS($searchTerm: String!) {
@@ -51,22 +55,33 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
 
       <main className="container">
         <Container>
-          <EntryHeader title="404 Not Found" />
-          <p>
-            We couldn&apos;t find what you were looking for. However, these
-            posts seem related:
-          </p>
+          <MUIContainer maxWidth="md" sx={{ marginBottom: '4rem' }}>
+            <EntryHeader title="404 Not Found" />
 
-          {!hasSearchResults && <CircularProgress size="3em" color="info" />}
-          {hasSearchResults && (
-            <ul>
-              {searchResultsData?.contentNodes?.edges?.map((edge) => (
-                <Link href={edge.node.uri}>
-                  <li>{edge.node.title}</li>
-                </Link>
-              ))}
-            </ul>
-          )}
+            <p>
+              We couldn&apos;t find what you were looking for. However, these
+              posts may be related:
+            </p>
+
+            {!hasSearchResults && (
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <CircularProgress size="3em" color="info" />
+              </Box>
+            )}
+            {hasSearchResults && (
+              <ul>
+                {searchResultsData?.contentNodes?.edges?.map((edge) => (
+                  <Link sx={{ color: '#000' }} href={edge.node.uri}>
+                    <li>{edge.node.title}</li>
+                  </Link>
+                ))}
+              </ul>
+            )}
+
+            {hasSearchResults && !hasSearchResults.length && !loading && (
+              <>No related results found.</>
+            )}
+          </MUIContainer>
         </Container>
       </main>
 
