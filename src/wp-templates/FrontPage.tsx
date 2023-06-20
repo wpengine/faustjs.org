@@ -25,9 +25,7 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Container
-        maxWidth={false}
-        sx={{ backgroundColor: 'var(--color--dark-blue)' }}>
+      <Container maxWidth={false}>
         <Header
           siteTitle={siteTitle}
           primaryMenuItems={primaryMenuItems.nodes}
@@ -41,7 +39,7 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
 
       <Container
         maxWidth={false}
-        sx={{ backgroundColor: 'var(--color--dark-blue)', mt: 4 }}>
+        sx={{ backgroundColor: 'var(--wp--preset--color--contrast)', mt: 4 }}>
         <Footer
           footer1MenuItems={footer1MenuItems}
           footer2MenuItems={footer2MenuItems}

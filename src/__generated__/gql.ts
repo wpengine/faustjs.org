@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n    fragment DocsSidebarMenuItemsFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  ": types.DocsSidebarMenuItemsFragmentFragmentDoc,
+    "\n    fragment FeaturedImageFragment on NodeWithFeaturedImage {\n      featuredImage {\n        node {\n          id\n          sourceUrl\n          altText\n          mediaDetails {\n            width\n            height\n          }\n        }\n      }\n    }\n  ": types.FeaturedImageFragmentFragmentDoc,
     "\n     fragment FooterMenuItemsFragment on MenuItem {\n       id\n       uri\n       path\n       label\n       parentId\n       cssClasses\n       target\n       menu {\n         node {\n           name\n         }\n       }\n     }\n  ": types.FooterMenuItemsFragmentFragmentDoc,
     "\n    fragment HeaderGeneralSettingsFragment on GeneralSettings {\n      title\n      description\n    }\n  ": types.HeaderGeneralSettingsFragmentFragmentDoc,
     "\n    fragment PrimaryMenuItemsFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      target\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  ": types.PrimaryMenuItemsFragmentFragmentDoc,
@@ -49,6 +50,10 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n    fragment DocsSidebarMenuItemsFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  "): (typeof documents)["\n    fragment DocsSidebarMenuItemsFragment on MenuItem {\n      id\n      uri\n      path\n      label\n      parentId\n      cssClasses\n      menu {\n        node {\n          name\n        }\n      }\n    }\n  "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    fragment FeaturedImageFragment on NodeWithFeaturedImage {\n      featuredImage {\n        node {\n          id\n          sourceUrl\n          altText\n          mediaDetails {\n            width\n            height\n          }\n        }\n      }\n    }\n  "): (typeof documents)["\n    fragment FeaturedImageFragment on NodeWithFeaturedImage {\n      featuredImage {\n        node {\n          id\n          sourceUrl\n          altText\n          mediaDetails {\n            width\n            height\n          }\n        }\n      }\n    }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
