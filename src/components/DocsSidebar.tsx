@@ -32,15 +32,16 @@ export function DocsSidebar(props: DocsSidebarProps) {
                   <ListItem disablePadding>
                     <Link
                       sx={{
-                        '&:hover': {
-                          textDecoration: 'none',
+                        '&:hover, &:focus': {
                           opacity: '1.0',
                         },
+                        textDecoration: 'none',
                         color: 'black',
                         opacity: '0.5',
                         borderLeft: '1px solid #000',
                         pl: '1rem',
                         py: '0.2rem',
+                        fontSize: '1rem',
                       }}
                       href={child.path ?? ''}>
                       {child.label ?? ''}

@@ -35,12 +35,26 @@ export function Footer({
       const columnTitle = column?.nodes[0].menu.node.name;
 
       return (
-        <Grid item xs={12} md={6} lg={3} key={columnTitle}>
-          <Typography variant="h6">{columnTitle}</Typography>
+        <Grid item xs={12} md={6} lg={3} key={columnTitle} sx={{ pb: '5rem' }}>
+          <Typography variant="h6" sx={{ fontWeight: '600' }}>
+            {columnTitle}
+          </Typography>
           <List sx={{ display: 'flex', flexDirection: 'column' }}>
             {column?.nodes.map((item: any) => (
               <ListItem key={item.id} disableGutters dense>
-                <Link key={item.id} href={item.uri} target={item.target}>
+                <Link
+                  key={item.id}
+                  href={item.uri}
+                  target={item.target}
+                  sx={{
+                    color: 'var(--wp--preset--color--base)',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    transition: '0.18s ease',
+                    '&:hover, &:focus': {
+                      color: 'rgb(128,148,156)',
+                    },
+                  }}>
                   {item.label}
                 </Link>
               </ListItem>
@@ -58,7 +72,7 @@ export function Footer({
         height: 'auto',
         paddingTop: '1rem',
         paddingBottom: '1rem',
-        backgroundColor: 'var(--faust--footer-background-color)',
+        backgroundColor: 'var(--wp--preset--color--contrast)',
       }}>
       <Container
         maxWidth="lg"

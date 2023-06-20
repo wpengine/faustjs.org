@@ -10,9 +10,9 @@ import { Link } from './Link';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.black, 0.075),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.black, 0.1),
   },
   marginLeft: 0,
   width: '100%',
@@ -31,10 +31,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  color: 'var(--wp--preset--color--contrast)',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: 'var(--wp--preset--color--contrast)',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -51,9 +52,10 @@ const SearchResults = styled(MenuItem)(({ theme }) => ({
   left: 0,
   zIndex: '1000',
   position: 'absolute',
-  backgroundColor: alpha(theme.palette.common.black, 0.95),
+  border: '1px solid rgba(0,0,0,.1)',
+  backgroundColor: alpha(theme.palette.common.white, 0.95),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.black, 0.95),
+    backgroundColor: alpha(theme.palette.common.white, 0.95),
   },
 }));
 

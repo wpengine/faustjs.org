@@ -65,7 +65,7 @@ export function FeatureBlock({
             mr: 2,
             p: 5,
             // pb: 2.5,
-            bgcolor: 'var(--faust--footer-background-color)',
+            bgcolor: 'var(--wp--preset--color--contrast)',
             color: 'white',
             '@media screen and (max-width: 600px)': { width: '100%' },
           }}>
@@ -83,7 +83,7 @@ export function FeatureBlock({
             ml: 2,
             p: 2,
             border: '1px solid',
-            borderColor: 'var(--faust--footer-background-color)',
+            borderColor: 'var(--wp--preset--color--contrast)',
             '@media screen and (max-width: 600px)': { width: '100%', ml: 0 },
           }}>
           <Typography sx={{ pb: 1 }}>{codeResultTitle}</Typography>
