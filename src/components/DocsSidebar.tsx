@@ -18,7 +18,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
       const { label, children } = item;
 
       return (
-        <>
+        <div key={item.id}>
           <Typography
             variant="body1"
             component="h3"
@@ -29,7 +29,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
             <List>
               {children.map((child: any) => {
                 return (
-                  <ListItem disablePadding>
+                  <ListItem key={child.id} disablePadding>
                     <Link
                       sx={{
                         '&:hover, &:focus': {
@@ -51,7 +51,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
               })}
             </List>
           ) : null}
-        </>
+        </div>
       );
     });
   }
