@@ -3,7 +3,7 @@ import { FaustTemplate } from '@faustwp/core';
 import Head from 'next/head';
 import { gql } from '__generated__';
 import { GetPostQuery } from '__generated__/graphql';
-import { Header, EntryHeader, Footer } from 'components';
+import { Header, EntryHeader, Main, Footer } from 'components';
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
   const { data, loading } = props;
@@ -38,11 +38,11 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
         secondaryMenuItems={secondaryMenuItems.nodes}
       />
 
-      <main className="container">
+      <Main>
         <EntryHeader title={title} date={date} author={author.node.name} />
         {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: content }} />
-      </main>
+      </Main>
 
       <Footer
         footer1MenuItems={footer1MenuItems}
