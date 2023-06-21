@@ -25,15 +25,15 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         <title>{siteTitle}</title>
       </Head>
 
-      <Main>
-        <Container maxWidth={false}>
-          <Header
-            siteTitle={siteTitle}
-            primaryMenuItems={primaryMenuItems.nodes}
-            secondaryMenuItems={secondaryMenuItems.nodes}
-          />
-        </Container>
+      <Container maxWidth={false}>
+        <Header
+          siteTitle={siteTitle}
+          primaryMenuItems={primaryMenuItems.nodes}
+          secondaryMenuItems={secondaryMenuItems.nodes}
+        />
+      </Container>
 
+      <Main>
         <Container sx={{ mt: 4 }}>
           <Content />
         </Container>
