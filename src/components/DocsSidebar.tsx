@@ -56,7 +56,7 @@ export function DocsSidebar(props: DocsSidebarProps) {
     });
   }
 
-  return <>{renderMenu(hierarchicalMenuItems)}</>;
+  return <aside>{renderMenu(hierarchicalMenuItems)}</aside>;
 }
 
 DocsSidebar.fragments = {
