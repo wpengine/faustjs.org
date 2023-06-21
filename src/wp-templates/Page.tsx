@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPageQuery } from '__generated__/graphql';
-import { Header, Footer, EntryHeader, FeaturedImage, Main } from 'components';
+import { Header, Footer, EntryHeader, Main } from 'components';
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
   const { data, loading } = props;
