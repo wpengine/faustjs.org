@@ -32,12 +32,12 @@ Posts.fragments = {
       date
       uri
       title
+      content
       author {
         node {
           name
         }
       }
-      ...FeaturedImageFragment
     }
   `),
 };

@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Footer, Header, EntryHeader, Main } from 'components';
+import { Footer, Header, Main } from 'components';
 import { Posts } from 'components/Posts';
 import { gql } from '__generated__';
-import { GetPostsPage } from '__generated__/graphql';
-import { getNextStaticProps } from '@faustwp/core';
+import { FaustPage, getNextStaticProps } from '@faustwp/core';
+import { GetPostsPageQuery } from '__generated__/graphql';
 
-export default function Page(props: any) {
+const Page: FaustPage<GetPostsPageQuery> = (props) => {
   const { data, loading } = useQuery(Page.query);
-
+  console.log('data', data);
   if (loading) {
     return <>Loading...</>;
   }
@@ -34,9 +34,9 @@ export default function Page(props: any) {
       />
 
       <Main>
-        <EntryHeader title="Latest Posts" />
+        {/* <EntryHeader title="Latest Posts" /> */}
         <div className="container">
-          <Posts />
+          <Posts posts={posts.nodes} />
         </div>
       </Main>
 
@@ -48,23 +48,19 @@ export default function Page(props: any) {
       />
     </>
   );
-}
-
-Page.variables = (seedQuery: any) => {
-  return {
-    uri: seedQuery.uri,
-  };
 };
 
+// Page.variables = (seedQuery: any) => {
+//   return {
+//     uri: seedQuery.uri,
+//   };
+// };
+
 Page.query = gql(`
-  query GetPostsPage(
-    $first: Int!
-  ) {
-    posts(first: $first) {
-      edges {
-        node {
-          ...PostsItemFragment
-        }
+  query GetPostsPage {
+    posts(first: 1000) {
+      nodes {        
+        ...PostsItemFragment
       }
       pageInfo {
         hasNextPage
@@ -115,3 +111,5 @@ export async function getStaticProps(context: any) {
     Page,
   });
 }
+
+export default Page;
