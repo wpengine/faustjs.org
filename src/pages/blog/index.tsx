@@ -8,7 +8,6 @@ import { GetPostsPageQuery } from '__generated__/graphql';
 
 const Page: FaustPage<GetPostsPageQuery> = (props) => {
   const { data, loading } = useQuery(Page.query);
-  console.log('data', data);
   if (loading) {
     return <>Loading...</>;
   }
