@@ -8,11 +8,13 @@ type Post = {
   date: any;
   uri: any;
   title: string;
+  content: string;
   author: any;
 };
 
 export function Posts(props: any) {
   const { posts } = props;
+  console.log(posts);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -26,23 +28,27 @@ export function Posts(props: any) {
           };
           return (
             <>
-              <hr />
+              {i !== 0 && <hr style={{ margin: '0 10px' }} />}
+
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
+                  my: 6,
+                  p: 5,
                 }}>
-                <Typography variant="body1" component="h6">
+                <Typography variant="body1" component="h6" sx={{ mb: 2 }}>
                   {getFormattedDate(post.date)}
                 </Typography>
-                <Typography variant="body1" component="h6">
+                <Typography variant="h5" component="h3" sx={{ mb: 2 }}>
                   {post.title}
                 </Typography>
+                <Box sx={{ display: 'flex', mb: 4 }}>{post.content}</Box>
                 <Button
                   href={post.uri}
-                  target="_blank"
                   variant="contained"
                   sx={{
+                    width: '300px',
                     '&:hover': {
                       backgroundColor: '#663DEC',
                     },
