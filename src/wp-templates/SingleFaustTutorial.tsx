@@ -120,7 +120,7 @@ Component.query = gql(`
         ...SecondaryMenuItemsFragment
       }
     }
-    docsSidebarMenuItems: menuItems(where: {location: DOCS_SIDEBAR}) {
+    docsSidebarMenuItems: menuItems(first: 100, where: {location: DOCS_SIDEBAR}) {
       nodes {
         ...DocsSidebarMenuItemsFragment
       }
