@@ -1,3 +1,4 @@
+export { FeaturedImage } from './FeaturedImage';
 export { Header } from './Header';
 export { Footer } from './Footer';
 export { EntryHeader } from './EntryHeader';
@@ -6,3 +7,4 @@ export { Main } from './Main';
 export { SkipNavigationLink } from './SkipNavigationLink';
 export { DocsSidebar } from './DocsSidebar';
 export { Link } from './Link';
+export { Blog } from './Blog';
