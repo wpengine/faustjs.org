@@ -53,7 +53,9 @@ export function Posts(props: any) {
                     flexDirection: 'column',
                     mb: 4,
                   }}
-                  dangerouslySetInnerHTML={{ __html: post.content }}
+                  dangerouslySetInnerHTML={{
+                    __html: post.content,
+                  }}
                 />
                 <Button
                   href={post.uri}
