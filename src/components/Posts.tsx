@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import { gql } from '__generated__';
 import { Grid, Box, Typography, Button, Chip, ListItem } from '@mui/material';
+import { useRouter } from 'next/router';
 
 type Post = {
   id: any;
@@ -14,6 +14,8 @@ type Post = {
 
 export function Posts(props: any) {
   const { posts } = props;
+  const router = useRouter();
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -27,7 +29,7 @@ export function Posts(props: any) {
           };
           return (
             <>
-              {i !== 0 && <hr style={{ margin: '0 10px' }} />}
+              <hr style={{ opacity: 0.25 }} />
 
               <Box
                 sx={{
@@ -42,19 +44,11 @@ export function Posts(props: any) {
                   {getFormattedDate(post.date)}
                 </Typography>
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   component="h3"
-                  sx={{ mb: 2, fontWeight: 'bold' }}>
+                  sx={{ mb: 2, fontWeight: 'bold', color: '#663DEC' }}>
                   {post.title}
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'row', mb: 2 }}>
-                  <ListItem disableGutters disablePadding>
-                    <Chip label="WordPress" sx={{ mr: 2 }} />
-                    <Chip label="WordPress" sx={{ mr: 2 }} />
-                    <Chip label="WordPress" sx={{ mr: 2 }} />
-                    <Chip label="WordPress" sx={{ mr: 2 }} />
-                  </ListItem>
-                </Box>
                 <Box
                   sx={{
                     display: 'flex',

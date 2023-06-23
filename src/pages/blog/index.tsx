@@ -38,7 +38,7 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
           <Typography variant="h3" component="h2">
             Blog
           </Typography>
-          <Typography variant="body1" component="p" sx={{ mt: 1 }}>
+          <Typography variant="body1" component="p" sx={{ mt: 1, mb: 4 }}>
             Read the latest posts from the Faust Team
           </Typography>
           <Posts posts={posts.nodes} />
