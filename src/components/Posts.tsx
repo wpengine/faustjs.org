@@ -7,7 +7,7 @@ type Post = {
   date: any;
   uri: any;
   title: string;
-  content: string;
+  excerpt: string;
   author: any;
 };
 
@@ -44,13 +44,22 @@ export function Posts(props: PostsProps) {
                 <Typography
                   variant="body1"
                   component="h6"
-                  sx={{ mb: 2, color: 'rgb(107 114 128)' }}>
+                  sx={{
+                    mb: 2,
+                    color: 'rgb(107 114 128)',
+                    textAlign: 'center',
+                  }}>
                   {getFormattedDate(post.date)}
                 </Typography>
                 <Typography
                   variant="h4"
                   component="h3"
-                  sx={{ mb: 2, fontWeight: 'bold', color: '#663DEC' }}>
+                  sx={{
+                    mb: 2,
+                    fontWeight: 'bold',
+                    color: '#663DEC',
+                    textAlign: 'center',
+                  }}>
                   {post.title}
                 </Typography>
                 <Box
@@ -60,14 +69,15 @@ export function Posts(props: PostsProps) {
                     mb: 4,
                   }}
                   dangerouslySetInnerHTML={{
-                    __html: post.content,
+                    __html: post.excerpt,
                   }}
                 />
                 <Button
                   href={post.uri}
                   variant="contained"
-                  size="small"
+                  size="medium"
                   sx={{
+                    alignSelf: 'center',
                     maxWidth: '150px',
                     '&:hover': {
                       backgroundColor: '#663DEC',
@@ -94,7 +104,7 @@ Posts.fragments = {
       date
       uri
       title
-      content
+      excerpt
       author {
         node {
           name

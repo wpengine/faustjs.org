@@ -38,10 +38,16 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
           <Grid
             container
             sx={{ p: 4, display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="h3" component="h2">
+            <Typography
+              variant="h3"
+              component="h2"
+              sx={{ textAlign: 'center' }}>
               Blog
             </Typography>
-            <Typography variant="body1" component="p" sx={{ mt: 1, mb: 4 }}>
+            <Typography
+              variant="body1"
+              component="p"
+              sx={{ mt: 1, mb: 4, textAlign: 'center' }}>
               Read the latest posts from the Faust Team
             </Typography>
             <Posts posts={posts.nodes} />
