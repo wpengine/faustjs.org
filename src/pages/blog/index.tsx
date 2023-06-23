@@ -5,6 +5,7 @@ import { Posts } from 'components/Posts';
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
 import { GetPostsPageQuery } from '__generated__/graphql';
+import { Grid, Typography } from '@mui/material';
 
 const Page: FaustPage<GetPostsPageQuery> = (props) => {
   const { data, loading } = useQuery(Page.query);
@@ -33,10 +34,15 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
       />
 
       <Main>
-        {/* <EntryHeader title="Latest Posts" /> */}
-        <div className="container">
+        <Grid container sx={{ p: 4, display: 'flex', flexDirection: 'column' }}>
+          <Typography variant="h3" component="h2">
+            Blog
+          </Typography>
+          <Typography variant="body1" component="p" sx={{ mt: 1 }}>
+            Read the latest posts from the Faust Team
+          </Typography>
           <Posts posts={posts.nodes} />
-        </div>
+        </Grid>
       </Main>
 
       <Footer
@@ -48,12 +54,6 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
     </>
   );
 };
-
-// Page.variables = (seedQuery: any) => {
-//   return {
-//     uri: seedQuery.uri,
-//   };
-// };
 
 Page.query = gql(`
   query GetPostsPage {

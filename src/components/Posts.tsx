@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { gql } from '__generated__';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography, Button, Chip, ListItem } from '@mui/material';
 
 type Post = {
   id: any;
@@ -14,7 +14,6 @@ type Post = {
 
 export function Posts(props: any) {
   const { posts } = props;
-  console.log(posts);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -35,15 +34,35 @@ export function Posts(props: any) {
                   display: 'flex',
                   flexDirection: 'column',
                   my: 6,
-                  p: 5,
                 }}>
-                <Typography variant="body1" component="h6" sx={{ mb: 2 }}>
+                <Typography
+                  variant="body1"
+                  component="h6"
+                  sx={{ mb: 2, color: 'rgb(107 114 128)' }}>
                   {getFormattedDate(post.date)}
                 </Typography>
-                <Typography variant="h5" component="h3" sx={{ mb: 2 }}>
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  sx={{ mb: 2, fontWeight: 'bold' }}>
                   {post.title}
                 </Typography>
-                <Box sx={{ display: 'flex', mb: 4 }}>{post.content}</Box>
+                <Box sx={{ display: 'flex', flexDirection: 'row', mb: 2 }}>
+                  <ListItem disableGutters disablePadding>
+                    <Chip label="WordPress" sx={{ mr: 2 }} />
+                    <Chip label="WordPress" sx={{ mr: 2 }} />
+                    <Chip label="WordPress" sx={{ mr: 2 }} />
+                    <Chip label="WordPress" sx={{ mr: 2 }} />
+                  </ListItem>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    mb: 4,
+                  }}
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
                 <Button
                   href={post.uri}
                   variant="contained"
