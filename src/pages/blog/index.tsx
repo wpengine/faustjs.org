@@ -5,7 +5,7 @@ import { Posts } from 'components/Posts';
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
 import { GetPostsPageQuery } from '__generated__/graphql';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Container } from '@mui/material';
 
 const Page: FaustPage<GetPostsPageQuery> = (props) => {
   const { data, loading } = useQuery(Page.query);
@@ -34,15 +34,19 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
       />
 
       <Main>
-        <Grid container sx={{ p: 4, display: 'flex', flexDirection: 'column' }}>
-          <Typography variant="h3" component="h2">
-            Blog
-          </Typography>
-          <Typography variant="body1" component="p" sx={{ mt: 1, mb: 4 }}>
-            Read the latest posts from the Faust Team
-          </Typography>
-          <Posts posts={posts.nodes} />
-        </Grid>
+        <Container sx={{ mt: 4 }}>
+          <Grid
+            container
+            sx={{ p: 4, display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="h3" component="h2">
+              Blog
+            </Typography>
+            <Typography variant="body1" component="p" sx={{ mt: 1, mb: 4 }}>
+              Read the latest posts from the Faust Team
+            </Typography>
+            <Posts posts={posts.nodes} />
+          </Grid>
+        </Container>
       </Main>
 
       <Footer
@@ -57,7 +61,7 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
 
 Page.query = gql(`
   query GetPostsPage {
-    posts(first: 1000) {
+    posts(first: 100) {
       nodes {        
         ...PostsItemFragment
       }

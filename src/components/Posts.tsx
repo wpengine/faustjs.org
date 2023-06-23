@@ -11,7 +11,11 @@ type Post = {
   author: any;
 };
 
-export function Posts(props: any) {
+type PostsProps = {
+  posts: Post[];
+};
+
+export function Posts(props: PostsProps) {
   const { posts } = props;
 
   return (
