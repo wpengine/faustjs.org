@@ -1,6 +1,8 @@
 import React from 'react';
 import { gql } from '__generated__';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography, Button, ListItem, Chip } from '@mui/material';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type Post = {
   id: any;
@@ -9,6 +11,7 @@ type Post = {
   title: string;
   excerpt: string;
   author: any;
+  tags: any;
 };
 
 type PostsProps = {
@@ -17,6 +20,12 @@ type PostsProps = {
 
 export function Posts(props: PostsProps) {
   const { posts } = props;
+  const router = useRouter();
+
+  const handleTagClick = (event: any, url: string) => {
+    event.preventDefault();
+    router.push(url);
+  };
 
   return (
     <Grid container spacing={2}>
@@ -59,9 +68,44 @@ export function Posts(props: PostsProps) {
                     fontWeight: 'bold',
                     color: '#663DEC',
                     textAlign: 'center',
+                    '&:hover': {
+                      color: '#663DEC',
+                      textDecoration: 'underline',
+                    },
                   }}>
-                  {post.title}
+                  <Link
+                    href={post.uri}
+                    style={{
+                      color: '#7e5cef',
+                      textDecoration: 'none',
+                    }}>
+                    {post.title}
+                  </Link>
                 </Typography>
+
+                {post.tags.nodes.length > 0 && (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}>
+                    <ListItem
+                      disablePadding
+                      disableGutters
+                      sx={{ justifyContent: 'center', mb: 2 }}>
+                      {post.tags.nodes.map((tag: any) => {
+                        return (
+                          <Chip
+                            label={tag.name}
+                            sx={{ mr: 1 }}
+                            onClick={(event) => handleTagClick(event, tag.link)}
+                          />
+                        );
+                      })}
+                    </ListItem>
+                  </Box>
+                )}
+
                 <Box
                   sx={{
                     display: 'flex',
@@ -108,6 +152,12 @@ Posts.fragments = {
       author {
         node {
           name
+        }
+      }
+      tags {
+        nodes {
+          name
+          link
         }
       }
     }
