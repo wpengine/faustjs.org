@@ -115,7 +115,7 @@ export function Posts(props: PostsProps) {
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      mb: 4,
+                      mb: 2,
                     }}
                     dangerouslySetInnerHTML={{
                       __html: post.excerpt,
