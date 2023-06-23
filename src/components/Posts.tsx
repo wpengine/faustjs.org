@@ -29,11 +29,13 @@ export function Posts(props: PostsProps) {
             })} ${dateObj.getMonth() + 1}, ${dateObj.getFullYear()}`;
             return dateMDY;
           };
+
           return (
             <>
               <hr style={{ opacity: 0.25 }} />
 
               <Box
+                key={post.id}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
