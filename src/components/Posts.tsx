@@ -58,8 +58,9 @@ export function Posts(props: any) {
                 <Button
                   href={post.uri}
                   variant="contained"
+                  size="small"
                   sx={{
-                    width: '300px',
+                    maxWidth: '150px',
                     '&:hover': {
                       backgroundColor: '#663DEC',
                     },
