@@ -1,7 +1,13 @@
 .wp-block-code {
+  border-radius: 0.5rem;
+
+  > span {
+    border-radius: 0.5rem;
+  }
+
   .hljs {
     padding: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid #dddddd;
+    backface-visibility: hidden;
   }
 }

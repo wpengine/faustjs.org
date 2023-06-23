@@ -8,14 +8,6 @@ $icon-size: 24px;
   margin-right: 1rem;
 }
 
-.title {
-  color: var(--faust--header-logo-color);
-  font-size: 1.5rem;
-  font-weight: 700;
-  align-self: center;
-  margin-right: 1rem;
-}
-
 .social-navigation-link {
   color: transparent;
   display: inline-flex;
@@ -29,7 +21,7 @@ $icon-size: 24px;
   line-height: $icon-size;
 
   &::after {
-    background-color: var(--faust--icon-color);
+    background-color: var(--wp--preset--color--contrast);
     content: '';
     height: 100%;
     left: 0;

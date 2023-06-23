@@ -1,13 +1,22 @@
 // Global styles
+
+// Available via the WordPress global stylesheet.
+
+// var(--wp--preset--color--base)
+// var(--wp--preset--color--contrast)
+// var(--wp--preset--color--primary)
+// var(--wp--preset--color--secondary)
+// var(--wp--preset--color--tertiary)
+
 // These styles are available on all pages.
 // If a component has it's own styles, they can be found within styles/components/
 
-@import 'css-variables';
 @import 'wp-block-code';
 
+// Responsive images.
 img {
-    max-width: 100%;
-    height: auto;
-    padding: 0;
-    margin: 0;
+  max-width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
 }

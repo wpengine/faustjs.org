@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaustTemplate } from '@faustwp/core';
 import Head from 'next/head';
+import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPageQuery } from '__generated__/graphql';
-import { Header, EntryHeader, Footer } from 'components';
+import { Header, Footer, EntryHeader, FeaturedImage, Main } from 'components';
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
   const { data, loading } = props;
@@ -38,11 +39,22 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
         secondaryMenuItems={secondaryMenuItems.nodes}
       />
 
-      <main className="container">
-        <EntryHeader title={title} />
-        {/* eslint-disable-next-line react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </main>
+      <Main>
+        <Container sx={{ mt: 4 }}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Grid item xs={12}>
+              <EntryHeader title={title} />
+              <div
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            </Grid>
+          </Grid>
+        </Container>
+      </Main>
 
       <Footer
         footer1MenuItems={footer1MenuItems}
