@@ -1,7 +1,6 @@
 import React from 'react';
 import { gql } from '__generated__';
 import { Grid, Box, Typography, Button, ListItem, Chip } from '@mui/material';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 type Post = {
@@ -20,12 +19,6 @@ type PostsProps = {
 
 export function Posts(props: PostsProps) {
   const { posts } = props;
-  const router = useRouter();
-
-  const handleTagClick = (event: any, url: string) => {
-    event.preventDefault();
-    router.push(url);
-  };
 
   return (
     <Grid container spacing={2}>
@@ -77,6 +70,7 @@ export function Posts(props: PostsProps) {
                     }}>
                     <Link
                       href={post.uri}
+                      aria-hidden="true"
                       style={{
                         color: '#7e5cef',
                         textDecoration: 'none',
@@ -101,9 +95,6 @@ export function Posts(props: PostsProps) {
                               key={tag.id}
                               label={tag.name}
                               sx={{ mr: 1 }}
-                              onClick={(event) =>
-                                handleTagClick(event, tag.link)
-                              }
                             />
                           );
                         })}
