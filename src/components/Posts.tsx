@@ -1,7 +1,6 @@
 import React from 'react';
 import { gql } from '__generated__';
-import { Grid, Box, Typography, Button, Chip, ListItem } from '@mui/material';
-import { useRouter } from 'next/router';
+import { Grid, Box, Typography, Button } from '@mui/material';
 
 type Post = {
   id: any;
@@ -14,7 +13,6 @@ type Post = {
 
 export function Posts(props: any) {
   const { posts } = props;
-  const router = useRouter();
 
   return (
     <Grid container spacing={2}>
