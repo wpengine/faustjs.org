@@ -19,7 +19,7 @@ type PostsProps = {
 
 export function Posts(props: PostsProps) {
   const { posts } = props;
-
+  console.log(posts);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -59,7 +59,7 @@ export function Posts(props: PostsProps) {
                     variant="h4"
                     component="h3"
                     sx={{
-                      mb: 2,
+                      mb: 1,
                       fontWeight: 'bold',
                       color: '#663DEC',
                       textAlign: 'center',
@@ -78,12 +78,20 @@ export function Posts(props: PostsProps) {
                       {post.title}
                     </Link>
                   </Typography>
+                  <Typography
+                    variant="body1"
+                    component="p"
+                    style={{ textAlign: 'center', color: 'rgb(107 114 128)' }}>
+                    by{' '}
+                    {`${post.author.node.firstName} ${post.author.node.lastName}`}
+                  </Typography>
 
                   {post?.tags?.nodes?.length > 0 && (
                     <Box
                       sx={{
                         display: 'flex',
                         justifyContent: 'center',
+                        mt: 2,
                       }}>
                       <ListItem
                         disablePadding
@@ -147,7 +155,8 @@ Posts.fragments = {
       excerpt
       author {
         node {
-          name
+          firstName
+          lastName
         }
       }
       tags {
