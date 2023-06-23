@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { Container } from '@mui/material';
 import { gql } from '__generated__';
 import { GetHomePageQuery } from '__generated__/graphql';
-import { Header, Content, Footer } from 'components';
+import { Header, Content, Main, Footer } from 'components';
 
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { data } = props;
@@ -33,9 +33,11 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
         />
       </Container>
 
-      <Container sx={{ mt: 4 }}>
-        <Content />
-      </Container>
+      <Main>
+        <Container sx={{ mt: 4 }}>
+          <Content />
+        </Container>
+      </Main>
 
       <Container
         maxWidth={false}
