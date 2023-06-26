@@ -53,9 +53,9 @@ const SearchResults = styled(MenuItem)(({ theme }) => ({
   zIndex: '1000',
   position: 'absolute',
   border: '1px solid rgba(0,0,0,.1)',
-  backgroundColor: alpha(theme.palette.common.white, 0.95),
+  backgroundColor: alpha(theme.palette.common.white, 1),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.95),
+    backgroundColor: alpha(theme.palette.common.white, 1),
   },
 }));
 
@@ -87,7 +87,9 @@ export default function HeaderSearch() {
       {searchResults.length > 0 && isSearchVisible && (
         <SearchResults>
           {searchResults.map((result) => (
-            <Link href={result.uri} style={{ textDecoration: 'none' }}>
+            <Link
+              href={result.uri}
+              style={{ textDecoration: 'none', color: 'black' }}>
               <MenuItem>{result.title}</MenuItem>
             </Link>
           ))}
