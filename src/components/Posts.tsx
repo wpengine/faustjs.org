@@ -10,7 +10,7 @@ type Post = {
   uri: string;
   title: string;
   excerpt: string;
-  author: string;
+  author: object;
   tags: object;
 };
 
