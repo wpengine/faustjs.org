@@ -10,7 +10,7 @@ export function Main(props: PropsWithChildren<{}>) {
       id={SELECTORS.MAIN_CONTENT_ID}
       tabIndex={-1}
       sx={{
-        pb: 4,
+        pb: 8,
         backgroundColor: 'var(--wp--preset--color--base)',
       }}
       {...props}>
