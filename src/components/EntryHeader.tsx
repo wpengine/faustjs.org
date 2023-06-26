@@ -2,6 +2,7 @@ import React from 'react';
 import className from 'classnames/bind';
 import { Container } from '@mui/material';
 import { FeaturedImage } from 'components';
+import { getMdyFormattedDate } from 'utility/utilities';
 import styles from 'styles/components/EntryHeader.module.scss';
 
 const cx = className.bind(styles);
@@ -9,7 +10,7 @@ const cx = className.bind(styles);
 type EntryHeaderProps = {
   title: string;
   image?: any;
-  date?: Date | string;
+  date?: string;
   author?: string;
 };
 
@@ -20,7 +21,7 @@ export function EntryHeader({ title, image, date, author }: EntryHeaderProps) {
 
       {date && author && (
         <div className={cx(styles.meta)}>
-          By {author} on <time>{new Date(date).toDateString()}</time>
+          By {author} on <time>{getMdyFormattedDate(date)}</time>
         </div>
       )}
 
