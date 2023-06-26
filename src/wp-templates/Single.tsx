@@ -4,7 +4,14 @@ import Head from 'next/head';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPostQuery } from '__generated__/graphql';
-import { Header, Footer, EntryHeader, Main } from 'components';
+import {
+  Header,
+  Footer,
+  EntryHeader,
+  Main,
+  PostCategoryList,
+  PostTagList,
+} from 'components';
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
   const { data, loading } = props;
@@ -25,7 +32,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle } = generalSettings;
-  const { title, content, date, author } = post;
+  const { title, content, date, author, tags, categories } = post;
 
   return (
     <>
@@ -55,6 +62,8 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: content }}
               />
+              <PostCategoryList categories={categories.edges} />
+              <PostTagList tags={tags.edges} />
             </Grid>
           </Grid>
         </Container>
