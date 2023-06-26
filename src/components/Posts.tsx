@@ -2,15 +2,16 @@ import React from 'react';
 import { gql } from '__generated__';
 import { Grid, Box, Typography, Button, ListItem, Chip } from '@mui/material';
 import Link from 'next/link';
+import { getMdyFormattedDate } from 'utility/utilities';
 
 type Post = {
-  id: any;
-  date: any;
-  uri: any;
+  id: string;
+  date: string;
+  uri: string;
   title: string;
   excerpt: string;
-  author: any;
-  tags: any;
+  author: string;
+  tags: object;
 };
 
 type PostsProps = {
@@ -19,21 +20,13 @@ type PostsProps = {
 
 export function Posts(props: PostsProps) {
   const { posts } = props;
-  console.log(posts);
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
         {posts &&
           posts?.length > 0 &&
           posts.map((post: Post, i: number) => {
-            const getFormattedDate = (date: string) => {
-              const dateObj = new Date(date);
-              const dateMDY = `${dateObj.toLocaleString('default', {
-                month: 'long',
-              })} ${dateObj.getMonth() + 1}, ${dateObj.getFullYear()}`;
-              return dateMDY;
-            };
-
             return (
               <>
                 <hr style={{ opacity: 0.25 }} />
@@ -53,7 +46,7 @@ export function Posts(props: PostsProps) {
                       color: 'rgb(107 114 128)',
                       textAlign: 'center',
                     }}>
-                    {getFormattedDate(post.date)}
+                    {getMdyFormattedDate(post.date)}
                   </Typography>
                   <Typography
                     variant="h4"
