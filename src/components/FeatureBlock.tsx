@@ -61,6 +61,7 @@ export function FeatureBlock({
             flexDirection: 'column',
             width: '50%',
             height: 'auto',
+            borderRadius: '4px',
             my: 1,
             mr: 2,
             p: 5,
@@ -79,6 +80,7 @@ export function FeatureBlock({
           sx={{
             width: '50%',
             height: 'auto',
+            borderRadius: '4px',
             my: 1,
             ml: 2,
             p: 2,
