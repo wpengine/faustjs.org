@@ -10,8 +10,8 @@ type Post = {
   uri: string;
   title: string;
   excerpt: string;
-  author: object;
-  tags: object;
+  author: any;
+  tags: any;
 };
 
 type PostsProps = {
