@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Stack } from '@mui/material';
+import { Chip, Stack } from '@mui/material';
 
 type PostCategory = {
   node: {
@@ -16,20 +16,18 @@ type PostCategoryListProps = {
  * Renders a list of categories assigned to a post.
  */
 export function PostCategoryList({ categories }: PostCategoryListProps) {
-  if (0 === categories.length) {
-    return <></>;
+  if (categories.length === 0) {
+    return null;
   }
 
-  const categoryList = categories.map((category) => (
-    <Typography variant="body1" gutterBottom>
-      {category.node.name},
-    </Typography>
+  const categoryChips = categories.map((category) => (
+    <Chip label={category.node.name} />
   ));
 
   return (
     <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
       <strong>{categories.length > 1 ? 'Categories' : 'Category'}:</strong>
-      {categoryList}
+      {categoryChips}
     </Stack>
   );
 }

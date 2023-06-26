@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chip, Typography, Stack } from '@mui/material';
+import { Chip, Stack } from '@mui/material';
 
 type PostTag = {
   node: {
@@ -16,16 +16,16 @@ type PostTagListProps = {
  * Renders a list of tags assigned to a post.
  */
 export function PostTagList({ tags }: PostTagListProps) {
-  if (0 === tags.length) {
-    return <></>;
+  if (tags.length === 0) {
+    return null;
   }
 
-  const categoryChips = tags.map((tag) => <Chip label={tag.node.name} />);
+  const tagChips = tags.map((tag) => <Chip label={tag.node.name} />);
 
   return (
     <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
-      <strong>{tags.length > 1 ? 'Tags' : 'Tag'}:</strong>
-      {categoryChips}
+      <strong>Tags:</strong>
+      {tagChips}
     </Stack>
   );
 }
