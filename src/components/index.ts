@@ -1,4 +1,3 @@
-// export { FeaturedImage } from './FeaturedImage';
 export { Header } from './Header';
 export { Footer } from './Footer';
 export { EntryHeader } from './EntryHeader';
