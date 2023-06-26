@@ -63,6 +63,7 @@ export default function useSearch() {
         variables: {
           searchTerm: debouncedSearchInput,
         },
+        fetchPolicy: 'no-cache',
       });
 
       const dataResults = data.contentNodes.edges;
