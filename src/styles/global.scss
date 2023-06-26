@@ -11,19 +11,9 @@
 // These styles are available on all pages.
 // If a component has it's own styles, they can be found within styles/components/
 
+// Classic editor.
+@import 'image-alignment';
+
+// Block support.
+@import 'blocks';
 @import 'wp-block-code';
-
-// Responsive images.
-img {
-  max-width: 100%;
-  height: auto;
-  padding: 0;
-  margin: 0;
-}
-
-// Tutorial Notes
-p {
-  &.has-background {
-    padding: 20px;
-  }
-}

@@ -1,9 +1,17 @@
 import React from 'react';
 import { FaustTemplate } from '@faustwp/core';
 import Head from 'next/head';
+import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPostQuery } from '__generated__/graphql';
-import { Header, EntryHeader, Main, Footer } from 'components';
+import {
+  Header,
+  Footer,
+  EntryHeader,
+  Main,
+  PostCategoryList,
+  PostTagList,
+} from 'components';
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
   const { data, loading } = props;
@@ -24,7 +32,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle } = generalSettings;
-  const { title, content, date, author } = post;
+  const { title, content, date, author, tags, categories } = post;
 
   return (
     <>
@@ -39,9 +47,26 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
       />
 
       <Main>
-        <EntryHeader title={title} date={date} author={author.node.name} />
-        {/* eslint-disable-next-line react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <Container sx={{ mt: 4 }}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Grid item xs={12}>
+              <EntryHeader
+                title={title}
+                date={date}
+                author={author.node.name}
+              />
+              <div
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+              <PostCategoryList categories={categories.edges} />
+              <PostTagList tags={tags.edges} />
+            </Grid>
+          </Grid>
+        </Container>
       </Main>
 
       <Footer
@@ -72,6 +97,23 @@ Component.query = gql(`
           name
         }
       }
+      tags {
+        edges {
+          node {
+            name
+            uri
+          }
+        }
+      }
+      categories {
+        edges {
+          node {
+            name
+            uri
+          }
+        }
+      }
+      ...FeaturedImageFragment
     }
     generalSettings {
       title

@@ -8,3 +8,5 @@ export { SkipNavigationLink } from './SkipNavigationLink';
 export { DocsSidebar } from './DocsSidebar';
 export { Link } from './Link';
 export { Container } from './Container';
+export { PostCategoryList } from './PostCategoryList';
+export { PostTagList } from './PostTagList';
