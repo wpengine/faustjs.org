@@ -75,8 +75,7 @@ export function Posts(props: PostsProps) {
                     variant="body1"
                     component="p"
                     style={{ textAlign: 'center', color: 'rgb(107 114 128)' }}>
-                    by{' '}
-                    {`${post.author.node.firstName} ${post.author.node.lastName}`}
+                    by {post.author.node.name}
                   </Typography>
 
                   {post?.tags?.nodes?.length > 0 && (
@@ -148,8 +147,7 @@ Posts.fragments = {
       excerpt
       author {
         node {
-          firstName
-          lastName
+          name
         }
       }
       tags {
