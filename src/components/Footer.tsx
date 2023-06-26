@@ -6,6 +6,7 @@ import {
   Container,
   Typography,
   ListItem,
+  Stack,
 } from '@mui/material';
 import { FooterMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '__generated__';
@@ -104,10 +105,28 @@ export function Footer({
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Typography color="white" variant="subtitle1">
-            &copy; 2013-{new Date().getFullYear()} WPEngine, Inc. All rights
-            reserved. Powered by Faust.js™
-          </Typography>
+          <Stack
+            sx={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: '0.8',
+            }}>
+            <Typography color="white" variant="h6">
+              Powered by Faust.js &amp;{' '}
+              <a
+                style={{ color: '#fff' }}
+                href="https://wpengine.com/headless-wordpress/">
+                Atlas
+              </a>
+            </Typography>
+            <Typography
+              color="white"
+              variant="subtitle1"
+              sx={{ opacity: '0.8' }}>
+              &copy; 2013-{new Date().getFullYear()} WPEngine, Inc. All rights
+              reserved.
+            </Typography>
+          </Stack>
         </Grid>
       </Container>
     </Box>
