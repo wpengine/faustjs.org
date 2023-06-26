@@ -28,11 +28,10 @@ export function Posts(props: PostsProps) {
           posts?.length > 0 &&
           posts.map((post: Post, i: number) => {
             return (
-              <>
+              <Box key={post.id}>
                 <hr style={{ opacity: 0.25 }} />
 
                 <Box
-                  key={post.id}
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -128,7 +127,7 @@ export function Posts(props: PostsProps) {
                     Read More
                   </Button>
                 </Box>
-              </>
+              </Box>
             );
           })}
         {posts && posts?.length < 1 && <p>No posts found.</p>}
