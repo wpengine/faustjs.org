@@ -9,5 +9,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     backface-visibility: hidden;
+	display: block !important;
+  	overflow-x: auto !important;
   }
 }
