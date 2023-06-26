@@ -106,7 +106,7 @@ export function Footer({
           }}>
           <Typography color="white" variant="subtitle1">
             &copy; 2013-{new Date().getFullYear()} WPEngine, Inc. All rights
-            reserved. Powered by Faust.js™.
+            reserved. Powered by Faust.js™
           </Typography>
         </Grid>
       </Container>
