@@ -3,28 +3,23 @@ import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 
 export function FeatureBlock({
-  title,
-  //   codeSnippetTitle,
+  codeSnippetTitle,
   codeSnippet,
   isImage,
-  codeResultTitle,
   codeResult,
+  altSide,
   altBlockColor,
 }: {
-  title: string;
-  //   codeSnippetTitle: string;
+  codeSnippetTitle: string;
   codeSnippet: string;
   isImage: boolean;
-  codeResultTitle: string;
   codeResult: string;
+  altSide: boolean;
   altBlockColor: string;
 }) {
-  return (
-    <Grid
-      container
-      spacing={1}
-      sx={{ m: 0, p: 2, backgroundColor: altBlockColor }}>
-      {/* Title */}
+  let returnItem;
+  if (altSide) {
+    returnItem = (
       <Grid
         item
         xs={12}
@@ -32,14 +27,57 @@ export function FeatureBlock({
           p: 1,
           display: 'flex',
           flexDirection: 'row',
-          pb: 0,
+          justifyContent: 'space-around',
+          '@media screen and (max-width: 600px)': {
+            flexDirection: 'column',
+            justifyContent: 'center',
+          },
         }}>
-        <Typography
-          variant="body1"
-          sx={{ textAlign: 'left', fontWeight: 'bold' }}>
-          {title}
-        </Typography>
+        {/* Code Result */}
+        <Box
+          sx={{
+            width: '50%',
+            height: 'auto',
+            borderRadius: '4px',
+            my: 1,
+            ml: 2,
+            p: 2,
+            '@media screen and (max-width: 600px)': { width: '100%', ml: 0 },
+          }}>
+          {isImage ? (
+            <Image src={codeResult} alt="" style={{ width: '100%' }} />
+          ) : (
+            <Typography variant="body1">{codeResult}</Typography>
+          )}
+        </Box>
+        {/* Code Snippet */}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            width: '50%',
+            height: 'auto',
+            borderRadius: '4px',
+            my: 1,
+            mr: 2,
+            p: 5,
+            bgcolor: 'var(--wp--preset--color--contrast)',
+            color: 'white',
+            '@media screen and (max-width: 600px)': { width: '100%' },
+          }}>
+          <Typography sx={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
+            {codeSnippetTitle}
+          </Typography>
+          <br />
+          <Typography variant="body1" style={{ whiteSpace: 'pre-line' }}>
+            {codeSnippet.replace(/\\n/g, '\n')}
+          </Typography>
+        </Box>
       </Grid>
+    );
+  } else {
+    returnItem = (
       <Grid
         item
         xs={12}
@@ -65,12 +103,14 @@ export function FeatureBlock({
             my: 1,
             mr: 2,
             p: 5,
-            // pb: 2.5,
             bgcolor: 'var(--wp--preset--color--contrast)',
             color: 'white',
             '@media screen and (max-width: 600px)': { width: '100%' },
           }}>
-          {/* <Typography>{codeSnippetTitle}</Typography> */}
+          <Typography sx={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
+            {codeSnippetTitle}
+          </Typography>
+          <br />
           <Typography variant="body1" style={{ whiteSpace: 'pre-line' }}>
             {codeSnippet.replace(/\\n/g, '\n')}
           </Typography>
@@ -84,11 +124,8 @@ export function FeatureBlock({
             my: 1,
             ml: 2,
             p: 2,
-            border: '1px solid',
-            borderColor: 'var(--wp--preset--color--contrast)',
             '@media screen and (max-width: 600px)': { width: '100%', ml: 0 },
           }}>
-          <Typography sx={{ pb: 1 }}>{codeResultTitle}</Typography>
           {isImage ? (
             <Image src={codeResult} alt="" style={{ width: '100%' }} />
           ) : (
@@ -96,6 +133,7 @@ export function FeatureBlock({
           )}
         </Box>
       </Grid>
-    </Grid>
-  );
+    );
+  }
+  return <Grid>{returnItem}</Grid>;
 }

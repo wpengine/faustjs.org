@@ -22,7 +22,9 @@ export function HeroBanner() {
       </Grid>
 
       <Grid item xs={12}>
-        <Typography variant="body1" sx={{ textAlign: 'center' }}>
+        <Typography
+          variant="body1"
+          sx={{ textAlign: 'center', fontSize: '1.3rem', p: '0.7rem 0' }}>
           A JavaScript framework that makes building headless WordPress simple
           and easy.
         </Typography>
