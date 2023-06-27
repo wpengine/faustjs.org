@@ -76,7 +76,7 @@ export function FeatureBlock({
           <Image
             src={codeResult}
             alt=""
-            style={{ display: 'flex', height: '100%', width: '100%' }}
+            style={{ height: 'auto', maxWidth: '100%' }}
           />
         ) : (
           <Typography variant="body1">{codeResult}</Typography>
