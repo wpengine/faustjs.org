@@ -11,3 +11,11 @@
 @import '@wordpress/base-styles/breakpoints';
 @import '@wordpress/block-library/src/style.scss';
 @import '@wordpress/block-library/src/theme.scss';
+
+// Block Customizations
+@import 'wp-block-code';
+p.has-background {
+	border-radius: 0.5rem;
+	margin-left: auto;
+    margin-right: auto;
+}
