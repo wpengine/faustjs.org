@@ -37,15 +37,15 @@ $icon-size: 24px;
   }
 
   &[href*='github.com']::after {
-    mask: url('/icons/github.svg');
+    mask: url('/social-icons/github.svg');
   }
 
   &[href*='discord.gg']::after,
   &[href*='discord.com']::after {
-    mask: url('/icons/discord.svg');
+    mask: url('/social-icons/discord.svg');
   }
 
   &[href*='wordpress.org']::after {
-    mask: url('/icons/wordpress.svg');
+    mask: url('/social-icons/wordpress.svg');
   }
 }

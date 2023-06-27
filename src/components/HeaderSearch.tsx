@@ -73,7 +73,7 @@ export default function HeaderSearch() {
         display: { xs: 'none', md: 'flex' },
       }}>
       <SearchIconWrapper>
-        {loading && <CircularProgress size="1em" />}
+        {loading && <CircularProgress size="1em" sx={{ color: '#7e5cef' }} />}
         {!loading && <SearchIcon />}
       </SearchIconWrapper>
       <StyledInputBase

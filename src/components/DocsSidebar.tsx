@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { flatListToHierarchical } from '@faustwp/core';
 import { Typography, ListItem, List } from '@mui/material';
 import { DocsSidebarMenuItemsFragmentFragment } from '__generated__/graphql';
@@ -10,6 +11,7 @@ type DocsSidebarProps = {
 };
 
 export function DocsSidebar(props: DocsSidebarProps) {
+  const router = useRouter();
   const { menuItems } = props;
   const hierarchicalMenuItems = flatListToHierarchical(menuItems);
 
@@ -28,20 +30,28 @@ export function DocsSidebar(props: DocsSidebarProps) {
           {children.length ? (
             <List>
               {children.map((child: any) => {
+                const active = router.asPath === child.path.replace(/\/$/, '');
+
                 return (
                   <ListItem key={child.id} disablePadding>
                     <Link
                       sx={{
-                        '&:hover, &:focus': {
-                          opacity: '1.0',
+                        '&:hover': {
+                          color: 'rgba(0, 0, 0, 1.0)',
                         },
                         textDecoration: 'none',
-                        color: 'black',
-                        opacity: '0.5',
-                        borderLeft: '1px solid #000',
-                        pl: '1rem',
+                        color: active
+                          ? 'var(--wp--preset--color--primary)'
+                          : 'rgba(0, 0, 0, 0.6)',
+                        borderLeft: active
+                          ? '1px solid var(--wp--preset--color--primary)'
+                          : '1px solid rgba(0, 0, 0, 0.2)',
+                        px: '1rem',
                         py: '0.2rem',
+                        display: 'flex',
+                        flex: '1',
                         fontSize: '1rem',
+                        transition: '0.2s ease',
                       }}
                       href={child.path ?? ''}>
                       {child.label ?? ''}
