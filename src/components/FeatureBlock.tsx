@@ -164,7 +164,7 @@ export function FeatureBlock({
           // pb: 2.5,
           bgcolor: 'var(--wp--preset--color--contrast)',
           color: 'white',
-          '@media screen and (max-width: 600px)': { width: '100%' },
+          '@media screen and (max-width: 700px)': { width: '100%' },
         }}>
         <Typography sx={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
           {codeSnippetTitle}
@@ -179,17 +179,19 @@ export function FeatureBlock({
         sx={{
           width: '50%',
           height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
           borderRadius: '4px',
           my: 1,
           ml: 2,
           p: 2,
           // border: '1px solid',
           // borderColor: 'var(--wp--preset--color--contrast)',
-          '@media screen and (max-width: 600px)': { width: '100%', ml: 0 },
+          '@media screen and (max-width: 700px)': { display: 'none', ml: 0 },
         }}>
         {/* <Typography sx={{ pb: 1 }}>{codeResultTitle}</Typography> */}
         {isImage ? (
-          <Image src={codeResult} alt="" style={{ width: '100%' }} />
+          <Image src={codeResult} alt="" />
         ) : (
           <Typography variant="body1">{codeResult}</Typography>
         )}
