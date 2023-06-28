@@ -13,3 +13,15 @@
     overflow-x: auto !important;
   }
 }
+
+:not(.wp-block-code) > p > code {
+    background-color: var(--wp--preset--color--contrast);
+    color: var(--wp--preset--color--base);
+    font-size: var(--wp--preset--font-size--small);
+	font-family: var(--wp--preset--font-family--monospace);
+    padding: 5px 8px;
+	overflow-wrap: normal;
+	overflow-x: scroll;
+	tab-size: 4;
+	white-space: pre !important;
+}
