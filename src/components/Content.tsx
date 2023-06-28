@@ -34,8 +34,9 @@ export function Content() {
         <FeatureBlock
           codeSnippetTitle="Plugin System"
           codeSnippet="Harness a plugin ecosystem that allows folks to build flexibly to meet their goals."
-          isImage={false}
-          codeResult="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
+          isImage
+          // eslint-disable-next-line global-require, import/no-absolute-path
+          codeResult={require('/public/images/PluginSystemCache.png')}
           altSide={false}
           altBlockColor=""
         />
