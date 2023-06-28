@@ -35,8 +35,7 @@ export function Content() {
           codeSnippetTitle="Plugin System"
           codeSnippet="Harness a plugin ecosystem that allows folks to build flexibly to meet their goals."
           isImage
-          // eslint-disable-next-line global-require, import/no-absolute-path
-          codeResult={require('/public/images/PluginSystemCache.png')}
+          codeResult={'/images/PluginSystemCache.png'}
           altSide={false}
           altBlockColor=""
         />
