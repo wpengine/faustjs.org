@@ -58,8 +58,8 @@ export function FeatureBlock({
       {/* Code Result */}
       <Box
         sx={{
-          width: '50%',
           display: 'flex',
+          width: '50%',
           order: 2,
           alignItems: 'center',
           borderRadius: '4px',
@@ -73,7 +73,11 @@ export function FeatureBlock({
           },
         }}>
         {isImage ? (
-          <Image src={codeResult} alt="" />
+          <Image
+            src={codeResult}
+            alt=""
+            style={{ height: 'auto', maxWidth: '100%' }}
+          />
         ) : (
           <Typography variant="body1">{codeResult}</Typography>
         )}
