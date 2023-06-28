@@ -98,7 +98,7 @@ module.exports = withFaust({
       },
       {
         source: '/docs/reference/WordPressBlocksProvider',
-        destination: '/reference/wordpressblocksprovider/',
+        destination: '/reference/wordpressblocksprovider',
         permanent: true,
       },
       {
@@ -108,12 +108,12 @@ module.exports = withFaust({
       },
       {
         source: '/docs/plugin-system/creating-a-plugin',
-        destination: '/guide/how-to-create-a-plugin/',
+        destination: '/guide/how-to-create-a-plugin',
         permanent: true,
       },
       {
         source: '/docs/reference/getSitemapProps',
-        destination: '/reference/getsitemapprops/',
+        destination: '/reference/getsitemapprops',
         permanent: true,
       },
       {
