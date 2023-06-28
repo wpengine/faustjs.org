@@ -45,7 +45,7 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
 
       <Main>
         <Container sx={{ mt: 4 }}>
-        <SidebarLayout
+          <SidebarLayout
             menuItems={
               docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
             }>

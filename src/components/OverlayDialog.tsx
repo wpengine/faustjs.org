@@ -30,25 +30,23 @@ export function OverlayDialog(props: OverlayDialogProps) {
   };
 
   return (
-    <div>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}>
-        <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close">
-              <CloseIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        {children}
-      </Dialog>
-    </div>
+    <Dialog
+      fullScreen
+      open={open}
+      onClose={handleClose}
+      TransitionComponent={Transition}>
+      <AppBar sx={{ position: 'relative' }}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={handleClose}
+            aria-label="close">
+            <CloseIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      {children}
+    </Dialog>
   );
 }
