@@ -40,15 +40,6 @@ export function Content() {
           altSide={false}
           altBlockColor=""
         />
-
-        <FeatureBlock
-          codeSnippetTitle="WP Templates"
-          codeSnippet="Closely implement the behavior of the WordPress Template Hierarchy via a Javascript/GraphQL frontend configuration."
-          isImage={false}
-          codeResult="Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatum, temporibus dicta non illo iure! Expedita dolor nesciuntiure iste quibusdam deleniti, consectetur commodi, sit corrupti debitis, quaerat dolorem officia."
-          altSide={false}
-          altBlockColor=""
-        />
       </Grid>
     </Grid>
   );
