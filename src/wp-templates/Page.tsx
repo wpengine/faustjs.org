@@ -1,10 +1,9 @@
 import React from 'react';
 import { FaustTemplate } from '@faustwp/core';
-import Head from 'next/head';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPageQuery } from '__generated__/graphql';
-import { Header, Footer, EntryHeader, Main } from 'components';
+import { Head, Header, Footer, EntryHeader, Main } from 'components';
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
   const { data, loading } = props;
@@ -29,9 +28,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
 
   return (
     <>
-      <Head>
-        <title>{`${title} - ${siteTitle}`}</title>
-      </Head>
+      <Head title={`${title} - ${siteTitle}`} />
 
       <Header
         siteTitle={siteTitle}

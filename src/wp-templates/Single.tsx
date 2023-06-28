@@ -1,10 +1,10 @@
 import React from 'react';
 import { FaustTemplate } from '@faustwp/core';
-import Head from 'next/head';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPostQuery } from '__generated__/graphql';
 import {
+  Head,
   Header,
   Footer,
   EntryHeader,
@@ -36,9 +36,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
 
   return (
     <>
-      <Head>
-        <title>{`${title} - ${siteTitle}`}</title>
-      </Head>
+      <Head title={`${title} - ${siteTitle}`} />
 
       <Header
         siteTitle={siteTitle}

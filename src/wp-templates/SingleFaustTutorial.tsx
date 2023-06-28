@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
@@ -7,7 +6,14 @@ import {
   DocsSidebarMenuItemsFragmentFragment,
   GetTutorialQuery,
 } from '__generated__/graphql';
-import { Header, Footer, EntryHeader, DocsSidebar, Main } from 'components';
+import {
+  Head,
+  Header,
+  Footer,
+  EntryHeader,
+  DocsSidebar,
+  Main,
+} from 'components';
 
 const Component: FaustTemplate<GetTutorialQuery> = (props) => {
   const { loading, data } = props;
@@ -33,9 +39,7 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
 
   return (
     <>
-      <Head>
-        <title>{`${title} - ${siteTitle}`}</title>
-      </Head>
+      <Head title={`${title} - ${siteTitle}`} />
 
       <Header
         siteTitle={siteTitle}
