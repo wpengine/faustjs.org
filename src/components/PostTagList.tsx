@@ -20,7 +20,9 @@ export function PostTagList({ tags }: PostTagListProps) {
     return null;
   }
 
-  const tagChips = tags.map((tag) => <Chip label={tag.node.name} />);
+  const tagChips = tags.map((tag) => (
+    <Chip key={tag.node.uri} label={tag.node.name} />
+  ));
 
   return (
     <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
