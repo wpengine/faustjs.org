@@ -183,6 +183,11 @@ module.exports = withFaust({
         destination: '/guide/how-to-customize-the-toolbar',
         permanent: true,
       },
+      {
+        source: '/blog/:slug*',
+        destination: '/:slug*',
+        permanent: true,
+      },
     ];
   },
 });
