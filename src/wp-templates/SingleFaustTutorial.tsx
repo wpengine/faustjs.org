@@ -7,7 +7,7 @@ import {
   DocsSidebarMenuItemsFragmentFragment,
   GetTutorialQuery,
 } from '__generated__/graphql';
-import { Header, Footer, EntryHeader, DocsSidebar, Main } from 'components';
+import { Header, Footer, EntryHeader, SidebarLayout, Main } from 'components';
 
 const Component: FaustTemplate<GetTutorialQuery> = (props) => {
   const { loading, data } = props;
@@ -45,25 +45,16 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
 
       <Main>
         <Container sx={{ mt: 4 }}>
-          <Grid
-            container
-            spacing={2}
-            sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Grid item xs={12} md={4}>
-              <DocsSidebar
-                menuItems={
-                  docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
-                }
-              />
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <EntryHeader title={title} />
-              <div
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-            </Grid>
-          </Grid>
+        <SidebarLayout
+            menuItems={
+              docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
+            }>
+            <EntryHeader title={title} />
+            <div
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          </SidebarLayout>
         </Container>
       </Main>
 
