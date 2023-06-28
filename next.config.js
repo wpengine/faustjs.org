@@ -118,7 +118,7 @@ module.exports = withFaust({
       },
       {
         source: '/docs/plugin-system/filters',
-        destination: 'reference/faust-plugin-system-filters',
+        destination: '/reference/faust-plugin-system-filters',
         permanent: true,
       },
       {
