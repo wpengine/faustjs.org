@@ -6,8 +6,6 @@ export function FeatureBlock({
   codeSnippet,
   isImage,
   codeResult,
-  altSide,
-  altBlockColor,
 }: {
   codeSnippetTitle: string;
   codeSnippet: string;
@@ -72,6 +70,7 @@ export function FeatureBlock({
           },
         }}>
         {isImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={codeResult}
             alt=""
