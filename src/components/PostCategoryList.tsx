@@ -21,7 +21,7 @@ export function PostCategoryList({ categories }: PostCategoryListProps) {
   }
 
   const categoryChips = categories.map((category) => (
-    <Chip key={category.node.name} label={category.node.name} />
+    <Chip key={category.node.uri} label={category.node.name} />
   ));
 
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
@@ -7,7 +6,14 @@ import {
   DocsSidebarMenuItemsFragmentFragment,
   GetExplanationQuery,
 } from '__generated__/graphql';
-import { Header, Footer, EntryHeader, SidebarLayout, Main } from 'components';
+import {
+  Head,
+  Header,
+  Footer,
+  EntryHeader,
+  SidebarLayout,
+  Main,
+} from 'components';
 
 const Component: FaustTemplate<GetExplanationQuery> = (props) => {
   const { loading, data } = props;
@@ -28,14 +34,12 @@ const Component: FaustTemplate<GetExplanationQuery> = (props) => {
     docsSidebarMenuItems,
     explanation,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { title, content } = explanation;
 
   return (
     <>
-      <Head>
-        <title>{`${title} - ${siteTitle}`}</title>
-      </Head>
+      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
 
       <Header
         siteTitle={siteTitle}

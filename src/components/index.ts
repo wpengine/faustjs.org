@@ -1,4 +1,5 @@
 export { Header } from './Header';
+export { Head } from './Head';
 export { Footer } from './Footer';
 export { EntryHeader } from './EntryHeader';
 export { FeaturedImage } from './FeaturedImage';

@@ -21,7 +21,7 @@ export function PostTagList({ tags }: PostTagListProps) {
   }
 
   const tagChips = tags.map((tag) => (
-    <Chip key={tag.node.name} label={tag.node.name} />
+    <Chip key={tag.node.uri} label={tag.node.name} />
   ));
 
   return (

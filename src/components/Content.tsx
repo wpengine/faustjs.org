@@ -15,7 +15,6 @@ export function Content() {
           codeSnippetTitle="Faust Toolbar"
           codeSnippet="A familiar publisher experience, providing a cohesive experience with wp-admin.\n\nEasily extensible with built in filters, empowering developers to customize for different use cases."
           isImage
-          // eslint-disable-next-line global-require, import/no-absolute-path
           codeResult="/images/ToolbarImage.png"
           altSide={false}
           altBlockColor=""
@@ -25,7 +24,6 @@ export function Content() {
           codeSnippetTitle="Gutenberg Block Editor"
           codeSnippet="Regain a drag-and-drop WYSIWYG editing experience in a headless WordPress environment.\n\nFaust's blocks package provides the tools needed to match or extend the UI for Gutenberg’s block editing experience in headless."
           isImage
-          // eslint-disable-next-line global-require, import/no-absolute-path
           codeResult="/images/GutenbergBlocks.png"
           altSide={false}
           altBlockColor=""

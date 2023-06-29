@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Footer, Header, Main } from 'components';
 import { Posts } from 'components/Posts';
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
 import { GetPostsPageQuery } from '__generated__/graphql';
 import { Grid, Typography, Container } from '@mui/material';
+import { Head, Header, Footer, Main } from 'components';
 
 const Page: FaustPage<GetPostsPageQuery> = (props) => {
   const { data, loading } = useQuery(Page.query);
@@ -23,10 +23,12 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
     footer4MenuItems,
     posts,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
 
   return (
     <>
+      <Head title={siteTitle} description={siteDescription} />
+
       <Header
         siteTitle={siteTitle}
         primaryMenuItems={primaryMenuItems.nodes}
@@ -68,7 +70,7 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
 Page.query = gql(`
   query GetPostsPage {
     posts(first: 100) {
-      nodes {        
+      nodes {
         ...PostsItemFragment
       }
       pageInfo {

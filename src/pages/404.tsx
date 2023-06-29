@@ -1,17 +1,24 @@
 import React from 'react';
 import { FaustTemplate, getNextStaticProps } from '@faustwp/core';
-import Head from 'next/head';
-import { gql } from '__generated__';
-import { Get404PageQuery } from '__generated__/graphql';
-import { Header, EntryHeader, Footer, Link, Container, Main } from 'components';
-import { GetStaticPropsContext } from 'next';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { GetStaticPropsContext } from 'next';
 import {
   Container as MUIContainer,
   Box,
   CircularProgress,
 } from '@mui/material';
+import { gql } from '__generated__';
+import { Get404PageQuery } from '__generated__/graphql';
+import {
+  Head,
+  Header,
+  EntryHeader,
+  Footer,
+  Link,
+  Container,
+  Main,
+} from 'components';
 
 const SEARCH_RESULTS_QUERY = gql(`
   query SEARCH_RESULTS($searchTerm: String!) {
@@ -39,7 +46,7 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
     footer3MenuItems,
     footer4MenuItems,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const router = useRouter();
   const { data: searchResultsData, loading } = useQuery(SEARCH_RESULTS_QUERY, {
     variables: {
@@ -51,9 +58,10 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
 
   return (
     <>
-      <Head>
-        <title>{`404 Not Found - ${siteTitle}`}</title>
-      </Head>
+      <Head
+        title={`404 Not Found - ${siteTitle}`}
+        description={siteDescription}
+      />
 
       <Header
         siteTitle={siteTitle}
