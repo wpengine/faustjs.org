@@ -1,14 +1,11 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import Image from 'next/image';
 
 export function FeatureBlock({
   codeSnippetTitle,
   codeSnippet,
   isImage,
   codeResult,
-  altSide,
-  altBlockColor,
 }: {
   codeSnippetTitle: string;
   codeSnippet: string;
@@ -73,7 +70,8 @@ export function FeatureBlock({
           },
         }}>
         {isImage ? (
-          <Image
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={codeResult}
             alt=""
             style={{ height: 'auto', maxWidth: '100%' }}

@@ -17,3 +17,10 @@
 // Block support.
 @import 'blocks';
 @import 'wp-block-code';
+
+// Block Customizations.
+p.has-background {
+  border-radius: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}

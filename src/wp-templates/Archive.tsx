@@ -1,9 +1,8 @@
 import React from 'react';
 import { FaustTemplate } from '@faustwp/core';
-import Head from 'next/head';
 import { gql } from '__generated__';
 import { GetArchiveQuery } from '__generated__/graphql';
-import { Header, EntryHeader, Footer, Link } from 'components';
+import { Head, Header, EntryHeader, Footer, Link } from 'components';
 
 const Component: FaustTemplate<GetArchiveQuery> = (props) => {
   const { data } = props;
@@ -17,7 +16,7 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
     footer4MenuItems,
     nodeByUri,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { archiveType } = nodeByUri;
 
   if (archiveType !== 'Category' && archiveType !== 'Tag') {
@@ -28,9 +27,10 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
 
   return (
     <>
-      <Head>
-        <title>{`${archiveType}: ${name} - ${siteTitle}`}</title>
-      </Head>
+      <Head
+        title={`${archiveType}: ${name} - ${siteTitle}`}
+        description={siteDescription}
+      />
 
       <Header
         siteTitle={siteTitle}

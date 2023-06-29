@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+import { Box } from '@mui/material';
 import { gql } from '@apollo/client';
 import Image from 'next/image';
 
-import styles from 'styles/components/FeaturedImage.module.scss';
-
 type FeaturedImageProps = {
-  className?: any;
   image: any;
-  width?: any;
-  height?: any;
-  priority?: boolean;
 };
 
 /**
@@ -22,36 +17,32 @@ type FeaturedImageProps = {
  * @return {React.ReactElement} The FeaturedImage component.
  */
 export function FeaturedImage({
-  className,
   image,
-  width,
-  height,
-  priority,
-  ...props
-}: FeaturedImageProps) {
+  children,
+}: PropsWithChildren<FeaturedImageProps>): React.ReactElement {
   let src;
   if (image?.sourceUrl instanceof Function) {
     src = image?.sourceUrl();
   } else {
     src = image?.sourceUrl;
   }
-  const { altText } = image || '';
 
-  const imageWidth = width || image?.mediaDetails?.width;
-  const imageHeight = height || image?.mediaDetails?.height;
-
-  return src && width && height ? (
-    <figure className={[styles['featured-image'], className].join(' ')}>
-      <Image
-        src={src}
-        width={imageWidth}
-        height={imageHeight}
-        alt={altText}
-        objectFit="cover"
-        layout="responsive"
-        {...props}
-      />
-    </figure>
+  return src ? (
+    <Box
+      sx={{
+        backgroundColor: 'var(--wp--preset--color--base)',
+        backgroundImage: `url(${src})`,
+        width: '100vw',
+        maxWidth: '100%',
+        minHeight: '75vh',
+        '> img': {
+          display: 'block',
+          height: 'auto',
+          maxWidth: '100%',
+        },
+      }}>
+      {children}
+    </Box>
   ) : null;
 }
 
