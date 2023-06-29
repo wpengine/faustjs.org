@@ -9,6 +9,23 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_KEY}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GOOGLE_ANALYTICS_KEY}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -25,6 +42,10 @@ export default class MyDocument extends Document {
             type="image/png"
             sizes="16x16"
             href="/images/favicon-16x16.png"
+          />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
           />
           <link rel="manifest" href="/images/site.webmanifest" />
         </Head>
