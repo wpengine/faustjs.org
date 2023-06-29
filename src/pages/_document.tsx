@@ -14,8 +14,8 @@ export default class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_KEY}`}
           />
-          <script
-            dangerouslySetInnerHTML={{
+          {/* eslint-disable-next-line react/no-danger, prettier/prettier  */}
+          <script dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
