@@ -24,15 +24,11 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
-  const { title, content, featuredImage } = page;
+  const { title, content } = page;
 
   return (
     <>
-      <Head
-        title={`${title} - ${siteTitle}`}
-        description={siteDescription}
-        imageUrl={featuredImage?.node?.sourceUrl}
-      />
+      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
 
       <Header
         siteTitle={siteTitle}
@@ -47,7 +43,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
             spacing={2}
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12}>
-              <EntryHeader title={title} image={featuredImage?.node} />
+              <EntryHeader title={title} />
               <div
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: content }}
