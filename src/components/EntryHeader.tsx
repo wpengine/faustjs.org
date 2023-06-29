@@ -1,6 +1,5 @@
 import React from 'react';
 import className from 'classnames/bind';
-import { Container } from '@mui/material';
 import { FeaturedImage } from 'components';
 import { getMdyFormattedDate } from 'utility/utilities';
 import styles from 'styles/components/EntryHeader.module.scss';
