@@ -34,12 +34,12 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
     footer4MenuItems,
     tutorial,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { title, content } = tutorial;
 
   return (
     <>
-      <Head title={`${title} - ${siteTitle}`} />
+      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
 
       <Header
         siteTitle={siteTitle}

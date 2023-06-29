@@ -31,7 +31,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     footer3MenuItems,
     footer4MenuItems,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { title, content, date, author, featuredImage, tags, categories } =
     post;
 
@@ -39,6 +39,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     <>
       <Head
         title={`${title} - ${siteTitle}`}
+        description={siteDescription}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
 

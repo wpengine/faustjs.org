@@ -16,11 +16,11 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
     footer3MenuItems,
     footer4MenuItems,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
 
   return (
     <>
-      <Head title={siteTitle} />
+      <Head title={siteTitle} description={siteDescription} />
 
       <Container maxWidth={false}>
         <Header

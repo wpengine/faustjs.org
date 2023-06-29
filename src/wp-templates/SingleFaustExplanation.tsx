@@ -34,12 +34,12 @@ const Component: FaustTemplate<GetExplanationQuery> = (props) => {
     docsSidebarMenuItems,
     explanation,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { title, content } = explanation;
 
   return (
     <>
-      <Head title={`${title} - ${siteTitle}`} />
+      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
 
       <Header
         siteTitle={siteTitle}

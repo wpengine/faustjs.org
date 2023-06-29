@@ -46,7 +46,7 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
     footer3MenuItems,
     footer4MenuItems,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const router = useRouter();
   const { data: searchResultsData, loading } = useQuery(SEARCH_RESULTS_QUERY, {
     variables: {
@@ -58,7 +58,10 @@ export const Page: FaustTemplate<Get404PageQuery> = ({ data }) => {
 
   return (
     <>
-      <Head title={`404 Not Found - ${siteTitle}`} />
+      <Head
+        title={`404 Not Found - ${siteTitle}`}
+        description={siteDescription}
+      />
 
       <Header
         siteTitle={siteTitle}

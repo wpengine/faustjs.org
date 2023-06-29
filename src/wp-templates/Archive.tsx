@@ -16,7 +16,7 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
     footer4MenuItems,
     nodeByUri,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { archiveType } = nodeByUri;
 
   if (archiveType !== 'Category' && archiveType !== 'Tag') {
@@ -27,7 +27,10 @@ const Component: FaustTemplate<GetArchiveQuery> = (props) => {
 
   return (
     <>
-      <Head title={`${archiveType}: ${name} - ${siteTitle}`} />
+      <Head
+        title={`${archiveType}: ${name} - ${siteTitle}`}
+        description={siteDescription}
+      />
 
       <Header
         siteTitle={siteTitle}

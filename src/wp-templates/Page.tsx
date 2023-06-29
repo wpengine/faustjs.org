@@ -23,13 +23,14 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     footer3MenuItems,
     footer4MenuItems,
   } = data;
-  const { title: siteTitle } = generalSettings;
+  const { title: siteTitle, description: siteDescription } = generalSettings;
   const { title, content, featuredImage } = page;
 
   return (
     <>
       <Head
         title={`${title} - ${siteTitle}`}
+        description={siteDescription}
         imageUrl={featuredImage?.node?.sourceUrl}
       />
 
