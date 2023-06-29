@@ -23,8 +23,6 @@ export function EntryHeader({ title, image, date, author }: EntryHeaderProps) {
           By {author} on <time>{getMdyFormattedDate(date)}</time>
         </div>
       )}
-
-      {image && <FeaturedImage image={image} />}
     </div>
   );
 }
