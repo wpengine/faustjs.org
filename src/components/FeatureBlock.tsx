@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import Image from 'next/image';
 
 export function FeatureBlock({
   codeSnippetTitle,
@@ -73,7 +72,7 @@ export function FeatureBlock({
           },
         }}>
         {isImage ? (
-          <Image
+          <img
             src={codeResult}
             alt=""
             style={{ height: 'auto', maxWidth: '100%' }}
