@@ -25,17 +25,7 @@ export function EntryHeader({ title, image, date, author }: EntryHeaderProps) {
         </div>
       )}
 
-      {image && (
-        <div className={cx('image')}>
-          <Container>
-            <FeaturedImage
-              className={cx('featured-image')}
-              image={image}
-              priority
-            />
-          </Container>
-        </div>
-      )}
+      {image && <FeaturedImage image={image} />}
     </div>
   );
 }
