@@ -14,6 +14,26 @@ module.exports = withFaust({
   async redirects() {
     return [
       {
+        source: '/docs/next/guides/fetching-data',
+        destination: '/guide/how-to-use-apollo-in-faust',
+        permanent: true,
+      },
+      {
+        source: '/docs/next/guides/auth',
+        destination: '/guide/how-to-handle-authentication',
+        permanent: true,
+      },
+      {
+        source: '/docs/tutorial/dev-env-setup',
+        destination: '/guide/how-to-use-the-faust-example-project',
+        permanent: true,
+      },
+      {
+        source: '/docs/next/getting-started',
+        destination: '/tutorial/get-started-with-faust',
+        permanent: true,
+      },
+      {
         source: '/docs/reference/useBlocksTheme',
         destination: '/reference/useblockstheme',
         permanent: true,
