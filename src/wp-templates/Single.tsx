@@ -60,6 +60,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
                 title={title}
                 date={date}
                 author={author.node.name}
+                image={featuredImage.node}
               />
               <div
                 // eslint-disable-next-line react/no-danger

@@ -47,7 +47,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
             spacing={2}
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12}>
-              <EntryHeader title={title} />
+              <EntryHeader title={title} image={featuredImage?.node} />
               <div
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: content }}
