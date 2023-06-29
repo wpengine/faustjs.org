@@ -12,19 +12,52 @@ module.exports = withFaust({
     ],
   },
   async redirects() {
-    /**
-     * Still needed:
-     * * useBlocksTheme
-     * * getWordPressProps
-     * * Faust WP Plugin Filters
-     * * How to Query blocks
-     * * Creating a custom block
-     * * Debugging Guide
-     * * Plugins Guide
-     * * Custom Post Types Guide
-     * * TypeScript Guide
-     */
     return [
+      {
+        source: '/docs/reference/useBlocksTheme',
+        destination: '/reference/useblockstheme',
+        permanent: true,
+      },
+      {
+        source: '/docs/reference/getWordPressProps',
+        destination: '/reference/getwordpressprops',
+        permanent: true,
+      },
+      {
+        source: '/docs/faustwp/filters',
+        destination: '/reference/faust-wordpress-plugin-filters',
+        permanent: true,
+      },
+      {
+        source: '/docs/gutenberg/how-to-query-blocks',
+        destination: '/guide/how-to-query-blocks',
+        permanent: true,
+      },
+      {
+        source: '/docs/gutenberg/tutorial/create-a-custom-block',
+        destination: '/guide/creating-a-custom-block',
+        permanent: true,
+      },
+      {
+        source: '/docs/debugging',
+        destination: '/reference/debugging',
+        permanent: true,
+      },
+      {
+        source: '/docs/guides/plugins',
+        destination: '/reference/configuring-a-faust-plugin',
+        permanent: true,
+      },
+      {
+        source: '/docs/guides/custom-post-types',
+        destination: '/guide/setting-up-custom-post-types-cpts-in-faust',
+        permanent: true,
+      },
+      {
+        source: '/docs/guides/typescript',
+        destination: '/guide/how-to-implement-typescript',
+        permanent: true,
+      },
       {
         source: '/docs/getting-started',
         destination: '/tutorial/get-started-with-faust',
