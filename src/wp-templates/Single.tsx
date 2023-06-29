@@ -32,11 +32,15 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle } = generalSettings;
-  const { title, content, date, author, tags, categories } = post;
+  const { title, content, date, author, featuredImage, tags, categories } =
+    post;
 
   return (
     <>
-      <Head title={`${title} - ${siteTitle}`} />
+      <Head
+        title={`${title} - ${siteTitle}`}
+        imageUrl={featuredImage?.node?.sourceUrl}
+      />
 
       <Header
         siteTitle={siteTitle}
