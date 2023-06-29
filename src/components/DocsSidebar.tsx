@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { flatListToHierarchical } from '@faustwp/core';
-import { Typography, ListItem, List } from '@mui/material';
+import { Typography, ListItem, List, Box } from '@mui/material';
 import { DocsSidebarMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '../__generated__';
 import { Link } from './Link';
@@ -66,7 +66,16 @@ export function DocsSidebar(props: DocsSidebarProps) {
     });
   }
 
-  return <aside>{renderMenu(hierarchicalMenuItems)}</aside>;
+  return (
+    <Box
+      component="aside"
+      sx={{
+        flexShrink: { sm: 0 },
+      }}
+      aria-label="sidebar">
+      {renderMenu(hierarchicalMenuItems)}
+    </Box>
+  );
 }
 
 DocsSidebar.fragments = {

@@ -26,6 +26,10 @@ export default class MyDocument extends Document {
             sizes="16x16"
             href="/images/favicon-16x16.png"
           />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
           <link rel="manifest" href="/images/site.webmanifest" />
         </Head>
         <body>
