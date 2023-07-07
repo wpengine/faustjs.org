@@ -2,8 +2,8 @@ import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from 'utility/createEmotionCache';
+import { GA_TRACKING_ID } from 'utility/gtag';
 import { FaustAppProps } from './_app';
-import { GA_TRACKING_ID } from 'utility/gtag.js';
 
 export default class MyDocument extends Document {
   render() {

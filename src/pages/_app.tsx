@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import createEmotionCache from 'utility/createEmotionCache';
-import * as gtag from 'utility/gtag.js';
+import * as gtag from 'utility/gtag';
 import lightTheme from 'styles/theme/lightTheme';
 import 'WordPressGlobalStylesheet';
 import '@faustwp/core/dist/css/toolbar.css';
