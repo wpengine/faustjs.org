@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Image from 'next/image';
 import {
   HeaderGeneralSettingsFragmentFragment,
@@ -131,6 +132,14 @@ export function TopHeaderAppBar({
                   },
                 }}>
                 {item.label}
+                {item.uri.slice(0, 6) === 'https:' && (
+                  <OpenInNewIcon
+                    sx={{
+                      fontSize: '0.8rem',
+                      color: 'var(--wp--preset--color--contrast)',
+                    }}
+                  />
+                )}
               </Link>
             ))}
           </Box>
