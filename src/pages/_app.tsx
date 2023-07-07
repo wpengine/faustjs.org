@@ -1,11 +1,12 @@
 import 'faust.config';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaustProvider } from '@faustwp/core';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import createEmotionCache from 'utility/createEmotionCache';
+import * as gtag from 'utility/gtag.js';
 import lightTheme from 'styles/theme/lightTheme';
 import 'WordPressGlobalStylesheet';
 import '@faustwp/core/dist/css/toolbar.css';
@@ -21,6 +22,16 @@ export default function MyApp({
   emotionCache = clientSideEmotionCache,
 }: FaustAppProps) {
   const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: any) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <FaustProvider pageProps={pageProps}>
