@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "predev": "npm run generate",
     "prebuild": "npm run generate && npm run codegen",
     "prestart": "npm run generate && npm run codegen",
     "dev": "concurrently \"faust dev\" \"npm run codegen-watch\"",
