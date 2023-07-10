@@ -132,7 +132,8 @@ export function TopHeaderAppBar({
                   },
                 }}>
                 {item.label}
-                {item.uri.slice(0, 6) === 'https:' && (
+                {(item.uri.slice(0, 6) === 'https:' ||
+                  item.uri.slice(0, 5) === 'http:') && (
                   <OpenInNewIcon
                     sx={{
                       fontSize: '0.8rem',
