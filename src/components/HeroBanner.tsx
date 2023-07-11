@@ -17,7 +17,7 @@ export function HeroBanner() {
 
       <Grid item xs={12}>
         <Typography variant="h3" sx={{ textAlign: 'center' }}>
-          Faust.js
+          Faust.js™
         </Typography>
       </Grid>
 
