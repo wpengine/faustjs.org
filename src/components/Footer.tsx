@@ -8,7 +8,6 @@ import {
   ListItem,
   Stack,
 } from '@mui/material';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { FooterMenuItemsFragmentFragment } from '__generated__/graphql';
 import { gql } from '__generated__';
 import { Link } from './Link';
@@ -19,6 +18,7 @@ type FooterProps = {
   footer3MenuItems: FooterMenuItemsFragmentFragment[] | any;
   footer4MenuItems: FooterMenuItemsFragmentFragment[] | any;
 };
+
 export function Footer({
   footer1MenuItems,
   footer2MenuItems,
@@ -58,15 +58,6 @@ export function Footer({
                     },
                   }}>
                   {item.label}
-                  {(item.uri.slice(0, 6) === 'https:' ||
-                    item.uri.slice(0, 5) === 'http:') && (
-                    <OpenInNewIcon
-                      sx={{
-                        fontSize: '0.8rem',
-                        color: 'var(--wp--preset--color--base)',
-                      }}
-                    />
-                  )}
                 </Link>
               </ListItem>
             ))}

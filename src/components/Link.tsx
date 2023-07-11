@@ -1,7 +1,37 @@
 import React from 'react';
-import { LinkProps, Link as MuiLink } from '@mui/material';
+import { Box, LinkProps, Link as MuiLink } from '@mui/material';
 import NextLink from 'next/link';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+
+function isExternalURL(urlInput: string | URL) {
+  try {
+    const url = new URL(urlInput);
+    if (url.origin !== 'https://faustjs.org') {
+      return true;
+    }
+    return false;
+  } catch (_) {
+    return false;
+  }
+}
 
 export function Link(props: LinkProps<'a'>) {
-  return <MuiLink component={NextLink} {...props} />;
+  const { children } = props;
+  const { href } = props;
+  return (
+    <MuiLink component={NextLink} {...props}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        {children}
+        {isExternalURL(href) && (
+          <OpenInNewIcon
+            sx={{
+              fontSize: '1rem',
+              color: 'inherit',
+              marginLeft: '0.2rem',
+            }}
+          />
+        )}
+      </Box>
+    </MuiLink>
+  );
 }
