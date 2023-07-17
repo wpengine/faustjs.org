@@ -14,6 +14,7 @@ import {
   SidebarLayout,
   Main,
 } from 'components';
+import { buildTableOfContents } from '../utility/buildTableOfContents';
 
 const Component: FaustTemplate<GetTutorialQuery> = (props) => {
   const { loading, data } = props;
@@ -52,7 +53,8 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
           <SidebarLayout
             menuItems={
               docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
-            }>
+            }
+            tableOfContents={buildTableOfContents(content)}>
             <EntryHeader title={title} />
             <div
               // eslint-disable-next-line react/no-danger
