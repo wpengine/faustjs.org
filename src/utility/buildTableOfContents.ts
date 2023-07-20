@@ -3,7 +3,7 @@ import { HeaderItem } from '../types';
 // headerRegex is for parsing the tag in the form <h[#] [any classes, ids, etc]> [Text] </h[#]>
 const headerRegex = /<(h[1-6]{1})[^>]*>(.*)<\/h[1-6]{1}>/g;
 // headerLinkRegex is for parsing the anchor from existing <a href> tags if included in header
-const headerLinkRegex = /#[\w-]*/g;
+const headerLinkRegex = /#[\w-]*">/g;
 // remove <code> tags in the title, and characters that didn't translate (example: &nbsp; )
 const codeRegex = /<\/*code>(&nbsp;)*/g;
 const unrenderedChar = /&.{4,5};/g;
@@ -14,7 +14,7 @@ function extractHeaders(content: string) {
   return arr;
 }
 
-export function buildTableOfContents(content: string) {
+export function buildTableOfContents(content: string, title?: string) {
   const returnDict: HeaderItem[] = [];
   const headers = extractHeaders(content);
 
@@ -33,7 +33,7 @@ export function buildTableOfContents(content: string) {
         .replace(codeRegex, ' ')
         .replace(unrenderedChar, '');
       id += headerTitle
-        .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, ' ') // replace punctuation
+        .replace(/[.,/#!$%^&*;:{}=\-_`~()?]/g, ' ') // replace punctuation
         .replace(/\s{2,}/g, ' ') // ensure spaces are only 1 character long
         .toLowerCase()
         .trim()
@@ -48,10 +48,17 @@ export function buildTableOfContents(content: string) {
 
       if (idValues[0] !== null) {
         id = `${idValues[0]}`;
+        id = id.substring(0, id.length - 2);
       }
     }
 
-    returnDict.push({ id, tagName, title: headerTitle });
+    if (title === 'Faust Plugin System Filters') {
+      if (tagName !== 'h3') {
+        returnDict.push({ id, tagName, title: headerTitle });
+      }
+    } else {
+      returnDict.push({ id, tagName, title: headerTitle });
+    }
   }
 
   return returnDict;
