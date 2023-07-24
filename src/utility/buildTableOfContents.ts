@@ -12,7 +12,7 @@ function extractHeaders(content: string) {
   return arr;
 }
 
-export function buildTableOfContents(content: string, title?: string) {
+export function buildTableOfContents(content: string) {
   const returnDict: HeaderItem[] = [];
   const headers = extractHeaders(content);
 
@@ -22,20 +22,15 @@ export function buildTableOfContents(content: string, title?: string) {
     const tagName = element[1];
     const id = `#${element[2]}`;
     const headerText = element[3];
-    let headerTitle;
+    let headerTitle = headerText;
 
-    console.log('extracted ID value:', id);
-
-    if (headerText.search('<a href') === -1) {
-      headerTitle = headerText
-        .replace(codeRegex, ' ')
-        .replace(unrenderedChar, '');
-    } else {
-      headerTitle = headerText
-        .substring(0, headerText.search('<a href'))
-        .replace(codeRegex, ' ')
-        .replace(unrenderedChar, '');
+    if (headerText.search('<a href') !== -1) {
+      headerTitle = headerText.substring(0, headerText.search('<a href'));
     }
+
+    headerTitle = headerTitle
+      .replace(codeRegex, ' ')
+      .replace(unrenderedChar, '');
 
     returnDict.push({ id, tagName, title: headerTitle });
   }

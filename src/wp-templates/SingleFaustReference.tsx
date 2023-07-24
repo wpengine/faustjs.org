@@ -54,7 +54,7 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
             menuItems={
               docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
             }
-            tableOfContents={buildTableOfContents(content, title)}>
+            tableOfContents={buildTableOfContents(content)}>
             <EntryHeader title={title} />
             <div
               // eslint-disable-next-line react/no-danger
