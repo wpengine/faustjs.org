@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
-import Image from 'next/image';
+import { Grid } from '@mui/material';
 import { HeroBanner } from './HeroBanner';
 import { FeatureBlock } from './FeatureBlock';
 
