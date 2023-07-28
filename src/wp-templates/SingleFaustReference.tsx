@@ -49,7 +49,11 @@ const Component: FaustTemplate<GetReferenceQuery> = (props) => {
       />
 
       <Main>
-        <Container sx={{ py: 4 }}>
+        <Container
+          sx={{
+            py: 4,
+          }}
+          maxWidth="xl">
           <SidebarLayout
             menuItems={
               docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
