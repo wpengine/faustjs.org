@@ -52,10 +52,8 @@ const Component: FaustTemplate<GetTutorialQuery> = (props) => {
         <Container
           sx={{
             mt: 4,
-            '@media screen and (min-width: 1200px)': {
-              maxWidth: '1400px',
-            },
-          }}>
+          }}
+          maxWidth="xl">
           <SidebarLayout
             menuItems={
               docsSidebarMenuItems.nodes as DocsSidebarMenuItemsFragmentFragment[]
