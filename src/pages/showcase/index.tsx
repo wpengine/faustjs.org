@@ -52,14 +52,12 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  {showcases.nodes.map((item) => (
+                  {showcases?.nodes?.map((item) => (
                     <p>Content</p>
                   ))}
                 </Box>
 
-                {showcases && showcases.nodes.length < 1 && (
-                  <p>No showcases found.</p>
-                )}
+                {showcases?.nodes?.length < 1 && <p>No showcases found.</p>}
               </Grid>
             </Grid>
           </Grid>
