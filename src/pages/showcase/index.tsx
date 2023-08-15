@@ -6,17 +6,8 @@ import { GetShowcasesPageQuery } from '__generated__/graphql';
 import { Grid, Typography, Container, Box } from '@mui/material';
 import { Head, Header, Footer, Main } from 'components';
 
-type Showcase = {
-  external_title: string;
-  external_url: string;
-  imageUrl: string;
-};
-
 const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
-  const { data, loading } = useQuery(Page.query);
-  if (loading) {
-    return <>Loading...</>;
-  }
+  const { data } = props;
 
   const {
     generalSettings,
@@ -26,8 +17,8 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
     footer2MenuItems,
     footer3MenuItems,
     footer4MenuItems,
-    showcaseItems,
-  } = data;
+    showcases,
+  } = data ?? {};
   const { title: siteTitle, description: siteDescription } = generalSettings;
 
   return (
@@ -61,14 +52,12 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  {showcaseItems &&
-                    showcaseItems?.length > 0 &&
-                    showcaseItems.map((item: Showcase, i: number) => (
-                      <p>Content</p>
-                    ))}
+                  {showcases.nodes.map((item) => (
+                    <p>Content</p>
+                  ))}
                 </Box>
 
-                {showcaseItems && showcaseItems?.length < 1 && (
+                {showcases && showcases.nodes.length < 1 && (
                   <p>No showcases found.</p>
                 )}
               </Grid>
