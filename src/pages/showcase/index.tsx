@@ -1,19 +1,18 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Posts } from 'components/Posts';
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
-import { GetPostsPageQuery } from '__generated__/graphql';
+import { GetShowcasesPageQuery } from '__generated__/graphql';
 import { Grid, Typography, Container, Box } from '@mui/material';
 import { Head, Header, Footer, Main } from 'components';
 
 type Showcase = {
-  title: string;
-  url: string;
+  external_title: string;
+  external_url: string;
   imageUrl: string;
 };
 
-const Page: FaustPage<GetPostsPageQuery> = (props) => {
+const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
   const { data, loading } = useQuery(Page.query);
   if (loading) {
     return <>Loading...</>;
@@ -89,10 +88,20 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
 };
 
 Page.query = gql(`
-  query GetPostsPage {
-    posts(first: 100) {
+  query GetShowcasesPage {
+    showcases(first: 100) {
       nodes {
-        ...PostsItemFragment
+        id
+        title
+        showcaseFields {
+          externalUrlTitle
+          externalUrl
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
       }
       pageInfo {
         hasNextPage
