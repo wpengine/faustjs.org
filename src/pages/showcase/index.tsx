@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import React from 'react';
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
