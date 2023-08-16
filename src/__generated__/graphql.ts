@@ -15,6 +15,24 @@ export type Scalars = {
   BlockAttributesObject: any;
 };
 
+/** A Field Group managed by ACF */
+export type AcfFieldGroup = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
+/** Fields associated with an ACF Field Group */
+export type AcfFieldGroupFields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -1392,6 +1410,8 @@ export enum ContentTypeEnum {
   FaustHowToGuide = 'FAUST_HOW_TO_GUIDE',
   /** The Type of Content object */
   FaustReference = 'FAUST_REFERENCE',
+  /** The Type of Content object */
+  FaustShowcase = 'FAUST_SHOWCASE',
   /** The Type of Content object */
   FaustTutorial = 'FAUST_TUTORIAL',
   /** The Type of Content object */
@@ -6652,6 +6672,35 @@ export type CreateReferencePayload = {
   reference?: Maybe<Reference>;
 };
 
+/** Input for the createShowcase mutation. */
+export type CreateShowcaseInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']>;
+};
+
+/** The payload for the createShowcase mutation. */
+export type CreateShowcasePayload = {
+  __typename?: 'CreateShowcasePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The Post object mutation type. */
+  showcase?: Maybe<Showcase>;
+};
+
 /** Input for the createTag mutation. */
 export type CreateTagInput = {
   /** The slug that the post_tag will be an alias of */
@@ -7022,6 +7071,29 @@ export type DeleteReferencePayload = {
   deletedId?: Maybe<Scalars['ID']>;
   /** The object before it was deleted */
   reference?: Maybe<Reference>;
+};
+
+/** Input for the deleteShowcase mutation. */
+export type DeleteShowcaseInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']>;
+  /** The ID of the showcase to delete */
+  id: Scalars['ID'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** The payload for the deleteShowcase mutation. */
+export type DeleteShowcasePayload = {
+  __typename?: 'DeleteShowcasePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']>;
+  /** The object before it was deleted */
+  showcase?: Maybe<Showcase>;
 };
 
 /** Input for the deleteTag mutation. */
@@ -7451,6 +7523,27 @@ export type FaustHowToGuideEditorBlock = {
 };
 
 export type FaustReferenceEditorBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
+};
+
+export type FaustShowcaseEditorBlock = {
   /** The API version of the Gutenberg Block */
   apiVersion?: Maybe<Scalars['Int']>;
   /** The name of the category the Block belongs to */
@@ -8731,7 +8824,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Category | Explanation | HowToGuide | Page | Post | Reference | Tag | Tutorial;
+export type MenuItemObjectUnion = Category | Explanation | HowToGuide | Page | Post | Reference | Showcase | Tag | Tutorial;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -8875,71 +8968,71 @@ export type MenuToMenuItemConnectionWhereArgs = {
 
 /** The MimeType of the object */
 export enum MimeTypeEnum {
-  /** MimeType application/msword */
+  /** application/msword mime type. */
   ApplicationMsword = 'APPLICATION_MSWORD',
-  /** MimeType application/pdf */
+  /** application/pdf mime type. */
   ApplicationPdf = 'APPLICATION_PDF',
-  /** MimeType application/vnd.apple.keynote */
+  /** application/vnd.apple.keynote mime type. */
   ApplicationVndAppleKeynote = 'APPLICATION_VND_APPLE_KEYNOTE',
-  /** MimeType application/vnd.ms-excel */
+  /** application/vnd.ms-excel mime type. */
   ApplicationVndMsExcel = 'APPLICATION_VND_MS_EXCEL',
-  /** MimeType application/vnd.ms-excel.sheet.binary.macroEnabled.12 */
+  /** application/vnd.ms-excel.sheet.binary.macroEnabled.12 mime type. */
   ApplicationVndMsExcelSheetBinaryMacroenabled_12 = 'APPLICATION_VND_MS_EXCEL_SHEET_BINARY_MACROENABLED_12',
-  /** MimeType application/vnd.ms-excel.sheet.macroEnabled.12 */
+  /** application/vnd.ms-excel.sheet.macroEnabled.12 mime type. */
   ApplicationVndMsExcelSheetMacroenabled_12 = 'APPLICATION_VND_MS_EXCEL_SHEET_MACROENABLED_12',
-  /** MimeType application/vnd.ms-powerpoint */
+  /** application/vnd.ms-powerpoint mime type. */
   ApplicationVndMsPowerpoint = 'APPLICATION_VND_MS_POWERPOINT',
-  /** MimeType application/vnd.ms-powerpoint.presentation.macroEnabled.12 */
+  /** application/vnd.ms-powerpoint.presentation.macroEnabled.12 mime type. */
   ApplicationVndMsPowerpointPresentationMacroenabled_12 = 'APPLICATION_VND_MS_POWERPOINT_PRESENTATION_MACROENABLED_12',
-  /** MimeType application/vnd.ms-powerpoint.slideshow.macroEnabled.12 */
+  /** application/vnd.ms-powerpoint.slideshow.macroEnabled.12 mime type. */
   ApplicationVndMsPowerpointSlideshowMacroenabled_12 = 'APPLICATION_VND_MS_POWERPOINT_SLIDESHOW_MACROENABLED_12',
-  /** MimeType application/vnd.ms-word.document.macroEnabled.12 */
+  /** application/vnd.ms-word.document.macroEnabled.12 mime type. */
   ApplicationVndMsWordDocumentMacroenabled_12 = 'APPLICATION_VND_MS_WORD_DOCUMENT_MACROENABLED_12',
-  /** MimeType application/vnd.oasis.opendocument.text */
+  /** application/vnd.oasis.opendocument.text mime type. */
   ApplicationVndOasisOpendocumentText = 'APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT',
-  /** MimeType application/vnd.openxmlformats-officedocument.presentationml.presentation */
+  /** application/vnd.openxmlformats-officedocument.presentationml.presentation mime type. */
   ApplicationVndOpenxmlformatsOfficedocumentPresentationmlPresentation = 'APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION',
-  /** MimeType application/vnd.openxmlformats-officedocument.presentationml.slideshow */
+  /** application/vnd.openxmlformats-officedocument.presentationml.slideshow mime type. */
   ApplicationVndOpenxmlformatsOfficedocumentPresentationmlSlideshow = 'APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_SLIDESHOW',
-  /** MimeType application/vnd.openxmlformats-officedocument.spreadsheetml.sheet */
+  /** application/vnd.openxmlformats-officedocument.spreadsheetml.sheet mime type. */
   ApplicationVndOpenxmlformatsOfficedocumentSpreadsheetmlSheet = 'APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET',
-  /** MimeType application/vnd.openxmlformats-officedocument.wordprocessingml.document */
+  /** application/vnd.openxmlformats-officedocument.wordprocessingml.document mime type. */
   ApplicationVndOpenxmlformatsOfficedocumentWordprocessingmlDocument = 'APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT',
-  /** MimeType audio/midi */
+  /** audio/midi mime type. */
   AudioMidi = 'AUDIO_MIDI',
-  /** MimeType audio/mpeg */
+  /** audio/mpeg mime type. */
   AudioMpeg = 'AUDIO_MPEG',
-  /** MimeType audio/ogg */
+  /** audio/ogg mime type. */
   AudioOgg = 'AUDIO_OGG',
-  /** MimeType audio/wav */
+  /** audio/wav mime type. */
   AudioWav = 'AUDIO_WAV',
-  /** MimeType audio/x-ms-wma */
+  /** audio/x-ms-wma mime type. */
   AudioXMsWma = 'AUDIO_X_MS_WMA',
-  /** MimeType image/gif */
+  /** image/gif mime type. */
   ImageGif = 'IMAGE_GIF',
-  /** MimeType image/jpeg */
+  /** image/jpeg mime type. */
   ImageJpeg = 'IMAGE_JPEG',
-  /** MimeType image/png */
+  /** image/png mime type. */
   ImagePng = 'IMAGE_PNG',
-  /** MimeType video/3gpp */
+  /** video/3gpp mime type. */
   Video_3Gpp = 'VIDEO_3GPP',
-  /** MimeType video/3gpp2 */
+  /** video/3gpp2 mime type. */
   Video_3Gpp2 = 'VIDEO_3GPP2',
-  /** MimeType video/avi */
+  /** video/avi mime type. */
   VideoAvi = 'VIDEO_AVI',
-  /** MimeType video/mp4 */
+  /** video/mp4 mime type. */
   VideoMp4 = 'VIDEO_MP4',
-  /** MimeType video/mpeg */
+  /** video/mpeg mime type. */
   VideoMpeg = 'VIDEO_MPEG',
-  /** MimeType video/ogg */
+  /** video/ogg mime type. */
   VideoOgg = 'VIDEO_OGG',
-  /** MimeType video/quicktime */
+  /** video/quicktime mime type. */
   VideoQuicktime = 'VIDEO_QUICKTIME',
-  /** MimeType video/webm */
+  /** video/webm mime type. */
   VideoWebm = 'VIDEO_WEBM',
-  /** MimeType video/x-flv */
+  /** video/x-flv mime type. */
   VideoXFlv = 'VIDEO_X_FLV',
-  /** MimeType video/x-ms-wmv */
+  /** video/x-ms-wmv mime type. */
   VideoXMsWmv = 'VIDEO_X_MS_WMV'
 }
 
@@ -9043,6 +9136,18 @@ export type NodeWithFaustReferenceEditorBlocks = {
 
 /** Node that has FaustReference content blocks associated with it */
 export type NodeWithFaustReferenceEditorBlocksEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Node that has FaustShowcase content blocks associated with it */
+export type NodeWithFaustShowcaseEditorBlocks = {
+  /** List of FaustShowcase editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<FaustShowcaseEditorBlock>>>;
+};
+
+
+/** Node that has FaustShowcase content blocks associated with it */
+export type NodeWithFaustShowcaseEditorBlocksEditorBlocksArgs = {
   flat?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -11089,6 +11194,8 @@ export type RootMutation = {
   createPostFormat?: Maybe<CreatePostFormatPayload>;
   /** The createReference mutation */
   createReference?: Maybe<CreateReferencePayload>;
+  /** The createShowcase mutation */
+  createShowcase?: Maybe<CreateShowcasePayload>;
   /** The createTag mutation */
   createTag?: Maybe<CreateTagPayload>;
   /** The createTutorial mutation */
@@ -11115,6 +11222,8 @@ export type RootMutation = {
   deletePostFormat?: Maybe<DeletePostFormatPayload>;
   /** The deleteReference mutation */
   deleteReference?: Maybe<DeleteReferencePayload>;
+  /** The deleteShowcase mutation */
+  deleteShowcase?: Maybe<DeleteShowcasePayload>;
   /** The deleteTag mutation */
   deleteTag?: Maybe<DeleteTagPayload>;
   /** The deleteTutorial mutation */
@@ -11155,6 +11264,8 @@ export type RootMutation = {
   updateReference?: Maybe<UpdateReferencePayload>;
   /** The updateSettings mutation */
   updateSettings?: Maybe<UpdateSettingsPayload>;
+  /** The updateShowcase mutation */
+  updateShowcase?: Maybe<UpdateShowcasePayload>;
   /** The updateTag mutation */
   updateTag?: Maybe<UpdateTagPayload>;
   /** The updateTutorial mutation */
@@ -11221,6 +11332,12 @@ export type RootMutationCreatePostFormatArgs = {
 /** The root mutation */
 export type RootMutationCreateReferenceArgs = {
   input: CreateReferenceInput;
+};
+
+
+/** The root mutation */
+export type RootMutationCreateShowcaseArgs = {
+  input: CreateShowcaseInput;
 };
 
 
@@ -11299,6 +11416,12 @@ export type RootMutationDeletePostFormatArgs = {
 /** The root mutation */
 export type RootMutationDeleteReferenceArgs = {
   input: DeleteReferenceInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteShowcaseArgs = {
+  input: DeleteShowcaseInput;
 };
 
 
@@ -11419,6 +11542,12 @@ export type RootMutationUpdateReferenceArgs = {
 /** The root mutation */
 export type RootMutationUpdateSettingsArgs = {
   input: UpdateSettingsInput;
+};
+
+
+/** The root mutation */
+export type RootMutationUpdateShowcaseArgs = {
+  input: UpdateShowcaseInput;
 };
 
 
@@ -11557,6 +11686,15 @@ export type RootQuery = {
   registeredStylesheets?: Maybe<RootQueryToEnqueuedStylesheetConnection>;
   /** Connection between the RootQuery type and the ContentNode type */
   revisions?: Maybe<RootQueryToRevisionsConnection>;
+  /** An object of the showcase Type.  */
+  showcase?: Maybe<Showcase>;
+  /**
+   * A showcase object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  showcaseBy?: Maybe<Showcase>;
+  /** Connection between the RootQuery type and the showcase type */
+  showcases?: Maybe<RootQueryToShowcaseConnection>;
   /** A 0bject */
   tag?: Maybe<Tag>;
   /** Connection between the RootQuery type and the tag type */
@@ -11964,6 +12102,33 @@ export type RootQueryRevisionsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<RootQueryToRevisionsConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryShowcaseArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']>;
+  id: Scalars['ID'];
+  idType?: InputMaybe<ShowcaseIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryShowcaseByArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  showcaseId?: InputMaybe<Scalars['Int']>;
+  slug?: InputMaybe<Scalars['String']>;
+  uri?: InputMaybe<Scalars['String']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryShowcasesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<RootQueryToShowcaseConnectionWhereArgs>;
 };
 
 
@@ -13261,6 +13426,77 @@ export type RootQueryToRevisionsConnectionWhereArgs = {
   title?: InputMaybe<Scalars['String']>;
 };
 
+/** Connection between the RootQuery type and the showcase type */
+export type RootQueryToShowcaseConnection = Connection & ShowcaseConnection & {
+  __typename?: 'RootQueryToShowcaseConnection';
+  /** Edges for the RootQueryToShowcaseConnection connection */
+  edges: Array<RootQueryToShowcaseConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Showcase>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToShowcaseConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToShowcaseConnectionEdge = Edge & ShowcaseConnectionEdge & {
+  __typename?: 'RootQueryToShowcaseConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']>;
+  /** The item at the end of the edge */
+  node: Showcase;
+};
+
+/** Page Info on the &quot;RootQueryToShowcaseConnection&quot; */
+export type RootQueryToShowcaseConnectionPageInfo = PageInfo & ShowcaseConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToShowcaseConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']>;
+};
+
+/** Arguments for filtering the RootQueryToShowcaseConnection connection */
+export type RootQueryToShowcaseConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']>;
+};
+
 /** Connection between the RootQuery type and the tag type */
 export type RootQueryToTagConnection = Connection & TagConnection & {
   __typename?: 'RootQueryToTagConnection';
@@ -13715,6 +13951,201 @@ export type Settings = {
   writingSettingsDefaultPostFormat?: Maybe<Scalars['String']>;
   /** Settings of the the boolean Settings Group */
   writingSettingsUseSmilies?: Maybe<Scalars['Boolean']>;
+};
+
+/** The showcase type */
+export type Showcase = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfShowcaseFields & {
+  __typename?: 'Showcase';
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** List of editor blocks */
+  editorBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the faust_showcase object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** Connection between the Showcase type and the showcase type */
+  preview?: Maybe<ShowcaseToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** Fields of the ShowcaseFields ACF Field Group */
+  showcaseFields?: Maybe<ShowcaseFields>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  showcaseId: Scalars['Int'];
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  templates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
+
+/** The showcase type */
+export type ShowcaseContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The showcase type */
+export type ShowcaseEditorBlocksArgs = {
+  flat?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** The showcase type */
+export type ShowcaseEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** The showcase type */
+export type ShowcaseEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** The showcase type */
+export type ShowcaseTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to showcase Nodes */
+export type ShowcaseConnection = {
+  /** A list of edges (relational context) between RootQuery and connected showcase Nodes */
+  edges: Array<ShowcaseConnectionEdge>;
+  /** A list of connected showcase Nodes */
+  nodes: Array<Showcase>;
+  /** Information about pagination in a connection. */
+  pageInfo: ShowcaseConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected showcase */
+export type ShowcaseConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']>;
+  /** The connected showcase Node */
+  node: Showcase;
+};
+
+/** Page Info on the connected ShowcaseConnectionEdge */
+export type ShowcaseConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']>;
+};
+
+/** Added by WPGraphQL for ACF Redux */
+export type ShowcaseFields = AcfFieldGroup & AcfFieldGroupFields & ShowcaseFields_Fields & {
+  __typename?: 'ShowcaseFields';
+  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  externalUrl?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  externalUrlTitle?: Maybe<Scalars['String']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
+/** Interface representing fields of the ACF &quot;ShowcaseFields&quot; Field Group */
+export type ShowcaseFields_Fields = {
+  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  externalUrl?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  externalUrlTitle?: Maybe<Scalars['String']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum ShowcaseIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Showcase type and the showcase type */
+export type ShowcaseToPreviewConnectionEdge = Edge & OneToOneConnection & ShowcaseConnectionEdge & {
+  __typename?: 'ShowcaseToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']>;
+  /** The node of the connection, without the edges */
+  node: Showcase;
 };
 
 /** The tag type */
@@ -15014,6 +15445,39 @@ export type UpdateSettingsPayload = {
   writingSettings?: Maybe<WritingSettings>;
 };
 
+/** Input for the updateShowcase mutation. */
+export type UpdateShowcaseInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']>;
+  /** The ID of the showcase object */
+  id: Scalars['ID'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']>;
+};
+
+/** The payload for the updateShowcase mutation. */
+export type UpdateShowcasePayload = {
+  __typename?: 'UpdateShowcasePayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']>;
+  /** The Post object mutation type. */
+  showcase?: Maybe<Showcase>;
+};
+
 /** Input for the updateTag mutation. */
 export type UpdateTagInput = {
   /** The slug that the post_tag will be an alias of */
@@ -15969,6 +16433,12 @@ export type WpPageInfo = {
   startCursor?: Maybe<Scalars['String']>;
 };
 
+/** Provides access to fields of the &quot;ShowcaseFields&quot; ACF Field Group via the &quot;showcaseFields&quot; field */
+export type WithAcfShowcaseFields = {
+  /** Fields of the ShowcaseFields ACF Field Group */
+  showcaseFields?: Maybe<ShowcaseFields>;
+};
+
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
@@ -16120,9 +16590,11 @@ type FeaturedImageFragment_Post_Fragment = { __typename?: 'Post', featuredImage?
 
 type FeaturedImageFragment_Reference_Fragment = { __typename?: 'Reference', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Reference_Fragment' };
 
+type FeaturedImageFragment_Showcase_Fragment = { __typename?: 'Showcase', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Showcase_Fragment' };
+
 type FeaturedImageFragment_Tutorial_Fragment = { __typename?: 'Tutorial', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Tutorial_Fragment' };
 
-export type FeaturedImageFragmentFragment = FeaturedImageFragment_Explanation_Fragment | FeaturedImageFragment_HowToGuide_Fragment | FeaturedImageFragment_Page_Fragment | FeaturedImageFragment_Post_Fragment | FeaturedImageFragment_Reference_Fragment | FeaturedImageFragment_Tutorial_Fragment;
+export type FeaturedImageFragmentFragment = FeaturedImageFragment_Explanation_Fragment | FeaturedImageFragment_HowToGuide_Fragment | FeaturedImageFragment_Page_Fragment | FeaturedImageFragment_Post_Fragment | FeaturedImageFragment_Reference_Fragment | FeaturedImageFragment_Showcase_Fragment | FeaturedImageFragment_Tutorial_Fragment;
 
 export type FooterMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null } & { ' $fragmentName'?: 'FooterMenuItemsFragmentFragment' };
 
@@ -16139,7 +16611,7 @@ export type Search_ResultsQueryVariables = Exact<{
 }>;
 
 
-export type Search_ResultsQuery = { __typename?: 'RootQuery', contentNodes?: { __typename?: 'RootQueryToContentNodeConnection', edges: Array<{ __typename?: 'RootQueryToContentNodeConnectionEdge', node: { __typename?: 'Explanation', title?: string | null, id: string, uri?: string | null } | { __typename?: 'GraphqlDocument', title?: string | null, id: string, uri?: string | null } | { __typename?: 'HowToGuide', title?: string | null, id: string, uri?: string | null } | { __typename?: 'MediaItem', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Page', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Post', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Reference', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Tutorial', title?: string | null, id: string, uri?: string | null } }> } | null };
+export type Search_ResultsQuery = { __typename?: 'RootQuery', contentNodes?: { __typename?: 'RootQueryToContentNodeConnection', edges: Array<{ __typename?: 'RootQueryToContentNodeConnectionEdge', node: { __typename?: 'Explanation', title?: string | null, id: string, uri?: string | null } | { __typename?: 'GraphqlDocument', title?: string | null, id: string, uri?: string | null } | { __typename?: 'HowToGuide', title?: string | null, id: string, uri?: string | null } | { __typename?: 'MediaItem', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Page', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Post', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Reference', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Showcase', title?: string | null, id: string, uri?: string | null } | { __typename?: 'Tutorial', title?: string | null, id: string, uri?: string | null } }> } | null };
 
 export type Get404PageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -16195,7 +16667,7 @@ export type GetArchiveQueryVariables = Exact<{
 }>;
 
 
-export type GetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', name?: string | null, archiveType: 'Category', posts?: { __typename?: 'CategoryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'ContentType', archiveType: 'ContentType' } | { __typename?: 'Explanation', archiveType: 'Explanation' } | { __typename?: 'GraphqlDocument', archiveType: 'GraphqlDocument' } | { __typename?: 'HowToGuide', archiveType: 'HowToGuide' } | { __typename?: 'MediaItem', archiveType: 'MediaItem' } | { __typename?: 'Page', archiveType: 'Page' } | { __typename?: 'Post', archiveType: 'Post' } | { __typename?: 'PostFormat', archiveType: 'PostFormat' } | { __typename?: 'Reference', archiveType: 'Reference' } | { __typename?: 'Tag', name?: string | null, archiveType: 'Tag', posts?: { __typename?: 'TagToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'Tutorial', archiveType: 'Tutorial' } | { __typename?: 'User', archiveType: 'User' } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
+export type GetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', name?: string | null, archiveType: 'Category', posts?: { __typename?: 'CategoryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'ContentType', archiveType: 'ContentType' } | { __typename?: 'Explanation', archiveType: 'Explanation' } | { __typename?: 'GraphqlDocument', archiveType: 'GraphqlDocument' } | { __typename?: 'HowToGuide', archiveType: 'HowToGuide' } | { __typename?: 'MediaItem', archiveType: 'MediaItem' } | { __typename?: 'Page', archiveType: 'Page' } | { __typename?: 'Post', archiveType: 'Post' } | { __typename?: 'PostFormat', archiveType: 'PostFormat' } | { __typename?: 'Reference', archiveType: 'Reference' } | { __typename?: 'Showcase', archiveType: 'Showcase' } | { __typename?: 'Tag', name?: string | null, archiveType: 'Tag', posts?: { __typename?: 'TagToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'Tutorial', archiveType: 'Tutorial' } | { __typename?: 'User', archiveType: 'User' } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
       { __typename?: 'MenuItem' }
       & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
     )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(

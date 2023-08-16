@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import { HeroBanner } from './HeroBanner';
 import { FeatureBlock } from './FeatureBlock';
+import { ShowcaseCard } from './ShowcaseCard';
 
 export function Content() {
   return (
@@ -10,6 +11,11 @@ export function Content() {
       <HeroBanner />
       {/* Code Snippet + Code Result Grid Container */}
       <Grid container spacing={2} sx={{ mt: 3 }}>
+        <ShowcaseCard
+          imageSrc="https://i.imgur.com/vTRUTR6.jpeg"
+          title="WP Engine"
+          url="https://www.google.com"
+        />
         <FeatureBlock
           codeSnippetTitle="Faust Toolbar"
           codeSnippet="A familiar publisher experience, providing a cohesive experience with wp-admin.\n\nEasily extensible with built in filters, empowering developers to customize for different use cases."
