@@ -9,6 +9,8 @@ import {
   Grid,
 } from '@mui/material';
 import Image from 'next/image';
+import styles from 'styles/components/ShowcaseComponent.module.scss';
+
 
 type ShowcaseCardProps = {
   imageSrc: string;
@@ -25,7 +27,7 @@ export function ShowcaseCard({ imageSrc, title, alt, url }: ShowcaseCardProps) {
         <CardContent>
           <Grid id="top-row" container spacing={12}>
             <Grid item xs={2}>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom component="div">
                 <Link href={url} underline="hover" color="inherit">
                   {title}
                 </Link>
