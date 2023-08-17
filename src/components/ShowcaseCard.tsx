@@ -11,7 +11,6 @@ import {
 import Image from 'next/image';
 import styles from 'styles/components/ShowcaseComponent.module.scss';
 
-
 type ShowcaseCardProps = {
   imageSrc: string;
   title: string;
