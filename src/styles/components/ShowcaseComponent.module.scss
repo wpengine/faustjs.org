@@ -42,30 +42,36 @@
   .title {
     border: 0px none;
     height: 10px;
-    width: 75px;
     color: inherit;
+    &:hover {
+      .link {  
+        text-decoration: underline;
+        filter: brightness(150%);
+      }
+    }
+    .link {
+      top: 5px;
+      margin-left: 2px;
+      rotate: 45px;
+      border: 1px none;
+      height: 20px;
+      position: relative;
+      color: #7E5CEF;
+      &:hover{
+        text-decoration: underline;
+        filter: brightness(150%);
+      }
+    }
   }
   
   .title .position {
     height: 14px;
     left: 100px;
     position: absolute;
-    top: 94px;
-    width: 100px;
-  }
-
-  //link icon
-
-  .link {
-    border: 1px none;
-    height: 25px;
-    position: relative;
-  }
-  
-  .link .position {
-    height: 17px;
-    left: 2px;
-    position: relative;
-    top: 1px;
-    width: 17px;
+    top: 90px;
+    // width: 100px;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
   }

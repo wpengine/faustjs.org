@@ -8,8 +8,8 @@ import {
   Link,
   Grid,
 } from '@mui/material';
-import Image from 'next/image';
 import styles from 'styles/components/ShowcaseComponent.module.scss';
+import LaunchIcon from '@mui/icons-material/Launch';
 
 type ShowcaseCardProps = {
   imageSrc: string;
@@ -34,22 +34,12 @@ export function ShowcaseCard({ imageSrc, title, alt, url }: ShowcaseCardProps) {
             container
             spacing={12}
             className={styles.container}>
-            <Grid item xs={2}>
+            <Grid>
               <Typography className={styles.title} gutterBottom component="div">
-                <Link href={url} className={styles.position} underline="hover">
-                  {title}
+                <Link href={url} className={styles.position}>
+                  {title} <LaunchIcon className={styles.link} />
                 </Link>
               </Typography>
-            </Grid>
-            <Grid className={styles.link} item xs={2}>
-              <Image
-                // eslint-disable-next-line global-require, import/no-absolute-path
-                src={require('/public/images/dashicon-showcase-link.png')}
-                alt="dashicon-showcase-link"
-                className={styles.position}
-                // width={15}
-                // height={15}
-              />
             </Grid>
           </Grid>
         </CardContent>
