@@ -133,7 +133,7 @@ Page.query = gql(`
   }
 `);
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps(context: GetStaticPropsContext) {
   return getNextStaticProps(context, {
     Page,
   });
