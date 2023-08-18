@@ -2,9 +2,10 @@ import React from 'react';
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
 import { GetShowcasesPageQuery } from '__generated__/graphql';
-import { Grid, Typography, Container, Box } from '@mui/material';
+import { Grid, Typography, Container, Box, Card } from '@mui/material';
 import { Head, Header, Footer, Main } from 'components';
 import { GetStaticPropsContext } from 'next';
+import { ShowcaseCard } from 'components/ShowcaseCard';
 
 const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
   const { data } = props;
@@ -39,6 +40,7 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
             <Typography
               variant="h3"
               component="h2"
+              color="#7E5CEF"
               sx={{ textAlign: 'center' }}>
               Faust.js &trade;
             </Typography>
@@ -49,16 +51,21 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
               New to Faust? Check out these Faust-powered sites for inspiration.
             </Typography>
 
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  {showcases?.nodes?.map((item) => (
-                    <p>Content</p>
-                  ))}
-                </Box>
-
-                {showcases?.nodes?.length < 1 && <p>No showcases found.</p>}
-              </Grid>
+            <Grid
+              container
+              spacing={2}
+              sx={{ display: 'flex', flexDirection: 'row' }}>
+              {showcases?.nodes?.map((item) => (
+                <Grid item sx={{ margin: '10px' }} xs={12} md={4}>
+                  <ShowcaseCard
+                    imageSrc={item.featuredImage.node.sourceUrl}
+                    title={item.showcaseFields.externalUrlTitle}
+                    url={item.showcaseFields.externalUrl}
+                    alt={`${item.showcaseFields.externalUrlTitle} external website`}
+                  />
+                </Grid>
+              ))}
+              {showcases?.nodes?.length < 1 && <p>No showcases found.</p>}
             </Grid>
           </Grid>
         </Container>
