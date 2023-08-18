@@ -4,6 +4,7 @@ import { FaustPage, getNextStaticProps } from '@faustwp/core';
 import { GetShowcasesPageQuery } from '__generated__/graphql';
 import { Grid, Typography, Container, Box } from '@mui/material';
 import { Head, Header, Footer, Main } from 'components';
+import { GetStaticPropsContext } from 'next';
 
 const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
   const { data } = props;
