@@ -20,25 +20,35 @@ type ShowcaseCardProps = {
 
 export function ShowcaseCard({ imageSrc, title, alt, url }: ShowcaseCardProps) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia component="img" height="140" image={imageSrc} alt={alt} />
-        <CardContent>
-          <Grid id="top-row" container spacing={12}>
+    <Card sx={{ maxWidth: 345 }} className={styles.card}>
+      <CardActionArea className={styles.image}>
+        <CardMedia
+          component="img"
+          className={styles.container}
+          image={imageSrc}
+          alt={alt}
+        />
+        <CardContent className={styles.fade}>
+          <Grid
+            id="top-row"
+            container
+            spacing={12}
+            className={styles.container}>
             <Grid item xs={2}>
-              <Typography gutterBottom component="div">
-                <Link href={url} underline="hover" color="inherit">
+              <Typography className={styles.title} gutterBottom component="div">
+                <Link href={url} className={styles.position} underline="hover">
                   {title}
                 </Link>
               </Typography>
             </Grid>
-            <Grid item xs={2}>
+            <Grid className={styles.link} item xs={2}>
               <Image
                 // eslint-disable-next-line global-require, import/no-absolute-path
                 src={require('/public/images/dashicon-showcase-link.png')}
                 alt="dashicon-showcase-link"
-                width={15}
-                height={15}
+                className={styles.position}
+                // width={15}
+                // height={15}
               />
             </Grid>
           </Grid>
