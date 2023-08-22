@@ -22,7 +22,6 @@ export default function MyApp({
   emotionCache = clientSideEmotionCache,
 }: FaustAppProps) {
   const router = useRouter();
-
   useEffect(() => {
     const handleRouteChange = (url: any) => {
       gtag.pageview(url);
