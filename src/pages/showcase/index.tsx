@@ -50,13 +50,12 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
               sx={{ mt: 1, mb: 4, textAlign: 'center' }}>
               New to Faust? Check out these Faust-powered sites for inspiration.
             </Typography>
-
             <Grid
               container
               spacing={2}
               sx={{ display: 'flex', flexDirection: 'row' }}>
               {showcases?.nodes?.map((item) => (
-                <Grid item sx={{ margin: '10px' }} xs={12} md={4}>
+                <Grid item sx={{ marginBottom: '25px' }} xs={12} md={4} sm={6}>
                   <ShowcaseCard
                     imageSrc={item.featuredImage.node.sourceUrl}
                     title={item.showcaseFields.externalUrlTitle}
