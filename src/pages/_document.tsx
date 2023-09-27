@@ -10,10 +10,12 @@ import { FaustAppProps } from './_app';
  * @returns boolean
  */
 function isProd() {
-  return (
-    process.env.NEXT_PUBLIC_IS_PROD &&
-    process.env.NEXT_PUBLIC_IS_PROD === 'true'
-  );
+  // If the env var is not set, assume prod.
+  if (!process.env.NEXT_PUBLIC_IS_PROD) {
+    return true;
+  }
+
+  return process.env.NEXT_PUBLIC_IS_PROD === 'true';
 }
 
 export default class MyDocument extends Document {
