@@ -6,6 +6,7 @@
     "dev": "concurrently \"faust dev\" \"npm run codegen-watch\"",
     "build": "faust build",
     "generate": "faust generatePossibleTypes && faust generateGlobalStylesheet",
+    "vercel": "mkdir -p .vercel && echo \"{ \\\"projectId\\\": \\\"_\\\", \\\"orgId\\\": \\\"_\\\", \\\"settings\\\": {} }\" > .vercel/project.json && vercel build",
     "start": "faust start",
     "codegen": "graphql-codegen",
     "codegen-watch": "graphql-codegen -w",
@@ -26,7 +27,8 @@
     "next": "^13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "use-debounce": "^9.0.4"
+    "use-debounce": "^9.0.4",
+    "vercel": "^32.3.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^3.2.2",
