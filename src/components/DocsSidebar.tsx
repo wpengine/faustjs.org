@@ -25,7 +25,7 @@ function Menu(props: MenuProps) {
         return (
           <>
             <ListItem key={item.id} disablePadding>
-              {item.children.length === 0 && (
+              {item.children && !item.children.length ? (
                 <Link
                   sx={{
                     '&:hover': {
@@ -48,9 +48,9 @@ function Menu(props: MenuProps) {
                   href={item.path ?? ''}>
                   {item.label ?? ''}
                 </Link>
-              )}
+              ) : null}
             </ListItem>
-            {item.children && (
+            {item.children && item.children.length ? (
               <div style={{ paddingLeft: '1.5rem' }}>
                 {!!item.children.length && (
                   <Typography
@@ -62,7 +62,7 @@ function Menu(props: MenuProps) {
                 )}
                 <Menu items={item.children} />
               </div>
-            )}
+            ) : null}
           </>
         );
       })}
