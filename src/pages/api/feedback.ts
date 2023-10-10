@@ -47,7 +47,7 @@ export default async function handler(
         acf: {
           satisfaction: req.body.satisfaction ?? undefined,
           message: req.body.message ?? undefined,
-          url: req.headers.Referer ?? undefined,
+          url: req.headers.referer ?? undefined,
         },
       }),
     });
