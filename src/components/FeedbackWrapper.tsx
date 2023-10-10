@@ -157,7 +157,7 @@ export function FormDialog() {
 
             <FormControl required style={{ paddingBottom: '1rem' }}>
               <FormLabel id="demo-row-radio-buttons-group-label">
-                Satisfaction
+                Was this page helpful?
               </FormLabel>
               <RadioGroup
                 onChange={(e) => setSatisfaction(e.target.value)}

@@ -54,8 +54,8 @@ export default async function handler(
 
     if (!createPostRes.ok) {
       const notOkBody = await createPostRes.json();
-      // Form validation issue
 
+      // Form validation issue
       if (createPostRes.status === 400) {
         return res.status(400).json({
           error: 'There were form validation issues',
@@ -76,6 +76,7 @@ export default async function handler(
     });
   } catch (err) {
     console.error('There was an error', err);
+
     return res.status(500).json({
       error: 'Internal server error',
     });
