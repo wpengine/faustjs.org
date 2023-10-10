@@ -4,11 +4,11 @@ const CREATE_POST_URL =
   'https://faustjsorg.wpengine.com/wp-json/wp/v2/feedback-submission';
 
 function getAuthorizationToken() {
-  if (!process.env.FAUST_FEEDBACK_FORM_APP_PASS) {
-    throw new Error('FAUST_FEEDBACK_FORM_APP_PASS env var must be specified');
+  if (!process.env.FEEDBACK_FORM_APP_PASS) {
+    throw new Error('FEEDBACK_FORM_APP_PASS env var must be specified');
   }
 
-  return `Basic ${btoa(process.env.FAUST_FEEDBACK_FORM_APP_PASS)}`;
+  return `Basic ${btoa(process.env.FEEDBACK_FORM_APP_PASS)}`;
 }
 
 type ResponseData =
@@ -63,6 +63,8 @@ export default async function handler(
         });
       }
 
+      console.error('Invalid response from WordPress', notOkBody);
+
       // If its not a validation error, throw an internal server error
       throw new Error(
         'Invalid response from the WordPress create post endpoint',
@@ -73,6 +75,7 @@ export default async function handler(
       message: 'Thanks for your feedback!',
     });
   } catch (err) {
+    console.error('There was an error', err);
     return res.status(500).json({
       error: 'Internal server error',
     });

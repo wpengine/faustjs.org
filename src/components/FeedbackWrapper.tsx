@@ -109,6 +109,10 @@ export function FormDialog() {
       setHasFormErrors(true);
     } else {
       setShowThankYou(true);
+
+      // Reset form
+      setMessage('');
+      setSatisfaction(null);
     }
   };
 
