@@ -195,9 +195,9 @@ export function FormDialog() {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group">
                 <FormControlLabel
-                  value="disapprove"
+                  value="approve"
                   control={<Radio color="error" />}
-                  label="🙁 Could be better"
+                  label="😀 Yes"
                 />
                 <FormControlLabel
                   value="neutral"
@@ -207,7 +207,7 @@ export function FormDialog() {
                 <FormControlLabel
                   value="approve"
                   control={<Radio color="success" />}
-                  label="😀 Happy"
+                  label="😢 No"
                 />
               </RadioGroup>
             </FormControl>
