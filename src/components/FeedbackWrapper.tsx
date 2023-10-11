@@ -196,7 +196,7 @@ export function FeedbackForm() {
                 name="row-radio-buttons-group">
                 <FormControlLabel
                   value="approve"
-                  control={<Radio color="error" />}
+                  control={<Radio color="default" />}
                   label="😀 Yes"
                 />
                 <FormControlLabel
@@ -206,7 +206,7 @@ export function FeedbackForm() {
                 />
                 <FormControlLabel
                   value="disapprove"
-                  control={<Radio color="success" />}
+                  control={<Radio color="default" />}
                   label="😢 No"
                 />
               </RadioGroup>
