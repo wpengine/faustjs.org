@@ -81,7 +81,7 @@ const StyledTextarea = styled(TextareaAutosize)(
 `,
 );
 
-export function FormDialog() {
+export function FeedbackForm() {
   const [open, setOpen] = useState(false);
   const [satisfaction, setSatisfaction] = useState(null);
   const [message, setMessage] = useState('');
@@ -257,7 +257,7 @@ export default function FeedbackWrapper(props: PropsWithChildren) {
       {children}
 
       <div>
-        <FormDialog />
+        <FeedbackForm />
       </div>
     </>
   );
