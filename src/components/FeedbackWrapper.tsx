@@ -86,6 +86,10 @@ export function FormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+    setMessage('');
+    setSatisfaction(null);
+    setHasFormErrors(false);
+    setShowThankYou(false);
   };
 
   const onSubmit = async (e: FormEvent) => {
