@@ -205,7 +205,7 @@ export function FeedbackForm() {
                   label="😐 Neutral"
                 />
                 <FormControlLabel
-                  value="approve"
+                  value="disapprove"
                   control={<Radio color="success" />}
                   label="😢 No"
                 />
