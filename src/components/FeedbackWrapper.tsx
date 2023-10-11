@@ -4,7 +4,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import React, { FormEvent, PropsWithChildren, useState } from 'react';
+import React, {
+  FormEvent,
+  PropsWithChildren,
+  RefObject,
+  useRef,
+  useState,
+} from 'react';
 
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,6 +22,8 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { FeedbackTwoTone } from '@mui/icons-material';
 import { Alert, Box, CircularProgress } from '@mui/material';
 import { styled } from '@mui/system';
+
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const blue = {
   100: '#DAECFF',
@@ -80,6 +88,10 @@ export function FormDialog() {
   const [hasFormErrors, setHasFormErrors] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+
+  // Create a ref for the reCAPTCHA widget
+  const recaptcha: RefObject<ReCAPTCHA> = useRef(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -91,6 +103,12 @@ export function FormDialog() {
     setSatisfaction(null);
     setHasFormErrors(false);
     setShowThankYou(false);
+  };
+
+  const onCaptchaChange = (token: string | null) => {
+    if (token) {
+      setCaptchaToken(token);
+    }
   };
 
   const onSubmit = async (e: FormEvent) => {
@@ -109,6 +127,7 @@ export function FormDialog() {
       body: JSON.stringify({
         satisfaction: satisfaction ?? undefined,
         message: message ?? undefined,
+        captchaToken: captchaToken ?? undefined,
       }),
     });
 
@@ -123,6 +142,8 @@ export function FormDialog() {
     }
 
     setIsLoading(false);
+    setCaptchaToken('');
+    recaptcha.current.reset();
   };
 
   return (
@@ -191,13 +212,22 @@ export function FormDialog() {
               </RadioGroup>
             </FormControl>
 
-            <FormControl style={{ width: '100%' }}>
+            <FormControl style={{ width: '100%', paddingBottom: '1rem' }}>
               <FormLabel>Comments</FormLabel>
               <StyledTextarea
                 aria-label="Your feedback message"
                 minRows={3}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+              />
+            </FormControl>
+
+            <FormControl style={{ paddingBottom: '1rem' }}>
+              <ReCAPTCHA
+                size="normal"
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                onChange={onCaptchaChange}
+                ref={recaptcha}
               />
             </FormControl>
           </DialogContent>

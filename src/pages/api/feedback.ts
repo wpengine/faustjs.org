@@ -19,8 +19,8 @@ type ResponseData =
 
 type RequestBody = {
   satisfaction: 'disapprove' | 'neutral' | 'approve';
+  captchaToken: string;
   message?: string;
-  image?: string;
 };
 
 type FeedbackSubmissionRequest = Omit<NextApiRequest, 'body'> & {
@@ -36,6 +36,20 @@ export default async function handler(
   }
 
   try {
+    // Validate captcha
+    const captchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${req.body.captchaToken}`;
+    const captchaRes = await fetch(captchaUrl, {
+      method: 'POST',
+    });
+
+    const captchaResBody = await captchaRes.json();
+
+    if (!captchaResBody.success) {
+      return res.status(400).json({
+        error: 'ReCaptcha failed. Please try again',
+      });
+    }
+
     const createPostRes = await fetch(CREATE_POST_URL, {
       method: 'POST',
       headers: {
