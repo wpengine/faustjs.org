@@ -14,7 +14,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { FeedbackTwoTone } from '@mui/icons-material';
-import { Alert } from '@mui/material';
+import { Alert, Box, CircularProgress } from '@mui/material';
 import { styled } from '@mui/system';
 
 const blue = {
@@ -79,6 +79,7 @@ export function FormDialog() {
   const [message, setMessage] = useState('');
   const [hasFormErrors, setHasFormErrors] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -97,6 +98,8 @@ export function FormDialog() {
 
     setHasFormErrors(false);
     setShowThankYou(false);
+
+    setIsLoading(true);
 
     const res = await fetch('/api/feedback', {
       method: 'POST',
@@ -118,6 +121,8 @@ export function FormDialog() {
       setMessage('');
       setSatisfaction(null);
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -198,7 +203,15 @@ export function FormDialog() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Share Feedback</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && (
+                <Box sx={{ display: 'flex', paddingRight: '0.5rem' }}>
+                  <CircularProgress size={20} />
+                </Box>
+              )}
+
+              <span>Share Feedback</span>
+            </Button>
           </DialogActions>
         </form>
       </Dialog>
