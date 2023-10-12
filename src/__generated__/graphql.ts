@@ -7769,6 +7769,37 @@ export type FaustTutorialEditorBlock = {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
+/** Added by WPGraphQL for ACF Redux */
+export type FeedbackSubmissions = AcfFieldGroup & AcfFieldGroupFields & FeedbackSubmissions_Fields & {
+  __typename?: 'FeedbackSubmissions';
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
+  message?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
+  satisfaction?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
+  url?: Maybe<Scalars['String']>;
+};
+
+/** Interface representing fields of the ACF &quot;FeedbackSubmissions&quot; Field Group */
+export type FeedbackSubmissions_Fields = {
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
+  message?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
+  satisfaction?: Maybe<Scalars['String']>;
+  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
+  url?: Maybe<Scalars['String']>;
+};
+
 /** The general setting type */
 export type GeneralSettings = {
   __typename?: 'GeneralSettings';
