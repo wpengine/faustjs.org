@@ -5,19 +5,6 @@ import createEmotionCache from 'utility/createEmotionCache';
 import { GA_TRACKING_ID } from 'utility/gtag';
 import { FaustAppProps } from './_app';
 
-/**
- * Determine if the faustjs.org site is on a prod env or not (staging).
- * @returns boolean
- */
-function isProd() {
-  // If the env var is not set, assume prod.
-  if (!process.env.NEXT_PUBLIC_IS_PROD) {
-    return true;
-  }
-
-  return process.env.NEXT_PUBLIC_IS_PROD === 'true';
-}
-
 export default class MyDocument extends Document {
   render() {
     return (
@@ -63,8 +50,6 @@ export default class MyDocument extends Document {
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
           <link rel="manifest" href="/images/site.webmanifest" />
-
-          {!isProd() && <meta name="robots" content="noindex,nofollow" />}
         </Head>
         <body>
           <Main />
