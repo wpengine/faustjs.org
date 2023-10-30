@@ -11,6 +11,7 @@ import lightTheme from 'styles/theme/lightTheme';
 import 'WordPressGlobalStylesheet';
 import '@faustwp/core/dist/css/toolbar.css';
 import 'styles/global.scss';
+import FeedbackWrapper from 'components/FeedbackWrapper';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -33,13 +34,15 @@ export default function MyApp({
   }, [router.events]);
 
   return (
-    <FaustProvider pageProps={pageProps}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
-          <Component {...pageProps} key={router.asPath} />
-        </ThemeProvider>
-      </CacheProvider>
-    </FaustProvider>
+    <FeedbackWrapper>
+      <FaustProvider pageProps={pageProps}>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={lightTheme}>
+            <CssBaseline />
+            <Component {...pageProps} key={router.asPath} />
+          </ThemeProvider>
+        </CacheProvider>
+      </FaustProvider>
+    </FeedbackWrapper>
   );
 }
