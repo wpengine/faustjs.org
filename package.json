@@ -19,12 +19,12 @@
     "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.6",
-    "@faustwp/cli": "^1.0.1",
-    "@faustwp/core": "^1.0.2",
+    "@faustwp/cli": "^1.1.4",
+    "@faustwp/core": "^1.1.2",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "graphql": "^16.8.1",
-    "next": "^13.2.4",
+    "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
@@ -39,8 +39,8 @@
     "@types/react-google-recaptcha": "^2.1.6",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
-    "@wordpress/base-styles": "^4.27.0",
-    "@wordpress/block-library": "^8.12.0",
+    "@wordpress/base-styles": "^4.35.0",
+    "@wordpress/block-library": "^8.21.0",
     "classnames": "^2.3.2",
     "concurrently": "^8.0.1",
     "eslint": "^8.39.0",
@@ -55,9 +55,10 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "sass": "^1.62.1",
     "typescript": "^5.0.2",
-    "vercel": "^32.3.1"
+    "vercel": "^32.5.0"
   },
   "overrides": {
-    "semver": "^7.5.2"
+    "semver": "^7.5.2",
+    "debug": "4.3.1"
   }
 }
