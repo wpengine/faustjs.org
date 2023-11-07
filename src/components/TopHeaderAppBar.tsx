@@ -137,7 +137,7 @@ export function TopHeaderAppBar({
 
           <HeaderSearch />
 
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {secondaryMenuItems.map((item) => (
               <Link
                 className={cx('social-navigation-link')}
