@@ -56,7 +56,7 @@ export function TopHeaderAppBar({
       }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 0.5, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 0.5, display: { xs: 'flex', mdl: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -75,7 +75,7 @@ export function TopHeaderAppBar({
               transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}>
+              sx={{ display: { xs: 'block', mdl: 'none' } }}>
               {primaryMenuItems.map((item) => (
                 <Link
                   href={item.uri}
@@ -114,7 +114,7 @@ export function TopHeaderAppBar({
             </Typography>
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', mdl: 'flex' } }}>
             {primaryMenuItems.map((item) => (
               <Link
                 href={item.uri}
@@ -123,7 +123,7 @@ export function TopHeaderAppBar({
                 sx={{
                   mr: 2,
                   textDecoration: 'none',
-                  fontSize: '1rem',
+                  fontSize: '.9rem',
                   transition: '0.18s ease',
                   color: 'var(--wp--preset--color--contrast)',
                   '&:hover, &:focus': {
@@ -137,7 +137,7 @@ export function TopHeaderAppBar({
 
           <HeaderSearch />
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ display: { xs: 'none', mdl: 'flex' } }}>
             {secondaryMenuItems.map((item) => (
               <Link
                 className={cx('social-navigation-link')}
