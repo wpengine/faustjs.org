@@ -156,6 +156,12 @@ Posts.fragments = {
           link
         }
       }
+      featuredImage {
+        node {
+          id
+          sourceUrl
+        }
+      }
     }
   `),
 };
