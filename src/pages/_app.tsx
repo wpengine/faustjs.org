@@ -12,6 +12,7 @@ import 'WordPressGlobalStylesheet';
 import '@faustwp/core/dist/css/toolbar.css';
 import 'styles/global.scss';
 import FeedbackWrapper from 'components/FeedbackWrapper';
+import ContactPage from 'pages/contact/index';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -23,6 +24,8 @@ export default function MyApp({
   emotionCache = clientSideEmotionCache,
 }: FaustAppProps) {
   const router = useRouter();
+  // eslint-disable-next-line no-console
+  console.log('testing from console');
   useEffect(() => {
     const handleRouteChange = (url: any) => {
       gtag.pageview(url);
@@ -40,6 +43,7 @@ export default function MyApp({
           <ThemeProvider theme={lightTheme}>
             <CssBaseline />
             <Component {...pageProps} key={router.asPath} />
+            <ContactPage />
           </ThemeProvider>
         </CacheProvider>
       </FaustProvider>
