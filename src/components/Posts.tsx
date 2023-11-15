@@ -12,6 +12,7 @@ type Post = {
   excerpt: string;
   author: any;
   tags: any;
+  featuredImage: any;
 };
 
 type PostsProps = {
