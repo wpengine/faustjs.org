@@ -25,7 +25,7 @@ export default function MyApp({
 }: FaustAppProps) {
   const router = useRouter();
   // eslint-disable-next-line no-console
-  console.log('testing from console');
+  console.log('testing from _app.tsx console');
   useEffect(() => {
     const handleRouteChange = (url: any) => {
       gtag.pageview(url);
@@ -43,7 +43,6 @@ export default function MyApp({
           <ThemeProvider theme={lightTheme}>
             <CssBaseline />
             <Component {...pageProps} key={router.asPath} />
-            <ContactPage />
           </ThemeProvider>
         </CacheProvider>
       </FaustProvider>

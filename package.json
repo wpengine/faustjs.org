@@ -3,7 +3,7 @@
   "scripts": {
     "prebuild": "npm run generate && npm run codegen",
     "prestart": "npm run generate && npm run codegen",
-    "dev": "faust dev",
+    "dev": "concurrently \"faust dev\" \"npm run codegen-watch\"",
     "build": "faust build",
     "generate": "faust generatePossibleTypes && faust generateGlobalStylesheet",
     "vercel": "mkdir -p .vercel && echo \"{ \\\"projectId\\\": \\\"_\\\", \\\"orgId\\\": \\\"_\\\", \\\"settings\\\": {} }\" > .vercel/project.json && vercel build",
@@ -24,7 +24,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "graphql": "^16.8.1",
-    "next": "^14.0.0",
+    "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
