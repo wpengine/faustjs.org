@@ -53,8 +53,8 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
             spacing={2}
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12}>
-              {featuredImage.node.sourceUrl && (
-                <FeaturedImage image={featuredImage.node.sourceUrl} />
+              {featuredImage?.node?.sourceUrl && (
+                <FeaturedImage image={featuredImage.node} />
               )}
               <EntryHeader
                 title={title}
