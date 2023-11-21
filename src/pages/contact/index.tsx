@@ -95,8 +95,12 @@ const Page: FaustPage<GetContactPageQuery> = (props) => {
 
       <Main>
         <Container>
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography variant="h2" align="center" gutterBottom>
             Contact Us
+          </Typography>
+          <Typography align="center" gutterBottom>
+            Have a question for our team or general feedback on our site? Please
+            reach out to us below!
           </Typography>
           <form onSubmit={handleSubmit}>
             <Stack spacing={2}>
@@ -129,7 +133,7 @@ const Page: FaustPage<GetContactPageQuery> = (props) => {
               />
             </Stack>
             <div>
-              By pressing submit, I have read Faust's{' '}
+              By pressing submit, I have read Faust.js'{' '}
               <a
                 target="_blank"
                 href="https://faustjs.org/privacy-policy"
