@@ -12,7 +12,6 @@ import 'WordPressGlobalStylesheet';
 import '@faustwp/core/dist/css/toolbar.css';
 import 'styles/global.scss';
 import FeedbackWrapper from 'components/FeedbackWrapper';
-import ContactPage from 'pages/contact/index';
 
 const clientSideEmotionCache = createEmotionCache();
 
