@@ -1,6 +1,6 @@
 import { gql } from '__generated__';
 import { FaustPage, getNextStaticProps } from '@faustwp/core';
-// import { GetContactFormQuery } from '__generated__/graphql';
+import { GetContactFormPageQuery } from '__generated__/graphql';
 import {
   Button,
   Grid,
@@ -34,7 +34,7 @@ import { FeedbackTwoTone } from '@mui/icons-material';
 import { styled } from '@mui/system';
 
 // TODO: Where is GetContactPageQuery imported from?
-const Page: FaustPage<GetContactPageQuery> = (props) => {
+const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   const { data } = props;
 
   const {
@@ -70,7 +70,7 @@ const Page: FaustPage<GetContactPageQuery> = (props) => {
   console.log('BEFORE HANDLESUBMIT!');
 
   // TODO: get rid of 'any'
-  const handleSubmit = (e: { preventDefault: () => any }) => {
+  const handleSubmit = async (e: { preventDefault: () => any }) => {
     e.preventDefault();
     // Here is where the connection should be made to the API (similar to src/pages/api/feedback.ts)
     // eslint-disable-next-line no-console
@@ -81,6 +81,21 @@ const Page: FaustPage<GetContactPageQuery> = (props) => {
       email: '',
       message: '',
     });
+
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData?.name ?? undefined,
+        message: formData?.message ?? undefined,
+        email: formData?.email ?? undefined,
+        captcha: formData?.captcha ?? undefined,
+      }),
+    });
+
+    console.log(res);
   };
 
   return (
@@ -133,7 +148,7 @@ const Page: FaustPage<GetContactPageQuery> = (props) => {
               />
             </Stack>
             <div>
-              By pressing submit, I have read Faust.js'{' '}
+              By pressing submit, I have read Faust.js&apos;{' '}
               <a
                 target="_blank"
                 href="https://faustjs.org/privacy-policy"
@@ -162,8 +177,9 @@ const Page: FaustPage<GetContactPageQuery> = (props) => {
 
 // TODO: get rid of extra queries copied from showcase page
 // TODO: simplify queries to only call header and footer menu items
+
 Page.query = gql(`
-  query GetShowcasesPage {
+  query GetContactFormPage {
     showcases(first: 100) {
       nodes {
         id

@@ -4,11 +4,11 @@ const CREATE_POST_URL =
   'https://faustjsorg.wpengine.com/wp-json/wp/v2/contact-submission';
 
 function getAuthorizationToken() {
-  if (!process.env.CONTACT_FORM_APP_PASS) {
-    throw new Error('CONTACT_FORM_APP_PASS env var must be specified');
+  if (!process.env.FEEDBACK_FORM_APP_PASS) {
+    throw new Error('FEEDBACK_FORM_APP_PASS env var must be specified');
   }
 
-  return `Basic ${btoa(process.env.CONTACT_FORM_APP_PASS)}`;
+  return `Basic ${btoa(process.env.FEEDBACK_FORM_APP_PASS)}`;
 }
 
 type ResponseData =
@@ -18,8 +18,9 @@ type ResponseData =
   | { error: string; params?: any };
 
 type RequestBody = {
-  satisfaction: 'disapprove' | 'neutral' | 'approve';
   captchaToken: string;
+  name: string;
+  email: string;
   message?: string;
 };
 
@@ -59,9 +60,9 @@ export default async function handler(
       body: JSON.stringify({
         status: 'publish',
         acf: {
-          satisfaction: req.body.satisfaction ?? undefined,
+          email: req.body.email ?? undefined,
           message: req.body.message ?? undefined,
-          url: req.headers.referer ?? undefined,
+          name: req.body.name ?? undefined,
         },
       }),
     });

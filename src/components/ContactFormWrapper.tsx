@@ -146,8 +146,7 @@ export function ContactForm() {
     recaptcha.current.reset();
   };
 
-  return (
-    <ContactForm></ContactForm>
+  return <ContactForm />;
 }
 
 export default function ContactFormWrapper(props: PropsWithChildren) {
