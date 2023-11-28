@@ -3,38 +3,20 @@ import { FaustPage, getNextStaticProps } from '@faustwp/core';
 import { GetContactFormPageQuery } from '__generated__/graphql';
 import {
   Button,
-  Grid,
   TextField,
   Typography,
   Container,
   Box,
-  Card,
   Alert,
   CircularProgress,
-  makeStyles,
   Stack,
 } from '@mui/material';
 import { Head, Header, Footer, Main } from 'components';
 import { GetStaticPropsContext } from 'next';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import React, {
-  FormEvent,
-  PropsWithChildren,
-  RefObject,
-  useRef,
-  useState,
-} from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-import { FeedbackTwoTone } from '@mui/icons-material';
-import { styled } from '@mui/system';
-
-// TODO: Where is GetContactPageQuery imported from?
 const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   const { data } = props;
 
@@ -46,12 +28,10 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
     footer2MenuItems,
     footer3MenuItems,
     footer4MenuItems,
-    showcases, // change this
   } = data ?? {};
   const { title: siteTitle, description: siteDescription } = generalSettings;
 
-  // export default function ContactPage() {
-  // Here are the initial values for the form submission
+  // Initial values for the form submission
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,7 +39,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   });
 
   const handleInputChange = (e: { target: { name: any; value: string } }) => {
-    // Upon entering the data, the state is set to that object with name, email, and message
+    // Upon entering data into form, the state is set to that object with name, email, and message
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -67,16 +47,12 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
     }));
   };
 
-  // eslint-disable-next-line no-console
-  console.log('BEFORE HANDLESUBMIT!');
-
   const [captchaToken, setCaptchaToken] = useState('');
   const [hasFormErrors, setHasFormErrors] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
 
-  // Create a ref for the reCAPTCHA widget
+  // Ref for the reCAPTCHA widget
   const recaptcha: RefObject<ReCAPTCHA> = useRef(null);
 
   const onCaptchaChange = (token: string | null) => {
@@ -88,15 +64,10 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   // TODO: get rid of 'any'
   const handleSubmit = async (e: { preventDefault: () => any }) => {
     e.preventDefault();
-    // Here is where the connection should be made to the API (similar to src/pages/api/feedback.ts)
-    // eslint-disable-next-line no-console
-    console.log('Form submitted:', formData);
 
     setHasFormErrors(false);
     setShowThankYou(false);
     setIsLoading(true);
-
-    // Reset the form after submission (?)
 
     const res = await fetch('/api/contact', {
       method: 'POST',
@@ -117,14 +88,16 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
       setShowThankYou(true);
 
       // Reset form
-      setMessage('');
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
     }
 
     setIsLoading(false);
     setCaptchaToken('');
     recaptcha.current.reset();
-
-    console.log(res);
   };
 
   return (
@@ -142,7 +115,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
           <Typography variant="h2" align="center" gutterBottom>
             Contact Us
           </Typography>
-          <Typography align="center" gutterBottom>
+          <Typography variant="h4" align="center" gutterBottom>
             Have a question for our team or general feedback on our site? Please
             reach out to us below!
           </Typography>
@@ -230,32 +203,8 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   );
 };
 
-// TODO: get rid of extra queries copied from showcase page
-// TODO: simplify queries to only call header and footer menu items
-
 Page.query = gql(`
   query GetContactFormPage {
-    showcases(first: 100) {
-      nodes {
-        id
-        title
-        showcaseFields {
-          externalUrlTitle
-          externalUrl
-        }
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
-      }
-    }
     generalSettings {
       title
       description
