@@ -71,6 +71,10 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   console.log('BEFORE HANDLESUBMIT!');
 
   const [captchaToken, setCaptchaToken] = useState('');
+  const [hasFormErrors, setHasFormErrors] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   // Create a ref for the reCAPTCHA widget
   const recaptcha: RefObject<ReCAPTCHA> = useRef(null);
@@ -87,12 +91,12 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
     // Here is where the connection should be made to the API (similar to src/pages/api/feedback.ts)
     // eslint-disable-next-line no-console
     console.log('Form submitted:', formData);
+
+    setHasFormErrors(false);
+    setShowThankYou(false);
+    setIsLoading(true);
+
     // Reset the form after submission (?)
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
-    });
 
     const res = await fetch('/api/contact', {
       method: 'POST',
@@ -106,6 +110,19 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
         captchaToken: captchaToken ?? undefined,
       }),
     });
+
+    if (!res.ok) {
+      setHasFormErrors(true);
+    } else {
+      setShowThankYou(true);
+
+      // Reset form
+      setMessage('');
+    }
+
+    setIsLoading(false);
+    setCaptchaToken('');
+    recaptcha.current.reset();
 
     console.log(res);
   };
@@ -131,6 +148,17 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
           </Typography>
           <form onSubmit={handleSubmit}>
             <Stack spacing={2}>
+              {hasFormErrors && (
+                <Alert severity="error">
+                  There were form validation errors! Please check your response
+                  and try again.
+                </Alert>
+              )}
+              {showThankYou && (
+                <Alert severity="success">
+                  Your feedback has been submitted. Thank you!
+                </Alert>
+              )}
               <TextField
                 label="Name"
                 variant="filled"
@@ -176,7 +204,16 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
               and agree to be contacted by a member of the Faust team regarding
               my feedback.
             </div>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={isLoading}>
+              {isLoading && (
+                <Box>
+                  <CircularProgress size={20} />
+                </Box>
+              )}
               Submit
             </Button>
           </form>
