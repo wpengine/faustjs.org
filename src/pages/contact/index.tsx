@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { Head, Header, Footer, Main } from 'components';
 import { GetStaticPropsContext } from 'next';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import React, {
   FormEvent,
@@ -69,6 +70,17 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   // eslint-disable-next-line no-console
   console.log('BEFORE HANDLESUBMIT!');
 
+  const [captchaToken, setCaptchaToken] = useState('');
+
+  // Create a ref for the reCAPTCHA widget
+  const recaptcha: RefObject<ReCAPTCHA> = useRef(null);
+
+  const onCaptchaChange = (token: string | null) => {
+    if (token) {
+      setCaptchaToken(token);
+    }
+  };
+
   // TODO: get rid of 'any'
   const handleSubmit = async (e: { preventDefault: () => any }) => {
     e.preventDefault();
@@ -91,7 +103,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
         name: formData?.name ?? undefined,
         message: formData?.message ?? undefined,
         email: formData?.email ?? undefined,
-        captcha: formData?.captcha ?? undefined,
+        captchaToken: captchaToken ?? undefined,
       }),
     });
 
@@ -145,6 +157,12 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 value={formData.message}
                 onChange={handleInputChange}
                 required
+              />
+              <ReCAPTCHA
+                size="normal"
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                onChange={onCaptchaChange}
+                ref={recaptcha}
               />
             </Stack>
             <div>
