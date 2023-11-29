@@ -55,7 +55,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "sass": "^1.62.1",
     "typescript": "^5.0.2",
-    "vercel": "^32.5.0"
+    "vercel": "^32.5.6"
   },
   "overrides": {
     "semver": "^7.5.2",
