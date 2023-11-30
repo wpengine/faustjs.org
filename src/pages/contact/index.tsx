@@ -102,22 +102,20 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   return (
     <>
       <Head title={siteTitle} description={siteDescription} />
-
       <Header
         siteTitle={siteTitle}
         primaryMenuItems={primaryMenuItems.nodes}
         secondaryMenuItems={secondaryMenuItems.nodes}
       />
-
       <Main>
-        <Container>
-          <EntryHeader title="Contact Us">Contact Us</EntryHeader>
+        <Container sx={{ p: 4 }}>
+          <EntryHeader title="Contact Us" />
           <Typography align="center" gutterBottom>
             Have a question for our team or general feedback on our site? Please
             reach out to us below!
           </Typography>
           <form onSubmit={handleSubmit}>
-            <Stack spacing={2}>
+            <Stack sx={{ p: 4 }} spacing={2}>
               {hasFormErrors && (
                 <Alert severity="error">
                   There were form validation errors! Please check your response
@@ -129,7 +127,6 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                   Your feedback has been submitted. Thank you!
                 </Alert>
               )}
-
               <TextField
                 label="Name"
                 variant="filled"
@@ -138,7 +135,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 onChange={handleInputChange}
                 sx={{
                   '& .MuiInputLabel-shrink': {
-                    color: 'text.primary',
+                    color: 'black',
                   },
                 }}
                 required
@@ -152,7 +149,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 onChange={handleInputChange}
                 sx={{
                   '& .MuiInputLabel-shrink': {
-                    color: 'text.primary',
+                    color: 'black',
                   },
                 }}
                 required
@@ -167,7 +164,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 onChange={handleInputChange}
                 sx={{
                   '& .MuiInputLabel-shrink': {
-                    color: 'text.primary',
+                    color: 'black',
                   },
                 }}
                 required
@@ -178,30 +175,32 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 onChange={onCaptchaChange}
                 ref={recaptcha}
               />
+              <div>
+                By pressing submit, I have read Faust.js&apos;{' '}
+                <a
+                  target="_blank"
+                  href="https://faustjs.org/privacy-policy"
+                  rel="noreferrer">
+                  privacy policy
+                </a>{' '}
+                and agree to be contacted by a member of the Faust team
+                regarding my feedback.
+              </div>
+
+              <Button
+                sx={{ width: 5 }}
+                variant="contained"
+                color="primary"
+                type="submit"
+                disabled={isLoading}>
+                {isLoading && (
+                  <Box>
+                    <CircularProgress size={20} />
+                  </Box>
+                )}
+                Submit
+              </Button>
             </Stack>
-            <div>
-              By pressing submit, I have read Faust.js&apos;{' '}
-              <a
-                target="_blank"
-                href="https://faustjs.org/privacy-policy"
-                rel="noreferrer">
-                privacy policy
-              </a>{' '}
-              and agree to be contacted by a member of the Faust team regarding
-              my feedback.
-            </div>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              disabled={isLoading}>
-              {isLoading && (
-                <Box>
-                  <CircularProgress size={20} />
-                </Box>
-              )}
-              Submit
-            </Button>
           </form>
         </Container>
       </Main>
