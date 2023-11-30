@@ -11,10 +11,9 @@ import {
   CircularProgress,
   Stack,
 } from '@mui/material';
-import { Head, Header, Footer, Main } from 'components';
+import { Head, Header, Footer, Main, EntryHeader } from 'components';
 import { GetStaticPropsContext } from 'next';
 import ReCAPTCHA from 'react-google-recaptcha';
-
 import React, { RefObject, useRef, useState } from 'react';
 
 const Page: FaustPage<GetContactFormPageQuery> = (props) => {
@@ -112,10 +111,8 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
 
       <Main>
         <Container>
-          <Typography variant="h2" align="center" gutterBottom>
-            Contact Us
-          </Typography>
-          <Typography variant="h4" align="center" gutterBottom>
+          <EntryHeader title="Contact Us">Contact Us</EntryHeader>
+          <Typography align="center" gutterBottom>
             Have a question for our team or general feedback on our site? Please
             reach out to us below!
           </Typography>
@@ -132,12 +129,18 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                   Your feedback has been submitted. Thank you!
                 </Alert>
               )}
+
               <TextField
                 label="Name"
                 variant="filled"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
+                sx={{
+                  '& .MuiInputLabel-shrink': {
+                    color: 'text.primary',
+                  },
+                }}
                 required
               />
               <TextField
@@ -147,6 +150,11 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 type="email"
                 value={formData.email}
                 onChange={handleInputChange}
+                sx={{
+                  '& .MuiInputLabel-shrink': {
+                    color: 'text.primary',
+                  },
+                }}
                 required
               />
               <TextField
@@ -157,6 +165,11 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
+                sx={{
+                  '& .MuiInputLabel-shrink': {
+                    color: 'text.primary',
+                  },
+                }}
                 required
               />
               <ReCAPTCHA
