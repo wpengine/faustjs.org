@@ -60,7 +60,6 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
     }
   };
 
-  // TODO: get rid of 'any'
   const handleSubmit = async (e: { preventDefault: () => any }) => {
     e.preventDefault();
 
@@ -74,10 +73,10 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: formData?.name ?? undefined,
-        message: formData?.message ?? undefined,
-        email: formData?.email ?? undefined,
-        captchaToken: captchaToken ?? undefined,
+        name: formData?.name,
+        message: formData?.message,
+        email: formData?.email,
+        captchaToken,
       }),
     });
 
