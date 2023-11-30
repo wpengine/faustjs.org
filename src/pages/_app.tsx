@@ -23,8 +23,6 @@ export default function MyApp({
   emotionCache = clientSideEmotionCache,
 }: FaustAppProps) {
   const router = useRouter();
-  // eslint-disable-next-line no-console
-  console.log('testing from _app.tsx console');
   useEffect(() => {
     const handleRouteChange = (url: any) => {
       gtag.pageview(url);
