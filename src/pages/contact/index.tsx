@@ -136,6 +136,9 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                   '& .MuiInputLabel-shrink': {
                     color: 'black',
                   },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
                 }}
                 required
               />
@@ -148,6 +151,9 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 onChange={handleInputChange}
                 sx={{
                   '& .MuiInputLabel-shrink': {
+                    color: 'black',
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
                     color: 'black',
                   },
                 }}
@@ -163,6 +169,9 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 onChange={handleInputChange}
                 sx={{
                   '& .MuiInputLabel-shrink': {
+                    color: 'black',
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
                     color: 'black',
                   },
                 }}
@@ -185,20 +194,20 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
                 and agree to be contacted by a member of the Faust team
                 regarding my feedback.
               </div>
-
-              <Button
-                sx={{ width: 5 }}
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={isLoading}>
-                {isLoading && (
-                  <Box>
-                    <CircularProgress size={20} />
-                  </Box>
-                )}
-                Submit
-              </Button>
+              <div>
+                <Button
+                  sx={{ backgroundColor: '#7E5CEF', color: '#ffffff' }}
+                  variant="contained"
+                  type="submit"
+                  disabled={isLoading}>
+                  {isLoading && (
+                    <Box>
+                      <CircularProgress size={20} />
+                    </Box>
+                  )}
+                  Submit
+                </Button>
+              </div>
             </Stack>
           </form>
         </Container>
@@ -260,3 +269,18 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export default Page;
+
+/* <div>
+<Button
+  sx={{ backgroundColor: '#7E5CEF', color: '#ffffff' }}
+  variant="contained"
+  type="submit"
+  disabled={isLoading}>
+  {isLoading && (
+    <Box>
+      <CircularProgress size={20} />
+    </Box>
+  )}
+  Submit
+</Button>
+</div> */
