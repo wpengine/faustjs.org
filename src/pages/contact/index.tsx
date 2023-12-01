@@ -269,18 +269,3 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export default Page;
-
-/* <div>
-<Button
-  sx={{ backgroundColor: '#7E5CEF', color: '#ffffff' }}
-  variant="contained"
-  type="submit"
-  disabled={isLoading}>
-  {isLoading && (
-    <Box>
-      <CircularProgress size={20} />
-    </Box>
-  )}
-  Submit
-</Button>
-</div> */
