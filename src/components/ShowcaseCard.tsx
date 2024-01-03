@@ -22,12 +22,14 @@ export function ShowcaseCard({ imageSrc, title, alt, url }: ShowcaseCardProps) {
   return (
     <Card sx={{ maxWidth: 345 }} className={styles.card}>
       <CardActionArea className={styles.image}>
-        <CardMedia
-          component="img"
-          className={styles.container}
-          image={imageSrc}
-          alt={alt}
-        />
+        <Link href={url}>
+          <CardMedia
+            component="img"
+            className={styles.container}
+            image={imageSrc}
+            alt={alt}
+          />
+        </Link>
         <CardContent className={styles.fade}>
           <Grid
             id="top-row"
