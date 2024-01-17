@@ -6,3 +6,9 @@ export type HeaderItem = {
   tagName: string; // h[1-6]
   title: string; // name of heading
 };
+
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    mdl: true; // adds the `mdl` breakpoint
+  }
+}

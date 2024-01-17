@@ -35,6 +35,7 @@ export function FeaturedImage({
         width: '100vw',
         maxWidth: '100%',
         minHeight: '75vh',
+        marginBottom: '30px',
         '> img': {
           display: 'block',
           height: 'auto',

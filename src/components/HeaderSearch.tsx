@@ -41,7 +41,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '13ch',
+    [theme.breakpoints.up('lg')]: {
+      width: '45ch',
+    },
   },
 }));
 
@@ -81,7 +84,6 @@ export default function HeaderSearch() {
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
-        sx={{ width: '50ch' }}
       />
 
       {searchResults.length > 0 && isSearchVisible && (

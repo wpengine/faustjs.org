@@ -11,6 +11,7 @@ import {
   Main,
   PostCategoryList,
   PostTagList,
+  FeaturedImage,
 } from 'components';
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
@@ -32,7 +33,8 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
-  const { title, content, date, author, tags, categories } = post;
+  const { title, content, date, author, tags, categories, featuredImage } =
+    post;
 
   return (
     <>
@@ -51,6 +53,9 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
             spacing={2}
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12}>
+              {featuredImage?.node?.sourceUrl && (
+                <FeaturedImage image={featuredImage.node} />
+              )}
               <EntryHeader
                 title={title}
                 date={date}
