@@ -1,5 +1,21 @@
 const { withFaust, getWpHostname } = require('@faustwp/core');
 
+const getAtlasCacheHandler = (config = {}) => {
+  if (process.env.ATLAS_CACHE_HANDLER_ENABLED === undefined) {
+    return { ...config };
+  }
+
+  return {
+    ...config,
+    ...{
+      incrementalCacheHandlerPath: require.resolve(
+        './.atlas/atlas-cache-handler.js',
+      ),
+      isrMemoryCacheSize: 0,
+    },
+  };
+};
+
 /**
  * @type {import('next').NextConfig}
  **/
@@ -242,5 +258,8 @@ module.exports = withFaust({
         permanent: true,
       },
     ];
+  },
+  experimental: {
+    ...getAtlasCacheHandler(),
   },
 });
