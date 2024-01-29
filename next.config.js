@@ -27,6 +27,20 @@ module.exports = withFaust({
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value:
+              "frame-ancestors https://*.faustjs.org https://faustjs.org http://localhost:3000",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
