@@ -15,6 +15,28 @@ export type Scalars = {
   BlockAttributesObject: any;
 };
 
+/** Block registered by ACF */
+export type AcfBlock = {
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean'];
+  /** The name of the Block */
+  name?: Maybe<Scalars['String']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']>;
+};
+
 /** A Field Group managed by ACF */
 export type AcfFieldGroup = {
   /**
@@ -104,7 +126,7 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -124,6 +146,8 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   parentId?: Maybe<Scalars['ID']>;
   /** Connection between the Category type and the post type */
   posts?: Maybe<CategoryToPostConnection>;
+  /** The Yoast SEO data of the Categories taxonomy. */
+  seo?: Maybe<TaxonomySeo>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']>;
   /** Connection between the Category type and the Taxonomy type */
@@ -222,6 +246,8 @@ export type CategoryConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -269,6 +295,8 @@ export type CategoryToAncestorsCategoryConnectionPageInfo = CategoryConnectionPa
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -302,6 +330,8 @@ export type CategoryToCategoryConnectionPageInfo = CategoryConnectionPageInfo & 
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -381,6 +411,8 @@ export type CategoryToContentNodeConnectionPageInfo = ContentNodeConnectionPageI
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -463,6 +495,8 @@ export type CategoryToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -666,6 +700,8 @@ export type CommentConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -719,6 +755,8 @@ export type CommentToCommentConnectionPageInfo = CommentConnectionPageInfo & Pag
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1087,7 +1125,7 @@ export type ContentNode = {
   enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid?: Maybe<Scalars['String']>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -1109,6 +1147,8 @@ export type ContentNode = {
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -1164,6 +1204,8 @@ export type ContentNodeConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1236,6 +1278,8 @@ export type ContentNodeToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnec
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1269,6 +1313,8 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1396,6 +1442,8 @@ export type ContentTypeConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1459,6 +1507,8 @@ export type ContentTypeToContentNodeConnectionPageInfo = ContentNodeConnectionPa
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1532,6 +1582,8 @@ export type ContentTypeToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnect
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -1804,6 +1856,8 @@ export type CoreButtonAttributes = BlockWithSupportsAnchor & {
   rel?: Maybe<Scalars['String']>;
   /** The &quot;style&quot; field on the &quot;CoreButton&quot; block */
   style?: Maybe<Scalars['BlockAttributesObject']>;
+  /** The &quot;tagName&quot; field on the &quot;CoreButton&quot; block */
+  tagName?: Maybe<Scalars['String']>;
   /** The &quot;text&quot; field on the &quot;CoreButton&quot; block */
   text?: Maybe<Scalars['String']>;
   /** The &quot;textAlign&quot; field on the &quot;CoreButton&quot; block */
@@ -1812,6 +1866,8 @@ export type CoreButtonAttributes = BlockWithSupportsAnchor & {
   textColor?: Maybe<Scalars['String']>;
   /** The &quot;title&quot; field on the &quot;CoreButton&quot; block */
   title?: Maybe<Scalars['String']>;
+  /** The &quot;type&quot; field on the &quot;CoreButton&quot; block */
+  type?: Maybe<Scalars['String']>;
   /** The &quot;url&quot; field on the &quot;CoreButton&quot; block */
   url?: Maybe<Scalars['String']>;
   /** The &quot;width&quot; field on the &quot;CoreButton&quot; block */
@@ -2876,6 +2932,8 @@ export type CoreDetailsAttributes = {
   fontSize?: Maybe<Scalars['String']>;
   /** The &quot;gradient&quot; field on the &quot;CoreDetails&quot; block */
   gradient?: Maybe<Scalars['String']>;
+  /** The &quot;layout&quot; field on the &quot;CoreDetails&quot; block */
+  layout?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;lock&quot; field on the &quot;CoreDetails&quot; block */
   lock?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;showContent&quot; field on the &quot;CoreDetails&quot; block */
@@ -3034,10 +3092,22 @@ export type CoreFootnotes = EditorBlock & PageEditorBlock & PostEditorBlock & {
 /** Attributes of the CoreFootnotes Block Type */
 export type CoreFootnotesAttributes = {
   __typename?: 'CoreFootnotesAttributes';
+  /** The &quot;backgroundColor&quot; field on the &quot;CoreFootnotes&quot; block */
+  backgroundColor?: Maybe<Scalars['String']>;
+  /** The &quot;borderColor&quot; field on the &quot;CoreFootnotes&quot; block */
+  borderColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreFootnotes&quot; block */
   className?: Maybe<Scalars['String']>;
+  /** The &quot;fontFamily&quot; field on the &quot;CoreFootnotes&quot; block */
+  fontFamily?: Maybe<Scalars['String']>;
+  /** The &quot;fontSize&quot; field on the &quot;CoreFootnotes&quot; block */
+  fontSize?: Maybe<Scalars['String']>;
   /** The &quot;lock&quot; field on the &quot;CoreFootnotes&quot; block */
   lock?: Maybe<Scalars['BlockAttributesObject']>;
+  /** The &quot;style&quot; field on the &quot;CoreFootnotes&quot; block */
+  style?: Maybe<Scalars['BlockAttributesObject']>;
+  /** The &quot;textColor&quot; field on the &quot;CoreFootnotes&quot; block */
+  textColor?: Maybe<Scalars['String']>;
 };
 
 /** A block used for editing the site */
@@ -3394,6 +3464,8 @@ export type CoreImageAttributes = BlockWithSupportsAnchor & {
   href?: Maybe<Scalars['String']>;
   /** The &quot;id&quot; field on the &quot;CoreImage&quot; block */
   id?: Maybe<Scalars['Float']>;
+  /** The &quot;lightbox&quot; field on the &quot;CoreImage&quot; block */
+  lightbox?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;linkClass&quot; field on the &quot;CoreImage&quot; block */
   linkClass?: Maybe<Scalars['String']>;
   /** The &quot;linkDestination&quot; field on the &quot;CoreImage&quot; block */
@@ -4602,18 +4674,24 @@ export type CorePostContentAttributes = {
   __typename?: 'CorePostContentAttributes';
   /** The &quot;align&quot; field on the &quot;CorePostContent&quot; block */
   align?: Maybe<Scalars['String']>;
+  /** The &quot;backgroundColor&quot; field on the &quot;CorePostContent&quot; block */
+  backgroundColor?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CorePostContent&quot; block */
   className?: Maybe<Scalars['String']>;
   /** The &quot;fontFamily&quot; field on the &quot;CorePostContent&quot; block */
   fontFamily?: Maybe<Scalars['String']>;
   /** The &quot;fontSize&quot; field on the &quot;CorePostContent&quot; block */
   fontSize?: Maybe<Scalars['String']>;
+  /** The &quot;gradient&quot; field on the &quot;CorePostContent&quot; block */
+  gradient?: Maybe<Scalars['String']>;
   /** The &quot;layout&quot; field on the &quot;CorePostContent&quot; block */
   layout?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;lock&quot; field on the &quot;CorePostContent&quot; block */
   lock?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;style&quot; field on the &quot;CorePostContent&quot; block */
   style?: Maybe<Scalars['BlockAttributesObject']>;
+  /** The &quot;textColor&quot; field on the &quot;CorePostContent&quot; block */
+  textColor?: Maybe<Scalars['String']>;
 };
 
 /** A block used for editing the site */
@@ -5154,6 +5232,8 @@ export type CoreQueryAttributes = {
   align?: Maybe<Scalars['String']>;
   /** The &quot;className&quot; field on the &quot;CoreQuery&quot; block */
   className?: Maybe<Scalars['String']>;
+  /** The &quot;enhancedPagination&quot; field on the &quot;CoreQuery&quot; block */
+  enhancedPagination?: Maybe<Scalars['Boolean']>;
   /** The &quot;layout&quot; field on the &quot;CoreQuery&quot; block */
   layout?: Maybe<Scalars['BlockAttributesObject']>;
   /** The &quot;lock&quot; field on the &quot;CoreQuery&quot; block */
@@ -5356,6 +5436,8 @@ export type CoreQueryPaginationNumbersAttributes = {
   gradient?: Maybe<Scalars['String']>;
   /** The &quot;lock&quot; field on the &quot;CoreQueryPaginationNumbers&quot; block */
   lock?: Maybe<Scalars['BlockAttributesObject']>;
+  /** The &quot;midSize&quot; field on the &quot;CoreQueryPaginationNumbers&quot; block */
+  midSize?: Maybe<Scalars['Float']>;
   /** The &quot;style&quot; field on the &quot;CoreQueryPaginationNumbers&quot; block */
   style?: Maybe<Scalars['BlockAttributesObject']>;
 };
@@ -7473,6 +7555,8 @@ export type EnqueuedScriptConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -7546,6 +7630,8 @@ export type EnqueuedStylesheetConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -7616,6 +7702,8 @@ export type Explanation = ContentNode & DatabaseIdentifier & MenuItemLinkable & 
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -7691,6 +7779,8 @@ export type ExplanationConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -7821,37 +7911,6 @@ export type FaustTutorialEditorBlock = {
   renderedHtml?: Maybe<Scalars['String']>;
 };
 
-/** Added by WPGraphQL for ACF Redux */
-export type FeedbackSubmissions = AcfFieldGroup & AcfFieldGroupFields & FeedbackSubmissions_Fields & {
-  __typename?: 'FeedbackSubmissions';
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
-  message?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
-  satisfaction?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
-  url?: Maybe<Scalars['String']>;
-};
-
-/** Interface representing fields of the ACF &quot;FeedbackSubmissions&quot; Field Group */
-export type FeedbackSubmissions_Fields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
-  message?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
-  satisfaction?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;FeedbackSubmissions&quot; Field Group */
-  url?: Maybe<Scalars['String']>;
-};
-
 /** The general setting type */
 export type GeneralSettings = {
   __typename?: 'GeneralSettings';
@@ -7975,6 +8034,8 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -8066,6 +8127,8 @@ export type GraphqlDocumentConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8114,7 +8177,7 @@ export type GraphqlDocumentGroup = DatabaseIdentifier & Node & TermNode & Unifor
   graphqlDocumentGroupId?: Maybe<Scalars['Int']>;
   /** Connection between the GraphqlDocumentGroup type and the graphqlDocument type */
   graphqlDocuments?: Maybe<GraphqlDocumentGroupToGraphqlDocumentConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -8126,6 +8189,8 @@ export type GraphqlDocumentGroup = DatabaseIdentifier & Node & TermNode & Unifor
   link?: Maybe<Scalars['String']>;
   /** The human friendly name of the object. */
   name?: Maybe<Scalars['String']>;
+  /** The Yoast SEO data of the Groups taxonomy. */
+  seo?: Maybe<TaxonomySeo>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']>;
   /** Connection between the GraphqlDocumentGroup type and the Taxonomy type */
@@ -8205,6 +8270,8 @@ export type GraphqlDocumentGroupConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8252,6 +8319,8 @@ export type GraphqlDocumentGroupToContentNodeConnectionPageInfo = ContentNodeCon
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8325,6 +8394,8 @@ export type GraphqlDocumentGroupToGraphqlDocumentConnectionPageInfo = GraphqlDoc
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8404,6 +8475,8 @@ export type GraphqlDocumentToGraphqlDocumentGroupConnectionEdge = Edge & Graphql
   __typename?: 'GraphqlDocumentToGraphqlDocumentGroupConnectionEdge';
   /** A cursor for use in pagination */
   cursor?: Maybe<Scalars['String']>;
+  /** The Yoast SEO Primary graphql_document_group */
+  isPrimary?: Maybe<Scalars['Boolean']>;
   /** The item at the end of the edge */
   node: GraphqlDocumentGroup;
 };
@@ -8417,6 +8490,8 @@ export type GraphqlDocumentToGraphqlDocumentGroupConnectionPageInfo = GraphqlDoc
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8508,6 +8583,8 @@ export type GraphqlDocumentToTermNodeConnectionPageInfo = PageInfo & TermNodeCon
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8618,6 +8695,8 @@ export type HierarchicalContentNode = {
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -8696,6 +8775,8 @@ export type HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo = Co
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8769,6 +8850,8 @@ export type HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo = Con
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -8967,6 +9050,8 @@ export type HowToGuide = ContentNode & DatabaseIdentifier & MenuItemLinkable & N
   revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
   /** Connection between the HowToGuide type and the howToGuide type */
   revisions?: Maybe<HowToGuideToRevisionConnection>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -9052,6 +9137,8 @@ export type HowToGuideConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -9106,6 +9193,8 @@ export type HowToGuideToRevisionConnectionPageInfo = HowToGuideConnectionPageInf
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -9256,6 +9345,8 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The sizes attribute value for an image. */
   sizes?: Maybe<Scalars['String']>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
@@ -9381,6 +9472,8 @@ export type MediaItemConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -9537,6 +9630,8 @@ export type MenuConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -9630,6 +9725,8 @@ export type MenuItemConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -9640,7 +9737,7 @@ export type MenuItemLinkable = {
   conditionalTags?: Maybe<ConditionalTags>;
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int'];
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -9708,6 +9805,8 @@ export type MenuItemToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & 
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -9794,6 +9893,8 @@ export type MenuToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & Page
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -10091,6 +10192,8 @@ export type NodeWithTemplate = {
 export type NodeWithTitle = {
   /** The globally unique ID for the object */
   id: Scalars['ID'];
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']>;
 };
@@ -10213,6 +10316,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
   /** Connection between the Page type and the page type */
   revisions?: Maybe<PageToRevisionConnection>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -10318,6 +10423,8 @@ export type PageConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -10403,6 +10510,8 @@ export type PageToRevisionConnectionPageInfo = PageConnectionPageInfo & PageInfo
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -10502,6 +10611,8 @@ export type PluginConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -10614,6 +10725,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
   /** Connection between the Post type and the post type */
   revisions?: Maybe<PostToRevisionConnection>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -10769,6 +10882,8 @@ export type PostConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -10811,7 +10926,7 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -10830,6 +10945,8 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   postFormatId?: Maybe<Scalars['Int']>;
   /** Connection between the PostFormat type and the post type */
   posts?: Maybe<PostFormatToPostConnection>;
+  /** The Yoast SEO data of the Formats taxonomy. */
+  seo?: Maybe<TaxonomySeo>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']>;
   /** Connection between the PostFormat type and the Taxonomy type */
@@ -10909,6 +11026,8 @@ export type PostFormatConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -10956,6 +11075,8 @@ export type PostFormatToContentNodeConnectionPageInfo = ContentNodeConnectionPag
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11029,6 +11150,8 @@ export type PostFormatToPostConnectionPageInfo = PageInfo & PostConnectionPageIn
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11192,8 +11315,6 @@ export type PostPostFormatsNodeInput = {
 export enum PostStatusEnum {
   /** Objects with the acf-disabled status */
   AcfDisabled = 'ACF_DISABLED',
-  /** Objects with the assigned status */
-  Assigned = 'ASSIGNED',
   /** Objects with the auto-draft status */
   AutoDraft = 'AUTO_DRAFT',
   /** Objects with the dp-rewrite-republish status */
@@ -11204,12 +11325,8 @@ export enum PostStatusEnum {
   Future = 'FUTURE',
   /** Objects with the inherit status */
   Inherit = 'INHERIT',
-  /** Objects with the in-progress status */
-  InProgress = 'IN_PROGRESS',
   /** Objects with the pending status */
   Pending = 'PENDING',
-  /** Objects with the pitch status */
-  Pitch = 'PITCH',
   /** Objects with the private status */
   Private = 'PRIVATE',
   /** Objects with the publish status */
@@ -11266,6 +11383,8 @@ export type PostToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
   __typename?: 'PostToCategoryConnectionEdge';
   /** A cursor for use in pagination */
   cursor?: Maybe<Scalars['String']>;
+  /** The Yoast SEO Primary category */
+  isPrimary?: Maybe<Scalars['Boolean']>;
   /** The item at the end of the edge */
   node: Category;
 };
@@ -11279,6 +11398,8 @@ export type PostToCategoryConnectionPageInfo = CategoryConnectionPageInfo & Page
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11345,6 +11466,8 @@ export type PostToPostFormatConnectionEdge = Edge & PostFormatConnectionEdge & {
   __typename?: 'PostToPostFormatConnectionEdge';
   /** A cursor for use in pagination */
   cursor?: Maybe<Scalars['String']>;
+  /** The Yoast SEO Primary post_format */
+  isPrimary?: Maybe<Scalars['Boolean']>;
   /** The item at the end of the edge */
   node: PostFormat;
 };
@@ -11358,6 +11481,8 @@ export type PostToPostFormatConnectionPageInfo = PageInfo & PostFormatConnection
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11446,6 +11571,8 @@ export type PostToRevisionConnectionPageInfo = PageInfo & PostConnectionPageInfo
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11532,6 +11659,8 @@ export type PostToTagConnectionEdge = Edge & TagConnectionEdge & {
   __typename?: 'PostToTagConnectionEdge';
   /** A cursor for use in pagination */
   cursor?: Maybe<Scalars['String']>;
+  /** The Yoast SEO Primary post_tag */
+  isPrimary?: Maybe<Scalars['Boolean']>;
   /** The item at the end of the edge */
   node: Tag;
 };
@@ -11545,6 +11674,8 @@ export type PostToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpP
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11624,6 +11755,8 @@ export type PostToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPage
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -11731,6 +11864,35 @@ export type PostTypeLabelDetails = {
   viewItems?: Maybe<Scalars['String']>;
 };
 
+export type PostTypeSeo = {
+  __typename?: 'PostTypeSEO';
+  breadcrumbs?: Maybe<Array<Maybe<SeoPostTypeBreadcrumbs>>>;
+  canonical?: Maybe<Scalars['String']>;
+  cornerstone?: Maybe<Scalars['Boolean']>;
+  focuskw?: Maybe<Scalars['String']>;
+  fullHead?: Maybe<Scalars['String']>;
+  metaDesc?: Maybe<Scalars['String']>;
+  metaKeywords?: Maybe<Scalars['String']>;
+  metaRobotsNofollow?: Maybe<Scalars['String']>;
+  metaRobotsNoindex?: Maybe<Scalars['String']>;
+  opengraphAuthor?: Maybe<Scalars['String']>;
+  opengraphDescription?: Maybe<Scalars['String']>;
+  opengraphImage?: Maybe<MediaItem>;
+  opengraphModifiedTime?: Maybe<Scalars['String']>;
+  opengraphPublishedTime?: Maybe<Scalars['String']>;
+  opengraphPublisher?: Maybe<Scalars['String']>;
+  opengraphSiteName?: Maybe<Scalars['String']>;
+  opengraphTitle?: Maybe<Scalars['String']>;
+  opengraphType?: Maybe<Scalars['String']>;
+  opengraphUrl?: Maybe<Scalars['String']>;
+  readingTime?: Maybe<Scalars['Float']>;
+  schema?: Maybe<SeoPostTypeSchema>;
+  title?: Maybe<Scalars['String']>;
+  twitterDescription?: Maybe<Scalars['String']>;
+  twitterImage?: Maybe<MediaItem>;
+  twitterTitle?: Maybe<Scalars['String']>;
+};
+
 /** Nodes that can be seen in a preview (unpublished) state. */
 export type Previewable = {
   /** Whether the object is a node in the preview state */
@@ -11820,6 +11982,8 @@ export type Reference = ContentNode & DatabaseIdentifier & MenuItemLinkable & No
    * @deprecated Deprecated in favor of the databaseId field
    */
   referenceId: Scalars['Int'];
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -11895,6 +12059,8 @@ export type ReferenceConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -12558,6 +12724,8 @@ export type RootQuery = {
   registeredStylesheets?: Maybe<RootQueryToEnqueuedStylesheetConnection>;
   /** Connection between the RootQuery type and the ContentNode type */
   revisions?: Maybe<RootQueryToRevisionsConnection>;
+  /** Returns seo site data */
+  seo?: Maybe<SeoConfig>;
   /** An object of the showcase Type.  */
   showcase?: Maybe<Showcase>;
   /**
@@ -13174,6 +13342,8 @@ export type RootQueryToCategoryConnectionPageInfo = CategoryConnectionPageInfo &
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13253,6 +13423,8 @@ export type RootQueryToCommentConnectionPageInfo = CommentConnectionPageInfo & P
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13348,6 +13520,8 @@ export type RootQueryToContentNodeConnectionPageInfo = ContentNodeConnectionPage
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13421,6 +13595,8 @@ export type RootQueryToContentTypeConnectionPageInfo = ContentTypeConnectionPage
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13454,6 +13630,8 @@ export type RootQueryToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnecti
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13487,6 +13665,8 @@ export type RootQueryToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheet
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13520,6 +13700,8 @@ export type RootQueryToExplanationConnectionPageInfo = ExplanationConnectionPage
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13591,6 +13773,8 @@ export type RootQueryToGraphqlDocumentConnectionPageInfo = GraphqlDocumentConnec
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13662,6 +13846,8 @@ export type RootQueryToGraphqlDocumentGroupConnectionPageInfo = GraphqlDocumentG
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13741,6 +13927,8 @@ export type RootQueryToHowToGuideConnectionPageInfo = HowToGuideConnectionPageIn
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13812,6 +14000,8 @@ export type RootQueryToMediaItemConnectionPageInfo = MediaItemConnectionPageInfo
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13891,6 +14081,8 @@ export type RootQueryToMenuConnectionPageInfo = MenuConnectionPageInfo & PageInf
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13934,6 +14126,8 @@ export type RootQueryToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo &
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -13979,6 +14173,8 @@ export type RootQueryToPageConnectionPageInfo = PageConnectionPageInfo & PageInf
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14058,6 +14254,8 @@ export type RootQueryToPluginConnectionPageInfo = PageInfo & PluginConnectionPag
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14101,6 +14299,8 @@ export type RootQueryToPostConnectionPageInfo = PageInfo & PostConnectionPageInf
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14200,6 +14400,8 @@ export type RootQueryToPostFormatConnectionPageInfo = PageInfo & PostFormatConne
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14279,6 +14481,8 @@ export type RootQueryToReferenceConnectionPageInfo = PageInfo & ReferenceConnect
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14350,6 +14554,8 @@ export type RootQueryToRevisionsConnectionPageInfo = ContentNodeConnectionPageIn
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14423,6 +14629,8 @@ export type RootQueryToShowcaseConnectionPageInfo = PageInfo & ShowcaseConnectio
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14494,6 +14702,8 @@ export type RootQueryToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo 
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14573,6 +14783,8 @@ export type RootQueryToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnectio
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14606,6 +14818,8 @@ export type RootQueryToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectio
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14687,6 +14901,8 @@ export type RootQueryToThemeConnectionPageInfo = PageInfo & ThemeConnectionPageI
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14720,6 +14936,8 @@ export type RootQueryToTutorialConnectionPageInfo = PageInfo & TutorialConnectio
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14791,6 +15009,8 @@ export type RootQueryToUserConnectionPageInfo = PageInfo & UserConnectionPageInf
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -14858,8 +15078,307 @@ export type RootQueryToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectio
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO breadcrumb config */
+export type SeoBreadcrumbs = {
+  __typename?: 'SEOBreadcrumbs';
+  archivePrefix?: Maybe<Scalars['String']>;
+  boldLast?: Maybe<Scalars['Boolean']>;
+  enabled?: Maybe<Scalars['Boolean']>;
+  homeText?: Maybe<Scalars['String']>;
+  notFoundText?: Maybe<Scalars['String']>;
+  prefix?: Maybe<Scalars['String']>;
+  searchPrefix?: Maybe<Scalars['String']>;
+  separator?: Maybe<Scalars['String']>;
+  showBlogPage?: Maybe<Scalars['Boolean']>;
+};
+
+/** Types of cards */
+export enum SeoCardType {
+  Summary = 'summary',
+  SummaryLargeImage = 'summary_large_image'
+}
+
+/** The Yoast SEO site level configuration data */
+export type SeoConfig = {
+  __typename?: 'SEOConfig';
+  breadcrumbs?: Maybe<SeoBreadcrumbs>;
+  contentTypes?: Maybe<SeoContentTypes>;
+  meta?: Maybe<SeoGlobalMeta>;
+  openGraph?: Maybe<SeoOpenGraph>;
+  redirects?: Maybe<Array<Maybe<SeoRedirect>>>;
+  schema?: Maybe<SeoSchema>;
+  social?: Maybe<SeoSocial>;
+  webmaster?: Maybe<SeoWebmaster>;
+};
+
+/** The Yoast SEO search appearance content types fields */
+export type SeoContentType = {
+  __typename?: 'SEOContentType';
+  archive?: Maybe<SeoContentTypeArchive>;
+  metaDesc?: Maybe<Scalars['String']>;
+  metaRobotsNoindex?: Maybe<Scalars['Boolean']>;
+  schema?: Maybe<SeoPageInfoSchema>;
+  schemaType?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO search appearance content types fields */
+export type SeoContentTypeArchive = {
+  __typename?: 'SEOContentTypeArchive';
+  archiveLink?: Maybe<Scalars['String']>;
+  breadcrumbTitle?: Maybe<Scalars['String']>;
+  fullHead?: Maybe<Scalars['String']>;
+  hasArchive?: Maybe<Scalars['Boolean']>;
+  metaDesc?: Maybe<Scalars['String']>;
+  metaRobotsFollow?: Maybe<Scalars['String']>;
+  metaRobotsIndex?: Maybe<Scalars['String']>;
+  metaRobotsNofollow?: Maybe<Scalars['Boolean']>;
+  metaRobotsNoindex?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO search appearance content types */
+export type SeoContentTypes = {
+  __typename?: 'SEOContentTypes';
+  explanation?: Maybe<SeoContentType>;
+  graphqlDocument?: Maybe<SeoContentType>;
+  howToGuide?: Maybe<SeoContentType>;
+  mediaItem?: Maybe<SeoContentType>;
+  page?: Maybe<SeoContentType>;
+  post?: Maybe<SeoContentType>;
+  reference?: Maybe<SeoContentType>;
+  showcase?: Maybe<SeoContentType>;
+  tutorial?: Maybe<SeoContentType>;
+};
+
+/** The Yoast SEO meta data */
+export type SeoGlobalMeta = {
+  __typename?: 'SEOGlobalMeta';
+  author?: Maybe<SeoGlobalMetaAuthor>;
+  config?: Maybe<SeoGlobalMetaConfig>;
+  date?: Maybe<SeoGlobalMetaDate>;
+  homepage?: Maybe<SeoGlobalMetaHome>;
+  notFound?: Maybe<SeoGlobalMeta404>;
+};
+
+/** The Yoast SEO meta 404 data */
+export type SeoGlobalMeta404 = {
+  __typename?: 'SEOGlobalMeta404';
+  breadcrumb?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO Author data */
+export type SeoGlobalMetaAuthor = {
+  __typename?: 'SEOGlobalMetaAuthor';
+  description?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO meta config data */
+export type SeoGlobalMetaConfig = {
+  __typename?: 'SEOGlobalMetaConfig';
+  separator?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO Date data */
+export type SeoGlobalMetaDate = {
+  __typename?: 'SEOGlobalMetaDate';
+  description?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO homepage data */
+export type SeoGlobalMetaHome = {
+  __typename?: 'SEOGlobalMetaHome';
+  description?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Open Graph data */
+export type SeoOpenGraph = {
+  __typename?: 'SEOOpenGraph';
+  defaultImage?: Maybe<MediaItem>;
+  frontPage?: Maybe<SeoOpenGraphFrontPage>;
+};
+
+/** The Open Graph Front page data */
+export type SeoOpenGraphFrontPage = {
+  __typename?: 'SEOOpenGraphFrontPage';
+  description?: Maybe<Scalars['String']>;
+  image?: Maybe<MediaItem>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** The Schema for post type */
+export type SeoPageInfoSchema = {
+  __typename?: 'SEOPageInfoSchema';
+  raw?: Maybe<Scalars['String']>;
+};
+
+export type SeoPostTypeBreadcrumbs = {
+  __typename?: 'SEOPostTypeBreadcrumbs';
+  text?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+/** The page info SEO details */
+export type SeoPostTypePageInfo = {
+  __typename?: 'SEOPostTypePageInfo';
+  schema?: Maybe<SeoPageInfoSchema>;
+};
+
+/** The Schema types */
+export type SeoPostTypeSchema = {
+  __typename?: 'SEOPostTypeSchema';
+  articleType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  pageType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  raw?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast redirect data  (Yoast Premium only) */
+export type SeoRedirect = {
+  __typename?: 'SEORedirect';
+  format?: Maybe<Scalars['String']>;
+  origin?: Maybe<Scalars['String']>;
+  target?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['Int']>;
+};
+
+/** The Yoast SEO schema data */
+export type SeoSchema = {
+  __typename?: 'SEOSchema';
+  companyLogo?: Maybe<MediaItem>;
+  companyName?: Maybe<Scalars['String']>;
+  companyOrPerson?: Maybe<Scalars['String']>;
+  homeUrl?: Maybe<Scalars['String']>;
+  inLanguage?: Maybe<Scalars['String']>;
+  logo?: Maybe<MediaItem>;
+  personLogo?: Maybe<MediaItem>;
+  personName?: Maybe<Scalars['String']>;
+  siteName?: Maybe<Scalars['String']>;
+  siteUrl?: Maybe<Scalars['String']>;
+  wordpressSiteName?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO Social media links */
+export type SeoSocial = {
+  __typename?: 'SEOSocial';
+  facebook?: Maybe<SeoSocialFacebook>;
+  instagram?: Maybe<SeoSocialInstagram>;
+  linkedIn?: Maybe<SeoSocialLinkedIn>;
+  mySpace?: Maybe<SeoSocialMySpace>;
+  otherSocials?: Maybe<Array<Maybe<Scalars['String']>>>;
+  pinterest?: Maybe<SeoSocialPinterest>;
+  twitter?: Maybe<SeoSocialTwitter>;
+  wikipedia?: Maybe<SeoSocialWikipedia>;
+  youTube?: Maybe<SeoSocialYoutube>;
+};
+
+export type SeoSocialFacebook = {
+  __typename?: 'SEOSocialFacebook';
+  defaultImage?: Maybe<MediaItem>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialInstagram = {
+  __typename?: 'SEOSocialInstagram';
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialLinkedIn = {
+  __typename?: 'SEOSocialLinkedIn';
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialMySpace = {
+  __typename?: 'SEOSocialMySpace';
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialPinterest = {
+  __typename?: 'SEOSocialPinterest';
+  metaTag?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialTwitter = {
+  __typename?: 'SEOSocialTwitter';
+  cardType?: Maybe<SeoCardType>;
+  username?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialWikipedia = {
+  __typename?: 'SEOSocialWikipedia';
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SeoSocialYoutube = {
+  __typename?: 'SEOSocialYoutube';
+  url?: Maybe<Scalars['String']>;
+};
+
+/** The Schema types for Taxonomy */
+export type SeoTaxonomySchema = {
+  __typename?: 'SEOTaxonomySchema';
+  raw?: Maybe<Scalars['String']>;
+};
+
+export type SeoUser = {
+  __typename?: 'SEOUser';
+  breadcrumbTitle?: Maybe<Scalars['String']>;
+  canonical?: Maybe<Scalars['String']>;
+  fullHead?: Maybe<Scalars['String']>;
+  language?: Maybe<Scalars['String']>;
+  metaDesc?: Maybe<Scalars['String']>;
+  metaRobotsNofollow?: Maybe<Scalars['String']>;
+  metaRobotsNoindex?: Maybe<Scalars['String']>;
+  opengraphDescription?: Maybe<Scalars['String']>;
+  opengraphImage?: Maybe<MediaItem>;
+  opengraphTitle?: Maybe<Scalars['String']>;
+  region?: Maybe<Scalars['String']>;
+  schema?: Maybe<SeoUserSchema>;
+  social?: Maybe<SeoUserSocial>;
+  title?: Maybe<Scalars['String']>;
+  twitterDescription?: Maybe<Scalars['String']>;
+  twitterImage?: Maybe<MediaItem>;
+  twitterTitle?: Maybe<Scalars['String']>;
+};
+
+/** The Schema types for User */
+export type SeoUserSchema = {
+  __typename?: 'SEOUserSchema';
+  articleType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  pageType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  raw?: Maybe<Scalars['String']>;
+};
+
+export type SeoUserSocial = {
+  __typename?: 'SEOUserSocial';
+  facebook?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
+  linkedIn?: Maybe<Scalars['String']>;
+  mySpace?: Maybe<Scalars['String']>;
+  pinterest?: Maybe<Scalars['String']>;
+  soundCloud?: Maybe<Scalars['String']>;
+  twitter?: Maybe<Scalars['String']>;
+  wikipedia?: Maybe<Scalars['String']>;
+  youTube?: Maybe<Scalars['String']>;
+};
+
+/** The Yoast SEO  webmaster fields */
+export type SeoWebmaster = {
+  __typename?: 'SEOWebmaster';
+  baiduVerify?: Maybe<Scalars['String']>;
+  googleVerify?: Maybe<Scalars['String']>;
+  msVerify?: Maybe<Scalars['String']>;
+  yandexVerify?: Maybe<Scalars['String']>;
 };
 
 /** The strategy to use when loading the script */
@@ -14990,6 +15509,8 @@ export type Showcase = ContentNode & DatabaseIdentifier & MenuItemLinkable & Nod
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** Fields of the ShowcaseFields ACF Field Group */
   showcaseFields?: Maybe<ShowcaseFields>;
   /**
@@ -15072,16 +15593,18 @@ export type ShowcaseConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
 
-/** Added by WPGraphQL for ACF Redux */
+/** The &quot;ShowcaseFields&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type ShowcaseFields = AcfFieldGroup & AcfFieldGroupFields & ShowcaseFields_Fields & {
   __typename?: 'ShowcaseFields';
-  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
   externalUrl?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
   externalUrlTitle?: Maybe<Scalars['String']>;
   /**
    * The name of the field group
@@ -15092,9 +15615,9 @@ export type ShowcaseFields = AcfFieldGroup & AcfFieldGroupFields & ShowcaseField
 
 /** Interface representing fields of the ACF &quot;ShowcaseFields&quot; Field Group */
 export type ShowcaseFields_Fields = {
-  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
   externalUrl?: Maybe<Scalars['String']>;
-  /** Field added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;ShowcaseFields&quot; Field Group */
   externalUrlTitle?: Maybe<Scalars['String']>;
   /**
    * The name of the field group
@@ -15141,7 +15664,7 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -15155,6 +15678,8 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   name?: Maybe<Scalars['String']>;
   /** Connection between the Tag type and the post type */
   posts?: Maybe<TagToPostConnection>;
+  /** The Yoast SEO data of the Tags taxonomy. */
+  seo?: Maybe<TaxonomySeo>;
   /** An alphanumeric identifier for the object unique to its type. */
   slug?: Maybe<Scalars['String']>;
   /**
@@ -15239,6 +15764,8 @@ export type TagConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15286,6 +15813,8 @@ export type TagToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo &
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15359,6 +15888,8 @@ export type TagToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & Wp
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15529,6 +16060,8 @@ export type TaxonomyConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15552,6 +16085,34 @@ export enum TaxonomyIdTypeEnum {
   /** The name of the taxonomy */
   Name = 'NAME'
 }
+
+export type TaxonomySeo = {
+  __typename?: 'TaxonomySEO';
+  breadcrumbs?: Maybe<Array<Maybe<SeoPostTypeBreadcrumbs>>>;
+  canonical?: Maybe<Scalars['String']>;
+  cornerstone?: Maybe<Scalars['Boolean']>;
+  focuskw?: Maybe<Scalars['String']>;
+  fullHead?: Maybe<Scalars['String']>;
+  metaDesc?: Maybe<Scalars['String']>;
+  metaKeywords?: Maybe<Scalars['String']>;
+  metaRobotsNofollow?: Maybe<Scalars['String']>;
+  metaRobotsNoindex?: Maybe<Scalars['String']>;
+  opengraphAuthor?: Maybe<Scalars['String']>;
+  opengraphDescription?: Maybe<Scalars['String']>;
+  opengraphImage?: Maybe<MediaItem>;
+  opengraphModifiedTime?: Maybe<Scalars['String']>;
+  opengraphPublishedTime?: Maybe<Scalars['String']>;
+  opengraphPublisher?: Maybe<Scalars['String']>;
+  opengraphSiteName?: Maybe<Scalars['String']>;
+  opengraphTitle?: Maybe<Scalars['String']>;
+  opengraphType?: Maybe<Scalars['String']>;
+  opengraphUrl?: Maybe<Scalars['String']>;
+  schema?: Maybe<SeoTaxonomySchema>;
+  title?: Maybe<Scalars['String']>;
+  twitterDescription?: Maybe<Scalars['String']>;
+  twitterImage?: Maybe<MediaItem>;
+  twitterTitle?: Maybe<Scalars['String']>;
+};
 
 /** Connection between the Taxonomy type and the ContentType type */
 export type TaxonomyToContentTypeConnection = Connection & ContentTypeConnection & {
@@ -15582,6 +16143,8 @@ export type TaxonomyToContentTypeConnectionPageInfo = ContentTypeConnectionPageI
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15615,6 +16178,8 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15647,7 +16212,7 @@ export type TermNode = {
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -15716,6 +16281,8 @@ export type TermNodeConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15763,6 +16330,8 @@ export type TermNodeToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectio
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15796,6 +16365,8 @@ export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetC
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15871,6 +16442,8 @@ export type ThemeConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -15936,6 +16509,8 @@ export type Tutorial = ContentNode & DatabaseIdentifier & MenuItemLinkable & Nod
   previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The Yoast SEO data of the ContentNode */
+  seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
@@ -16016,6 +16591,8 @@ export type TutorialConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -16045,7 +16622,7 @@ export type TutorialToPreviewConnectionEdge = Edge & OneToOneConnection & Tutori
 export type UniformResourceIdentifiable = {
   /** @deprecated Deprecated in favor of using Next.js pages */
   conditionalTags?: Maybe<ConditionalTags>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean'];
@@ -16691,6 +17268,8 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   revisions?: Maybe<UserToRevisionsConnection>;
   /** Connection between the User type and the UserRole type */
   roles?: Maybe<UserToUserRoleConnection>;
+  /** The Yoast SEO data of a user */
+  seo?: Maybe<SeoUser>;
   /** Whether the Toolbar should be displayed when the user is viewing the site. */
   shouldShowAdminToolbar?: Maybe<Scalars['Boolean']>;
   shouldShowFaustToolbar?: Maybe<Scalars['Boolean']>;
@@ -16821,6 +17400,8 @@ export type UserConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -16882,6 +17463,8 @@ export type UserRoleConnectionPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -16933,6 +17516,8 @@ export type UserToCommentConnectionPageInfo = CommentConnectionPageInfo & PageIn
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17028,6 +17613,8 @@ export type UserToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPag
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17061,6 +17648,8 @@ export type UserToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConne
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17094,6 +17683,8 @@ export type UserToMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & Pa
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17173,6 +17764,8 @@ export type UserToPageConnectionPageInfo = PageConnectionPageInfo & PageInfo & W
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17252,6 +17845,8 @@ export type UserToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & W
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17351,6 +17946,8 @@ export type UserToRevisionsConnectionPageInfo = ContentNodeConnectionPageInfo & 
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17424,6 +18021,8 @@ export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPage
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17478,6 +18077,8 @@ export type WpPageInfo = {
   hasNextPage: Scalars['Boolean'];
   /** When paginating backwards, are there more items? */
   hasPreviousPage: Scalars['Boolean'];
+  /** Raw schema for page */
+  seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
 };
@@ -17627,33 +18228,33 @@ export type YoastSeoBreadcrumbsAttributes = {
   lock?: Maybe<Scalars['BlockAttributesObject']>;
 };
 
-export type DocsSidebarMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null } & { ' $fragmentName'?: 'DocsSidebarMenuItemsFragmentFragment' };
+export type DocsSidebarMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null };
 
-type FeaturedImageFragment_Explanation_Fragment = { __typename?: 'Explanation', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Explanation_Fragment' };
+type FeaturedImageFragment_Explanation_Fragment = { __typename?: 'Explanation', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
-type FeaturedImageFragment_HowToGuide_Fragment = { __typename?: 'HowToGuide', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_HowToGuide_Fragment' };
+type FeaturedImageFragment_HowToGuide_Fragment = { __typename?: 'HowToGuide', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
-type FeaturedImageFragment_Page_Fragment = { __typename?: 'Page', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Page_Fragment' };
+type FeaturedImageFragment_Page_Fragment = { __typename?: 'Page', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
-type FeaturedImageFragment_Post_Fragment = { __typename?: 'Post', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Post_Fragment' };
+type FeaturedImageFragment_Post_Fragment = { __typename?: 'Post', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
-type FeaturedImageFragment_Reference_Fragment = { __typename?: 'Reference', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Reference_Fragment' };
+type FeaturedImageFragment_Reference_Fragment = { __typename?: 'Reference', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
-type FeaturedImageFragment_Showcase_Fragment = { __typename?: 'Showcase', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Showcase_Fragment' };
+type FeaturedImageFragment_Showcase_Fragment = { __typename?: 'Showcase', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
-type FeaturedImageFragment_Tutorial_Fragment = { __typename?: 'Tutorial', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } & { ' $fragmentName'?: 'FeaturedImageFragment_Tutorial_Fragment' };
+type FeaturedImageFragment_Tutorial_Fragment = { __typename?: 'Tutorial', featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null };
 
 export type FeaturedImageFragmentFragment = FeaturedImageFragment_Explanation_Fragment | FeaturedImageFragment_HowToGuide_Fragment | FeaturedImageFragment_Page_Fragment | FeaturedImageFragment_Post_Fragment | FeaturedImageFragment_Reference_Fragment | FeaturedImageFragment_Showcase_Fragment | FeaturedImageFragment_Tutorial_Fragment;
 
-export type FooterMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null } & { ' $fragmentName'?: 'FooterMenuItemsFragmentFragment' };
+export type FooterMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null };
 
-export type HeaderGeneralSettingsFragmentFragment = { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } & { ' $fragmentName'?: 'HeaderGeneralSettingsFragmentFragment' };
+export type HeaderGeneralSettingsFragmentFragment = { __typename?: 'GeneralSettings', title?: string | null, description?: string | null };
 
-export type PrimaryMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null } & { ' $fragmentName'?: 'PrimaryMenuItemsFragmentFragment' };
+export type PrimaryMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null };
 
-export type SecondaryMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null } & { ' $fragmentName'?: 'SecondaryMenuItemsFragmentFragment' };
+export type SecondaryMenuItemsFragmentFragment = { __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null };
 
-export type PostsItemFragmentFragment = { __typename?: 'Post', id: string, date?: string | null, uri?: string | null, title?: string | null, excerpt?: string | null, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null } } | null, tags?: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name?: string | null, link?: string | null }> } | null } & { ' $fragmentName'?: 'PostsItemFragmentFragment' };
+export type PostsItemFragmentFragment = { __typename?: 'Post', id: string, date?: string | null, uri?: string | null, title?: string | null, excerpt?: string | null, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null } } | null, tags?: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name?: string | null, link?: string | null }> } | null };
 
 export type Search_ResultsQueryVariables = Exact<{
   searchTerm: Scalars['String'];
@@ -17665,122 +18266,34 @@ export type Search_ResultsQuery = { __typename?: 'RootQuery', contentNodes?: { _
 export type Get404PageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Get404PageQuery = { __typename?: 'RootQuery', generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type Get404PageQuery = { __typename?: 'RootQuery', generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetPostsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostsPageQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', nodes: Array<(
-      { __typename?: 'Post' }
-      & { ' $fragmentRefs'?: { 'PostsItemFragmentFragment': PostsItemFragmentFragment } }
-    )>, pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null } } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetPostsPageQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, date?: string | null, uri?: string | null, title?: string | null, excerpt?: string | null, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null } } | null, tags?: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name?: string | null, link?: string | null }> } | null }>, pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null } } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
+
+export type GetContactFormPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetContactFormPageQuery = { __typename?: 'RootQuery', generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetShowcasesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetShowcasesPageQuery = { __typename?: 'RootQuery', showcases?: { __typename?: 'RootQueryToShowcaseConnection', nodes: Array<{ __typename?: 'Showcase', id: string, title?: string | null, showcaseFields?: { __typename?: 'ShowcaseFields', externalUrlTitle?: string | null, externalUrl?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null }>, pageInfo: { __typename?: 'RootQueryToShowcaseConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null } } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetShowcasesPageQuery = { __typename?: 'RootQuery', showcases?: { __typename?: 'RootQueryToShowcaseConnection', nodes: Array<{ __typename?: 'Showcase', id: string, title?: string | null, showcaseFields?: { __typename?: 'ShowcaseFields', externalUrlTitle?: string | null, externalUrl?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null }>, pageInfo: { __typename?: 'RootQueryToShowcaseConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null } } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetArchiveQueryVariables = Exact<{
   uri: Scalars['String'];
 }>;
 
 
-export type GetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', name?: string | null, archiveType: 'Category', posts?: { __typename?: 'CategoryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'ContentType', archiveType: 'ContentType' } | { __typename?: 'Explanation', archiveType: 'Explanation' } | { __typename?: 'GraphqlDocument', archiveType: 'GraphqlDocument' } | { __typename?: 'GraphqlDocumentGroup', archiveType: 'GraphqlDocumentGroup' } | { __typename?: 'HowToGuide', archiveType: 'HowToGuide' } | { __typename?: 'MediaItem', archiveType: 'MediaItem' } | { __typename?: 'Page', archiveType: 'Page' } | { __typename?: 'Post', archiveType: 'Post' } | { __typename?: 'PostFormat', archiveType: 'PostFormat' } | { __typename?: 'Reference', archiveType: 'Reference' } | { __typename?: 'Showcase', archiveType: 'Showcase' } | { __typename?: 'Tag', name?: string | null, archiveType: 'Tag', posts?: { __typename?: 'TagToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'Tutorial', archiveType: 'Tutorial' } | { __typename?: 'User', archiveType: 'User' } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', name?: string | null, archiveType: 'Category', posts?: { __typename?: 'CategoryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'ContentType', archiveType: 'ContentType' } | { __typename?: 'Explanation', archiveType: 'Explanation' } | { __typename?: 'GraphqlDocument', archiveType: 'GraphqlDocument' } | { __typename?: 'GraphqlDocumentGroup', archiveType: 'GraphqlDocumentGroup' } | { __typename?: 'HowToGuide', archiveType: 'HowToGuide' } | { __typename?: 'MediaItem', archiveType: 'MediaItem' } | { __typename?: 'Page', archiveType: 'Page' } | { __typename?: 'Post', archiveType: 'Post' } | { __typename?: 'PostFormat', archiveType: 'PostFormat' } | { __typename?: 'Reference', archiveType: 'Reference' } | { __typename?: 'Showcase', archiveType: 'Showcase' } | { __typename?: 'Tag', name?: string | null, archiveType: 'Tag', posts?: { __typename?: 'TagToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null }> } | null } | { __typename?: 'Tutorial', archiveType: 'Tutorial' } | { __typename?: 'User', archiveType: 'User' } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetHomePageQuery = { __typename?: 'RootQuery', generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetHomePageQuery = { __typename?: 'RootQuery', generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetPageQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -17788,25 +18301,7 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, content?: string | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, content?: string | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetPostQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -17814,28 +18309,7 @@ export type GetPostQueryVariables = Exact<{
 }>;
 
 
-export type GetPostQuery = { __typename?: 'RootQuery', post?: (
-    { __typename?: 'Post', title?: string | null, content?: string | null, date?: string | null, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null } } | null, tags?: { __typename?: 'PostToTagConnection', edges: Array<{ __typename?: 'PostToTagConnectionEdge', node: { __typename?: 'Tag', name?: string | null, uri?: string | null } }> } | null, categories?: { __typename?: 'PostToCategoryConnection', edges: Array<{ __typename?: 'PostToCategoryConnectionEdge', node: { __typename?: 'Category', name?: string | null, uri?: string | null } }> } | null }
-    & { ' $fragmentRefs'?: { 'FeaturedImageFragment_Post_Fragment': FeaturedImageFragment_Post_Fragment } }
-  ) | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetPostQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', title?: string | null, content?: string | null, date?: string | null, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null } } | null, tags?: { __typename?: 'PostToTagConnection', edges: Array<{ __typename?: 'PostToTagConnectionEdge', node: { __typename?: 'Tag', name?: string | null, uri?: string | null } }> } | null, categories?: { __typename?: 'PostToCategoryConnection', edges: Array<{ __typename?: 'PostToCategoryConnectionEdge', node: { __typename?: 'Category', name?: string | null, uri?: string | null } }> } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null, height?: number | null } | null } } | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetExplanationQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -17843,28 +18317,7 @@ export type GetExplanationQueryVariables = Exact<{
 }>;
 
 
-export type GetExplanationQuery = { __typename?: 'RootQuery', explanation?: { __typename?: 'Explanation', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'DocsSidebarMenuItemsFragmentFragment': DocsSidebarMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetExplanationQuery = { __typename?: 'RootQuery', explanation?: { __typename?: 'Explanation', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetHowToGuideQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -17872,28 +18325,7 @@ export type GetHowToGuideQueryVariables = Exact<{
 }>;
 
 
-export type GetHowToGuideQuery = { __typename?: 'RootQuery', howToGuide?: { __typename?: 'HowToGuide', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'DocsSidebarMenuItemsFragmentFragment': DocsSidebarMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetHowToGuideQuery = { __typename?: 'RootQuery', howToGuide?: { __typename?: 'HowToGuide', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetReferenceQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -17901,28 +18333,7 @@ export type GetReferenceQueryVariables = Exact<{
 }>;
 
 
-export type GetReferenceQuery = { __typename?: 'RootQuery', reference?: { __typename?: 'Reference', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'DocsSidebarMenuItemsFragmentFragment': DocsSidebarMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetReferenceQuery = { __typename?: 'RootQuery', reference?: { __typename?: 'Reference', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export type GetTutorialQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -17930,28 +18341,7 @@ export type GetTutorialQueryVariables = Exact<{
 }>;
 
 
-export type GetTutorialQuery = { __typename?: 'RootQuery', tutorial?: { __typename?: 'Tutorial', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'PrimaryMenuItemsFragmentFragment': PrimaryMenuItemsFragmentFragment } }
-    )> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'SecondaryMenuItemsFragmentFragment': SecondaryMenuItemsFragmentFragment } }
-    )> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'DocsSidebarMenuItemsFragmentFragment': DocsSidebarMenuItemsFragmentFragment } }
-    )> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<(
-      { __typename?: 'MenuItem' }
-      & { ' $fragmentRefs'?: { 'FooterMenuItemsFragmentFragment': FooterMenuItemsFragmentFragment } }
-    )> } | null };
+export type GetTutorialQuery = { __typename?: 'RootQuery', tutorial?: { __typename?: 'Tutorial', title?: string | null, content?: string | null, editorBlocks?: Array<{ __typename?: 'CoreArchives', renderedHtml?: string | null } | { __typename?: 'CoreAudio', renderedHtml?: string | null } | { __typename?: 'CoreAvatar', renderedHtml?: string | null } | { __typename?: 'CoreBlock', renderedHtml?: string | null } | { __typename?: 'CoreButton', renderedHtml?: string | null } | { __typename?: 'CoreButtons', renderedHtml?: string | null } | { __typename?: 'CoreCalendar', renderedHtml?: string | null } | { __typename?: 'CoreCategories', renderedHtml?: string | null } | { __typename?: 'CoreCode', name?: string | null, renderedHtml?: string | null, attributes?: { __typename?: 'CoreCodeAttributes', borderColor?: string | null, backgroundColor?: string | null, content?: string | null, style?: any | null, textColor?: string | null, fontSize?: string | null } | null } | { __typename?: 'CoreColumn', renderedHtml?: string | null } | { __typename?: 'CoreColumns', renderedHtml?: string | null } | { __typename?: 'CoreCommentAuthorName', renderedHtml?: string | null } | { __typename?: 'CoreCommentContent', renderedHtml?: string | null } | { __typename?: 'CoreCommentDate', renderedHtml?: string | null } | { __typename?: 'CoreCommentEditLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentReplyLink', renderedHtml?: string | null } | { __typename?: 'CoreCommentTemplate', renderedHtml?: string | null } | { __typename?: 'CoreComments', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPagination', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreCommentsPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreCommentsTitle', renderedHtml?: string | null } | { __typename?: 'CoreCover', renderedHtml?: string | null } | { __typename?: 'CoreDetails', renderedHtml?: string | null } | { __typename?: 'CoreEmbed', renderedHtml?: string | null } | { __typename?: 'CoreFile', renderedHtml?: string | null } | { __typename?: 'CoreFootnotes', renderedHtml?: string | null } | { __typename?: 'CoreFreeform', renderedHtml?: string | null } | { __typename?: 'CoreGallery', renderedHtml?: string | null } | { __typename?: 'CoreGroup', renderedHtml?: string | null } | { __typename?: 'CoreHeading', renderedHtml?: string | null } | { __typename?: 'CoreHomeLink', renderedHtml?: string | null } | { __typename?: 'CoreHtml', renderedHtml?: string | null } | { __typename?: 'CoreImage', renderedHtml?: string | null } | { __typename?: 'CoreLatestComments', renderedHtml?: string | null } | { __typename?: 'CoreLatestPosts', renderedHtml?: string | null } | { __typename?: 'CoreLegacyWidget', renderedHtml?: string | null } | { __typename?: 'CoreList', renderedHtml?: string | null } | { __typename?: 'CoreListItem', renderedHtml?: string | null } | { __typename?: 'CoreLoginout', renderedHtml?: string | null } | { __typename?: 'CoreMediaText', renderedHtml?: string | null } | { __typename?: 'CoreMissing', renderedHtml?: string | null } | { __typename?: 'CoreMore', renderedHtml?: string | null } | { __typename?: 'CoreNavigation', renderedHtml?: string | null } | { __typename?: 'CoreNavigationLink', renderedHtml?: string | null } | { __typename?: 'CoreNavigationSubmenu', renderedHtml?: string | null } | { __typename?: 'CoreNextpage', renderedHtml?: string | null } | { __typename?: 'CorePageList', renderedHtml?: string | null } | { __typename?: 'CorePageListItem', renderedHtml?: string | null } | { __typename?: 'CoreParagraph', renderedHtml?: string | null } | { __typename?: 'CorePattern', renderedHtml?: string | null } | { __typename?: 'CorePostAuthor', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorBiography', renderedHtml?: string | null } | { __typename?: 'CorePostAuthorName', renderedHtml?: string | null } | { __typename?: 'CorePostComments', renderedHtml?: string | null } | { __typename?: 'CorePostCommentsForm', renderedHtml?: string | null } | { __typename?: 'CorePostContent', renderedHtml?: string | null } | { __typename?: 'CorePostDate', renderedHtml?: string | null } | { __typename?: 'CorePostExcerpt', renderedHtml?: string | null } | { __typename?: 'CorePostFeaturedImage', renderedHtml?: string | null } | { __typename?: 'CorePostNavigationLink', renderedHtml?: string | null } | { __typename?: 'CorePostTemplate', renderedHtml?: string | null } | { __typename?: 'CorePostTerms', renderedHtml?: string | null } | { __typename?: 'CorePostTitle', renderedHtml?: string | null } | { __typename?: 'CorePreformatted', renderedHtml?: string | null } | { __typename?: 'CorePullquote', renderedHtml?: string | null } | { __typename?: 'CoreQuery', renderedHtml?: string | null } | { __typename?: 'CoreQueryNoResults', renderedHtml?: string | null } | { __typename?: 'CoreQueryPagination', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNext', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationNumbers', renderedHtml?: string | null } | { __typename?: 'CoreQueryPaginationPrevious', renderedHtml?: string | null } | { __typename?: 'CoreQueryTitle', renderedHtml?: string | null } | { __typename?: 'CoreQuote', renderedHtml?: string | null } | { __typename?: 'CoreReadMore', renderedHtml?: string | null } | { __typename?: 'CoreRss', renderedHtml?: string | null } | { __typename?: 'CoreSearch', renderedHtml?: string | null } | { __typename?: 'CoreSeparator', renderedHtml?: string | null } | { __typename?: 'CoreShortcode', renderedHtml?: string | null } | { __typename?: 'CoreSiteLogo', renderedHtml?: string | null } | { __typename?: 'CoreSiteTagline', renderedHtml?: string | null } | { __typename?: 'CoreSiteTitle', renderedHtml?: string | null } | { __typename?: 'CoreSocialLink', renderedHtml?: string | null } | { __typename?: 'CoreSocialLinks', renderedHtml?: string | null } | { __typename?: 'CoreSpacer', renderedHtml?: string | null } | { __typename?: 'CoreTable', renderedHtml?: string | null } | { __typename?: 'CoreTagCloud', renderedHtml?: string | null } | { __typename?: 'CoreTemplatePart', renderedHtml?: string | null } | { __typename?: 'CoreTermDescription', renderedHtml?: string | null } | { __typename?: 'CoreTextColumns', renderedHtml?: string | null } | { __typename?: 'CoreVerse', renderedHtml?: string | null } | { __typename?: 'CoreVideo', renderedHtml?: string | null } | { __typename?: 'CoreWidgetGroup', renderedHtml?: string | null } | { __typename?: 'YoastFaqBlock', renderedHtml?: string | null } | { __typename?: 'YoastHowToBlock', renderedHtml?: string | null } | { __typename?: 'YoastSeoBreadcrumbs', renderedHtml?: string | null } | null> | null, seo?: { __typename?: 'PostTypeSEO', metaDesc?: string | null, opengraphImage?: { __typename?: 'MediaItem', sourceUrl?: string | null } | null } | null } | null, generalSettings?: { __typename?: 'GeneralSettings', title?: string | null, description?: string | null } | null, primaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, secondaryMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, label?: string | null, target?: string | null }> } | null, docsSidebarMenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer1MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer2MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer3MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null, footer4MenuItems?: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, uri?: string | null, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, target?: string | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null }> } | null };
 
 export const DocsSidebarMenuItemsFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<DocsSidebarMenuItemsFragmentFragment, unknown>;
 export const FeaturedImageFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FeaturedImageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithFeaturedImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"mediaDetails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}}]}}]}}]} as unknown as DocumentNode<FeaturedImageFragmentFragment, unknown>;
@@ -17963,6 +18353,7 @@ export const PostsItemFragmentFragmentDoc = {"kind":"Document","definitions":[{"
 export const Search_ResultsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SEARCH_RESULTS"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"searchTerm"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contentNodes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"search"},"value":{"kind":"Variable","name":{"kind":"Name","value":"searchTerm"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithTitle"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"uri"}}]}}]}}]}}]}}]} as unknown as DocumentNode<Search_ResultsQuery, Search_ResultsQueryVariables>;
 export const Get404PageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Get404Page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<Get404PageQuery, Get404PageQueryVariables>;
 export const GetPostsPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPostsPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostsItemFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostsItemFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"link"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetPostsPageQuery, GetPostsPageQueryVariables>;
+export const GetContactFormPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetContactFormPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetContactFormPageQuery, GetContactFormPageQueryVariables>;
 export const GetShowcasesPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetShowcasesPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"showcases"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"showcaseFields"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"externalUrlTitle"}},{"kind":"Field","name":{"kind":"Name","value":"externalUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetShowcasesPageQuery, GetShowcasesPageQueryVariables>;
 export const GetArchiveDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetArchive"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"uri"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodeByUri"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"uri"},"value":{"kind":"Variable","name":{"kind":"Name","value":"uri"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"archiveType"},"name":{"kind":"Name","value":"__typename"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Category"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Tag"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchiveQuery, GetArchiveQueryVariables>;
 export const GetHomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetHomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetHomePageQuery, GetHomePageQueryVariables>;
@@ -17971,4 +18362,4 @@ export const GetPostDocument = {"kind":"Document","definitions":[{"kind":"Operat
 export const GetExplanationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetExplanation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"explanation"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetExplanationQuery, GetExplanationQueryVariables>;
 export const GetHowToGuideDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetHowToGuide"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"howToGuide"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetHowToGuideQuery, GetHowToGuideQueryVariables>;
 export const GetReferenceDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetReference"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"reference"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetReferenceQuery, GetReferenceQueryVariables>;
-export const GetTutorialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetTutorial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorial"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetTutorialQuery, GetTutorialQueryVariables>;
+export const GetTutorialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetTutorial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}},"defaultValue":{"kind":"BooleanValue","value":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tutorial"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"databaseId"}}},{"kind":"Argument","name":{"kind":"Name","value":"idType"},"value":{"kind":"EnumValue","value":"DATABASE_ID"}},{"kind":"Argument","name":{"kind":"Name","value":"asPreview"},"value":{"kind":"Variable","name":{"kind":"Name","value":"asPreview"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metaDesc"}},{"kind":"Field","name":{"kind":"Name","value":"opengraphImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sourceUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NodeWithEditorBlocks"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editorBlocks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"renderedHtml"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CoreCode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"borderColor"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"style"}},{"kind":"Field","name":{"kind":"Name","value":"textColor"}},{"kind":"Field","name":{"kind":"Name","value":"fontSize"}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"generalSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"primaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"PRIMARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"secondaryMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"SECONDARY"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"docsSidebarMenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"DOCS_SIDEBAR"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer1MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_1"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer2MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_2"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer3MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_3"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footer4MenuItems"},"name":{"kind":"Name","value":"menuItems"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"location"},"value":{"kind":"EnumValue","value":"FOOTER_4"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuItemsFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PrimaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SecondaryMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"target"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DocsSidebarMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuItemsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}},{"kind":"Field","name":{"kind":"Name","value":"path"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"cssClasses"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"menu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetTutorialQuery, GetTutorialQueryVariables>;
