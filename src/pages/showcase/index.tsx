@@ -21,11 +21,15 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
     showcases,
   } = data ?? {};
   const { title: siteTitle, description: siteDescription } = generalSettings;
+  const showcaseSeo = showcases.edges[0].node.seo;
 
   return (
     <>
-      <Head title={siteTitle} description={siteDescription} />
-
+      <Head
+        title={siteTitle}
+        description={showcaseSeo.metaDesc}
+        imageUrl={showcaseSeo.opengraphImage.sourceUrl}
+      />
       <Header
         siteTitle={siteTitle}
         primaryMenuItems={primaryMenuItems.nodes}
@@ -83,6 +87,16 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
 Page.query = gql(`
   query GetShowcasesPage {
     showcases(first: 100) {
+      edges {
+        node {
+          seo {
+            metaDesc
+            opengraphImage {
+              sourceUrl
+            }
+          }
+        }
+      }
       nodes {
         id
         title
