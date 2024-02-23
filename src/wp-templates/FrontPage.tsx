@@ -8,6 +8,7 @@ import { Head, Header, Content, Main, Footer } from 'components';
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { data } = props;
   const {
+    seo,
     generalSettings,
     primaryMenuItems,
     secondaryMenuItems,
@@ -20,7 +21,11 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
 
   return (
     <>
-      <Head title={siteTitle} description={siteDescription} />
+      <Head
+        title={siteTitle}
+        description={seo.contentTypes.mediaItem.metaDesc}
+        imageUrl={seo.openGraph.defaultImage.sourceUrl}
+      />
 
       <Container maxWidth={false}>
         <Header
@@ -52,6 +57,19 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
 
 Component.query = gql(`
   query GetHomePage {
+    seo {
+      contentTypes {
+        mediaItem {
+          metaDesc
+          title
+        }
+      }
+      openGraph {
+        defaultImage {
+          sourceUrl
+        }
+      }
+    }
     generalSettings {
       title
       description
