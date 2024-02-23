@@ -26,8 +26,6 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
   const { title: siteTitle, description: siteDescription } = generalSettings;
   const blogSeo = posts.edges[0].node.seo;
 
-  console.log('posts POSTS POSTS', posts.edges[0].node.seo);
-
   return (
     <>
       <Head
