@@ -8,7 +8,7 @@ import { Head, Header, Content, Main, Footer } from 'components';
 const Component: FaustTemplate<GetHomePageQuery> = (props) => {
   const { data } = props;
   const {
-    seo,
+    pages,
     generalSettings,
     primaryMenuItems,
     secondaryMenuItems,
@@ -18,13 +18,14 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
+  const seoPages = pages.edges[0].node.seo;
 
   return (
     <>
       <Head
         title={siteTitle}
-        description={seo.contentTypes.mediaItem.metaDesc}
-        imageUrl={seo.openGraph.defaultImage.sourceUrl}
+        description={seoPages.metaDesc}
+        imageUrl={seoPages.opengraphImage.sourceUrl}
       />
 
       <Container maxWidth={false}>
@@ -57,16 +58,15 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
 
 Component.query = gql(`
   query GetHomePage {
-    seo {
-      contentTypes {
-        mediaItem {
-          metaDesc
-          title
-        }
-      }
-      openGraph {
-        defaultImage {
-          sourceUrl
+    pages {
+      edges {
+        node {
+          seo {
+            metaDesc
+            opengraphImage {
+              sourceUrl
+            }
+          }
         }
       }
     }
