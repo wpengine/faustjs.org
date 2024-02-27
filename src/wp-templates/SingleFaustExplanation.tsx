@@ -36,11 +36,15 @@ const Component: FaustTemplate<GetExplanationQuery> = (props) => {
     explanation,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
-  const { title, content } = explanation;
+  const { title, content, seo } = explanation;
 
   return (
     <>
-      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
+      <Head
+        title={`${title} - ${siteTitle}`}
+        description={seo.metaDesc}
+        imageUrl={seo.opengraphImage.sourceUrl}
+      />
 
       <Header
         siteTitle={siteTitle}
@@ -88,6 +92,12 @@ Component.variables = (seedQuery, ctx) => {
 Component.query = gql(`
   query GetExplanation($databaseId: ID!, $asPreview: Boolean = false) {
     explanation(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      seo {
+        metaDesc
+        opengraphImage {
+          sourceUrl
+        }
+      }
       title
       content
       ... on NodeWithEditorBlocks {

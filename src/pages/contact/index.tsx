@@ -20,6 +20,7 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
   const { data } = props;
 
   const {
+    seo,
     generalSettings,
     primaryMenuItems,
     secondaryMenuItems,
@@ -100,7 +101,11 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
 
   return (
     <>
-      <Head title={siteTitle} description={siteDescription} />
+      <Head
+        title={siteTitle}
+        description={seo.contentTypes.mediaItem.metaDesc}
+        imageUrl={seo.openGraph.defaultImage.sourceUrl}
+      />
       <Header
         siteTitle={siteTitle}
         primaryMenuItems={primaryMenuItems.nodes}
@@ -225,6 +230,19 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
 
 Page.query = gql(`
   query GetContactFormPage {
+    seo {
+      contentTypes {
+        mediaItem {
+          metaDesc
+          title
+        }
+      }
+      openGraph {
+        defaultImage {
+          sourceUrl
+        }
+      }
+    }
     generalSettings {
       title
       description

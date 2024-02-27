@@ -33,12 +33,16 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
-  const { title, content, date, author, tags, categories, featuredImage } =
+  const { title, content, date, author, tags, categories, featuredImage, seo } =
     post;
 
   return (
     <>
-      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
+      <Head
+        title={`${title} - ${siteTitle}`}
+        description={seo.metaDesc}
+        imageUrl={seo.opengraphImage.sourceUrl}
+      />
 
       <Header
         siteTitle={siteTitle}
@@ -92,6 +96,12 @@ Component.variables = ({ databaseId }, ctx) => {
 Component.query = gql(`
   query GetPost($databaseId: ID!, $asPreview: Boolean = false) {
     post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      seo {
+        metaDesc
+        opengraphImage {
+          sourceUrl
+        }
+      }
       title
       content
       date

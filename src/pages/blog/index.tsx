@@ -24,10 +24,15 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
     posts,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
+  const blogSeo = posts.edges[0].node.seo;
 
   return (
     <>
-      <Head title={siteTitle} description={siteDescription} />
+      <Head
+        title={siteTitle}
+        description={blogSeo.metaDesc}
+        imageUrl={blogSeo.opengraphImage.sourceUrl}
+      />
 
       <Header
         siteTitle={siteTitle}
@@ -70,6 +75,16 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
 Page.query = gql(`
   query GetPostsPage {
     posts(first: 100) {
+      edges {
+        node {
+          seo {
+            metaDesc
+            opengraphImage {
+              sourceUrl
+            }
+          }
+        }
+      }
       nodes {
         ...PostsItemFragment
       }
