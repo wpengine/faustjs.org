@@ -24,11 +24,15 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     footer4MenuItems,
   } = data;
   const { title: siteTitle, description: siteDescription } = generalSettings;
-  const { title, content } = page;
+  const { title, content, seo } = page;
 
   return (
     <>
-      <Head title={`${title} - ${siteTitle}`} description={siteDescription} />
+      <Head
+        title={`${title} - ${siteTitle}`}
+        description={seo.metaDesc}
+        imageUrl={seo.opengraphImage.sourceUrl}
+      />
 
       <Header
         siteTitle={siteTitle}
@@ -75,6 +79,12 @@ Component.query = gql(`
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
+      seo {
+        metaDesc
+        opengraphImage {
+          sourceUrl
+        }
+      }
     }
     generalSettings {
       title
