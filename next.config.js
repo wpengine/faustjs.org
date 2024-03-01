@@ -1,26 +1,10 @@
 const { withFaust, getWpHostname } = require('@faustwp/core');
-
-// handle atlas isr cache
-const getAtlasCacheHandler = (config = {}) => {
-  if (process.env.ATLAS_CACHE_HANDLER_ENABLED === undefined) {
-    return { ...config };
-  }
-
-  return {
-    ...config,
-    ...{
-      incrementalCacheHandlerPath: require.resolve(
-        './.atlas/atlas-cache-handler.js',
-      ),
-      isrMemoryCacheSize: 0,
-    },
-  };
-};
+const { withAtlasConfig } = require("@wpengine/atlas-next");
 
 /**
  * @type {import('next').NextConfig}
  **/
-module.exports = withFaust({
+module.exports = withAtlasConfig(withFaust({
   images: {
     remotePatterns: [
       {
@@ -274,7 +258,4 @@ module.exports = withFaust({
       },
     ];
   },
-  experimental: {
-    ...getAtlasCacheHandler(),
-  },
-});
+}));
