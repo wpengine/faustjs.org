@@ -24,8 +24,8 @@ const Component: FaustTemplate<GetHomePageQuery> = (props) => {
     <>
       <Head
         title={siteTitle}
-        description={seoPages.metaDesc}
-        imageUrl={seoPages.opengraphImage.sourceUrl}
+        description={seoPages?.metaDesc || ''}
+        imageUrl={seoPages?.opengraphImage?.sourceUrl || ''}
       />
 
       <Container maxWidth={false}>

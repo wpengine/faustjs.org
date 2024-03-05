@@ -30,8 +30,8 @@ const Page: FaustPage<GetPostsPageQuery> = (props) => {
     <>
       <Head
         title={siteTitle}
-        description={blogSeo.metaDesc}
-        imageUrl={blogSeo.opengraphImage.sourceUrl}
+        description={blogSeo?.metaDesc || ''}
+        imageUrl={blogSeo?.opengraphImage?.sourceUrl || ''}
       />
 
       <Header

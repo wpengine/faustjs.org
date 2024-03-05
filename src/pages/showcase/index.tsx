@@ -27,8 +27,8 @@ const Page: FaustPage<GetShowcasesPageQuery> = (props) => {
     <>
       <Head
         title={siteTitle}
-        description={showcaseSeo.metaDesc}
-        imageUrl={showcaseSeo.opengraphImage.sourceUrl}
+        description={showcaseSeo?.metaDesc || ''}
+        imageUrl={showcaseSeo?.opengraphImage?.sourceUrl || ''}
       />
       <Header
         siteTitle={siteTitle}
