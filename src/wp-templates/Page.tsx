@@ -30,8 +30,8 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
     <>
       <Head
         title={`${title} - ${siteTitle}`}
-        description={seo.metaDesc}
-        imageUrl={seo.opengraphImage.sourceUrl}
+        description={seo?.metaDesc || ''}
+        imageUrl={seo?.opengraphImage?.sourceUrl || ''}
       />
 
       <Header

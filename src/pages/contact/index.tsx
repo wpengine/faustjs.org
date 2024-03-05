@@ -103,8 +103,8 @@ const Page: FaustPage<GetContactFormPageQuery> = (props) => {
     <>
       <Head
         title={siteTitle}
-        description={seo.contentTypes.mediaItem.metaDesc}
-        imageUrl={seo.openGraph.defaultImage.sourceUrl}
+        description={seo?.contentTypes?.mediaItem?.metaDesc || ''}
+        imageUrl={seo?.openGraph?.defaultImage?.sourceUrl || ''}
       />
       <Header
         siteTitle={siteTitle}
