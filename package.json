@@ -24,7 +24,7 @@
     "@mui/material": "^5.12.1",
     "@wpengine/atlas-next": "^1.0.0",
     "graphql": "^16.8.1",
-    "next": "^14.0.3",
+    "next": "^14.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
