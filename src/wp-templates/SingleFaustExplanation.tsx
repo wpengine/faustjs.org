@@ -13,6 +13,7 @@ import {
   EntryHeader,
   SidebarLayout,
   Main,
+  ContentLayout,
 } from 'components';
 import { buildTableOfContents } from '../utility/buildTableOfContents';
 
@@ -64,10 +65,7 @@ const Component: FaustTemplate<GetExplanationQuery> = (props) => {
             }
             tableOfContents={buildTableOfContents(content)}>
             <EntryHeader title={title} />
-            <div
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
+            <ContentLayout.Constrained content={content} />
           </SidebarLayout>
         </Container>
       </Main>

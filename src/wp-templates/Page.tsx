@@ -3,7 +3,7 @@ import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPageQuery } from '__generated__/graphql';
-import { Head, Header, Footer, EntryHeader, Main } from 'components';
+import { Head, Header, Footer, EntryHeader, Main, ContentLayout } from 'components';
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
   const { data, loading } = props;
@@ -48,10 +48,7 @@ const Component: FaustTemplate<GetPageQuery> = (props) => {
             sx={{ display: 'flex', flexDirection: 'row' }}>
             <Grid item xs={12}>
               <EntryHeader title={title} />
-              <div
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
+              <ContentLayout.Constrained content={content} />
             </Grid>
           </Grid>
         </Container>

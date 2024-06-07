@@ -13,3 +13,4 @@ export { PostCategoryList } from './PostCategoryList';
 export { PostTagList } from './PostTagList';
 export { SidebarLayout } from './SidebarLayout';
 export { OverlayDialog } from './OverlayDialog';
+export { ContentLayout } from './ContentLayout';
