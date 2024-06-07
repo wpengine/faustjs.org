@@ -3,8 +3,8 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from 'utility/createEmotionCache';
 import { GA_TRACKING_ID } from 'utility/gtag';
-import { FaustAppProps } from './_app';
 import { getBodyClasses } from 'utility/getBodyClasses';
+import { FaustAppProps } from './_app';
 
 /**
  * Determine if the faustjs.org site is on a prod env or not (staging).

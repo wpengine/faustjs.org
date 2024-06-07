@@ -3,7 +3,14 @@ import { FaustTemplate } from '@faustwp/core';
 import { Container, Grid } from '@mui/material';
 import { gql } from '__generated__';
 import { GetPageQuery } from '__generated__/graphql';
-import { Head, Header, Footer, EntryHeader, Main, ContentLayout } from 'components';
+import {
+  Head,
+  Header,
+  Footer,
+  EntryHeader,
+  Main,
+  ContentLayout,
+} from 'components';
 
 const Component: FaustTemplate<GetPageQuery> = (props) => {
   const { data, loading } = props;
