@@ -12,6 +12,7 @@ import {
   PostCategoryList,
   PostTagList,
   FeaturedImage,
+  ContentLayout,
 } from 'components';
 
 const Component: FaustTemplate<GetPostQuery> = (props) => {
@@ -65,10 +66,7 @@ const Component: FaustTemplate<GetPostQuery> = (props) => {
                 date={date}
                 author={author.node.name}
               />
-              <div
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
+              <ContentLayout.Constrained content={content} />
               <PostCategoryList categories={categories.edges} />
               <PostTagList tags={tags.edges} />
             </Grid>
