@@ -31,7 +31,7 @@
     "use-debounce": "^9.0.4"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/client-preset": "^3.0.1",
     "@next/eslint-plugin-next": "^13.4.1",
     "@types/node": "^20.0.0",
