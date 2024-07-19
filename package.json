@@ -1,63 +1,35 @@
 {
+  "name": "@faustwp/getting-started-example",
   "private": true,
+  "version": "0.1.0",
   "scripts": {
-    "prebuild": "npm run generate && npm run codegen",
-    "prestart": "npm run generate && npm run codegen",
-    "dev": "concurrently \"faust dev\" \"npm run codegen-watch\"",
+    "dev": "faust dev",
     "build": "faust build",
-    "generate": "faust generatePossibleTypes && faust generateGlobalStylesheet",
-    "start": "faust start",
-    "codegen": "graphql-codegen",
-    "codegen-watch": "graphql-codegen -w",
-    "lint": "eslint ./src --report-unused-disable-directives",
-    "lint-fix": "eslint ./src --fix"
+    "generate": "faust generatePossibleTypes",
+    "stylesheet": "faust generateGlobalStylesheet",
+    "start": "faust start"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.10",
-    "@emotion/cache": "^11.10.7",
-    "@emotion/react": "^11.10.6",
-    "@emotion/server": "^11.10.0",
-    "@emotion/styled": "^11.10.6",
-    "@faustwp/cli": "^1.1.4",
-    "@faustwp/core": "^1.1.2",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.1",
-    "@wpengine/atlas-next": "^1.0.0",
+    "@apollo/client": "^3.10.4",
+    "@faustwp/cli": "^3.0.2",
+    "@faustwp/core": "^3.0.3",
+    "@wordpress/base-styles": "^4.49.0",
+    "@wordpress/block-library": "^7.19.0",
+    "classnames": "^2.5.1",
     "graphql": "^16.8.1",
-    "next": "^14.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-google-recaptcha": "^3.1.0",
-    "use-debounce": "^9.0.4"
+    "next": "^12.3.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.77.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/client-preset": "^3.0.1",
-    "@next/eslint-plugin-next": "^13.4.1",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.2.5",
-    "@types/react-google-recaptcha": "^2.1.6",
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
-    "@typescript-eslint/parser": "^5.59.2",
-    "@wordpress/base-styles": "^4.35.0",
-    "@wordpress/block-library": "^8.21.0",
-    "classnames": "^2.3.2",
-    "concurrently": "^8.0.1",
-    "eslint": "^8.39.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-next": "^13.4.1",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "sass": "^1.62.1",
-    "typescript": "^5.0.2"
+    "autoprefixer": "^10.4.19",
+    "next-secure-headers": "^2.2.0",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4"
   },
-  "overrides": {
-    "semver": "^7.5.2",
-    "debug": "4.3.1"
+  "engines": {
+    "node": ">=18",
+    "npm": ">=8"
   }
 }
