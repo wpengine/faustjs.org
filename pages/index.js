@@ -9,12 +9,24 @@ export default function HomePage() {
         The Headless WordPress toolkit for Next.js
       </h1>
       <div className="mt-8 text-center">
-        <Link href="/faust-we-made-contact">
+        <Link href="/test-post">
           <a className="underline">Post: Faust, We Made Contact</a>
         </Link>
         <br />
-        <Link href="/reference-page">
+        <Link href="/sample-page">
           <a className="underline">Page: Reference Page</a>
+        </Link>
+        <br />
+        <Link href="/docs/test-doc">
+          <a className="underline">Docs: Doc Page</a>
+        </Link>
+        <br />
+        <Link href="/blog">
+          <a className="underline">Blog Posts Page</a>
+        </Link>
+        <br />
+        <Link href="/docs">
+          <a className="underline">Docs Main Page</a>
         </Link>
       </div>
     </>
