@@ -17,7 +17,7 @@ export default function HomePage() {
           <a className="underline">Page: Reference Page</a>
         </Link>
         <br />
-        <Link href="/docs/test-doc">
+        <Link href="/doc/test-doc">
           <a className="underline">Docs: Doc Page</a>
         </Link>
         <br />
