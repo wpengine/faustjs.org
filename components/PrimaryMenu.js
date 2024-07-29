@@ -1,8 +1,10 @@
 import { gql, useQuery } from "@apollo/client";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function PrimaryMenu() {
   const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
+  const [isOpen, setIsOpen] = useState(false);
 
   if (loading) return <p>Loading...</p>;
   if (error) {
@@ -13,16 +15,35 @@ export default function PrimaryMenu() {
   const menuItems = data?.menu?.menuItems?.nodes || [];
 
   return (
-    <nav className="flex gap-5">
-      {menuItems.length > 0 ? (
-        menuItems.map((item) => (
-          <Link key={item.databaseId} href={item.uri}>
-            {item.label}
-          </Link>
-        ))
-      ) : (
-        <p>No menu items found</p>
-      )}
+    <nav className="bg-black text-white w-full p-4">
+      <div className="flex justify-between items-center">
+        <div className="text-xl font-bold"></div>
+        <button
+          className="md:hidden bg-transparent border-none text-white text-2xl"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? "✖" : "☰"}
+        </button>
+      </div>
+      <ul
+        className={`md:flex ${
+          isOpen ? "flex flex-col items-center mt-4" : "hidden"
+        } md:flex-row md:gap-5`}
+      >
+        {menuItems.length > 0 ? (
+          menuItems.map((item) => (
+            <li key={item.databaseId} className="md:my-0 my-2">
+              <Link href={item.uri}>
+                <a className="text-white no-underline hover:underline">
+                  {item.label}
+                </a>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <p>No menu items found</p>
+        )}
+      </ul>
     </nav>
   );
 }
