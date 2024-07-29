@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from 'utility/createEmotionCache';
 import { GA_TRACKING_ID } from 'utility/gtag';
+import { getBodyClasses } from 'utility/getBodyClasses';
 import { FaustAppProps } from './_app';
 
 /**
@@ -66,7 +67,7 @@ export default class MyDocument extends Document {
 
           {!isProd() && <meta name="robots" content="noindex,nofollow" />}
         </Head>
-        <body>
+        <body className={getBodyClasses()}>
           <Main />
           <NextScript />
         </body>
