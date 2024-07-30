@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { gql, useQuery } from "@apollo/client";
+
+const DOC_SEARCH_QUERY = gql`
+  query DOC_SEARCH_QUERY($searchTerm: String!) {
+    contentNodes(where: { search: $searchTerm }) {
+      nodes {
+        id
+        title
+        uri
+      }
+    }
+  }
+`;
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+
+  const { loading, error, data } = useQuery(DOC_SEARCH_QUERY, {
+    variables: { searchTerm: query },
+    skip: !query,
+  });
+
+  useEffect(() => {
+    if (data && data.contentNodes) {
+      setResults(data.contentNodes.nodes);
+    }
+  }, [data]);
 
   const openModal = () => {
     setIsOpen(true);
@@ -23,47 +47,12 @@ export default function SearchBar() {
     }
   };
 
-  const performSearch = async (query) => {
-    const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
-    const accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        query: `
-          {
-            search(query: "${query}") {
-              results {
-                id
-                title
-                url
-              }
-            }
-          }
-        `,
-      }),
-    });
-    const data = await response.json();
-    setResults(data.data.search.results);
-  };
-
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-
-  useEffect(() => {
-    if (query.length > 0) {
-      performSearch(query);
-    } else {
-      setResults([]);
-    }
-  }, [query]);
 
   return (
     <>
@@ -89,8 +78,6 @@ export default function SearchBar() {
               Esc
             </button>
             <div className="relative flex items-center mt-8">
-              {" "}
-              {/* Adjusted margin-top to ensure input field is not overlapped */}
               <input
                 type="text"
                 placeholder="Search documentation..."
@@ -112,9 +99,11 @@ export default function SearchBar() {
               </svg>
             </div>
             <div id="searchResults" className="mt-4 max-h-96 overflow-y-auto">
+              {loading && <p>Loading...</p>}
+              {error && <p>Error: {error.message}</p>}
               {results.map((result) => (
                 <div key={result.id} className="p-2 border-b border-gray-700">
-                  <a href={result.url} className="text-white hover:underline">
+                  <a href={result.uri} className="text-white hover:underline">
                     {result.title}
                   </a>
                 </div>
