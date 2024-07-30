@@ -20,7 +20,9 @@ export default function Header() {
       <div className="flex gap-5 items-center">
         <SearchBar />
         <div className="flex gap-5 items-center">
-          <p>Other stuff - Deploy/Learn</p>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            Deploy
+          </button>
         </div>
       </div>
     </header>
