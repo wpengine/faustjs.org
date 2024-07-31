@@ -8,6 +8,8 @@ const DOC_SEARCH_QUERY = gql`
         ... on Doc {
           title
         }
+        id
+        title
         uri
       }
     }
