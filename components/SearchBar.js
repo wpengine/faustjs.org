@@ -5,8 +5,9 @@ const DOC_SEARCH_QUERY = gql`
   query DOC_SEARCH_QUERY($searchTerm: String!) {
     contentNodes(where: { search: $searchTerm }) {
       nodes {
-        id
-        title
+        ... on Doc {
+          title
+        }
         uri
       }
     }
