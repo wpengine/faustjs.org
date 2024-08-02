@@ -19,6 +19,7 @@ export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   const { loading, error, data } = useQuery(DOC_SEARCH_QUERY, {
     variables: { searchTerm: query },
@@ -30,6 +31,19 @@ export default function SearchBar() {
       setResults(data.contentNodes.nodes);
     }
   }, [data]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 640); // Tailwind's sm breakpoint is 640px
+    };
+
+    handleResize(); // Check on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -63,10 +77,27 @@ export default function SearchBar() {
         type="button"
         onClick={openModal}
       >
-        <span className="flex-1 text-left">Search documentation...</span>
-        <kbd className="ml-2 bg-gray-700 text-gray-400 px-2 py-1 rounded">
-          ⌘K
-        </kbd>
+        {isMobile ? (
+          <svg
+            className="h-5 w-5 text-gray-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12.9 14.32a8 8 0 111.414-1.415l5.387 5.386a1 1 0 01-1.414 1.415l-5.387-5.386zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        ) : (
+          <>
+            <span className="flex-1 text-left">Search documentation...</span>
+            <kbd className="ml-2 bg-gray-700 text-gray-400 px-2 py-1 rounded">
+              ⌘K
+            </kbd>
+          </>
+        )}
       </button>
 
       {isOpen && (
