@@ -1,11 +1,11 @@
-import SEO from "../components/SEO";
+import SEO from "@/components/SEO";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
     <>
       <SEO />
-      <h1 className="text-6xl font-extrabold font-lora mt-8 text-center">
+      <h1 className="mt-8 text-center font-lora text-6xl font-extrabold">
         The Headless WordPress toolkit for Next.js
       </h1>
       <div className="mt-8 text-center">
@@ -17,7 +17,7 @@ export default function HomePage() {
           <a className="underline">Page: Reference Page</a>
         </Link>
         <br />
-        <Link href="/doc/test-doc">
+        <Link href="/docs/test-doc">
           <a className="underline">Docs: Doc Page</a>
         </Link>
         <br />

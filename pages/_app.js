@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import "./global.css";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import "@faustwp/core/dist/css/toolbar.css";
 
 export default function MyApp({ Component, pageProps }) {

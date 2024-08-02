@@ -3,9 +3,6 @@ import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, useFaustQuery } from "@faustwp/core";
 import Head from "next/head";
 
-//import { LAYOUT_QUERY, Layout } from "@/components/Layout";
-// import blocks from "@/wp-blocks";
-
 const INDEX_TEMPLATE_QUERY = gql`
   query IndexTemplate($uri: String!) {
     node: nodeByUri(uri: $uri) {
