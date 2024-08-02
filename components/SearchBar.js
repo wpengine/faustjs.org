@@ -7,10 +7,9 @@ const DOC_SEARCH_QUERY = gql`
       nodes {
         ... on Doc {
           title
+          id
+          uri
         }
-        id
-        title
-        uri
       }
     }
   }
