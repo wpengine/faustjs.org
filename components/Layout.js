@@ -3,10 +3,10 @@ import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
-      <div className="border-t border-gray-400 w-full"></div>
+    <div className="flex min-h-screen flex-col bg-black text-white">
+      <div className="w-full border-t border-gray-400"></div>
       <Header />
-      <main className="flex-grow container mx-auto px-4">{children}</main>
+      <main className="container mx-auto flex-grow px-4">{children}</main>
       <Footer />
     </div>
   );

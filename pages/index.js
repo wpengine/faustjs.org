@@ -21,7 +21,7 @@ export default function HomePage() {
           <a className="underline">Docs: Doc Page</a>
         </Link>
         <br />
-        <Link href="/blog">
+        <Link href="/blog-page">
           <a className="underline">Blog Posts Page</a>
         </Link>
         <br />

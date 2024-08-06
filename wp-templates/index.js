@@ -3,6 +3,7 @@ import single from "./single";
 import DocsArchive from "./docs-archive";
 import SingleDoc from "./single-doc";
 import IndexTemplate from "./IndexTemplate";
+import BlogIndex from "./blog-index-page";
 
 export default {
   IndexTemplate: IndexTemplate,
@@ -10,4 +11,5 @@ export default {
   single,
   "archive-doc": DocsArchive,
   "single-doc": SingleDoc,
+  "page-blog-page": BlogIndex,
 };
