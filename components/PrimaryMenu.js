@@ -1,52 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-
-export default function PrimaryMenu() {
-  const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
-  const [isOpen, setIsOpen] = useState(false);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) {
-    console.error(error);
-    return <p>Error loading navigation items.</p>;
-  }
-
-  const menuItems = data?.menu?.menuItems?.nodes || [];
-
-  return (
-    <nav className="bg-black text-white w-full p-4">
-      <div className="flex justify-between items-center">
-        <div className="text-xl font-bold"></div>
-        <button
-          className="md:hidden bg-transparent border-none text-white text-2xl"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? "✖" : "☰"}
-        </button>
-      </div>
-      <ul
-        className={`md:flex ${
-          isOpen ? "flex flex-col items-center mt-4" : "hidden"
-        } md:flex-row md:gap-5`}
-      >
-        {menuItems.length > 0 ? (
-          menuItems.map((item) => (
-            <li key={item.databaseId} className="md:my-0 my-2">
-              <Link href={item.uri}>
-                <a className="text-white no-underline hover:underline">
-                  {item.label}
-                </a>
-              </Link>
-            </li>
-          ))
-        ) : (
-          <p>No menu items found</p>
-        )}
-      </ul>
-    </nav>
-  );
-}
 
 const GET_PRIMARY_NAV = gql`
   query GetPrimaryNav {
@@ -63,3 +17,55 @@ const GET_PRIMARY_NAV = gql`
     }
   }
 `;
+
+export default function PrimaryMenu() {
+  const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      console.log("Data received:", data);
+    }
+  }, [data]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) {
+    console.error("Error loading navigation items:", error);
+    return <p>Error loading navigation items.</p>;
+  }
+
+  const menuItems = data?.menu?.menuItems?.nodes || [];
+
+  return (
+    <nav className="w-full bg-black p-4 text-white">
+      <div className="flex items-center justify-between">
+        <div className="text-xl font-bold"></div>
+        <button
+          className="border-none bg-transparent text-2xl text-white md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? "✖" : "☰"}
+        </button>
+      </div>
+      <ul
+        className={`md:flex ${
+          isOpen ? "mt-4 flex flex-col items-center" : "hidden"
+        } md:flex-row md:gap-5`}
+      >
+        {menuItems.length > 0 ? (
+          menuItems.map((item) => (
+            <li key={item.databaseId} className="my-2 md:my-0">
+              <Link href={item.uri}>
+                <a className="text-white no-underline hover:underline">
+                  {item.label}
+                </a>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <p>No menu items found</p>
+        )}
+      </ul>
+    </nav>
+  );
+}

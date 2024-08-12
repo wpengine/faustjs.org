@@ -4,6 +4,7 @@ import FaustLogo from "./FaustLogo";
 import PrimaryMenu from "./PrimaryMenu";
 import SearchBar from "./SearchBar";
 import HamburgerMenu from "./HamburgerMenu";
+import { FaGithub, FaWordpress, FaDiscord } from "react-icons/fa"; // Import the icons
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
@@ -41,9 +42,23 @@ export default function Header() {
         {isMobile ? (
           <HamburgerMenu />
         ) : (
-          <button className="rounded-lg bg-blue-500 px-4 py-2 text-white">
-            Deploy
-          </button>
+          <div className="flex items-center space-x-4">
+            <Link href="https://github.com/your-repo" passHref>
+              <a target="_blank" className="text-white">
+                <FaGithub className="h-6 w-6" /> {/* GitHub Icon */}
+              </a>
+            </Link>
+            <Link href="https://wordpress.org" passHref>
+              <a target="_blank" className="text-white">
+                <FaWordpress className="h-6 w-6" /> {/* WordPress Icon */}
+              </a>
+            </Link>
+            <Link href="https://discord.com/invite/your-invite-link" passHref>
+              <a target="_blank" className="text-white">
+                <FaDiscord className="h-6 w-6" /> {/* Discord Icon */}
+              </a>
+            </Link>
+          </div>
         )}
       </div>
     </header>
