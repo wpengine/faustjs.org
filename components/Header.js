@@ -43,7 +43,7 @@ export default function Header() {
           <HamburgerMenu />
         ) : (
           <div className="flex items-center space-x-4">
-            <Link href="https://github.com/your-repo" passHref>
+            <Link href="https://github.com/wpengine/faustjs" passHref>
               <a target="_blank" className="text-white">
                 <FaGithub className="h-6 w-6" /> {/* GitHub Icon */}
               </a>
@@ -53,7 +53,7 @@ export default function Header() {
                 <FaWordpress className="h-6 w-6" /> {/* WordPress Icon */}
               </a>
             </Link>
-            <Link href="https://discord.com/invite/your-invite-link" passHref>
+            <Link href="https://discord.gg/Ux73Pywj" passHref>
               <a target="_blank" className="text-white">
                 <FaDiscord className="h-6 w-6" /> {/* Discord Icon */}
               </a>
