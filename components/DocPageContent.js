@@ -1,10 +1,16 @@
+import { WordPressBlocksViewer } from "@faustwp/blocks";
+import { flatListToHierarchical } from "@faustwp/core";
+
 export default function DocPageContent({ doc }) {
-  const { title, content } = doc;
+  const { title, editorBlocks } = doc;
+  const blockList = flatListToHierarchical(editorBlocks, {
+    childrenKey: "innerBlocks",
+  });
 
   return (
-    <article class="prose prose-invert">
+    <article className="prose prose-invert">
       <h1>{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <WordPressBlocksViewer blocks={blockList} />
     </article>
   );
 }

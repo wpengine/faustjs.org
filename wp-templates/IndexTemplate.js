@@ -1,7 +1,7 @@
+import Head from "next/head";
 import { gql } from "@apollo/client";
 import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, useFaustQuery } from "@faustwp/core";
-import Head from "next/head";
 
 const INDEX_TEMPLATE_QUERY = gql`
   query IndexTemplate($uri: String!) {
