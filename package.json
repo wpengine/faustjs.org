@@ -58,6 +58,7 @@
   },
   "overrides": {
     "semver": "^7.5.2",
-    "debug": "4.3.1"
+    "debug": "4.3.1",
+    "path-to-regexp": "8.1.0"
   }
 }
