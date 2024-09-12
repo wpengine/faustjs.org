@@ -22,7 +22,10 @@ export default function OnThisPageNav({ editorBlocks }) {
               key={block.id}
               className={block.attributes.level === 3 ? "ml-4" : ""}
             >
-              <a href={`#${anchor}`}>{block.attributes.content}</a>
+              <a
+                href={`#${anchor}`}
+                dangerouslySetInnerHTML={{ __html: block.attributes.content }}
+              />
             </li>
           );
         })}
