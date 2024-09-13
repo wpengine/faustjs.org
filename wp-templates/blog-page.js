@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import Link from "next/link";
 
 // The Component is required
-export default function Blog(props) {
+export default function BlogIndex(props) {
   const { loading, error, data } = props;
 
   if (loading) return <p>Loading...</p>;
@@ -36,7 +36,7 @@ export default function Blog(props) {
   );
 }
 
-Blog.query = gql`
+BlogIndex.query = gql`
   query getPosts {
     posts {
       nodes {
