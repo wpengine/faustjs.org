@@ -25,9 +25,3 @@ Component.variables = (seedQuery, context) => {
     uri: seedQuery?.uri,
   };
 };
-
-Component.variables = (seedQuery, context) => {
-  return {
-    uri: seedQuery?.uri,
-  };
-};

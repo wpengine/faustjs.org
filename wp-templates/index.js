@@ -6,7 +6,7 @@ import IndexTemplate from "./IndexTemplate";
 import BlogIndex from "./blog-page";
 
 export default {
-  IndexTemplate: IndexTemplate,
+  index: IndexTemplate,
   page,
   single,
   "archive-doc": DocsArchive,
