@@ -13,11 +13,11 @@ export default function HomePage() {
           <a className="underline">Single blog post</a>
         </Link>
         <br />
-        <Link href="/sample-page">
+        <Link href="/privacy-policy">
           <a className="underline">Single page</a>
         </Link>
         <br />
-        <Link href="/docs/test-doc">
+        <Link href="/docs/rendering-blocks/">
           <a className="underline">Single doc</a>
         </Link>
         <br />
