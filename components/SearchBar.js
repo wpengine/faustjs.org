@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 const DOC_SEARCH_QUERY = gql`
   query DOC_SEARCH_QUERY($searchTerm: String!) {
@@ -78,18 +79,7 @@ export default function SearchBar() {
         onClick={openModal}
       >
         {isMobile ? (
-          <svg
-            className="h-5 w-5 text-gray-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12.9 14.32a8 8 0 111.414-1.415l5.387 5.386a1 1 0 01-1.414 1.415l-5.387-5.386zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
         ) : (
           <>
             <span className="flex-1 text-left">Search documentation...</span>
@@ -118,18 +108,7 @@ export default function SearchBar() {
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full py-2 pl-10 pr-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <svg
-                className="absolute left-3 top-3 h-5 w-5 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.9 14.32a8 8 0 111.414-1.415l5.387 5.386a1 1 0 01-1.414 1.415l-5.387-5.386zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <MagnifyingGlassIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
             </div>
             <div id="searchResults" className="mt-4 max-h-96 overflow-y-auto">
               {loading && <p>Loading...</p>}
