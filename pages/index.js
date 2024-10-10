@@ -20,7 +20,7 @@ export default function HomePage() {
         Single doc
       </Link>
       <br />
-      <Link href="/blog" className="underline">
+      <Link href="/blog-page" className="underline">
         Blog posts index page
       </Link>
       <br />
