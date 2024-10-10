@@ -30,10 +30,12 @@ export default function Footer() {
           <ul>
             {column.map((item) => (
               <li key={item.id} className="mb-2">
-                <Link href={item.uri}>
-                  <a className="text-white transition duration-150 ease-in-out hover:text-gray-400">
-                    {item.label}
-                  </a>
+                <Link
+                  href={item.uri}
+                  className="text-white transition duration-150 ease-in-out hover:text-gray-400">
+
+                  {item.label}
+
                 </Link>
               </li>
             ))}

@@ -21,7 +21,7 @@ export default function DocsSidebar({ docsSidebarItems }) {
       {docsSidebarItems.map((item) => (
         <li key={item.databaseId}>
           <Link href={item.uri}>
-            <a>{item.label}</a>
+            {item.label}
           </Link>
         </li>
       ))}

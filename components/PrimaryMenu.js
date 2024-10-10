@@ -55,10 +55,10 @@ export default function PrimaryMenu() {
         {menuItems.length > 0 ? (
           menuItems.map((item) => (
             <li key={item.databaseId} className="my-2 md:my-0">
-              <Link href={item.uri}>
-                <a className="text-white no-underline hover:underline">
-                  {item.label}
-                </a>
+              <Link href={item.uri} className="text-white no-underline hover:underline">
+
+                {item.label}
+
               </Link>
             </li>
           ))
