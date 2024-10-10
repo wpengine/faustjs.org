@@ -18,16 +18,16 @@ export default function BlogIndex(props) {
               {new Date(post.date).toLocaleDateString()}
             </div>
             <Link href={post.uri}>
-              <a>
-                <h2 className="mb-2 text-2xl font-semibold">{post.title}</h2>
-              </a>
+
+              <h2 className="mb-2 text-2xl font-semibold">{post.title}</h2>
+
             </Link>
             <div
               className="mb-4"
               dangerouslySetInnerHTML={{ __html: post.excerpt }}
             />
-            <Link href={post.uri}>
-              <a className="text-blue-500 hover:underline">Read more</a>
+            <Link href={post.uri} className="text-blue-500 hover:underline">
+              Read more
             </Link>
           </li>
         ))}

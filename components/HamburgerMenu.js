@@ -31,20 +31,26 @@ const HamburgerMenu = () => {
       </button>
       {isOpen && (
         <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-gray-800 shadow-lg">
-          <Link href="/option1">
-            <a className="block rounded-t-md px-4 py-2 text-gray-300 hover:bg-gray-700">
+          <Link
+            href="/option1"
+            className="block rounded-t-md px-4 py-2 text-gray-300 hover:bg-gray-700">
+            
               Option 1
-            </a>
+            
           </Link>
-          <Link href="/option2">
-            <a className="block px-4 py-2 text-gray-300 hover:bg-gray-700">
+          <Link
+            href="/option2"
+            className="block px-4 py-2 text-gray-300 hover:bg-gray-700">
+            
               Option 2
-            </a>
+            
           </Link>
-          <Link href="/option3">
-            <a className="block rounded-b-md px-4 py-2 text-gray-300 hover:bg-gray-700">
+          <Link
+            href="/option3"
+            className="block rounded-b-md px-4 py-2 text-gray-300 hover:bg-gray-700">
+            
               Option 3
-            </a>
+            
           </Link>
         </div>
       )}

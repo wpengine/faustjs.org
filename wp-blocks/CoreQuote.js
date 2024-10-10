@@ -48,9 +48,9 @@ export function CoreQuote(props) {
 }
 
 CoreQuote.fragments = {
-  key: `CoreQuoteBlockFragment`,
+  key: `CoreQuoteBlockFragmentNew`,
   entry: gql`
-    fragment CoreQuoteBlockFragment on CoreQuote {
+    fragment CoreQuoteBlockFragmentNew on CoreQuote {
       attributes {
         
         anchor
