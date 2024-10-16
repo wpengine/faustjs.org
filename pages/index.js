@@ -16,15 +16,15 @@ export default function HomePage() {
         Single page
       </Link>
       <br />
-      <Link href="/docs/rendering-blocks/" className="underline">
+      <Link href="/docs/how-to/example/" className="underline">
         Single doc
       </Link>
       <br />
-      <Link href="/blog-page" className="underline">
+      <Link href="/blog" className="underline">
         Blog posts index page
       </Link>
       <br />
-      <Link href="/docs" className="underline">
+      <Link href="/docs/" className="underline">
         Docs index page
       </Link>
     </div>
