@@ -10,12 +10,14 @@ import blocks from "@/wp-blocks";
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const isDocsPage = router.pathname.startsWith("/docs");
+  const content = <Component {...pageProps} />;
 
   return (
     <FaustProvider pageProps={pageProps}>
       <WordPressBlocksProvider config={{ blocks, theme: null }}>
         <Layout>
-          <Component {...pageProps} key={router.asPath} />
+          {isDocsPage ? <div className="prose">{content}</div> : content}
         </Layout>
       </WordPressBlocksProvider>
     </FaustProvider>
