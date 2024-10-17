@@ -12,7 +12,7 @@ import {
 
 export default function Header() {
   return (
-    <header className="container mx-auto flex items-center justify-between bg-gray-900 px-4 py-6 sm:px-6 md:max-w-7xl md:px-8">
+    <header className="container mx-auto flex items-center justify-between bg-gray-900 px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-3">
           <FaustLogo />
