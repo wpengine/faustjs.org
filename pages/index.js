@@ -1,9 +1,31 @@
-import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
+import { gql, useQuery } from "@apollo/client";
+import { getNextStaticProps } from "@faustwp/core";
 
-export default function Page(props) {
-  return <WordPressTemplate {...props} />;
+
+// The Component is required
+export default function Index() {
+    const { data } = useQuery(Index.query);
+  return (
+    <>
+      <h1>{data.page.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: data.page.content }} />
+    </>
+  );
 }
 
-export function getStaticProps(ctx) {
-  return getWordPressProps({ ctx });
+Index.query = gql`
+  query GetIndexPage {
+    page(id: "/", idType: URI) {
+      title
+      content
+      slug
+    }
+  }
+`;
+
+export async function getStaticProps(ctx) {
+  return getNextStaticProps(ctx, {
+    Page: Index,
+    revalidate: 60,
+  });
 }
