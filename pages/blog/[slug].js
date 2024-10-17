@@ -28,7 +28,7 @@ export default function SinglePost(props) {
           day: "numeric",
         })}
       </p>
-      <div className="prose prose-lg prose-invert">
+      <div className="prose-lg prose-invert">
         <WordPressBlocksViewer blocks={blockList} />
       </div>
     </div>
