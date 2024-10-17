@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Bars3Icon } from "@heroicons/react/24/solid";
-
-const HamburgerMenu = () => {
+import { classNames } from "@/utils/strings";
+const HamburgerMenu = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -10,12 +10,12 @@ const HamburgerMenu = () => {
   };
 
   return (
-    <div className="relative">
+    <div id="mobile-menu" className={classNames("relative", className)}>
       <button
         onClick={toggleMenu}
-        className="text-gray-400 hover:text-gray-300 focus:outline-none"
+        className="text-gray-400 hover:text-gray-300 focus:outline-none md: "
       >
-        <Bars3Icon />
+        <Bars3Icon className="w-6 h-6"/>
       </button>
       {isOpen && (
         <div className="absolute right-0 z-50 mt-2 w-48 rounded-md bg-gray-800 shadow-lg">

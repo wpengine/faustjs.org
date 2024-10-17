@@ -20,7 +20,6 @@ export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [isMobile, setIsMobile] = useState(false);
 
   const { loading, error, data } = useQuery(DOC_SEARCH_QUERY, {
     variables: { searchTerm: query },
@@ -32,19 +31,6 @@ export default function SearchBar() {
       setResults(data.contentNodes.nodes);
     }
   }, [data]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 640); // Tailwind's sm breakpoint is 640px
-    };
-
-    handleResize(); // Check on mount
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -78,16 +64,13 @@ export default function SearchBar() {
         type="button"
         onClick={openModal}
       >
-        {isMobile ? (
-          <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-        ) : (
-          <>
-            <span className="pl-3">Search docs...</span>
-            <kbd className="ml-8 rounded bg-gray-700 px-2 py-1 text-gray-400">
-              ⌘K
-            </kbd>
-          </>
-        )}
+        <MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
+        <span className="hidden md:inline">
+          <span className="pl-3">Search docs...</span>
+          <kbd className="ml-8 rounded bg-gray-700 px-2 py-1 text-gray-400">
+            ⌘K
+          </kbd>
+        </span>
       </button>
 
       {isOpen && (
