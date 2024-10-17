@@ -4,7 +4,11 @@ import FaustLogo from "./FaustLogo";
 import PrimaryMenu from "./PrimaryMenu";
 import SearchBar from "./SearchBar";
 import HamburgerMenu from "./HamburgerMenu";
-import { SiDiscord, SiGithub, SiWordpress } from "@icons-pack/react-simple-icons";
+import {
+  SiDiscord,
+  SiGithub,
+  SiWordpress,
+} from "@icons-pack/react-simple-icons";
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
@@ -23,12 +27,15 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="flex items-center justify-between bg-gray-900 px-4 py-6">
-      <div className="flex items-center gap-5">
-        <div className="flex items-center">
+    <header className="container mx-auto flex items-center justify-between bg-gray-900 px-4 py-6 sm:px-6 md:max-w-7xl md:px-8">
+      <div className="flex items-center gap-8">
+        <div className="flex items-center gap-3">
           <FaustLogo />
-          <Link href="/" className="ml-2 text-xl font-bold">
-            Faust.js&trade;
+          <Link href="/" className="text-xl font-bold">
+            Faust.js
+            <span className="align-super text-xs font-light text-gray-500">
+              &trade;
+            </span>
           </Link>
         </div>
         {!isMobile && (
@@ -47,31 +54,28 @@ export default function Header() {
               href="https://github.com/wpengine/faustjs"
               passHref
               target="_blank"
-              className="text-white">
-
+              className="text-gray-500 hover:text-gray-400"
+            >
               {/* GitHub Icon */}
               <SiGithub />
-
             </Link>
             <Link
               href="https://wordpress.org/plugins/faustwp/"
               passHref
               target="_blank"
-              className="text-white">
-
+              className="text-gray-500 hover:text-gray-400"
+            >
               {/* WordPress Icon */}
               <SiWordpress />
-
             </Link>
             <Link
               href="https://discord.gg/Ux73Pywj"
               passHref
               target="_blank"
-              className="text-white">
-
+              className="text-gray-500 hover:text-gray-400"
+            >
               {/* Discord Icon */}
               <SiDiscord />
-
             </Link>
           </div>
         )}

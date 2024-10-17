@@ -17,7 +17,11 @@ export default function MyApp({ Component, pageProps }) {
     <FaustProvider pageProps={pageProps}>
       <WordPressBlocksProvider config={{ blocks, theme: null }}>
         <Layout>
-          {isDocsPage ? <div className="prose">{content}</div> : content}
+          {isDocsPage ? (
+            <div className="prose-lg prose-invert">{content}</div>
+          ) : (
+            content
+          )}
         </Layout>
       </WordPressBlocksProvider>
     </FaustProvider>

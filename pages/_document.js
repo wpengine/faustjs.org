@@ -13,7 +13,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body className="bg-gray-900 text-gray-200">
         <Main />
         <NextScript />
       </body>

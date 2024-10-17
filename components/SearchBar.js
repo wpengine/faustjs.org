@@ -74,7 +74,7 @@ export default function SearchBar() {
   return (
     <>
       <button
-        className="inline-flex items-center px-4 py-1.5 text-sm font-medium text-gray-400 bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700"
+        className="inline-flex items-center rounded-md bg-gray-800 px-2 py-1.5 text-sm font-medium text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700"
         type="button"
         onClick={openModal}
       >
@@ -82,8 +82,8 @@ export default function SearchBar() {
           <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
         ) : (
           <>
-            <span className="flex-1 text-left">Search documentation...</span>
-            <kbd className="ml-2 bg-gray-700 text-gray-400 px-2 py-1 rounded">
+            <span className="pl-3">Search docs...</span>
+            <kbd className="ml-8 rounded bg-gray-700 px-2 py-1 text-gray-400">
               ⌘K
             </kbd>
           </>
@@ -92,21 +92,21 @@ export default function SearchBar() {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative w-full max-w-3xl p-6 bg-gray-900 rounded-lg shadow-lg">
+          <div className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg">
             <button
-              className="absolute top-4 right-4 text-gray-400 bg-gray-800 px-2 py-1 rounded-md text-xs hover:bg-gray-700"
+              className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
               onClick={closeModal}
               style={{ zIndex: 60 }}
             >
               Esc
             </button>
-            <div className="relative flex items-center mt-8">
+            <div className="relative mt-8 flex items-center">
               <input
                 type="text"
                 placeholder="Search documentation..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full py-2 pl-10 pr-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg bg-gray-800 py-2 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <MagnifyingGlassIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
             </div>
@@ -114,7 +114,7 @@ export default function SearchBar() {
               {loading && <p>Loading...</p>}
               {error && <p>Error: {error.message}</p>}
               {results.map((result) => (
-                <div key={result.id} className="p-2 border-b border-gray-700">
+                <div key={result.id} className="border-b border-gray-700 p-2">
                   <a href={result.uri} className="text-white hover:underline">
                     {result.title}
                   </a>

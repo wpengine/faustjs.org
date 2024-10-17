@@ -8,7 +8,7 @@ export default function DocPageContent({ doc }) {
   });
 
   return (
-    <article className="prose prose-invert">
+    <article className="prose-lg prose-invert">
       <h1>{title}</h1>
       <WordPressBlocksViewer blocks={blockList} />
     </article>

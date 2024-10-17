@@ -37,11 +37,10 @@ export default function PrimaryMenu() {
   const menuItems = data?.menu?.menuItems?.nodes || [];
 
   return (
-    <nav className="w-full bg-black p-4 text-white">
+    <nav className="text-sm">
       <div className="flex items-center justify-between">
-        <div className="text-xl font-bold"></div>
         <button
-          className="border-none bg-transparent text-2xl text-white md:hidden"
+          className="text-2xl text-white md:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? "✖" : "☰"}
@@ -50,16 +49,15 @@ export default function PrimaryMenu() {
       <ul
         className={`md:flex ${
           isOpen ? "mt-4 flex flex-col items-center" : "hidden"
-        } md:flex-row md:gap-5`}
+        } md:flex-row md:gap-6`}
       >
         {menuItems.length > 0 ? (
           menuItems.map((item) => (
-            <li key={item.databaseId} className="my-2 md:my-0">
-              <Link href={item.uri} className="text-white no-underline hover:underline">
-
-                {item.label}
-
-              </Link>
+            <li
+              key={item.databaseId}
+              className="my-2 text-gray-400 hover:text-gray-200 md:my-0"
+            >
+              <Link href={item.uri}>{item.label}</Link>
             </li>
           ))
         ) : (

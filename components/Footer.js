@@ -1,4 +1,3 @@
-import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import Link from "next/link";
 
@@ -8,55 +7,20 @@ export default function Footer() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
 
-  const { footer1MenuItems, footer2MenuItems, footer3MenuItems } = data;
-
-  const renderFooterColumns = () => {
-    const columns = [
-      footer1MenuItems?.menuItems?.nodes,
-      footer2MenuItems?.menuItems?.nodes,
-      footer3MenuItems?.menuItems?.nodes,
-    ];
-
-    return columns.map((column, index) => {
-      if (!column || column.length === 0) {
-        return null; // Skip rendering if no menu items are found
-      }
-
-      const columnTitle = column[0]?.menu?.node?.name || "Menu";
-
-      return (
-        <div key={index} className="col-span-1 pb-8">
-          <h6 className="mb-4 text-lg font-bold">{columnTitle}</h6>
-          <ul>
-            {column.map((item) => (
-              <li key={item.id} className="mb-2">
-                <Link
-                  href={item.uri}
-                  className="text-white transition duration-150 ease-in-out hover:text-gray-400">
-
-                  {item.label}
-
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    });
-  };
-
   return (
-    <footer className="bg-gray-900 py-8 text-white">
-      <div className="container mx-auto px-4">
+    <footer className="bg-gray-800">
+      <div className="container mx-auto px-4 pb-8 pt-16 sm:px-6 md:max-w-7xl md:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {renderFooterColumns()}
+          <FooterColumns data={data} />
         </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-lg text-white">
-            Powered by Faust.js & WP Engine’s Headless WordPress platform
+        <div className="mt-24 text-center text-sm text-gray-500">
+          <p className="font-medium">
+            Powered by <Link href="/">Faust.js</Link> &amp; WP Engine's{" "}
+            <Link href="https://wpengine.com/headless-wordpress/">
+              Headless platform
+            </Link>
           </p>
-          <p className="text-gray-400">
+          <p className="text-xs text-gray-600">
             &copy; 2013-{new Date().getFullYear()} WP Engine, Inc. All rights
             reserved.
           </p>
@@ -64,6 +28,43 @@ export default function Footer() {
       </div>
     </footer>
   );
+}
+
+function FooterColumns({ data }) {
+  const { footer1MenuItems, footer2MenuItems, footer3MenuItems } = data;
+  const columns = [
+    footer1MenuItems?.menuItems?.nodes,
+    footer2MenuItems?.menuItems?.nodes,
+    footer3MenuItems?.menuItems?.nodes,
+  ];
+
+  return columns.map((column, index) => {
+    if (!column || column.length === 0) {
+      return null; // Skip rendering if no menu items are found
+    }
+
+    const columnTitle = column[0]?.menu?.node?.name || "Menu";
+
+    return (
+      <div key={index} className="col-span-1 flex flex-col gap-4">
+        <h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
+          {columnTitle}
+        </h6>
+        <ul>
+          {column.map((item) => (
+            <li key={item.id} className="space-y-2">
+              <Link
+                href={item.uri}
+                className="text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  });
 }
 
 const GET_FOOTER_NAV_ITEMS = gql`
