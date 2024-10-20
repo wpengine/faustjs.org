@@ -1,36 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { useState, useEffect, useRef } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import ReactMarkdown from "react-markdown"; // For rendering markdown excerpts
 
-const DOC_SEARCH_QUERY = gql`
-  query DOC_SEARCH_QUERY($searchTerm: String!) {
-    contentNodes(where: { search: $searchTerm }) {
-      nodes {
-        ... on Doc {
-          title
-          id
-          uri
-        }
-      }
-    }
-  }
-`;
+// Function to call your Lunr-based search API
+async function performSearch(query) {
+  const res = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
+  const data = await res.json();
+  return data;
+}
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-
-  const { loading, error, data } = useQuery(DOC_SEARCH_QUERY, {
-    variables: { searchTerm: query },
-    skip: !query,
-  });
-
-  useEffect(() => {
-    if (data && data.contentNodes) {
-      setResults(data.contentNodes.nodes);
-    }
-  }, [data]);
+  const modalRef = useRef(null); // Reference to the modal container
 
   const openModal = () => {
     setIsOpen(true);
@@ -38,24 +21,46 @@ export default function SearchBar() {
 
   const closeModal = () => {
     setIsOpen(false);
+    setQuery(""); // Clear query on close
+    setResults([]); // Clear results on close
   };
 
+  // Handle `Esc` key and mouse click outside modal
   const handleKeyDown = (event) => {
-    if (event.metaKey && event.key === "k") {
-      event.preventDefault();
-      openModal();
-    }
     if (event.key === "Escape") {
       closeModal();
     }
   };
 
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      closeModal(); // Close the modal if the user clicks outside of it
+    }
+  };
+
   useEffect(() => {
+    // Listen for `keydown` and mouse clicks
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
+      // Clean up listeners
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // Handle the search using the Lunr.js API
+  async function handleSearch() {
+    if (query) {
+      const searchResults = await performSearch(query);
+      setResults(searchResults); // Set the results returned from the server-side API
+    }
+  }
+
+  useEffect(() => {
+    handleSearch();
+  }, [query]);
 
   return (
     <>
@@ -74,8 +79,11 @@ export default function SearchBar() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg">
+        <div className="bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
+          <div
+            className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
+            ref={modalRef} // Reference the modal container for click detection
+          >
             <button
               className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
               onClick={closeModal}
@@ -94,19 +102,28 @@ export default function SearchBar() {
               <MagnifyingGlassIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
             </div>
             <div id="searchResults" className="mt-4 max-h-96 overflow-y-auto">
-              {loading && <p>Loading...</p>}
-              {error && <p>Error: {error.message}</p>}
+              {results.length === 0 && query && <p>No results found.</p>}
               {results.map((result) => (
-                <div key={result.id} className="border-b border-gray-700 p-2">
-                  <a href={result.uri} className="text-white hover:underline">
-                    {result.title}
-                  </a>
-                </div>
+                <Result key={result.ref} result={result} />
               ))}
             </div>
           </div>
         </div>
       )}
     </>
+  );
+}
+
+// Helper component to display search results with cleaned-up content
+function Result({ result }) {
+  return (
+    <a
+      href={`${result.path}`} // Adjust this to match your desired URL structure
+      className="block text-white hover:underline"
+    >
+      <h3>{result.title}</h3>
+      {/* Render the excerpt as markdown */}
+      <ReactMarkdown>{result.excerpt}</ReactMarkdown>
+    </a>
   );
 }

@@ -1,6 +1,11 @@
 const { withFaust, getWpHostname } = require("@faustwp/core");
 const { createSecureHeaders } = require("next-secure-headers");
-const withMDX = require("@next/mdx")();
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    providerImportSource: "@mdx-js/react", // Enables MDX context components
+  },
+});
 
 /**
  * @type {import('next').NextConfig}
