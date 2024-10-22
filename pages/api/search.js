@@ -1,4 +1,4 @@
-import { createIndex } from "../../lib/search";
+import { createIndex } from "@/lib/search";
 
 let indexData = null;
 

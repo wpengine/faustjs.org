@@ -1,19 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import ReactMarkdown from "react-markdown"; // For rendering markdown excerpts
+import { MDXProvider } from "@mdx-js/react"; // For rendering MDX
 
 // Function to call your Lunr-based search API
 async function performSearch(query) {
-  const res = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
+
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("An error occurred while performing the search:", error);
+    return [];
+  }
 }
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const modalRef = useRef(null); // Reference to the modal container
+  const modalRef = useRef(null);
 
   const openModal = () => {
     setIsOpen(true);
@@ -21,11 +31,10 @@ export default function SearchBar() {
 
   const closeModal = () => {
     setIsOpen(false);
-    setQuery(""); // Clear query on close
-    setResults([]); // Clear results on close
+    setQuery("");
+    setResults([]);
   };
 
-  // Handle `Esc` key and mouse click outside modal
   const handleKeyDown = (event) => {
     if (event.key === "Escape") {
       closeModal();
@@ -34,27 +43,24 @@ export default function SearchBar() {
 
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
-      closeModal(); // Close the modal if the user clicks outside of it
+      closeModal();
     }
   };
 
   useEffect(() => {
-    // Listen for `keydown` and mouse clicks
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      // Clean up listeners
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  // Handle the search using the Lunr.js API
   async function handleSearch() {
     if (query) {
       const searchResults = await performSearch(query);
-      setResults(searchResults); // Set the results returned from the server-side API
+      setResults(searchResults);
     }
   }
 
@@ -82,7 +88,7 @@ export default function SearchBar() {
         <div className="bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
           <div
             className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
-            ref={modalRef} // Reference the modal container for click detection
+            ref={modalRef}
           >
             <button
               className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
@@ -114,7 +120,7 @@ export default function SearchBar() {
   );
 }
 
-// Helper component to display search results with cleaned-up content
+// Helper component to display search results with MDX content
 function Result({ result }) {
   return (
     <a
@@ -122,8 +128,10 @@ function Result({ result }) {
       className="block text-white hover:underline"
     >
       <h3>{result.title}</h3>
-      {/* Render the excerpt as markdown */}
-      <ReactMarkdown>{result.excerpt}</ReactMarkdown>
+      {/* Render the excerpt as MDX */}
+      <MDXProvider>
+        <div>{result.excerpt}</div>
+      </MDXProvider>
     </a>
   );
 }
