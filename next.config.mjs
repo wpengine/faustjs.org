@@ -1,6 +1,6 @@
-const { withFaust, getWpHostname } = require("@faustwp/core");
-const { createSecureHeaders } = require("next-secure-headers");
-const withMDX = require("@next/mdx")();
+import { withFaust, getWpHostname } from "@faustwp/core";
+import { createSecureHeaders } from "next-secure-headers";
+import withMDX from "@next/mdx";
 
 /**
  * @type {import('next').NextConfig}
@@ -30,4 +30,4 @@ const nextConfig = {
 	},
 };
 
-module.exports = withFaust(withMDX(nextConfig));
+export default withFaust(withMDX(nextConfig));
