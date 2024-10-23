@@ -23,9 +23,9 @@ Implementing authentication is necessary so that Faust.js "knows" whether the cu
 
 Navigate to `pages/_app.js` file and import your `faust.config.js` file that you have created in the previous steps like so:
 
-```js filename="pages/_app.js"
+```js title="pages/_app.js" showLineNumbers
 import "@/styles/globals.css";
-+ import "../faust.config";
+import "../faust.config"; // [!code ++]
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 
