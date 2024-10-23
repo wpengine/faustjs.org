@@ -2,9 +2,9 @@ import { withFaust, getWpHostname } from "@faustwp/core";
 import { createSecureHeaders } from "next-secure-headers";
 import createMDX from "@next/mdx";
 import rehypeMdxImportMedia from 'rehype-mdx-import-media'
-import rehypeHighlight from "rehype-highlight";
-import rehypeHighlightCodeLines from "rehype-highlight-code-lines";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import { transformerNotationDiff } from '@shikijs/transformers';
 
 /**
  * @type {import('next').NextConfig}
@@ -36,8 +36,10 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [rehypeMdxImportMedia, rehypeSlug, rehypeHighlight, [rehypeHighlightCodeLines, {
-      showLineNumbers: true, lineContainerTagName: 'div',
+    // remarkPlugins: [],
+    rehypePlugins: [rehypeMdxImportMedia, rehypeSlug, [rehypePrettyCode, {
+      transformers: [transformerNotationDiff()],
+      theme: 'github-dark-dimmed',
     }]],
   }
 });

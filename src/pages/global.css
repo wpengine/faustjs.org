@@ -15,78 +15,69 @@ body {
   overflow-x: hidden;
 }
 
-
-/* rehype Code lines */
-.parent-container-of-pre {
-  display: grid; /* in order { overflow-x: auto; } works in child <pre> */
+code[data-line-numbers] {
+  counter-reset: line;
 }
 
-pre,
-pre code {
-  background-color: var(--color-code-background);
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
 
-  direction: ltr;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  line-height: 1.2;
-  tab-size: 2;
-  hyphens: none;
-}
-
-pre {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-text-weak);
-  border-radius: 5px;
-
-  overflow-x: auto;
-}
-
-pre > code {
-  float: left;
-  min-width: 100%;
-}
-
-.code-line {
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-left: -12px;
-  margin-right: -12px;
-  border-left: 4px solid transparent; /* prepare for highlighted code-lines */
-}
-
-div.code-line:empty {
-  /* it is necessary because there is no even eol character in div code-lines */
-  height: 15.5938px; /* calculated height */
-}
-
-span.code-line {
-  min-width: 100%;
+  /* Other styling */
   display: inline-block;
-}
-
-.code-line.inserted {
-  background-color: var(--color-inserted-line); /* inserted code-line (+) color */
-}
-
-.code-line.deleted {
-  background-color: var(--color-deleted-line); /* deleted code-line (-) color */
-}
-
-.highlighted-code-line {
-  background-color: var(--color-highlighted-line);
-  border-left: 4px solid var(--color-highlighted-line-indicator);
-}
-
-.numbered-code-line::before {
-  content: attr(data-line-number);
-
-  margin-left: -8px;
-  margin-right: 16px;
-  width: 1rem;
-  color: var(--color-text-weak);
+  width: 0.75rem;
+  margin-right: 2rem;
   text-align: right;
-
-  display: inline-block;
+  color: gray;
 }
+
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 1.25rem;
+}
+
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 1.75rem;
+}
+
+code[data-line-numbers-max-digits="4"] > [data-line]::before {
+  width: 2.25rem;
+}
+
+/* @TODO Finish styling highlights https://rehype-pretty.pages.dev/#highlight-lines*/
+span[data-highlighted-line] {
+  background-color: rgba;
+}
+
+/* Make sure inline code highliting works as documented */
+
+/* @TODO Finish styling diffs https://shiki.style/packages/transformers#transformernotationdiff 
+make work with line numbers and without  */
+.has-diff {
+  position: relative;
+}
+
+.has-diff span[data-line].diff::before {
+  position: absolute;
+  left: 10px;
+}
+
+.has-diff span[data-line].diff.add {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.has-diff span[data-line].diff.add::before {
+  content: '+';
+  color: green;
+}
+
+.has-diff span[data-line].diff.remove {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.has-diff span[data-line].diff.remove::before {
+  content: '-';
+  color: red;
+}
+
+
+
