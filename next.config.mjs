@@ -40,6 +40,8 @@ const withMDX = createMDX({
     rehypePlugins: [rehypeMdxImportMedia, rehypeSlug, [rehypePrettyCode, {
       transformers: [transformerNotationDiff()],
       theme: 'github-dark-dimmed',
+      defaultLang: "plaintext",
+      bypassInlineCode: false,
     }]],
   }
 });

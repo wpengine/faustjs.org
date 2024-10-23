@@ -15,6 +15,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Styles for code blocks */
+span[data-rehype-pretty-code-figure] code {
+  padding: 0.3rem;
+}
+
+/* code line numbers */
 code[data-line-numbers] {
   counter-reset: line;
 }
@@ -43,20 +49,20 @@ code[data-line-numbers-max-digits="4"] > [data-line]::before {
   width: 2.25rem;
 }
 
-/* @TODO Finish styling highlights https://rehype-pretty.pages.dev/#highlight-lines*/
+/* Line highlights https://rehype-pretty.pages.dev/#highlight-lines*/
 span[data-highlighted-line] {
-  background-color: rgba;
+  background-color: rgba(100, 123, 255, 0.2);
 }
 
-/* Make sure inline code highliting works as documented */
-
-/* @TODO Finish styling diffs https://shiki.style/packages/transformers#transformernotationdiff 
-make work with line numbers and without  */
+/*  
+* - Diff highlighting
+* - https://shiki.style/packages/transformers#transformernotationdiff 
+*/
 .has-diff {
   position: relative;
 }
 
-.has-diff span[data-line].diff::before {
+.has-diff span[data-line].diff::after {
   position: absolute;
   left: 10px;
 }
@@ -65,8 +71,8 @@ make work with line numbers and without  */
   background-color: rgba(0, 255, 0, 0.2);
 }
 
-.has-diff span[data-line].diff.add::before {
-  content: '+';
+.has-diff span[data-line].diff.add::after {
+  content: "+";
   color: green;
 }
 
@@ -74,10 +80,12 @@ make work with line numbers and without  */
   background-color: rgba(255, 0, 0, 0.2);
 }
 
-.has-diff span[data-line].diff.remove::before {
-  content: '-';
+.has-diff span[data-line].diff.remove::after {
+  content: "-";
   color: red;
 }
 
-
-
+figcaption[data-language]::after {
+  content: attr(data-language);
+  float: right;
+}
