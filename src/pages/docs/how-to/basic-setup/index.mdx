@@ -21,7 +21,7 @@ Install and activate the [FaustWP](https://wordpress.org/plugins/faustwp/) and [
 
 Create a `.env.local` file in the root of your Next.js project that contains these environment variables:
 
-```
+```bash:.env.local noLineNumbers {2}
 # Your WordPress site URL
 NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com
 
@@ -33,7 +33,7 @@ Replace `https://faustexample.wpengine.com` with the URL for your WordPress back
 
 Replace `YOUR_PLUGIN_SECRET` with the Secret Key found in `Settings → Faust` in your WordPress admin area.
 
-![](images/headless-admin-secret-1024x743.png)
+![](./images/headless-admin-secret-1024x743.png)
 
 Save your `.env.local` file.
 
@@ -41,9 +41,7 @@ Save your `.env.local` file.
 
 Install the `@apollo/client`, gql and `@faustwp/core` NPM packages in your Next.js app.
 
-ShellScript
-
-```
+```bash noLineNumbers
 npm install @apollo/client @faustwp/core graphql
 ```
 
@@ -51,9 +49,7 @@ npm install @apollo/client @faustwp/core graphql
 
 Create a `faust.config` file in the root of your project with this code:
 
-JavaScript
-
-```
+```js filename="faust.config.js"
 import { setConfig } from "@faustwp/core";
 
 /**
@@ -68,19 +64,17 @@ export default setConfig({
 
 Create an API route for Faust.js to use. You can do this by creating a file in `pages/api/faust/[[...route]].`js, with the following code:
 
-```
+```js filename="pages/api/faust/[[...route]].js"
 import { apiRouter } from "@faustwp/core";
 import "../../../faust.config";
 export default apiRouter;
 ```
 
-JavaScript
-
 ### Update `_app.js` file
 
 Once the API router is set up, head to `pages/_api.js` and paste this code into the file:
 
-```
+```js filename="pages/_app.js"
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import "../faust.config";
@@ -95,8 +89,6 @@ export default function MyApp({ Component, pageProps }) {
   );
 }
 ```
-
-JavaScript
 
 ### Next steps
 

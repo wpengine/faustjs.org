@@ -1,6 +1,10 @@
 import { withFaust, getWpHostname } from "@faustwp/core";
 import { createSecureHeaders } from "next-secure-headers";
-import withMDX from "@next/mdx";
+import createMDX from "@next/mdx";
+import rehypeMdxImportMedia from 'rehype-mdx-import-media'
+import rehypeHighlight from "rehype-highlight";
+import rehypeHighlightCodeLines from "rehype-highlight-code-lines";
+import rehypeSlug from "rehype-slug";
 
 /**
  * @type {import('next').NextConfig}
@@ -29,5 +33,13 @@ const nextConfig = {
 		];
 	},
 };
+
+const withMDX = createMDX({
+  options: {
+    rehypePlugins: [rehypeMdxImportMedia, rehypeSlug, rehypeHighlight, [rehypeHighlightCodeLines, {
+      showLineNumbers: true, lineContainerTagName: 'div',
+    }]],
+  }
+});
 
 export default withFaust(withMDX(nextConfig));

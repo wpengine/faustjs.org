@@ -5,25 +5,88 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Line highlighting for Code Block Pro blocks */
-pre.shiki {
-	padding-inline: 0;
+
+/* rehype Code lines */
+.parent-container-of-pre {
+  display: grid; /* in order { overflow-x: auto; } works in child <pre> */
 }
-pre.shiki .line {
-	padding-inline: 2rem;
+
+pre,
+pre code {
+  background-color: var(--color-code-background);
+
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.2;
+  tab-size: 2;
+  hyphens: none;
 }
-pre.shiki .cbp-line-highlight {
-	display: inline-block;
-	width: 100%;
-	background-color: rgba(255, 255, 255, 0.06);
+
+pre {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-text-weak);
+  border-radius: 5px;
+
+  overflow-x: auto;
+}
+
+pre > code {
+  float: left;
+  min-width: 100%;
+}
+
+.code-line {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  border-left: 4px solid transparent; /* prepare for highlighted code-lines */
+}
+
+div.code-line:empty {
+  /* it is necessary because there is no even eol character in div code-lines */
+  height: 15.5938px; /* calculated height */
+}
+
+span.code-line {
+  min-width: 100%;
+  display: inline-block;
+}
+
+.code-line.inserted {
+  background-color: var(--color-inserted-line); /* inserted code-line (+) color */
+}
+
+.code-line.deleted {
+  background-color: var(--color-deleted-line); /* deleted code-line (-) color */
+}
+
+.highlighted-code-line {
+  background-color: var(--color-highlighted-line);
+  border-left: 4px solid var(--color-highlighted-line-indicator);
+}
+
+.numbered-code-line::before {
+  content: attr(data-line-number);
+
+  margin-left: -8px;
+  margin-right: 16px;
+  width: 1rem;
+  color: var(--color-text-weak);
+  text-align: right;
+
+  display: inline-block;
 }

@@ -1,3 +1,5 @@
+import { Image } from "next/image";
+
 export const metadata = {
 	title: "Authentication",
 	date: "2024-07-22",
@@ -15,7 +17,7 @@ Before starting, it helps to break down the process into three concepts:
 
 This diagram shows the authentication flow using the Faust.js toolkit auth feature:
 
-![](images/auth-redirect-flow-2048x989-3-1024x495.png)
+![](./images/auth-redirect-flow-2048x989-3.png)
 
 Redirect-based authentication is the default strategy in the Faust.js toolkit. This strategy involves redirecting the user to WordPress to authenticate. Once the user has shown authentication, the user redirects back to the Next.js application with an authorization code, which you can then use to request a refresh and access token, thus completing the login process.
 
@@ -33,7 +35,7 @@ If you haven't already, follow the [Basic Setup](https://faustjstoolkit.wpengine
 
 You are now ready to implement the auth functionality. Create a `/gated/index.js` page in the `pages` directory and paste this code block into the file:
 
-```
+```js
 import { useAuth, getApolloAuthClient, useLogout } from "@faustwp/core";
 import { gql, useQuery } from "@apollo/client";
 
@@ -96,8 +98,6 @@ export default function Page(props) {
 }
 ```
 
-JavaScript
-
 In this code block, to check if a user is logged in, we use the `useAuth` hook, focusing on its `isReady` and `isAuthenticated` properties. The `isReady` property ensures that the hook is fully set up and ready to determine the user's authentication status. Once `isReady` confirms the setup, it returns a boolean, after which `isAuthenticated` will also return a boolean value indicating whether the user is logged in.
 
 For authenticated requests, the `getApolloAuthClient()` function is used to obtain an Apollo Client instance with the appropriate access token attached. This client can be utilized for making authenticated requests, either directly via `client.query` or by passing the client into Apollo's `useQuery` hook.
@@ -116,7 +116,7 @@ Here are some things you can do to continue to test and add to your auth strateg
 
 - You can verify that authentication is working by adding a `console.log()` with the current user's name to check whether they are being authenticated properly. Using the above code example, it would look like this:
 
-```
+```js
 import { useAuth, getApolloAuthClient, useLogout } from "@faustwp/core";
 import { gql, useQuery } from "@apollo/client";
 
@@ -150,9 +150,7 @@ function AuthenticatedView() {
 // Rest of your component
 ```
 
-JavaScript
-
-- Local Based Authentication is the second strategy available in Faust.js. This strategy involves the user initiating a login request from the Next.js application via the `useLogin` hook. Upon successful login, `useLogin` returns an authorization code used to request a refresh and access token, thus completing the login process.
+- Local Based Authentication is the second strategy available in Faust.js. This strategy involves the user initiating a login request from the Next.js application via the `useLogin` hook. Upon successful login, `useLogin` returns an authorization code used to request a refresh and access token, thus completing the login process.
 
 This strategy is excellent for use cases where you want to support a more “white label” login/register experience. It routes unauthenticated requests to your specified Next.js login page. In addition, users who wish to log in/register will not have to interact with WordPress or the WordPress backend at all, giving you the flexibility to implement and fine-tune your user flow. If you are interested in using this strategy, please visit this article here on the subject:
 

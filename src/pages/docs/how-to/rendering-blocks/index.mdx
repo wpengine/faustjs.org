@@ -55,7 +55,7 @@ As an example, given the following `block.json` definition of a block:
 
 JSON
 
-```
+```json filename="block.json"
 // block.json
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
@@ -75,9 +75,7 @@ JSON
 
 The plugin will create the following WPGraphQL type:
 
-JSON
-
-```
+```json
 type MyPluginNotice {
     attributes: MyPluginNoticeAttributes;
 }
@@ -88,9 +86,7 @@ type MyPluginNoticeAttributes {
 
 When you request to resolve the `message` attribute for `MyPluginNotice`, the plugin will use a resolver that tries to extract the field by sourcing the text element using the `selector`. As an example, with the following HTML:
 
-HTML
-
-```
+```html
 <div class="message">Hello World</div>
 ```
 
@@ -118,9 +114,7 @@ Currently, the plugin handles the following attribute types taken from the [refe
 
 Install the `@faustwp/blocks` NPM packages in your Next.js app.
 
-ShellScript
-
-```
+```bash
 npm install @faustwp/blocks
 ```
 
@@ -128,9 +122,7 @@ npm install @faustwp/blocks
 
 In the root of your Next.js project, set up `wp-blocks/index.js` with this:
 
-JavaScript
-
-```
+```js filename="wp-blocks/index.js"
 import { CoreBlocks } from "@faustwp/blocks";
 
 export default {
@@ -142,9 +134,7 @@ export default {
 
 To query specific block data you need to define that data in the `contentBlock` as the appropriate type. Here is an example query to get all the rendered HTML from the `editorBlocks` field:
 
-JavaScript
-
-```
+```gql
 query GetBlocksByURI($uri: ID!) {
   post(id: $uri, idType: URI) {
     title
@@ -187,9 +177,7 @@ This WPGraphQL query is designed to retrieve specific data for a single post fro
 
 Now, we can add that query into a Next.js dynamic route file to grab a single post detail page and all its block data. For example:
 
-JavaScript
-
-```
+```js filename="pages/posts/[slug].js"
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
