@@ -3,36 +3,39 @@ import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, getNextStaticProps } from "@faustwp/core";
 import blocks from "@/wp-blocks";
 
-
 export default function SinglePost(props) {
-  const { loading, error, data: { post }} = useQuery(SinglePost.query, {
-    variables: props.__PAGE_VARIABLES__
-  });
+	const {
+		loading,
+		error,
+		data: { post },
+	} = useQuery(SinglePost.query, {
+		variables: props.__PAGE_VARIABLES__,
+	});
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error! {error.message}</p>;
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error! {error.message}</p>;
 
-  const { title, date, author, editorBlocks } = post;
-  const blockList = flatListToHierarchical(editorBlocks, {
-    childrenKey: "innerBlocks",
-  });
+	const { title, date, author, editorBlocks } = post;
+	const blockList = flatListToHierarchical(editorBlocks, {
+		childrenKey: "innerBlocks",
+	});
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-4 text-3xl font-bold">{title}</h1>
-      <p className="mb-8 text-white">
-        {author.node.name} &middot;{" "}
-        {new Date(date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      </p>
-      <div className="prose-lg prose-invert">
-        <WordPressBlocksViewer blocks={blockList} />
-      </div>
-    </div>
-  );
+	return (
+		<div className="container mx-auto px-4 py-8">
+			<h1 className="mb-4 text-3xl font-bold">{title}</h1>
+			<p className="mb-8 text-white">
+				{author.node.name} &middot;{" "}
+				{new Date(date).toLocaleDateString("en-US", {
+					year: "numeric",
+					month: "short",
+					day: "numeric",
+				})}
+			</p>
+			<div className="prose-lg prose-invert">
+				<WordPressBlocksViewer blocks={blockList} />
+			</div>
+		</div>
+	);
 }
 
 SinglePost.query = gql`
@@ -84,15 +87,15 @@ ${blocks.KevinbatdorfCodeBlockPro.fragments.entry}
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
 
 export async function getStaticProps(ctx) {
-    return getNextStaticProps(ctx, {
-      Page: SinglePost,
-      revalidate: 3600,
-    });
+	return getNextStaticProps(ctx, {
+		Page: SinglePost,
+		revalidate: 3600,
+	});
 }
 
 export async function getStaticPaths() {
-    return {
-        paths: [],
-        fallback: "blocking",
-    };
+	return {
+		paths: [],
+		fallback: "blocking",
+	};
 }

@@ -3,20 +3,20 @@ import slugify from "@sindresorhus/slugify";
 const { CoreHeading: FaustCoreHeading } = CoreBlocks;
 
 export default function CoreHeading(props) {
-  const { attributes } = props;
+	const { attributes } = props;
 
-  const customAttributes = {
-    ...attributes,
-    anchor: !attributes.anchor
-      ? slugify(attributes.content)
-      : attributes.anchor,
-  };
+	const customAttributes = {
+		...attributes,
+		anchor: !attributes.anchor
+			? slugify(attributes.content)
+			: attributes.anchor,
+	};
 
-  return (
-    <>
-      <FaustCoreHeading {...props} attributes={customAttributes} />
-    </>
-  );
+	return (
+		<>
+			<FaustCoreHeading {...props} attributes={customAttributes} />
+		</>
+	);
 }
 
 CoreHeading.displayName = { ...FaustCoreHeading.displayName };

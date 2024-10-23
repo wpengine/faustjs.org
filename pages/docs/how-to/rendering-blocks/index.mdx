@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Rendering Blocks",
-  date: "2024-09-26",
+	title: "Rendering Blocks",
+	date: "2024-09-26",
 };
 
 In headless WordPress, it's possible to take the HTML for an entire page and insert it into the DOM in your decoupled front-end app. On most sites, though, it becomes necessary to map WordPress blocks to React components in your front-end app so you can control how individual blocks are rendered. This document details how to do just that.
@@ -31,7 +31,7 @@ You should be able to perform queries for the block data. There is a new field a
 
 If you search in GraphQL IDE documentation explorer tab for the `editorBlocks` type you will be able to see the available block fields. The most important ones are:
 
-- `renderedHTML`: It’s the HTML of the block as rendered by the [render\_block](https://developer.wordpress.org/reference/functions/render_block/) function.
+- `renderedHTML`: It’s the HTML of the block as rendered by the [render_block](https://developer.wordpress.org/reference/functions/render_block/) function.
 
 - `name`: The actual name of the block taken from its `block.json` spec.
 
@@ -47,7 +47,7 @@ If you search in GraphQL IDE documentation explorer tab for the `editorBlocks`�
 
 ### How does the plugin work?
 
-The plugin iterates over the `block.json` types as registered within WordPress and creates WPGraphQL types and resolvers. As long as your blocks use the [register\_block\_type](https://developer.wordpress.org/reference/functions/register_block_type/) function passing a `block.json`, it will be available in the system without any extra steps.
+The plugin iterates over the `block.json` types as registered within WordPress and creates WPGraphQL types and resolvers. As long as your blocks use the [register_block_type](https://developer.wordpress.org/reference/functions/register_block_type/) function passing a `block.json`, it will be available in the system without any extra steps.
 
 In WordPress block development, a `block.json` file is a configuration file that provides metadata and settings for a block. It defines the block’s name, title, icon, category, and other settings related to its appearance and behavior. For more information, see [the section on block.json files](https://developer.wordpress.org/block-editor/getting-started/fundamentals/block-json/) in the WordPress Developer’s Handbook.
 
@@ -165,28 +165,27 @@ query GetBlocksByURI($uri: ID!) {
 This WPGraphQL query is designed to retrieve specific data for a single post from WordPress, focusing on block-based content. Here’s what it does:
 
 1. **`post(id: $uri, idType: URI)`**:
-    - The query retrieves a post based on its URI. The `idType: URI` indicates that the post is identified by its unique slug (e.g., "example-page"), passed as a variable (`$uri`).
-    
-    - This ensures that the content returned corresponds to the post or page associated with that specific URI.
 
-3. **`title`**:
-    - The `title` field fetches the title of the queried post. This is the only post-level information returned by the query.
+   - The query retrieves a post based on its URI. The `idType: URI` indicates that the post is identified by its unique slug (e.g., "example-page"), passed as a variable (`$uri`).
+   - This ensures that the content returned corresponds to the post or page associated with that specific URI.
 
-5. **`editorBlocks`**:
-    - This field queries the blocks used within the post, such as paragraphs, headings, lists, etc.
-    
-    - It returns:
-        - **`__typename`**: Indicates the block type (e.g., `CoreParagraph`, `CoreHeading`), allowing the frontend to distinguish between different block types.
-        
-        - **`name`**: Provides the block's name as registered in the WordPress block editor (e.g., `core/paragraph`).
-        
-        - **`renderedHtml`**: Contains the fully rendered HTML for the block, allowing direct rendering of the block content in the frontend.
+2. **`title`**:
 
-7. **`... on CoreParagraph`**:
-    - This is a fragment specific to `CoreParagraph` blocks. It queries additional attributes for paragraph blocks:
-        - **`attributes { className }`**: Fetches the `className` attribute if it exists, allowing for custom CSS classes to be applied to paragraph blocks.
+   - The `title` field fetches the title of the queried post. This is the only post-level information returned by the query.
 
-Now, we can add that query into a Next.js dynamic route file to grab a single post detail page and all its block data. For example:  
+3. **`editorBlocks`**:
+
+   - This field queries the blocks used within the post, such as paragraphs, headings, lists, etc.
+   - It returns:
+     - **`__typename`**: Indicates the block type (e.g., `CoreParagraph`, `CoreHeading`), allowing the frontend to distinguish between different block types.
+     - **`name`**: Provides the block's name as registered in the WordPress block editor (e.g., `core/paragraph`).
+     - **`renderedHtml`**: Contains the fully rendered HTML for the block, allowing direct rendering of the block content in the frontend.
+
+4. **`... on CoreParagraph`**:
+   - This is a fragment specific to `CoreParagraph` blocks. It queries additional attributes for paragraph blocks:
+     - **`attributes { className }`**: Fetches the `className` attribute if it exists, allowing for custom CSS classes to be applied to paragraph blocks.
+
+Now, we can add that query into a Next.js dynamic route file to grab a single post detail page and all its block data. For example:
 
 JavaScript
 

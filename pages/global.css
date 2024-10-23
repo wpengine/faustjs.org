@@ -5,25 +5,25 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	overflow-x: hidden;
 }
 
 /* Line highlighting for Code Block Pro blocks */
 pre.shiki {
-  padding-inline: 0;
+	padding-inline: 0;
 }
 pre.shiki .line {
-  padding-inline: 2rem;
+	padding-inline: 2rem;
 }
 pre.shiki .cbp-line-highlight {
-  display: inline-block;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.06);
+	display: inline-block;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.06);
 }

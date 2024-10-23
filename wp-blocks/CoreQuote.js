@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client';
-import { useBlocksTheme } from '@faustwp/blocks/dist/mjs/components/WordPressBlocksProvider.js';
+import { gql } from "@apollo/client";
+import { useBlocksTheme } from "@faustwp/blocks/dist/mjs/components/WordPressBlocksProvider.js";
 // import { ContentBlock } from '@faustwp/blocks/dist/mjs/components/WordPressBlocksViewer.js';
-import { getStyles } from '@faustwp/blocks/dist/mjs/utils/index.js';
+import { getStyles } from "@faustwp/blocks/dist/mjs/utils/index.js";
 
 // export type CoreQuoteFragmentProps = ContentBlock & {
 //   attributes?: {
@@ -22,57 +22,55 @@ import { getStyles } from '@faustwp/blocks/dist/mjs/utils/index.js';
 // };
 
 export function CoreQuote(props) {
-  const theme = useBlocksTheme();
-  const style = getStyles(theme, { ...props });
-  const { attributes } = props;
+	const theme = useBlocksTheme();
+	const style = getStyles(theme, { ...props });
+	const { attributes } = props;
 
-  if (!attributes?.value) {
-    return null;
-  }
+	if (!attributes?.value) {
+		return null;
+	}
 
-  let innerHtml = attributes.value;
+	let innerHtml = attributes.value;
 
-  if (attributes?.citation) {
-    innerHtml += `<cite>${attributes.citation}</cite>`;
-  }
+	if (attributes?.citation) {
+		innerHtml += `<cite>${attributes.citation}</cite>`;
+	}
 
-  return (
-    <blockquote
-      className={attributes?.cssClassName}
-      style={style}
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: innerHtml }}
-    />
-
-  );
+	return (
+		<blockquote
+			className={attributes?.cssClassName}
+			style={style}
+			// eslint-disable-next-line react/no-danger
+			dangerouslySetInnerHTML={{ __html: innerHtml }}
+		/>
+	);
 }
 
 CoreQuote.fragments = {
-  key: `CoreQuoteBlockFragmentNew`,
-  entry: gql`
-    fragment CoreQuoteBlockFragmentNew on CoreQuote {
-      attributes {
-        
-        anchor
-        backgroundColor
-        citation
-        className
-        fontFamily
-        fontSize
-        gradient
-        lock
-        style
-        textColor
-        textAlign
-        value
-        cssClassName
-      }
-    }
-  `,
+	key: `CoreQuoteBlockFragmentNew`,
+	entry: gql`
+		fragment CoreQuoteBlockFragmentNew on CoreQuote {
+			attributes {
+				anchor
+				backgroundColor
+				citation
+				className
+				fontFamily
+				fontSize
+				gradient
+				lock
+				style
+				textColor
+				textAlign
+				value
+				cssClassName
+			}
+		}
+	`,
 };
 
 CoreQuote.config = {
-  name: 'CoreQuote',
+	name: "CoreQuote",
 };
 
-CoreQuote.displayName = 'CoreQuote';
+CoreQuote.displayName = "CoreQuote";

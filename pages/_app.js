@@ -9,21 +9,21 @@ import "@faustwp/core/dist/css/toolbar.css";
 import blocks from "@/wp-blocks";
 
 export default function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const isDocsPage = router.pathname.startsWith("/docs");
-  const content = <Component {...pageProps} />;
+	const router = useRouter();
+	const isDocsPage = router.pathname.startsWith("/docs");
+	const content = <Component {...pageProps} />;
 
-  return (
-    <FaustProvider pageProps={pageProps}>
-      <WordPressBlocksProvider config={{ blocks, theme: null }}>
-        <Layout>
-          {isDocsPage ? (
-            <div className="prose-lg prose-invert">{content}</div>
-          ) : (
-            content
-          )}
-        </Layout>
-      </WordPressBlocksProvider>
-    </FaustProvider>
-  );
+	return (
+		<FaustProvider pageProps={pageProps}>
+			<WordPressBlocksProvider config={{ blocks, theme: null }}>
+				<Layout>
+					{isDocsPage ? (
+						<div className="prose-lg prose-invert">{content}</div>
+					) : (
+						content
+					)}
+				</Layout>
+			</WordPressBlocksProvider>
+		</FaustProvider>
+	);
 }
