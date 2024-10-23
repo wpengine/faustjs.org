@@ -9,7 +9,8 @@
 		"stylesheet": "faust generateGlobalStylesheet",
 		"start": "faust start",
 		"test:format": "prettier . --check",
-		"format": "prettier . --write"
+		"format": "prettier . --write",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.10.4",
@@ -31,6 +32,8 @@
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.13",
 		"autoprefixer": "^10.4.19",
+		"husky": "^9.1.6",
+		"lint-staged": "^15.2.10",
 		"next-secure-headers": "^2.2.0",
 		"postcss": "^8.4.39",
 		"postcss-nesting": "^13.0.0",
@@ -41,5 +44,8 @@
 	"engines": {
 		"node": ">=20"
 	},
-	"packageManager": "npm@10.9.0+sha512.65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b"
+	"packageManager": "npm@10.9.0+sha512.65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b",
+	"lint-staged": {
+		"*.--write": "npm run format"
+	}
 }
