@@ -1,43 +1,45 @@
 {
-  "name": "@faustwp/getting-started-example",
-  "private": true,
-  "version": "0.1.0",
-  "scripts": {
-    "dev": "faust dev",
-    "build": "faust build",
-    "generate": "faust generatePossibleTypes",
-    "stylesheet": "faust generateGlobalStylesheet",
-    "start": "faust start"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.10.4",
-    "@faustwp/blocks": "^4.0.0",
-    "@faustwp/cli": "^3.0.2",
-    "@faustwp/core": "^3.0.3",
-    "@heroicons/react": "^2.1.5",
-    "@icons-pack/react-simple-icons": "^10.0.0",
-    "@mdx-js/loader": "^3.0.1",
-    "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "^15.0.1",
-    "@sindresorhus/slugify": "^2.2.1",
-    "classnames": "^2.5.1",
-    "graphql": "^16.8.1",
-    "next": "^15.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.13",
-    "autoprefixer": "^10.4.19",
-    "next-secure-headers": "^2.2.0",
-    "postcss": "^8.4.39",
-    "postcss-nesting": "^13.0.0",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "tailwindcss": "^3.4.4"
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "packageManager": "npm@10.9.0+sha512.65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b"
+	"name": "@faustwp/getting-started-example",
+	"private": true,
+	"version": "0.1.0",
+	"scripts": {
+		"dev": "faust dev",
+		"build": "faust build",
+		"generate": "faust generatePossibleTypes",
+		"stylesheet": "faust generateGlobalStylesheet",
+		"start": "faust start",
+		"test:format": "prettier . --check",
+		"format": "prettier . --write"
+	},
+	"dependencies": {
+		"@apollo/client": "^3.10.4",
+		"@faustwp/blocks": "^4.0.0",
+		"@faustwp/cli": "^3.0.2",
+		"@faustwp/core": "^3.0.3",
+		"@heroicons/react": "^2.1.5",
+		"@icons-pack/react-simple-icons": "^10.0.0",
+		"@mdx-js/loader": "^3.0.1",
+		"@mdx-js/react": "^3.0.1",
+		"@next/mdx": "^15.0.1",
+		"@sindresorhus/slugify": "^2.2.1",
+		"classnames": "^2.5.1",
+		"graphql": "^16.8.1",
+		"next": "^15.0.1",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@tailwindcss/typography": "^0.5.13",
+		"autoprefixer": "^10.4.19",
+		"next-secure-headers": "^2.2.0",
+		"postcss": "^8.4.39",
+		"postcss-nesting": "^13.0.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"tailwindcss": "^3.4.4"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"packageManager": "npm@10.9.0+sha512.65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b"
 }
