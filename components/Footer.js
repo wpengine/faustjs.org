@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import Link from "next/link";
+import IconExternalLink from "./IconExternalLink";
 
 export default function Footer() {
   const { data, loading, error } = useQuery(GET_FOOTER_NAV_ITEMS);
@@ -55,9 +56,14 @@ function FooterColumns({ data }) {
             <li key={item.id} className="space-y-2">
               <Link
                 href={item.uri}
-                className="text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
+                target={item.target}
+                className="text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200 inline-flex items-center gap-1"
               >
                 {item.label}
+                {item.target === "_blank" && 
+                    // Add an external link icon if the link opens in a new tab
+                    <IconExternalLink height="16" width="16" />
+                }
               </Link>
             </li>
           ))}
