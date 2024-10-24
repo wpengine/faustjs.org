@@ -23,6 +23,11 @@ export default [
 			unicorn,
 			prettier,
 		},
+		settings: {
+			react: {
+				version: "detect",
+			},
+		},
 		rules: {
 			...unicorn.configs.recommended.rules,
 		},
@@ -36,11 +41,6 @@ export default [
 			globals: {
 				...globals.browser,
 				...globals.serviceworker,
-			},
-		},
-		settings: {
-			react: {
-				version: "detect",
 			},
 		},
 	},
