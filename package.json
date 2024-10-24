@@ -9,6 +9,8 @@
 		"stylesheet": "faust generateGlobalStylesheet",
 		"start": "faust start",
 		"test:format": "prettier . --check",
+		"test:lint": "next lint",
+		"lint": "npm run test:lint --fix",
 		"format": "prettier . --write",
 		"prepare": "husky"
 	},
@@ -32,6 +34,9 @@
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.13",
 		"autoprefixer": "^10.4.19",
+		"eslint": "^9.13.0",
+		"eslint-config-next": "15.0.1",
+		"eslint-plugin-unicorn": "^56.0.0",
 		"husky": "^9.1.6",
 		"lint-staged": "^15.2.10",
 		"next-secure-headers": "^2.2.0",
