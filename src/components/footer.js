@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import Link from "next/link";
+import IconExternalLink from "./icon-external-link";
 
 export default function Footer() {
 	const { data, loading, error } = useQuery(GET_FOOTER_NAV_ITEMS);
@@ -15,8 +16,7 @@ export default function Footer() {
 				</div>
 				<div className="mt-24 text-center text-sm text-gray-500">
 					<p className="font-medium">
-						Powered by <Link href="/">Faust.js</Link> &amp; WP
-						Engine&apos;s&nbsp;
+						Powered by <Link href="/">Faust.js</Link> &amp; WP Engine&apos;s{" "}
 						<Link href="https://wpengine.com/headless-wordpress/">
 							Headless platform
 						</Link>
@@ -39,31 +39,38 @@ function FooterColumns({ data }) {
 		footer3MenuItems?.menuItems?.nodes,
 	];
 
-	return columns
-		.filter((column) => length in column)
-		.map((column, index) => {
-			const columnTitle = column[0]?.menu?.node?.name || "Menu";
+	return columns.map((column, index) => {
+		if (!column || column.length === 0) {
+			return; // Skip rendering if no menu items are found
+		}
 
-			return (
-				<div key={index} className="col-span-1 flex flex-col gap-4">
-					<h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
-						{columnTitle}
-					</h6>
-					<ul>
-						{column.map((item) => (
-							<li key={item.id} className="space-y-2">
-								<Link
-									href={item.uri}
-									className="text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
-								>
-									{item.label}
-								</Link>
-							</li>
-						))}
-					</ul>
-				</div>
-			);
-		});
+		const columnTitle = column[0]?.menu?.node?.name || "Menu";
+
+		return (
+			<div key={index} className="col-span-1 flex flex-col gap-4">
+				<h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
+					{columnTitle}
+				</h6>
+				<ul>
+					{column.map((item) => (
+						<li key={item.id} className="space-y-2">
+							<Link
+								href={item.uri}
+								target={item.target}
+								className="inline-flex items-center gap-1 text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
+							>
+								{item.label}
+								{item.target === "_blank" && (
+									// Add an external link icon if the link opens in a new tab
+									<IconExternalLink height="16" width="16" />
+								)}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
+		);
+	});
 }
 
 const GET_FOOTER_NAV_ITEMS = gql`
