@@ -51,6 +51,12 @@ export default [
 			"react-hooks": reactHooks,
 			"jsx-a11y": jsxA11y,
 		},
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				...globals.serviceworker,
+			},
+		},
 		rules: {
 			...next.configs.recommended.rules,
 			...next.configs["core-web-vitals"].rules,

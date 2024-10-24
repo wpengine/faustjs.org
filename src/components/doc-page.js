@@ -1,5 +1,4 @@
 import DocsSidebar from "@/components/docs-sidebar";
-import DocPageContent from "@/components/doc-page-content";
 import OnThisPageNav from "@/components/on-this-page-nav";
 
 export default function DocumentPage({ docsSidebarItems, doc }) {
@@ -11,7 +10,7 @@ export default function DocumentPage({ docsSidebarItems, doc }) {
 				<DocsSidebar docsSidebarItems={docsSidebarItems} />
 			</section>
 			<section className="flex-1 p-6">
-				<DocPageContent doc={doc} />
+				{/* <DocPageContent doc={doc} /> */}
 			</section>
 			<section className="w-70 hidden p-6 min-[1100px]:block">
 				<OnThisPageNav editorBlocks={editorBlocks} />
