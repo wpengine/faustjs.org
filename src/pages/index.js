@@ -13,13 +13,13 @@ export default function Index() {
 }
 
 Index.query = gql`
-  query GetIndexPage {
-  	page(id: "/", idType: URI) {
-  		title
-  		content
-  		slug
-  	}
-  }
+	query GetIndexPage {
+		page(id: "/", idType: URI) {
+			title
+			content
+			slug
+		}
+	}
 `;
 
 export async function getStaticProps(context) {

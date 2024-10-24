@@ -3,17 +3,17 @@ import { gql, useQuery } from "@apollo/client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 const DOC_SEARCH_QUERY = gql`
-  query DOC_SEARCH_QUERY($searchTerm: String!) {
-  	contentNodes(where: { search: $searchTerm }) {
-  		nodes {
-  			... on Doc {
-  				title
-  				id
-  				uri
-  			}
-  		}
-  	}
-  }
+	query DOC_SEARCH_QUERY($searchTerm: String!) {
+		contentNodes(where: { search: $searchTerm }) {
+			nodes {
+				... on Doc {
+					title
+					id
+					uri
+				}
+			}
+		}
+	}
 `;
 
 export default function SearchBar() {

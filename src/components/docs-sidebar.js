@@ -2,17 +2,17 @@ import { gql } from "@apollo/client";
 import Link from "next/link";
 
 export const DOCS_SIDEBAR_QUERY = gql`
-  query DocsSidebarMenu {
-  	menu(id: "docs-sidebar", idType: NAME) {
-  		menuItems {
-  			nodes {
-  				databaseId
-  				label
-  				uri
-  			}
-  		}
-  	}
-  }
+	query DocsSidebarMenu {
+		menu(id: "docs-sidebar", idType: NAME) {
+			menuItems {
+				nodes {
+					databaseId
+					label
+					uri
+				}
+			}
+		}
+	}
 `;
 
 export default function DocsSidebar({ docsSidebarItems }) {

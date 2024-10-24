@@ -21,7 +21,6 @@ const config = [
 		plugins: {
 			unicorn,
 			import: importPlugin,
-			prettier,
 		},
 		settings: {
 			react: {
@@ -100,6 +99,7 @@ const config = [
 			"unicorn/filename-case": ["off"],
 		},
 	},
+	prettier,
 ];
 
 export default config;

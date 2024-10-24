@@ -41,17 +41,17 @@ export default function BlogIndex() {
 }
 
 BlogIndex.query = gql`
-  query getPosts {
-  	posts {
-  		nodes {
-  			title
-  			excerpt
-  			date
-  			databaseId
-  			uri
-  		}
-  	}
-  }
+	query getPosts {
+		posts {
+			nodes {
+				title
+				excerpt
+				date
+				databaseId
+				uri
+			}
+		}
+	}
 `;
 
 export async function getStaticProps(context) {

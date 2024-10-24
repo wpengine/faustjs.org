@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const GET_PRIMARY_NAV = gql`
-  query GetPrimaryNav {
-  	menu(id: "primary-nav", idType: NAME) {
-  		id
-  		name
-  		menuItems {
-  			nodes {
-  				label
-  				uri
-  				databaseId
-  			}
-  		}
-  	}
-  }
+	query GetPrimaryNav {
+		menu(id: "primary-nav", idType: NAME) {
+			id
+			name
+			menuItems {
+				nodes {
+					label
+					uri
+					databaseId
+				}
+			}
+		}
+	}
 `;
 
 export default function PrimaryMenu() {
