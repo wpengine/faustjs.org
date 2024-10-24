@@ -6,7 +6,7 @@ import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import importPlugin from "eslint-plugin-import";
-import mdx from "eslint-plugin-mdx";
+import * as mdx from "eslint-plugin-mdx";
 
 import globals from "globals";
 
@@ -17,32 +17,27 @@ export default [
 	js.configs.recommended,
 	react.configs.flat.recommended, // This is not a plugin object, but a shareable config object
 	react.configs.flat["jsx-runtime"],
-	// importPlugin.flatConfigs.recommended,
 	{
 		plugins: {
 			unicorn,
+			import: importPlugin,
 			prettier,
 		},
 		settings: {
 			react: {
 				version: "detect",
 			},
+			"import/resolver": {
+				alias: [["@", "./src"]],
+			},
 		},
 		rules: {
 			...unicorn.configs.recommended.rules,
+			...importPlugin.flatConfigs.recommended.rules,
 		},
 	},
 	{
 		ignores: ["node_modules", ".next", ".faust", "public"],
-	},
-	{
-		files: ["**/*.{js,jsx}"],
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.serviceworker,
-			},
-		},
 	},
 	{
 		files: ["src/**/*.{js,jsx}"],
@@ -89,6 +84,18 @@ export default [
 	},
 	{
 		files: ["src/pages/**/*.{js,jsx}"],
+		rules: {
+			"unicorn/filename-case": ["off"],
+		},
+	},
+	{
+		...mdx.flat,
+		processor: mdx.createRemarkProcessor({
+			lintCodeBlocks: true,
+		}),
+	},
+	{
+		files: ["*.md"],
 		rules: {
 			"unicorn/filename-case": ["off"],
 		},
