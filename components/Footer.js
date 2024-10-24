@@ -67,51 +67,51 @@ function FooterColumns({ data }) {
 }
 
 const GET_FOOTER_NAV_ITEMS = gql`
-	query GetFooterNavItems {
-		footer1MenuItems: menu(id: "downloads", idType: NAME) {
-			menuItems {
-				nodes {
-					id
-					uri
-					label
-					target
-					menu {
-						node {
-							name
-						}
-					}
-				}
-			}
-		}
-		footer2MenuItems: menu(id: "community", idType: NAME) {
-			menuItems {
-				nodes {
-					id
-					uri
-					label
-					target
-					menu {
-						node {
-							name
-						}
-					}
-				}
-			}
-		}
-		footer3MenuItems: menu(id: "WP engine", idType: NAME) {
-			menuItems {
-				nodes {
-					id
-					uri
-					label
-					target
-					menu {
-						node {
-							name
-						}
-					}
-				}
-			}
-		}
-	}
+  query GetFooterNavItems {
+  	footer1MenuItems: menu(id: "downloads", idType: NAME) {
+  		menuItems {
+  			nodes {
+  				id
+  				uri
+  				label
+  				target
+  				menu {
+  					node {
+  						name
+  					}
+  				}
+  			}
+  		}
+  	}
+  	footer2MenuItems: menu(id: "community", idType: NAME) {
+  		menuItems {
+  			nodes {
+  				id
+  				uri
+  				label
+  				target
+  				menu {
+  					node {
+  						name
+  					}
+  				}
+  			}
+  		}
+  	}
+  	footer3MenuItems: menu(id: "WP engine", idType: NAME) {
+  		menuItems {
+  			nodes {
+  				id
+  				uri
+  				label
+  				target
+  				menu {
+  					node {
+  						name
+  					}
+  				}
+  			}
+  		}
+  	}
+  }
 `;

@@ -3,13 +3,13 @@ import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, getNextStaticProps } from "@faustwp/core";
 import blocks from "@/wp-blocks";
 
-export default function SinglePost(props) {
+export default function SinglePost(properties) {
 	const {
 		loading,
 		error,
 		data: { post },
 	} = useQuery(SinglePost.query, {
-		variables: props.__PAGE_VARIABLES__,
+		variables: properties.__PAGE_VARIABLES__,
 	});
 
 	if (loading) return <p>Loading...</p>;
@@ -86,8 +86,8 @@ SinglePost.query = gql`
 
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
 
-export async function getStaticProps(ctx) {
-	return getNextStaticProps(ctx, {
+export async function getStaticProps(context) {
+	return getNextStaticProps(context, {
 		Page: SinglePost,
 		revalidate: 3600,
 	});
