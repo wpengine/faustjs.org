@@ -13,7 +13,7 @@ import globals from "globals";
 /**
  * @type {import('eslint').Linter.Config[]}
  */
-export default [
+const config = [
 	js.configs.recommended,
 	react.configs.flat.recommended, // This is not a plugin object, but a shareable config object
 	react.configs.flat["jsx-runtime"],
@@ -101,3 +101,5 @@ export default [
 		},
 	},
 ];
+
+export default config;

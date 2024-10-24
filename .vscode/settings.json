@@ -6,5 +6,5 @@
 		"stylesheet",
 		"tailwindcss"
 	],
-	"eslint.useFlatConfig": false
+	"eslint.useFlatConfig": true
 }
