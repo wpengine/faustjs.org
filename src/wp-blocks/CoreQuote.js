@@ -27,7 +27,7 @@ export function CoreQuote(props) {
 	const { attributes } = props;
 
 	if (!attributes?.value) {
-		return null;
+		return;
 	}
 
 	let innerHtml = attributes.value;
@@ -40,7 +40,7 @@ export function CoreQuote(props) {
 		<blockquote
 			className={attributes?.cssClassName}
 			style={style}
-			 
+
 			dangerouslySetInnerHTML={{ __html: innerHtml }}
 		/>
 	);

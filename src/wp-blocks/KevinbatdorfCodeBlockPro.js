@@ -33,7 +33,7 @@ export default function KevinbatdorfCodeBlockPro(props) {
 					)}
 					<span className="sr-only">{attributes.copyButtonString}</span>
 				</button>
-			) : null}
+			) : undefined}
 		</div>
 	);
 }

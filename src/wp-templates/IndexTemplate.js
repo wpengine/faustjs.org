@@ -37,7 +37,7 @@ export default function IndexTemplate() {
 	const { node } = useFaustQuery(INDEX_TEMPLATE_QUERY);
 
 	if (!node) {
-		return null;
+		return;
 	}
 
 	const { editorBlocks } = node;
@@ -45,10 +45,7 @@ export default function IndexTemplate() {
 	let toc = [];
 
 	editorBlocks &&
-		editorBlocks.map((block) => {
-			if (!block.attributes || !block.attributes.level) {
-				return null;
-			}
+		editorBlocks.filter((blocks) => blocks?.attributes?.level).map((block) => {
 
 			if (block.attributes.level === 2 || block.attributes.level === 3) {
 				let heading = {
@@ -68,7 +65,7 @@ export default function IndexTemplate() {
 		childrenKey: "innerBlocks",
 	});
 
-	 
+
 	console.log({
 		editorBlocks,
 		blockList,

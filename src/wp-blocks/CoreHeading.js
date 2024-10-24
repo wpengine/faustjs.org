@@ -7,9 +7,7 @@ export default function CoreHeading(props) {
 
 	const customAttributes = {
 		...attributes,
-		anchor: attributes.anchor
-			? attributes.anchor
-			: slugify(attributes.content),
+		anchor: attributes.anchor || slugify(attributes.content),
 	};
 
 	return (
