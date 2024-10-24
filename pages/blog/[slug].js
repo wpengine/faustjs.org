@@ -39,49 +39,49 @@ export default function SinglePost(props) {
 }
 
 SinglePost.query = gql`
-query GetPostByURI($slug: ID!) {
-  post(id: $slug, idType: SLUG) {
-    title
-    date
-    author {
-      node {
+  query GetPostByURI($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      title
+      date
+      author {
+        node {
+          name
+        }
+      }
+      editorBlocks {
+        __typename
         name
+        id: clientId
+        parentId: parentClientId
+        ...${blocks.CoreParagraph.fragments.key}
+        ...${blocks.CoreColumns.fragments.key}
+        ...${blocks.CoreColumn.fragments.key}
+        ...${blocks.CoreCode.fragments.key}
+        ...${blocks.CoreButtons.fragments.key}
+        ...${blocks.CoreButton.fragments.key}
+        ...${blocks.CoreQuote.fragments.key}
+        ...${blocks.CoreImage.fragments.key}
+        ...${blocks.CoreSeparator.fragments.key}
+        ...${blocks.CoreList.fragments.key}
+        ...${blocks.CoreHeading.fragments.key}
+        ...${blocks.CoreCode.fragments.key}
+        ...${blocks.KevinbatdorfCodeBlockPro.fragments.key}
       }
     }
-    editorBlocks {
-      __typename
-      name
-      id: clientId
-      parentId: parentClientId
-      ...${blocks.CoreParagraph.fragments.key}
-      ...${blocks.CoreColumns.fragments.key}
-      ...${blocks.CoreColumn.fragments.key}
-      ...${blocks.CoreCode.fragments.key}
-      ...${blocks.CoreButtons.fragments.key}
-      ...${blocks.CoreButton.fragments.key}
-      ...${blocks.CoreQuote.fragments.key}
-      ...${blocks.CoreImage.fragments.key}
-      ...${blocks.CoreSeparator.fragments.key}
-      ...${blocks.CoreList.fragments.key}
-      ...${blocks.CoreHeading.fragments.key}
-      ...${blocks.CoreCode.fragments.key}
-      ...${blocks.KevinbatdorfCodeBlockPro.fragments.key}
-    }
   }
-}
-${blocks.CoreParagraph.fragments.entry}
-${blocks.CoreColumns.fragments.entry}
-${blocks.CoreColumn.fragments.entry}
-${blocks.CoreCode.fragments.entry}
-${blocks.CoreButtons.fragments.entry}
-${blocks.CoreButton.fragments.entry}
-${blocks.CoreQuote.fragments.entry}
-${blocks.CoreImage.fragments.entry}
-${blocks.CoreSeparator.fragments.entry}
-${blocks.CoreList.fragments.entry}
-${blocks.CoreHeading.fragments.entry}
-${blocks.CoreCode.fragments.entry}
-${blocks.KevinbatdorfCodeBlockPro.fragments.entry}
+  ${blocks.CoreParagraph.fragments.entry}
+  ${blocks.CoreColumns.fragments.entry}
+  ${blocks.CoreColumn.fragments.entry}
+  ${blocks.CoreCode.fragments.entry}
+  ${blocks.CoreButtons.fragments.entry}
+  ${blocks.CoreButton.fragments.entry}
+  ${blocks.CoreQuote.fragments.entry}
+  ${blocks.CoreImage.fragments.entry}
+  ${blocks.CoreSeparator.fragments.entry}
+  ${blocks.CoreList.fragments.entry}
+  ${blocks.CoreHeading.fragments.entry}
+  ${blocks.CoreCode.fragments.entry}
+  ${blocks.KevinbatdorfCodeBlockPro.fragments.entry}
 `;
 
 SinglePost.variables = ({ params }) => ({ slug: params.slug });

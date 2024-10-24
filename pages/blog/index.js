@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { getNextStaticProps } from "@faustwp/core";
 
 import Link from "next/link";
-export default function BlogIndex(props) {
+export default function BlogIndex() {
 	const {
 		loading,
 		error,

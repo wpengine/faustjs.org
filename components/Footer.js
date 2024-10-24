@@ -15,7 +15,8 @@ export default function Footer() {
 				</div>
 				<div className="mt-24 text-center text-sm text-gray-500">
 					<p className="font-medium">
-						Powered by <Link href="/">Faust.js</Link> &amp; WP Engine's{" "}
+						Powered by <Link href="/">Faust.js</Link> &amp; WP
+						Engine&apos;s&nbsp;
 						<Link href="https://wpengine.com/headless-wordpress/">
 							Headless platform
 						</Link>
@@ -38,33 +39,31 @@ function FooterColumns({ data }) {
 		footer3MenuItems?.menuItems?.nodes,
 	];
 
-	return columns.map((column, index) => {
-		if (!column || column.length === 0) {
-			return null; // Skip rendering if no menu items are found
-		}
+	return columns
+		.filter((column) => length in column)
+		.map((column, index) => {
+			const columnTitle = column[0]?.menu?.node?.name || "Menu";
 
-		const columnTitle = column[0]?.menu?.node?.name || "Menu";
-
-		return (
-			<div key={index} className="col-span-1 flex flex-col gap-4">
-				<h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
-					{columnTitle}
-				</h6>
-				<ul>
-					{column.map((item) => (
-						<li key={item.id} className="space-y-2">
-							<Link
-								href={item.uri}
-								className="text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
-							>
-								{item.label}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</div>
-		);
-	});
+			return (
+				<div key={index} className="col-span-1 flex flex-col gap-4">
+					<h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
+						{columnTitle}
+					</h6>
+					<ul>
+						{column.map((item) => (
+							<li key={item.id} className="space-y-2">
+								<Link
+									href={item.uri}
+									className="text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
+								>
+									{item.label}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</div>
+			);
+		});
 }
 
 const GET_FOOTER_NAV_ITEMS = gql`

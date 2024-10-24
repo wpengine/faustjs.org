@@ -13,7 +13,7 @@ import Head from "next/head";
  */
 export default function SEO({ title, description, imageUrl, url }) {
 	if (!title && !description && !imageUrl && !url) {
-		return null;
+		return;
 	}
 
 	return (

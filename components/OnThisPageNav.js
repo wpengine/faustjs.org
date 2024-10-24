@@ -13,9 +13,8 @@ export default function OnThisPageNav({ editorBlocks }) {
 			<h2 className="font-semibold">On This Page</h2>
 			<ul className="mt-4 space-y-2.5 text-sm text-gray-400">
 				{headingBlocks.map((block) => {
-					const anchor = !block.attributes.anchor
-						? slugify(block.attributes.content)
-						: block.attributes.anchor;
+					const anchor =
+						block.attributes.anchor || slugify(block.attributes.content);
 
 					return (
 						<li
