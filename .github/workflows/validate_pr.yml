@@ -47,7 +47,7 @@ jobs:
         run: corepack enable
 
       - name: Format source code
-        run: npm test:format
+        run: npm run test:format
 
   check_lint:
     name: Validate linting with ES Lint
@@ -64,7 +64,7 @@ jobs:
         run: corepack enable
 
       - name: Check Linting
-        run: npm test:lint
+        run: npm run test:lint
 
   # run-tests:
   #   name: Run package tests on (Node.js v${{ matrix.node }})
