@@ -38,6 +38,11 @@ export default [
 				...globals.serviceworker,
 			},
 		},
+		settings: {
+			react: {
+				version: "detect",
+			},
+		},
 	},
 	{
 		files: ["src/**/*.{js,jsx}"],

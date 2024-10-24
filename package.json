@@ -9,8 +9,8 @@
 		"stylesheet": "faust generateGlobalStylesheet",
 		"start": "faust start",
 		"test:format": "prettier . --check",
-		"test:lint": "next lint",
-		"lint": "npm run test:lint -- --fix",
+		"test:lint": "eslint --quiet",
+		"lint": "eslint --fix",
 		"format": "prettier . --write",
 		"prepare": "husky"
 	},
