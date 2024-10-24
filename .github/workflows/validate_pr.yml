@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --immutable
+        run: npm ci
 
   check_format:
     name: Validate formating with Prettier
