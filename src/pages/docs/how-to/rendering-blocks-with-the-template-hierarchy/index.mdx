@@ -19,15 +19,15 @@ Set up the [template hierarchy](https://faustjstoolkit.wpenginepowered.com/docs/
 
 ### 3\. WPGraphQL Content Blocks Plugin
 
-1\. Set up the [WPGraphQL Content Blocks plugin](https://github.com/wpengine/wp-graphql-content-blocks) on the WP backend. Head over to the [GitHub repo](https://github.com/wpengine/wp-graphql-content-blocks) and download the [latest version](https://github.com/wpengine/wp-graphql-content-blocks/releases/latest/download/wp-graphql-content-blocks.zip) of the `wp-graphql-content-blocks` plugin from the releases tab.
+1\. Set up the [WPGraphQL Content Blocks plugin](https://github.com/wpengine/wp-graphql-content-blocks) on the WP backend. Head over to the [GitHub repo](https://github.com/wpengine/wp-graphql-content-blocks) and download the [latest version](https://github.com/wpengine/wp-graphql-content-blocks/releases/latest/download/wp-graphql-content-blocks.zip) of the `wp-graphql-content-blocks` plugin from the releases tab.
 
-2\. Upload the plugins `.zip` file to your WordPress site via the plugins page or unzip and copy the file contents into your WordPress `wp-content/plugins` folder manually.
+2\. Upload the plugins `.zip` file to your WordPress site via the plugins page or unzip and copy the file contents into your WordPress `wp-content/plugins` folder manually.
 
 3\. Activate the plugin on the WordPress plugins page.
 
-###  4. Render Blocks from the @faust/blocks package
+### 4. Render Blocks from the @faust/blocks package
 
-The `@faust/blocks` package contains a small reference list of blocks that you can use in your site. To use them, you need to import the relevant blocks into your block list:
+The `@faust/blocks` package contains a small reference list of blocks that you can use in your site. To use them, you need to import the relevant blocks into your block list:
 
 JavaScript
 
@@ -102,7 +102,7 @@ Component.query = gql`
 `;
 ```
 
-Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
+Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
 
 JavaScript
 
@@ -135,7 +135,7 @@ export default function Component({ loading, data }) {
 
 ### WordPressBlocksProvider- Theme Use
 
-If you do not need a theme, you must pass `null` as the `theme` prop for the `WordPressBlocksProvider` like below. If you don’t pass a theme, it will fail.
+If you do not need a theme, you must pass `null` as the `theme` prop for the `WordPressBlocksProvider` like below. If you don’t pass a theme, it will fail.
 
 JavaScript
 

@@ -15,9 +15,9 @@ If you haven't already, follow the [Basic Setup](https://faustjstoolkit.wpengine
 
 ### 2\. WPGraphQL Content Blocks Plugin
 
-1\. Set up the [WPGraphQL Content Blocks plugin](https://github.com/wpengine/wp-graphql-content-blocks) on the WP backend. Head over to the [GitHub repo](https://github.com/wpengine/wp-graphql-content-blocks) and download the [latest version](https://github.com/wpengine/wp-graphql-content-blocks/releases/latest/download/wp-graphql-content-blocks.zip) of the `wp-graphql-content-blocks` plugin from the releases tab.
+1\. Set up the [WPGraphQL Content Blocks plugin](https://github.com/wpengine/wp-graphql-content-blocks) on the WP backend. Head over to the [GitHub repo](https://github.com/wpengine/wp-graphql-content-blocks) and download the [latest version](https://github.com/wpengine/wp-graphql-content-blocks/releases/latest/download/wp-graphql-content-blocks.zip) of the `wp-graphql-content-blocks` plugin from the releases tab.
 
-2\. Upload the plugins `.zip` file to your WordPress site via the plugins page or unzip and copy the file contents into your WordPress `wp-content/plugins` folder manually.
+2\. Upload the plugins `.zip` file to your WordPress site via the plugins page or unzip and copy the file contents into your WordPress `wp-content/plugins` folder manually.
 
 3\. Activate the plugin on the WordPress plugins page.
 
@@ -25,33 +25,33 @@ If you haven't already, follow the [Basic Setup](https://faustjstoolkit.wpengine
 
 Once the plugin is installed and activated, head over to the GraphQL IDE. You can find it in the WordPress toolbar.
 
-You should be able to perform queries for the block data. There is a new field added in the Post and Page models called `editorBlocks`. This represents a list of available blocks for that content type:
+You should be able to perform queries for the block data. There is a new field added in the Post and Page models called `editorBlocks`. This represents a list of available blocks for that content type:
 
-![](images/Screenshot-2024-10-08-at-10.10.31 AM-1024x507.png)
+![](images/Screenshot-2024-10-08-at-10.10.31-AM.png)
 
-If you search in GraphQL IDE documentation explorer tab for the `editorBlocks` type you will be able to see the available block fields. The most important ones are:
+If you search in GraphQL IDE documentation explorer tab for the `editorBlocks` type you will be able to see the available block fields. The most important ones are:
 
-- `renderedHTML`: It’s the HTML of the block as rendered by the [render_block](https://developer.wordpress.org/reference/functions/render_block/) function.
+- `renderedHTML`: It's the HTML of the block as rendered by the [render_block](https://developer.wordpress.org/reference/functions/render_block/) function.
 
-- `name`: The actual name of the block taken from its `block.json` spec.
+- `name`: The actual name of the block taken from its `block.json` spec.
 
-- `__typename`: The type of block transformed from the `name` field in camel-case notation.
+- `__typename`: The type of block transformed from the `name` field in camel-case notation.
 
-- `apiVersion`: The apiVersion of the block taken from its `block.json` spec.
+- `apiVersion`: The apiVersion of the block taken from its `block.json` spec.
 
 - `innerBlocks`: The inner block list of that block.
 
-- `isDynamic`: Whether the block is dynamic or not, taken from its `block.json` spec.
+- `isDynamic`: Whether the block is dynamic or not, taken from its `block.json` spec.
 
-- `clientId`, `parentClientId`: Unique identifiers for the block and the parent of the block. We will explain their usage later.
+- `clientId`, `parentClientId`: Unique identifiers for the block and the parent of the block. We will explain their usage later.
 
 ### How does the plugin work?
 
-The plugin iterates over the `block.json` types as registered within WordPress and creates WPGraphQL types and resolvers. As long as your blocks use the [register_block_type](https://developer.wordpress.org/reference/functions/register_block_type/) function passing a `block.json`, it will be available in the system without any extra steps.
+The plugin iterates over the `block.json` types as registered within WordPress and creates WPGraphQL types and resolvers. As long as your blocks use the [register_block_type](https://developer.wordpress.org/reference/functions/register_block_type/) function passing a `block.json`, it will be available in the system without any extra steps.
 
-In WordPress block development, a `block.json` file is a configuration file that provides metadata and settings for a block. It defines the block’s name, title, icon, category, and other settings related to its appearance and behavior. For more information, see [the section on block.json files](https://developer.wordpress.org/block-editor/getting-started/fundamentals/block-json/) in the WordPress Developer’s Handbook.
+In WordPress block development, a `block.json` file is a configuration file that provides metadata and settings for a block. It defines the block’s name, title, icon, category, and other settings related to its appearance and behavior. For more information, see [the section on block.json files](https://developer.wordpress.org/block-editor/getting-started/fundamentals/block-json/) in the WordPress Developer’s Handbook.
 
-As an example, given the following `block.json` definition of a block:
+As an example, given the following `block.json` definition of a block:
 
 JSON
 
@@ -86,7 +86,7 @@ type MyPluginNoticeAttributes {
 }
 ```
 
-When you request to resolve the `message` attribute for `MyPluginNotice`, the plugin will use a resolver that tries to extract the field by sourcing the text element using the `selector`. As an example, with the following HTML:
+When you request to resolve the `message` attribute for `MyPluginNotice`, the plugin will use a resolver that tries to extract the field by sourcing the text element using the `selector`. As an example, with the following HTML:
 
 HTML
 
@@ -94,13 +94,13 @@ HTML
 <div class="message">Hello World</div>
 ```
 
-Since the `block.json` message attribute uses the `.message` class selector to source the text for that field, this will resolve to:
+Since the `block.json` message attribute uses the `.message` class selector to source the text for that field, this will resolve to:
 
 `"Hello World"`
 
 #### Attribute Types
 
-Currently, the plugin handles the following attribute types taken from the [reference list](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/):
+Currently, the plugin handles the following attribute types taken from the [reference list](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/):
 
 - boolean
 
@@ -140,7 +140,7 @@ export default {
 
 ### 6.Query For Block Data
 
-To query specific block data you need to define that data in the `contentBlock` as the appropriate type. Here is an example query to get all the rendered HTML from the `editorBlocks` field:
+To query specific block data you need to define that data in the `contentBlock` as the appropriate type. Here is an example query to get all the rendered HTML from the `editorBlocks` field:
 
 JavaScript
 

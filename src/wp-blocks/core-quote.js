@@ -40,7 +40,6 @@ export function CoreQuote(props) {
 		<blockquote
 			className={attributes?.cssClassName}
 			style={style}
-
 			dangerouslySetInnerHTML={{ __html: innerHtml }}
 		/>
 	);

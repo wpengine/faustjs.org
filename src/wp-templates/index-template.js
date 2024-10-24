@@ -45,26 +45,26 @@ export default function IndexTemplate() {
 	let toc = [];
 
 	editorBlocks &&
-		editorBlocks.filter((blocks) => blocks?.attributes?.level).map((block) => {
-
-			if (block.attributes.level === 2 || block.attributes.level === 3) {
-				let heading = {
-					tagName: `h${block.attributes.level}`,
-					children: [
-						{
-							type: "text",
-							value: block.attributes.content,
-						},
-					],
-				};
-				toc.push(heading);
-			}
-		});
+		editorBlocks
+			.filter((blocks) => blocks?.attributes?.level)
+			.map((block) => {
+				if (block.attributes.level === 2 || block.attributes.level === 3) {
+					let heading = {
+						tagName: `h${block.attributes.level}`,
+						children: [
+							{
+								type: "text",
+								value: block.attributes.content,
+							},
+						],
+					};
+					toc.push(heading);
+				}
+			});
 
 	const blockList = flatListToHierarchical(editorBlocks, {
 		childrenKey: "innerBlocks",
 	});
-
 
 	console.log({
 		editorBlocks,
