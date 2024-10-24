@@ -1,6 +1,6 @@
-import DocsSidebar from "@/components/DocsSidebar";
-import DocPageContent from "@/components/DocPageContent";
-import OnThisPageNav from "@/components/OnThisPageNav";
+import DocsSidebar from "@/components/docs-sidebar";
+import DocPageContent from "@/components/doc-page-content";
+import OnThisPageNav from "@/components/on-this-page-nav";
 
 export default function DocumentPage({ docsSidebarItems, doc }) {
 	const { editorBlocks } = doc;

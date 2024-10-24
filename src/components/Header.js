@@ -1,8 +1,8 @@
 import Link from "next/link";
-import FaustLogo from "./FaustLogo";
-import PrimaryMenu from "./PrimaryMenu";
-import SearchBar from "./SearchBar";
-import HamburgerMenu from "./HamburgerMenu";
+import FaustLogo from "./faust-logo";
+import PrimaryMenu from "./primary-menu";
+import SearchBar from "./search-bar";
+import HamburgerMenu from "./hamburger-menu";
 import {
 	SiDiscord,
 	SiGithub,

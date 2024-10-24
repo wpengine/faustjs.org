@@ -1,5 +1,5 @@
 import page from "./page";
-import IndexTemplate from "./IndexTemplate";
+import IndexTemplate from "./index-template";
 
 export default {
 	index: IndexTemplate,
