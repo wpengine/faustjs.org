@@ -11,13 +11,13 @@ export default function Component(props) {
 }
 
 Component.query = gql`
-	query GetPageDataByURI($uri: ID!) {
-		page(id: $uri, idType: URI) {
-			title
-			content
-			slug
-		}
-	}
+  query GetPageDataByURI($uri: ID!) {
+  	page(id: $uri, idType: URI) {
+  		title
+  		content
+  		slug
+  	}
+  }
 `;
 
 Component.variables = (seedQuery, context) => {

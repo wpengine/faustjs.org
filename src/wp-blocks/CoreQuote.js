@@ -40,7 +40,7 @@ export function CoreQuote(props) {
 		<blockquote
 			className={attributes?.cssClassName}
 			style={style}
-			// eslint-disable-next-line react/no-danger
+			 
 			dangerouslySetInnerHTML={{ __html: innerHtml }}
 		/>
 	);

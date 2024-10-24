@@ -4,33 +4,33 @@ import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, useFaustQuery } from "@faustwp/core";
 
 const INDEX_TEMPLATE_QUERY = gql`
-	query IndexTemplate($uri: String!) {
-		node: nodeByUri(uri: $uri) {
-			__typename
-			uri
-			... on NodeWithTitle {
-				title
-			}
-			... on DatabaseIdentifier {
-				databaseId
-			}
-			... on NodeWithEditorBlocks {
-				editorBlocks {
-					__typename
-					name
-					renderedHtml
-					id: clientId
-					parentId: parentClientId
-				}
-			}
-			... on ContentNode {
-				modified
-				... on NodeWithContentEditor {
-					content
-				}
-			}
-		}
-	}
+  query IndexTemplate($uri: String!) {
+  	node: nodeByUri(uri: $uri) {
+  		__typename
+  		uri
+  		... on NodeWithTitle {
+  			title
+  		}
+  		... on DatabaseIdentifier {
+  			databaseId
+  		}
+  		... on NodeWithEditorBlocks {
+  			editorBlocks {
+  				__typename
+  				name
+  				renderedHtml
+  				id: clientId
+  				parentId: parentClientId
+  			}
+  		}
+  		... on ContentNode {
+  			modified
+  			... on NodeWithContentEditor {
+  				content
+  			}
+  		}
+  	}
+  }
 `;
 
 export default function IndexTemplate() {
@@ -68,7 +68,7 @@ export default function IndexTemplate() {
 		childrenKey: "innerBlocks",
 	});
 
-	// eslint-disable-next-line no-console
+	 
 	console.log({
 		editorBlocks,
 		blockList,
