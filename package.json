@@ -10,7 +10,7 @@
 		"start": "faust start",
 		"test:format": "prettier . --check",
 		"test:lint": "next lint",
-		"lint": "npm run test:lint --fix",
+		"lint": "npm run test:lint -- --fix",
 		"format": "prettier . --write",
 		"prepare": "husky"
 	},
@@ -36,6 +36,7 @@
 		"autoprefixer": "^10.4.19",
 		"eslint": "^9.13.0",
 		"eslint-config-next": "15.0.1",
+		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-unicorn": "^56.0.0",
 		"husky": "^9.1.6",
 		"lint-staged": "^15.2.10",
@@ -51,6 +52,7 @@
 	},
 	"packageManager": "npm@10.9.0+sha512.65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b",
 	"lint-staged": {
-		"*": "npm run format"
+		"*": "npm run format",
+		"*.{js,jsx}": "npm run lint"
 	}
 }
