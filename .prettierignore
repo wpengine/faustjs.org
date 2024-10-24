@@ -1,0 +1,7 @@
+node_modules
+.cache
+.faust
+.next
+
+possibleTypes.json
+globalStylesheet.css
