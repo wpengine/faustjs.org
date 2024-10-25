@@ -5,7 +5,7 @@ import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { transformerNotationDiff } from "@shikijs/transformers";
-
+import smartSearchPlugin from "@/lib/smart-search-plugin";
 /**
  * @type {import('next').NextConfig}
  **/
@@ -41,6 +41,18 @@ const nextConfig = {
 				}),
 			},
 		];
+	},
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
+			// Apply smartSearchPlugin only on the client side
+			config.plugins.push(
+				smartSearchPlugin({
+					endpoint: process.env.NEXT_PUBLIC_SEARCH_ENDPOINT,
+					accessToken: process.env.NEXT_SEARCH_ACCESS_TOKEN,
+				}),
+			);
+		}
+		return config;
 	},
 };
 
