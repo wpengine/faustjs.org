@@ -18,7 +18,7 @@ const lora = localFont({
 export default function Layout({ children }) {
 	return (
 		<div
-			className={`${inter.variable} ${lora.variable} flex min-h-screen flex-col`}
+			className={`${inter.variable} ${lora.variable} flex min-h-screen flex-col font-inter`}
 		>
 			<Header />
 			<main className="container mx-auto my-16 flex-grow px-4 sm:px-6 md:max-w-6xl md:px-8">
