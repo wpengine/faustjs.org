@@ -4,13 +4,13 @@ import Footer from "./footer";
 import localFont from "next/font/local";
 
 const inter = localFont({
-	src: "/fonts/inter-variable-font.woff2",
+	src: "../../public/fonts/inter-variable-font.woff2",
 	display: "swap",
 	variable: "--font-inter",
 });
 
 const lora = localFont({
-	src: "/fonts/lora-variable-font.woff2",
+	src: "../../public/fonts/lora-variable-font.woff2",
 	display: "swap",
 	variable: "--font-lora",
 });
