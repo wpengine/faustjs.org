@@ -9,6 +9,24 @@ import {
 	SiWordpress,
 } from "@icons-pack/react-simple-icons";
 
+const socialIcons = [
+	{
+		name: "GitHub",
+		url: "https://github.com/wpengine/faustjs",
+		icon: SiGithub,
+	},
+	{
+		name: "WordPress",
+		url: "https://wordpress.org/plugins/faustwp/",
+		icon: SiWordpress,
+	},
+	{
+		name: "Discord",
+		url: "/discord",
+		icon: SiDiscord,
+	},
+];
+
 export default function Header() {
 	return (
 		<header className="container mx-auto flex items-center justify-between bg-gray-900 px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
@@ -30,24 +48,17 @@ export default function Header() {
 				<SearchBar />
 				<HamburgerMenu className="lg:hidden" />
 				<div className="hidden items-center space-x-4 lg:flex">
-					<Link
-						href="https://github.com/wpengine/faustjs"
-						className="text-gray-500 hover:text-gray-400"
-					>
-						<SiGithub />
-					</Link>
-					<Link
-						href="https://wordpress.org/plugins/faustwp/"
-						className="text-gray-500 hover:text-gray-400"
-					>
-						<SiWordpress />
-					</Link>
-					<Link
-						href="https://discord.gg/Ux73Pywj"
-						className="text-gray-500 hover:text-gray-400"
-					>
-						<SiDiscord />
-					</Link>
+					{socialIcons.map(({ url, name, icon: Icon }) => (
+						<Link
+							key={name}
+							href={url}
+							title={name}
+							className="text-gray-500 hover:text-gray-400"
+							disableExternalIcon
+						>
+							<Icon />
+						</Link>
+					))}
 				</div>
 			</div>
 		</header>
