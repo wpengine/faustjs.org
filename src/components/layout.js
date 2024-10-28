@@ -4,7 +4,7 @@ import Footer from "./footer";
 import localFont from "next/font/local";
 
 const inter = localFont({
-	src: "../../public/fonts/inter-variable-font.woff2",
+	src: "../fonts/inter-variable-font.woff2",
 	display: "swap",
 	variable: "--font-inter",
 });
