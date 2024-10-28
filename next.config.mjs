@@ -10,6 +10,7 @@ import { transformerNotationDiff } from "@shikijs/transformers";
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
+	trailingSlash: true,
 	reactStrictMode: true,
 	pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 	sassOptions: {
