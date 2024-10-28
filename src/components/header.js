@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/link";
 import FaustLogo from "./faust-logo";
 import PrimaryMenu from "./primary-menu";
 import SearchBar from "./search-bar";
@@ -15,7 +15,7 @@ export default function Header() {
 			<div className="flex items-center gap-8">
 				<div className="flex items-center gap-3">
 					<FaustLogo />
-					<Link href="/" className="text-xl font-bold">
+					<Link href="/" noDefaultStyles className="text-xl font-bold">
 						Faust.js
 						<span className="align-super text-xs font-light text-gray-500">
 							&trade;
@@ -32,29 +32,20 @@ export default function Header() {
 				<div className="hidden items-center space-x-4 lg:flex">
 					<Link
 						href="https://github.com/wpengine/faustjs"
-						passHref
-						target="_blank"
 						className="text-gray-500 hover:text-gray-400"
 					>
-						{/* GitHub Icon */}
 						<SiGithub />
 					</Link>
 					<Link
 						href="https://wordpress.org/plugins/faustwp/"
-						passHref
-						target="_blank"
 						className="text-gray-500 hover:text-gray-400"
 					>
-						{/* WordPress Icon */}
 						<SiWordpress />
 					</Link>
 					<Link
 						href="https://discord.gg/Ux73Pywj"
-						passHref
-						target="_blank"
 						className="text-gray-500 hover:text-gray-400"
 					>
-						{/* Discord Icon */}
 						<SiDiscord />
 					</Link>
 				</div>

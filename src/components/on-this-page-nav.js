@@ -1,4 +1,5 @@
 import slugify from "@sindresorhus/slugify";
+import Link from "@/components/link";
 
 export default function OnThisPageNav({ editorBlocks }) {
 	const headingBlocks = editorBlocks.filter((block) => {
@@ -21,7 +22,7 @@ export default function OnThisPageNav({ editorBlocks }) {
 							key={block.id}
 							className={block.attributes.level === 3 ? "ml-4" : ""}
 						>
-							<a
+							<Link
 								href={`#${anchor}`}
 								dangerouslySetInnerHTML={{ __html: block.attributes.content }}
 							/>

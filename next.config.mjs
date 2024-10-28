@@ -16,6 +16,15 @@ const nextConfig = {
 	sassOptions: {
 		includePaths: ["node_modules"],
 	},
+	redirects() {
+		return [
+			{
+				source: "/discord",
+				destination: "https://discord.gg/J2khkF9XYK",
+				permanent: false,
+			},
+		];
+	},
 	images: {
 		domains: [getWpHostname()],
 	},
