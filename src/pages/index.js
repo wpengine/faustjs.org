@@ -1,30 +1,13 @@
-import { gql, useQuery } from "@apollo/client";
-import { getNextStaticProps } from "@faustwp/core";
-
 // The Component is required
 export default function Index() {
-	const { data } = useQuery(Index.query);
 	return (
 		<>
-			<h1>{data.page.title}</h1>
-			<div dangerouslySetInnerHTML={{ __html: data.page.content }} />
+			<h1 className="text-3xl font-bold">FAUST.JS TOOLKIT</h1>
+
+			<p>
+				One Toolkit to rule them all, One Toolkit to query them, One Toolkit to
+				fetch them all, and in WordPress bind them
+			</p>
 		</>
 	);
-}
-
-Index.query = gql`
-	query GetIndexPage {
-		page(id: "/", idType: URI) {
-			title
-			content
-			slug
-		}
-	}
-`;
-
-export async function getStaticProps(context) {
-	return getNextStaticProps(context, {
-		Page: Index,
-		revalidate: 60,
-	});
 }
