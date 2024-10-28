@@ -7,6 +7,7 @@ export default function CustomLink({
 	children,
 	className,
 	noDefaultStyles,
+	disableExternalIcon,
 	props,
 }) {
 	const defaultClasses = "underline text-blue-500";
@@ -26,9 +27,11 @@ export default function CustomLink({
 				{...props}
 			>
 				{children}
-				<span>
-					<ArrowTopRightOnSquareIcon className="inline h-4 w-4 align-text-top" />
-				</span>
+				{!disableExternalIcon && (
+					<span>
+						<ArrowTopRightOnSquareIcon className="inline h-4 w-4 align-text-top" />
+					</span>
+				)}
 			</a>
 		);
 	}

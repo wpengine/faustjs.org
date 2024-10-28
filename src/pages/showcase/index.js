@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import Link from "@/components/link";
 
 const showcases = [
 	{
@@ -37,6 +37,7 @@ export default function Showcase() {
 						<Link
 							href={showcase.url}
 							key={showcase.url}
+							disableExternalIcon
 							className="relative block overflow-hidden rounded-lg shadow-md transition duration-300 hover:shadow-lg"
 						>
 							{/* Using Next.js Image for optimized image loading */}
