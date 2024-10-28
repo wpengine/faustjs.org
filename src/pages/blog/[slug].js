@@ -65,7 +65,6 @@ SinglePost.query = gql`
         ...${blocks.CoreList.fragments.key}
         ...${blocks.CoreHeading.fragments.key}
         ...${blocks.CoreCode.fragments.key}
-        ...${blocks.KevinbatdorfCodeBlockPro.fragments.key}
       }
     }
   }
@@ -81,7 +80,6 @@ SinglePost.query = gql`
   ${blocks.CoreList.fragments.entry}
   ${blocks.CoreHeading.fragments.entry}
   ${blocks.CoreCode.fragments.entry}
-  ${blocks.KevinbatdorfCodeBlockPro.fragments.entry}
 `;
 
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
