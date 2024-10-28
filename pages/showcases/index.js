@@ -46,11 +46,11 @@ export default function Showcase() {
                 alt={showcase.title}
                 width={500}
                 height={300}
-                className="rounded-lg object-cover"
+                className="h-full w-full rounded-lg object-cover"
               />
 
-              {/* Consistent dark blue gradient for title */}
-              <div className="absolute bottom-0 flex w-full items-center justify-between bg-gradient-to-t from-blue-900 via-blue-800 to-transparent p-4 text-white">
+              {/* Applying solid blue background with opacity and making it fit the card width */}
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between rounded-b-lg bg-blue-800 bg-opacity-80 p-4 text-white">
                 <span className="text-xl font-semibold">{showcase.title}</span>
                 <ArrowTopRightOnSquareIcon className="h-6 w-6 text-white" />
               </div>
