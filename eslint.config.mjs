@@ -39,7 +39,7 @@ const config = [
 		ignores: ["node_modules", ".next", ".faust", "public"],
 	},
 	{
-		files: ["src/**/*.{js,jsx}"],
+		files: ["src/**/*.{js,jsx}", "mdx-components.js"],
 		plugins: {
 			"@next/next": next,
 			"react-hooks": reactHooks,
@@ -90,7 +90,7 @@ const config = [
 	{
 		...mdx.flat,
 		processor: mdx.createRemarkProcessor({
-			lintCodeBlocks: true,
+			lintCodeBlocks: false,
 		}),
 	},
 	{

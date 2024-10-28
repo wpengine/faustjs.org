@@ -55,29 +55,27 @@ As an example, given the following `block.json` definition of a block:
 
 JSON
 
-```
+```json title="block.json"
 // block.json
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
-  "name": "my-plugin/notice",
-  "icon": "star",
-  "version": "1.0.3",
-  "attributes": {
-    "message": {
-      "type": "string",
-      "source": "html",
-      "selector": ".message"
-    }
-  }
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "my-plugin/notice",
+	"icon": "star",
+	"version": "1.0.3",
+	"attributes": {
+		"message": {
+			"type": "string",
+			"source": "html",
+			"selector": ".message"
+		}
+	}
 }
 ```
 
 The plugin will create the following WPGraphQL type:
 
-JSON
-
-```
+```json
 type MyPluginNotice {
     attributes: MyPluginNoticeAttributes;
 }
@@ -88,9 +86,7 @@ type MyPluginNoticeAttributes {
 
 When you request to resolve the `message` attribute for `MyPluginNotice`, the plugin will use a resolver that tries to extract the field by sourcing the text element using the `selector`. As an example, with the following HTML:
 
-HTML
-
-```
+```html
 <div class="message">Hello World</div>
 ```
 
@@ -118,9 +114,7 @@ Currently, the plugin handles the following attribute types taken from the [refe
 
 Install the `@faustwp/blocks` NPM packages in your Next.js app.
 
-ShellScript
-
-```
+```bash
 npm install @faustwp/blocks
 ```
 
@@ -128,13 +122,11 @@ npm install @faustwp/blocks
 
 In the root of your Next.js project, set up `wp-blocks/index.js` with this:
 
-JavaScript
-
-```
+```js title="wp-blocks/index.js"
 import { CoreBlocks } from "@faustwp/blocks";
 
 export default {
-  ...CoreBlocks,
+	...CoreBlocks,
 };
 ```
 
@@ -142,23 +134,21 @@ export default {
 
 To query specific block data you need to define that data in the `contentBlock` as the appropriate type. Here is an example query to get all the rendered HTML from the `editorBlocks` field:
 
-JavaScript
-
-```
+```gql
 query GetBlocksByURI($uri: ID!) {
-  post(id: $uri, idType: URI) {
-    title
-    editorBlocks {
-      __typename
-      name
-      renderedHtml
-      ... on CoreParagraph {
-        attributes {
-          className
-        }
-      }
-    }
-  }
+	post(id: $uri, idType: URI) {
+		title
+		editorBlocks {
+			__typename
+			name
+			renderedHtml
+			... on CoreParagraph {
+				attributes {
+					className
+				}
+			}
+		}
+	}
 }
 ```
 
@@ -187,64 +177,61 @@ This WPGraphQL query is designed to retrieve specific data for a single post fro
 
 Now, we can add that query into a Next.js dynamic route file to grab a single post detail page and all its block data. For example:
 
-JavaScript
-
-```
+```js title="pages/posts/[slug].js"
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 const GET_BLOCKS_BY_URI = gql`
-  query GetBlocksByURI($uri: ID!) {
-    post(id: $uri, idType: URI) {
-      title
-      editorBlocks {
-        __typename
-        name
-        renderedHtml
-        ... on CoreParagraph {
-          attributes {
-            className
-          }
-        }
-      }
-    }
-  }
+	query GetBlocksByURI($uri: ID!) {
+		post(id: $uri, idType: URI) {
+			title
+			editorBlocks {
+				__typename
+				name
+				renderedHtml
+				... on CoreParagraph {
+					attributes {
+						className
+					}
+				}
+			}
+		}
+	}
 `;
 
 export default function SinglePost() {
-  const router = useRouter();
-  const { slug } = router.query; // Dynamically get the slug from the URL
+	const router = useRouter();
+	const { slug } = router.query; // Dynamically get the slug from the URL
 
-  const { loading, error, data } = useQuery(GET_BLOCKS_BY_URI, {
-    variables: { uri: slug }, // Pass the dynamic slug to the query
-    skip: !slug, // Skip the query if slug is not available yet
-  });
+	const { loading, error, data } = useQuery(GET_BLOCKS_BY_URI, {
+		variables: { uri: slug }, // Pass the dynamic slug to the query
+		skip: !slug, // Skip the query if slug is not available yet
+	});
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error.message}</p>;
 
-  const { post } = data;
-  const { title, editorBlocks } = post;
+	const { post } = data;
+	const { title, editorBlocks } = post;
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-4 text-3xl font-bold">{title}</h1>
+	return (
+		<div className="container mx-auto px-4 py-8">
+			<h1 className="mb-4 text-3xl font-bold">{title}</h1>
 
-      {/* Render the blocks */}
-      <div className="prose prose-lg prose-invert">
-        {editorBlocks.map((block, index) => {
-          return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{ __html: block.renderedHtml }}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
+			{/* Render the blocks */}
+			<div className="prose prose-lg prose-invert">
+				{editorBlocks.map((block, index) => {
+					return (
+						<div
+							key={index}
+							dangerouslySetInnerHTML={{ __html: block.renderedHtml }}
+						/>
+					);
+				})}
+			</div>
+		</div>
+	);
 }
-
 ```
 
 This code will render a single post detail page with all the block data coming from WordPress.

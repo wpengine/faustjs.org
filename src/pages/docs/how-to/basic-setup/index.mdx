@@ -21,7 +21,7 @@ Install and activate the [FaustWP](https://wordpress.org/plugins/faustwp/) and [
 
 Create a `.env.local` file in the root of your Next.js project that contains these environment variables:
 
-```
+```ini {2} title=".env.local"
 # Your WordPress site URL
 NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com
 
@@ -33,7 +33,7 @@ Replace `https://faustexample.wpengine.com` with the URL for your WordPress back
 
 Replace `YOUR_PLUGIN_SECRET` with the Secret Key found in `Settings → Faust` in your WordPress admin area.
 
-![](images/headless-admin-secret-1024x743.png)
+![](./images/headless-admin-secret-1024x743.png)
 
 Save your `.env.local` file.
 
@@ -41,9 +41,7 @@ Save your `.env.local` file.
 
 Install the `@apollo/client`, gql and `@faustwp/core` NPM packages in your Next.js app.
 
-ShellScript
-
-```
+```bash
 npm install @apollo/client @faustwp/core graphql
 ```
 
@@ -51,16 +49,14 @@ npm install @apollo/client @faustwp/core graphql
 
 Create a `faust.config` file in the root of your project with this code:
 
-JavaScript
-
-```
+```js title="faust.config.js"
 import { setConfig } from "@faustwp/core";
 
 /**
  * @type {import('@faustwp/core').FaustConfig}
  **/
 export default setConfig({
-  plugins: [],
+	plugins: [],
 });
 ```
 
@@ -68,35 +64,31 @@ export default setConfig({
 
 Create an API route for Faust.js to use. You can do this by creating a file in `pages/api/faust/[[...route]].`js, with the following code:
 
-```
-import { apiRouter } from "@faustwp/core";
+```js title="pages/api/faust/[[...route]].js"
 import "../../../faust.config";
-export default apiRouter;
-```
 
-JavaScript
+export { apiRouter as default } from "@faustwp/core";
+```
 
 ### Update `_app.js` file
 
 Once the API router is set up, head to `pages/_api.js` and paste this code into the file:
 
-```
+```js title="pages/_app.js"
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import "../faust.config";
 
 export default function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+	const router = useRouter();
 
-  return (
-    <FaustProvider pageProps={pageProps}>
-      <Component {...pageProps} key={router.asPath} />
-    </FaustProvider>
-  );
+	return (
+		<FaustProvider pageProps={pageProps}>
+			<Component {...pageProps} key={router.asPath} />
+		</FaustProvider>
+	);
 }
 ```
-
-JavaScript
 
 ### Next steps
 
