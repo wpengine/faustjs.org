@@ -21,7 +21,7 @@ Install and activate the [FaustWP](https://wordpress.org/plugins/faustwp/) and [
 
 Create a `.env.local` file in the root of your Next.js project that contains these environment variables:
 
-```ini {2} title=".env.local" 
+```ini {2} title=".env.local"
 # Your WordPress site URL
 NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com
 
@@ -56,7 +56,7 @@ import { setConfig } from "@faustwp/core";
  * @type {import('@faustwp/core').FaustConfig}
  **/
 export default setConfig({
-  plugins: [],
+	plugins: [],
 });
 ```
 
@@ -65,9 +65,9 @@ export default setConfig({
 Create an API route for Faust.js to use. You can do this by creating a file in `pages/api/faust/[[...route]].`js, with the following code:
 
 ```js title="pages/api/faust/[[...route]].js"
-import { apiRouter } from "@faustwp/core";
 import "../../../faust.config";
-export default apiRouter;
+
+export { apiRouter as default } from "@faustwp/core";
 ```
 
 ### Update `_app.js` file
@@ -80,13 +80,13 @@ import { FaustProvider } from "@faustwp/core";
 import "../faust.config";
 
 export default function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+	const router = useRouter();
 
-  return (
-    <FaustProvider pageProps={pageProps}>
-      <Component {...pageProps} key={router.asPath} />
-    </FaustProvider>
-  );
+	return (
+		<FaustProvider pageProps={pageProps}>
+			<Component {...pageProps} key={router.asPath} />
+		</FaustProvider>
+	);
 }
 ```
 

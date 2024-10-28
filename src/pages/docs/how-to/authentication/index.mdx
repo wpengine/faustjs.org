@@ -1,5 +1,3 @@
-import { Image } from "next/image";
-
 export const metadata = {
 	title: "Authentication",
 	date: "2024-07-22",
@@ -35,66 +33,66 @@ If you haven't already, follow the [Basic Setup](https://faustjstoolkit.wpengine
 
 You are now ready to implement the auth functionality. Create a `/gated/index.js` page in the `pages` directory and paste this code block into the file:
 
-```js
+```js title="pages/gated/index.js"
 import { useAuth, getApolloAuthClient, useLogout } from "@faustwp/core";
 import { gql, useQuery } from "@apollo/client";
 
 function AuthenticatedView() {
-  const client = getApolloAuthClient();
-  const { logout } = useLogout();
-  const { data, loading } = useQuery(
-    gql`
-      {
-        viewer {
-          posts {
-            nodes {
-              id
-              title
-            }
-          }
-          name
-        }
-      }
-    `,
-    { client }
-  );
+	const client = getApolloAuthClient();
+	const { logout } = useLogout();
+	const { data, loading } = useQuery(
+		gql`
+			{
+				viewer {
+					posts {
+						nodes {
+							id
+							title
+						}
+					}
+					name
+				}
+			}
+		`,
+		{ client },
+	);
 
-  if (loading) {
-    return <>Loading...</>;
-  }
+	if (loading) {
+		return <>Loading...</>;
+	}
 
-  return (
-    <>
-      <p>Welcome {data?.viewer?.name}!</p>
-      <button onClick={() => logout("/")}>Logout</button>
-      <p>My posts</p>
+	return (
+		<>
+			<p>Welcome {data?.viewer?.name}!</p>
+			<button onClick={() => logout("/")}>Logout</button>
+			<p>My posts</p>
 
-      <ul>
-        {data?.viewer?.posts?.nodes.map((post) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-    </>
-  );
+			<ul>
+				{data?.viewer?.posts?.nodes.map((post) => (
+					<li key={post.id}>{post.title}</li>
+				))}
+			</ul>
+		</>
+	);
 }
 
-export default function Page(props) {
-  const { isAuthenticated, isReady, loginUrl } = useAuth();
+export default function Page() {
+	const { isAuthenticated, isReady, loginUrl } = useAuth();
 
-  if (!isReady) {
-    return <>Loading...</>;
-  }
+	if (!isReady) {
+		return <>Loading...</>;
+	}
 
-  if (isAuthenticated === true) {
-    return <AuthenticatedView />;
-  }
+	if (isAuthenticated === true) {
+		return <AuthenticatedView />;
+	}
 
-  return (
-    <>
-      <p>Welcome!</p>
-      <a href={loginUrl}>Login</a>
-    </>
-  );
+	return (
+		<>
+			<p>Welcome!</p>
+			<a href={loginUrl}>Login</a>
+		</>
+	);
 }
 ```
 
@@ -102,7 +100,7 @@ In this code block, to check if a user is logged in, we use the `useAuth` hook, 
 
 For authenticated requests, the `getApolloAuthClient()` function is used to obtain an Apollo Client instance with the appropriate access token attached. This client can be utilized for making authenticated requests, either directly via `client.query` or by passing the client into Apollo's `useQuery` hook.
 
-In the `AuthenticatedView` component, we use the `useQuery` hook along with the authenticated client to fetch data, specifically the user's name and posts. If the data is loading, a loading message is displayed. Once the data is available, the component renders a welcome message, a logout button, and a list of the user’s posts.
+In the `AuthenticatedView` component, we use the `useQuery` hook along with the authenticated client to fetch data, specifically the user's name and posts. If the data is loading, a loading message is displayed. Once the data is available, the component renders a welcome message, a logout button, and a list of the user's posts.
 
 The main `Page` component uses `isReady` and `isAuthenticated` to manage the user interface. If the authentication state is not ready, it shows a loading state. If the user is authenticated, it renders the `AuthenticatedView` component. Otherwise, it presents a login link that directs you to log in from the WordPress admin.
 
@@ -150,7 +148,7 @@ function AuthenticatedView() {
 // Rest of your component
 ```
 
-- Local Based Authentication is the second strategy available in Faust.js. This strategy involves the user initiating a login request from the Next.js application via the `useLogin` hook. Upon successful login, `useLogin` returns an authorization code used to request a refresh and access token, thus completing the login process.
+- Local Based Authentication is the second strategy available in Faust.js. This strategy involves the user initiating a login request from the Next.js application via the `useLogin` hook. Upon successful login, `useLogin` returns an authorization code used to request a refresh and access token, thus completing the login process.
 
 This strategy is excellent for use cases where you want to support a more “white label” login/register experience. It routes unauthenticated requests to your specified Next.js login page. In addition, users who wish to log in/register will not have to interact with WordPress or the WordPress backend at all, giving you the flexibility to implement and fine-tune your user flow. If you are interested in using this strategy, please visit this article here on the subject:
 

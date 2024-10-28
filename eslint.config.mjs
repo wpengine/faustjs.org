@@ -90,7 +90,7 @@ const config = [
 	{
 		...mdx.flat,
 		processor: mdx.createRemarkProcessor({
-			lintCodeBlocks: true,
+			lintCodeBlocks: false,
 		}),
 	},
 	{

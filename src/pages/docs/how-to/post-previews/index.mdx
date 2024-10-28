@@ -1,7 +1,7 @@
 export const metadata = {
-title: "Post Previews",
-date: "2024-09-12",
-}
+	title: "Post Previews",
+	date: "2024-09-12",
+};
 
 When editing content in the [WordPress editor](https://wordpress.com/support/wordpress-editor/), content creators can click the **Preview** link to preview what the content will look like on the frontend before the post has been published. This docs page outlines how to set up post previews in a headless WordPress app.
 
@@ -30,13 +30,13 @@ import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 
 export default function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+	const router = useRouter();
 
-  return (
-    <FaustProvider pageProps={pageProps}>
-      <Component {...pageProps} key={router.asPath} />
-    </FaustProvider>
-  );
+	return (
+		<FaustProvider pageProps={pageProps}>
+			<Component {...pageProps} key={router.asPath} />
+		</FaustProvider>
+	);
 }
 ```
 
@@ -48,7 +48,7 @@ With your headless secret set and the `authorizeHandler` ready to handle request
 import { WordPressTemplate } from "@faustwp/core";
 
 export default function Preview(props) {
-  return <WordPressTemplate {...props} />;
+	return <WordPressTemplate {...props} />;
 }
 ```
 
@@ -64,36 +64,36 @@ Now that we have everything set up, it is time to add post previews to your WPGr
 import { gql } from "@apollo/client";
 
 export default function Component(props) {
-  if (props.loading) {
-    return <>Loading...</>;
-  }
+	if (props.loading) {
+		return <>Loading...</>;
+	}
 
-  const { title, content } = props?.data?.post;
+	const { title, content } = props?.data?.post;
 
-  return (
-    <>
-      <h1>{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
-    </>
-  );
+	return (
+		<>
+			<h1>{title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: content }} />
+		</>
+	);
 }
 
 Component.query = gql`
-  query GetPost($databaseId: ID!, $asPreview: Boolean = false) {
-    post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      title
-      content
-      # Add additional fields here if necessary
-    }
-  }
+	query GetPost($databaseId: ID!, $asPreview: Boolean = false) {
+		post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+			title
+			content
+			# Add additional fields here if necessary
+		}
+	}
 `;
 
 // Variables function to provide the required arguments to the query
 Component.variables = ({ databaseId }, ctx) => {
-  return {
-    databaseId,
-    asPreview: ctx?.asPreview,
-  };
+	return {
+		databaseId,
+		asPreview: ctx?.asPreview,
+	};
 };
 ```
 
