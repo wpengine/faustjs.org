@@ -77,7 +77,6 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				lora: ["Lora", "serif"],
 				inter: ["Inter", "serif"],
 			},
 		},
