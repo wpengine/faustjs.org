@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import DocsLayout from "./src/components/docs-layout";
+import DocsLayout from "@/components/docs-layout";
+import CustomLink from "@/components/link";
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
 // React component you want, including inline styles,
@@ -27,35 +27,7 @@ export function useMDXComponents(components) {
 				alt={props.alt}
 			/>
 		),
-		a: ({ href, children, ...props }) => {
-			const className = "";
-
-			if (href?.startsWith("/")) {
-				return (
-					<Link href={href} className={className} {...props}>
-						{children}
-					</Link>
-				);
-			}
-			if (href?.startsWith("#")) {
-				return (
-					<a href={href} className={className} {...props}>
-						{children}
-					</a>
-				);
-			}
-			return (
-				<a
-					href={href}
-					target="_blank"
-					rel="noopener noreferrer"
-					className={className}
-					{...props}
-				>
-					{children}
-				</a>
-			);
-		},
+		a: (props) => <CustomLink {...props} />,
 		wrapper: DocsLayout,
 		...components,
 	};
