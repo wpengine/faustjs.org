@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/link";
 import FaustLogo from "./faust-logo";
 import PrimaryMenu from "./primary-menu";
 import SearchBar from "./search-bar";
@@ -9,13 +9,31 @@ import {
 	SiWordpress,
 } from "@icons-pack/react-simple-icons";
 
+const socialIcons = [
+	{
+		name: "GitHub",
+		url: "https://github.com/wpengine/faustjs",
+		icon: SiGithub,
+	},
+	{
+		name: "WordPress",
+		url: "https://wordpress.org/plugins/faustwp/",
+		icon: SiWordpress,
+	},
+	{
+		name: "Discord",
+		url: "/discord",
+		icon: SiDiscord,
+	},
+];
+
 export default function Header() {
 	return (
 		<header className="container mx-auto flex items-center justify-between bg-gray-900 px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
 			<div className="flex items-center gap-8">
 				<div className="flex items-center gap-3">
 					<FaustLogo />
-					<Link href="/" className="text-xl font-bold">
+					<Link href="/" noDefaultStyles className="text-xl font-bold">
 						Faust.js
 						<span className="align-super text-xs font-light text-gray-500">
 							&trade;
@@ -30,33 +48,17 @@ export default function Header() {
 				<SearchBar />
 				<HamburgerMenu className="lg:hidden" />
 				<div className="hidden items-center space-x-4 lg:flex">
-					<Link
-						href="https://github.com/wpengine/faustjs"
-						passHref
-						target="_blank"
-						className="text-gray-500 hover:text-gray-400"
-					>
-						{/* GitHub Icon */}
-						<SiGithub />
-					</Link>
-					<Link
-						href="https://wordpress.org/plugins/faustwp/"
-						passHref
-						target="_blank"
-						className="text-gray-500 hover:text-gray-400"
-					>
-						{/* WordPress Icon */}
-						<SiWordpress />
-					</Link>
-					<Link
-						href="https://discord.gg/Ux73Pywj"
-						passHref
-						target="_blank"
-						className="text-gray-500 hover:text-gray-400"
-					>
-						{/* Discord Icon */}
-						<SiDiscord />
-					</Link>
+					{socialIcons.map(({ url, name, icon: Icon }) => (
+						<Link
+							key={name}
+							href={url}
+							title={name}
+							className="text-gray-500 hover:text-gray-400"
+							disableExternalIcon
+						>
+							<Icon />
+						</Link>
+					))}
 				</div>
 			</div>
 		</header>

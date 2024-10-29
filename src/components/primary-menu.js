@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "@/components/link";
 
 const GET_PRIMARY_NAV = gql`
 	query GetPrimaryNav {
@@ -57,7 +57,9 @@ export default function PrimaryMenu() {
 							key={item.databaseId}
 							className="my-2 text-gray-400 hover:text-gray-200 md:my-0"
 						>
-							<Link href={item.uri}>{item.label}</Link>
+							<Link noDefaultStyles href={item.uri}>
+								{item.label}
+							</Link>
 						</li>
 					))
 				) : (
