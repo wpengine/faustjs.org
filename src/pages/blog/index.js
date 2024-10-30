@@ -15,7 +15,7 @@ export default function BlogIndex() {
 	if (error) return <p>Error! {error.message}</p>;
 
 	return (
-		<div className="container mx-auto px-4 py-8">
+		<div className="container-main container">
 			<h1 className="mb-8 text-3xl font-bold">Faust.js news</h1>
 			<ul>
 				{posts.map((post) => (
