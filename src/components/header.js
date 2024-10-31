@@ -37,7 +37,7 @@ export default function Header() {
 						noDefaultStyles
 						className="transition-duration-75 flex items-center text-xl font-bold transition hover:text-white focus:text-white"
 					>
-						<span className="mr-1">
+						<span className="mr-3">
 							<FaustLogo />
 						</span>
 						Faust.js
