@@ -1,0 +1,29 @@
+[
+	{
+		"title": "Getting Started",
+		"route": "/docs/",
+		"children": [
+			{
+				"title": "Basic Setup",
+				"route:": "/docs/how-to/basic-setup"
+			},
+			{
+				"route": "/docs/explanation/introduction/",
+				"title": "Introduction"
+			}
+		]
+	},
+	{
+		"title": "Integrating with WordPress",
+		"children": [
+			{
+				"title": "Authentication",
+				"route": "/docs/how-to/authentication"
+			},
+			{
+				"route": "/docs/how-to/post-previews/",
+				"title": "Post Previews"
+			}
+		]
+	}
+]
