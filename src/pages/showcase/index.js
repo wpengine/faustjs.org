@@ -27,7 +27,7 @@ const showcases = [
 
 export default function Showcase() {
 	return (
-		<div className="container-main container mb-24 mt-16 lg:mb-32 lg:mt-16">
+		<main className="container-main container mb-24 mt-16 lg:mb-32 lg:mt-16">
 			<h1 className="mb-12 text-center text-4xl font-bold">
 				Faust.js™ Showcase
 			</h1>
@@ -56,6 +56,6 @@ export default function Showcase() {
 					</Link>
 				))}
 			</div>
-		</div>
+		</main>
 	);
 }
