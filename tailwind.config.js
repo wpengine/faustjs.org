@@ -76,6 +76,16 @@ module.exports = {
 			},
 		},
 		extend: {
+			backgroundImage: {
+				"hero-gradient": `
+					radial-gradient(45% 56% at 91% 74%, #09878DC2 0%, #073AFF00 100%),
+					radial-gradient(74% 86% at 67% 50%, #512E99B5 0%, #073AFF00 57%),
+					radial-gradient(38% 28% at 24% 50%, #07656A91 7%, #073AFF00 100%),
+					radial-gradient(43% 43% at 30% 40%, #00478FBF 0%, #073AFF00 100%),
+					radial-gradient(42% 53% at 15% 94%, #FFC34E5C 7%, #073AFF00 100%),
+					linear-gradient(210deg, #111827FF 0%, #29174CFF 100%)
+				`,
+			},
 			fontFamily: {
 				inter: ["Inter", "serif"],
 			},
