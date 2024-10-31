@@ -5,8 +5,8 @@ import Link from "@/components/link";
 export default function Index() {
 	return (
 		<>
-			<div className="bg-100-full bg-default-pos bg-hero-gradient">
-				<div className="container-main container prose prose-invert md:prose-lg lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
+			<main className="bg-100-full bg-default-pos bg-hero-gradient">
+				<section className="container-main container prose prose-invert md:prose-lg lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
 					<div className="mx-auto max-w-4xl px-8 py-14 text-center lg:py-24">
 						<h1 className="bg-gradient-to-br from-purple-300 to-teal-300 bg-clip-text text-transparent">
 							The Headless WordPress Toolkit for Next.js
@@ -29,8 +29,8 @@ export default function Index() {
 							</Link>
 						</p>
 					</div>
-				</div>
-			</div>
+				</section>
+			</main>
 		</>
 	);
 }
