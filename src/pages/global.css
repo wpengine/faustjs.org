@@ -19,7 +19,7 @@
 
 @layer utilities {
 	.container-main {
-		@apply mx-auto my-16 flex-grow px-4 sm:px-6 md:max-w-6xl md:px-8;
+		@apply mx-auto flex-grow px-4 sm:px-6 md:max-w-6xl md:px-8;
 	}
 }
 
