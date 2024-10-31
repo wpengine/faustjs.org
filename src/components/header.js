@@ -32,8 +32,14 @@ export default function Header() {
 		<header className="container mx-auto flex items-center justify-between bg-gray-900 px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
 			<div className="flex items-center gap-8">
 				<div className="flex items-center gap-3">
-					<FaustLogo />
-					<Link href="/" noDefaultStyles className="text-xl font-bold">
+					<Link
+						href="/"
+						noDefaultStyles
+						className="transition-duration-75 flex items-center text-xl font-bold transition hover:text-white focus:text-white"
+					>
+						<span className="mr-3">
+							<FaustLogo />
+						</span>
 						Faust.js
 						<span className="align-super text-xs font-light text-gray-500">
 							&trade;
