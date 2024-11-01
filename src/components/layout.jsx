@@ -2,7 +2,6 @@ import localFont from "next/font/local";
 import Footer from "./footer";
 import Header from "./header";
 
-
 const inter = localFont({
 	src: "../fonts/inter-variable-font.woff2",
 	display: "swap",

@@ -11,9 +11,7 @@ export default function CoreHeading(props) {
 		anchor: attributes.anchor || slugify(attributes.content),
 	};
 
-	return (
-		<FaustCoreHeading {...props} attributes={customAttributes} />
-	);
+	return <FaustCoreHeading {...props} attributes={customAttributes} />;
 }
 
 CoreHeading.displayName = { ...FaustCoreHeading.displayName };

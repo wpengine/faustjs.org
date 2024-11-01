@@ -2,10 +2,11 @@ import slugify from "@sindresorhus/slugify";
 import Link from "@/components/link";
 
 export default function OnThisPageNav({ editorBlocks }) {
-	const headingBlocks = editorBlocks.filter((block) => (
+	const headingBlocks = editorBlocks.filter(
+		(block) =>
 			block.name === "core/heading" &&
-			(block.attributes.level === 2 || block.attributes.level === 3)
-		));
+			(block.attributes.level === 2 || block.attributes.level === 3),
+	);
 
 	return (
 		<>

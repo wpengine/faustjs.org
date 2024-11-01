@@ -58,7 +58,7 @@ const config = [
 	},
 
 	{
-		files: ["**/*.jsx",],
+		files: ["**/*.jsx"],
 		rules: {
 			"consistent-return": "off",
 			"no-use-before-define": "off",

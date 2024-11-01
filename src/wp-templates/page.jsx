@@ -21,5 +21,5 @@ Component.query = gql`
 `;
 
 Component.variables = (seedQuery) => ({
-		uri: seedQuery?.uri,
-	});
+	uri: seedQuery?.uri,
+});
