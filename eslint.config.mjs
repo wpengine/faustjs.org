@@ -71,6 +71,7 @@ const config = [
 			sourceType: "commonjs",
 		},
 		rules: {
+			"unicorn/numeric-separators-style": "off",
 			"unicorn/prefer-module": "off",
 		},
 	},
