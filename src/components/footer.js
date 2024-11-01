@@ -7,19 +7,31 @@ export default function Footer() {
 	if (error) return <p>Error! {error.message}</p>;
 
 	return (
-		<footer className="bg-gray-800">
-			<div className="container mx-auto px-4 pb-8 pt-16 sm:px-6 md:max-w-6xl md:px-8">
-				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+		<footer className="bg-gray-950 px-8 pb-14 lg:px-16 lg:pb-24">
+			<div className="container-main container prose prose-invert border-t border-gray-900">
+				<div className="grid grid-cols-1 gap-8 pt-14 sm:grid-cols-2 lg:grid-cols-3 lg:pt-24">
 					<FooterColumns data={data} />
 				</div>
-				<div className="mt-24 text-center text-sm text-gray-500">
-					<p className="font-medium">
-						Powered by <Link href="/">Faust.js</Link> &amp; WP Engine&apos;s{" "}
-						<Link href="https://wpengine.com/headless-wordpress/">
+				<div className="mt-24 text-gray-500">
+					<p>
+						Powered by{" "}
+						<Link
+							noDefaultStyles
+							className="font-normal text-gray-300 no-underline"
+							href="/"
+						>
+							Faust.js
+						</Link>{" "}
+						&amp; WP Engine&apos;s{" "}
+						<Link
+							noDefaultStyles
+							className="font-normal text-gray-300 no-underline"
+							href="https://wpengine.com/headless-wordpress/"
+						>
 							Headless platform
 						</Link>
 					</p>
-					<p className="text-xs text-gray-600">
+					<p className="text-gray-600">
 						&copy; 2013-{new Date().getFullYear()} WP Engine, Inc. All rights
 						reserved.
 					</p>
@@ -46,17 +58,17 @@ function FooterColumns({ data }) {
 
 		return (
 			<div key={index} className="col-span-1 flex flex-col gap-4">
-				<h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
+				<h6 className="font-bold uppercase tracking-wider text-gray-300">
 					{columnTitle}
 				</h6>
-				<ul>
+				<ul className="my-0 list-none ps-0">
 					{column.map((item) => (
-						<li key={item.id} className="space-y-2">
+						<li key={item.id} className="my-0 space-y-2 ps-0">
 							<Link
 								href={item.uri}
 								target={item.target}
 								noDefaultStyles
-								className="inline-flex items-center gap-1 text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
+								className="inline-flex items-center gap-1 font-normal text-gray-400 no-underline transition duration-150 ease-in-out hover:text-gray-200"
 							>
 								{item.label}
 							</Link>
