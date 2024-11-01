@@ -42,6 +42,7 @@ export default function PrimaryMenu() {
 			<button
 				className={`group px-2 py-1.5 text-white/70 hover:text-white md:hidden ${isOpen ? "rounded-t-md bg-gray-800/80" : "rounded-md"}`}
 				onClick={() => setIsOpen(!isOpen)}
+				type="button"
 			>
 				{isOpen ? (
 					<XMarkIcon className="relative z-20 inline h-5 w-5" />

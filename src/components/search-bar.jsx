@@ -81,6 +81,7 @@ export default function SearchBar() {
 							className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
 							onClick={closeModal}
 							style={{ zIndex: 60 }}
+							type="button"
 						>
 							Esc
 						</button>
