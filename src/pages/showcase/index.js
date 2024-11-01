@@ -27,17 +27,20 @@ const showcases = [
 
 export default function Showcase() {
 	return (
-		<main className="container-main container mb-24 mt-16 lg:mb-32 lg:mt-16">
-			<h1 className="mb-12 text-center text-4xl font-bold">
+		<main className="container-main container prose prose-invert px-8 py-14 md:prose-lg lg:prose-xl prose-h1:mb-2 prose-h1:font-semibold prose-h1:leading-tight prose-img:my-0 lg:px-16 lg:py-24">
+			<h1 className="bg-gradient-to-br from-white/80 to-gray-300 bg-clip-text text-center text-transparent">
 				Faust.js™ Showcase
 			</h1>
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+			<p className="text-center">
+				New to Faust? Check out these Faust-powered sites for inspiration.
+			</p>
+			<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
 				{showcases.map((showcase) => (
 					<Link
 						href={showcase.url}
 						key={showcase.url}
 						disableExternalIcon
-						className="relative block overflow-hidden rounded-lg shadow-md transition duration-300 hover:shadow-lg"
+						className="duration-120 group col-span-full flex flex-col rounded-xl bg-blue-1000/20 p-2 no-underline shadow-md ring-1 ring-blue-900/30 transition hover:bg-blue-1100/90 hover:shadow-lg md:col-span-6"
 					>
 						{/* Using Next.js Image for optimized image loading */}
 						<Image
@@ -45,13 +48,13 @@ export default function Showcase() {
 							alt={showcase.title}
 							width={500}
 							height={300}
-							className="h-full w-full rounded-lg object-cover"
+							className="aspect-video h-80 w-full rounded-t-lg object-cover object-top"
 						/>
 
 						{/* Applying solid blue background with opacity and making it fit the card width */}
-						<div className="absolute inset-x-0 bottom-0 flex items-center justify-between rounded-b-lg bg-blue-800 bg-opacity-80 p-4 text-white">
-							<span className="text-xl font-semibold">{showcase.title}</span>
-							<ArrowTopRightOnSquareIcon className="h-6 w-6 text-white" />
+						<div className="flex items-center justify-between px-4 pb-2 pt-4 text-gray-300 group-hover:text-gray-100">
+							<span className="text-xl font-normal">{showcase.title}</span>
+							<ArrowTopRightOnSquareIcon className="h-6 w-6" />
 						</div>
 					</Link>
 				))}
