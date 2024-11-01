@@ -1,62 +1,46 @@
-import next from "@next/eslint-plugin-next";
-import unicorn from "eslint-plugin-unicorn";
-import prettier from "eslint-config-prettier";
-import js from "@eslint/js";
-import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import jsxA11y from "eslint-plugin-jsx-a11y";
-import importPlugin from "eslint-plugin-import";
+// import next from "@next/eslint-plugin-next";
+import {
+	common,
+	browser,
+	node,
+	next,
+	react,
+	prettier,
+} from "eslint-config-neon";
+import jsxA11y from "eslint-config-neon/jsx-a11y";
 import * as mdx from "eslint-plugin-mdx";
-
-import globals from "globals";
+// eslint-disable-next-line import-x/no-extraneous-dependencies -- we want the version of unicorn that is bundled with eslint-config-neon
+import unicorn from "eslint-plugin-unicorn";
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
 const config = [
-	js.configs.recommended,
-	react.configs.flat.recommended, // This is not a plugin object, but a shareable config object
-	react.configs.flat["jsx-runtime"],
 	{
-		plugins: {
-			unicorn,
-			import: importPlugin,
-		},
+		ignores: ["node_modules", ".next", ".faust", "public"],
+	},
+	...common,
+	...browser,
+	...node,
+	...react,
+	...jsxA11y,
+	...next,
+	{
+		files: ["**/*.{js,jsx,cjs,mjs}"],
 		settings: {
 			react: {
 				version: "detect",
 			},
-			"import/resolver": {
-				alias: [["@", "./src"]],
-			},
-		},
-		rules: {
-			...unicorn.configs.recommended.rules,
-			...importPlugin.flatConfigs.recommended.rules,
-		},
-	},
-	{
-		ignores: ["node_modules", ".next", ".faust", "public"],
-	},
-	{
-		files: ["src/**/*.{js,jsx}", "mdx-components.js"],
-		plugins: {
-			"@next/next": next,
-			"react-hooks": reactHooks,
-			"jsx-a11y": jsxA11y,
 		},
 		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.serviceworker,
+			parserOptions: {
+				project: "./jsconfig.json",
 			},
 		},
 		rules: {
-			...next.configs.recommended.rules,
-			...next.configs["core-web-vitals"].rules,
-			...reactHooks.configs.recommended.rules,
-			...jsxA11y.flatConfigs.recommended.rules,
 			"react/prop-types": "off",
+			...unicorn.configs["flat/recommended"].rules, // neno disables a lot of unicorn rules so this reenables defaults
+			"react/no-danger": "warn",
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{
@@ -72,21 +56,31 @@ const config = [
 			],
 		},
 	},
+
+	{
+		files: ["**/*.jsx"],
+		rules: {
+			"consistent-return": "off",
+			"no-use-before-define": "off",
+			"array-callback-return": "off",
+		},
+	},
 	{
 		files: ["tailwind.config.js", "postcss.config.js", "next.config.js"],
 		languageOptions: {
 			sourceType: "commonjs",
 		},
 		rules: {
+			"unicorn/numeric-separators-style": "off",
 			"unicorn/prefer-module": "off",
 		},
 	},
-	{
-		files: ["src/pages/**/*.{js,jsx}"],
-		rules: {
-			"unicorn/filename-case": ["off"],
-		},
-	},
+	// {
+	// 	files: ["src/pages/**/*.{js,jsx}"],
+	// 	rules: {
+	// 		"unicorn/filename-case": ["off"],
+	// 	},
+	// },
 	{
 		...mdx.flat,
 		processor: mdx.createRemarkProcessor({
@@ -99,7 +93,7 @@ const config = [
 			"unicorn/filename-case": ["off"],
 		},
 	},
-	prettier,
+	...prettier,
 ];
 
 export default config;

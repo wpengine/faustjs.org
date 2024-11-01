@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useState, useEffect } from "react";
 
 // Function to call the custom search API
 async function performSearch(query) {

@@ -2,12 +2,11 @@ import slugify from "@sindresorhus/slugify";
 import Link from "@/components/link";
 
 export default function OnThisPageNav({ editorBlocks }) {
-	const headingBlocks = editorBlocks.filter((block) => {
-		return (
+	const headingBlocks = editorBlocks.filter(
+		(block) =>
 			block.name === "core/heading" &&
-			(block.attributes.level === 2 || block.attributes.level === 3)
-		);
-	});
+			(block.attributes.level === 2 || block.attributes.level === 3),
+	);
 
 	return (
 		<>
@@ -19,12 +18,12 @@ export default function OnThisPageNav({ editorBlocks }) {
 
 					return (
 						<li
-							key={block.id}
 							className={block.attributes.level === 3 ? "ml-4" : ""}
+							key={block.id}
 						>
 							<Link
-								href={`#${anchor}`}
 								dangerouslySetInnerHTML={{ __html: block.attributes.content }}
+								href={`#${anchor}`}
 							/>
 						</li>
 					);

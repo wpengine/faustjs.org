@@ -1,7 +1,7 @@
-import Head from "next/head";
 import { gql } from "@apollo/client";
 import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, useFaustQuery } from "@faustwp/core";
+import Head from "next/head";
 
 const INDEX_TEMPLATE_QUERY = gql`
 	query IndexTemplate($uri: String!) {
@@ -42,14 +42,14 @@ export default function IndexTemplate() {
 
 	const { editorBlocks } = node;
 
-	let toc = [];
+	const toc = [];
 
 	editorBlocks &&
 		editorBlocks
 			.filter((blocks) => blocks?.attributes?.level)
 			.map((block) => {
 				if (block.attributes.level === 2 || block.attributes.level === 3) {
-					let heading = {
+					const heading = {
 						tagName: `h${block.attributes.level}`,
 						children: [
 							{
@@ -78,7 +78,7 @@ export default function IndexTemplate() {
 			</Head>
 
 			{node?.modified && (
-				<div id="last-updated" className="text-sm text-gray-500">
+				<div className="text-sm text-gray-500" id="last-updated">
 					Last Upated:{" "}
 					{new Date(node.modified).toLocaleDateString("en-us", {
 						weekday: "long",

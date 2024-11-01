@@ -39,8 +39,8 @@ export function CoreQuote(props) {
 	return (
 		<blockquote
 			className={attributes?.cssClassName}
-			style={style}
 			dangerouslySetInnerHTML={{ __html: innerHtml }}
+			style={style}
 		/>
 	);
 }
