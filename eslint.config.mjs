@@ -1,61 +1,59 @@
-import next from "@next/eslint-plugin-next";
-import unicorn from "eslint-plugin-unicorn";
-import prettier from "eslint-config-prettier";
-import js from "@eslint/js";
-import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import jsxA11y from "eslint-plugin-jsx-a11y";
-import importPlugin from "eslint-plugin-import";
+// import next from "@next/eslint-plugin-next";
+import {
+	common,
+	browser,
+	node,
+	next,
+	react,
+	prettier,
+} from "eslint-config-neon";
+import jsxA11y from "eslint-config-neon/jsx-a11y";
 import * as mdx from "eslint-plugin-mdx";
-
-import globals from "globals";
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
 const config = [
-	js.configs.recommended,
-	react.configs.flat.recommended, // This is not a plugin object, but a shareable config object
-	react.configs.flat["jsx-runtime"],
+	...common,
+	...browser,
+	...node,
+	...react,
+	...jsxA11y,
+	...next,
 	{
 		plugins: {
-			unicorn,
-			import: importPlugin,
+			// unicorn,
+			// import: importPlugin,
 		},
 		settings: {
 			react: {
 				version: "detect",
 			},
-			"import/resolver": {
-				alias: [["@", "./src"]],
+			// "import/resolver": {
+			// 	alias: [["@", "./src"]],
+			// },
+		},
+		languageOptions: {
+			parserOptions: {
+				project: "./jsconfig.json",
 			},
 		},
 		rules: {
-			...unicorn.configs.recommended.rules,
-			...importPlugin.flatConfigs.recommended.rules,
+			// "react/react-in-jsx-scope": "off",
+			"react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
 		},
+		// rules: {
+		// 	// ...unicorn.configs.recommended.rules,
+		// 	// ...importPlugin.flatConfigs.recommended.rules,
+		// },
 	},
 	{
 		ignores: ["node_modules", ".next", ".faust", "public"],
 	},
 	{
-		files: ["src/**/*.{js,jsx}", "mdx-components.js"],
-		plugins: {
-			"@next/next": next,
-			"react-hooks": reactHooks,
-			"jsx-a11y": jsxA11y,
-		},
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.serviceworker,
-			},
-		},
+		files: ["src/**/*.{js,mjs,jsx}", "mdx-components.js"],
+
 		rules: {
-			...next.configs.recommended.rules,
-			...next.configs["core-web-vitals"].rules,
-			...reactHooks.configs.recommended.rules,
-			...jsxA11y.flatConfigs.recommended.rules,
 			"react/prop-types": "off",
 			"unicorn/prevent-abbreviations": [
 				"error",
@@ -99,7 +97,7 @@ const config = [
 			"unicorn/filename-case": ["off"],
 		},
 	},
-	prettier,
+	...prettier,
 ];
 
 export default config;
