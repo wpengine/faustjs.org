@@ -27,6 +27,7 @@
 		"@shikijs/transformers": "^1.22.2",
 		"@sindresorhus/slugify": "^2.2.1",
 		"classnames": "^2.5.1",
+		"date-fns": "^4.1.0",
 		"graphql": "^16.8.1",
 		"next": "^15.0.1",
 		"react": "^18.3.1",
