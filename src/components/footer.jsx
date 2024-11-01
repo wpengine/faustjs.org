@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import Link from "@/components/link";
+
 export default function Footer() {
 	const { data, loading, error } = useQuery(GET_FOOTER_NAV_ITEMS);
 
@@ -16,17 +17,17 @@ export default function Footer() {
 					<p>
 						Powered by{" "}
 						<Link
-							noDefaultStyles
 							className="font-normal text-gray-300 no-underline"
 							href="/"
+							noDefaultStyles
 						>
 							Faust.js
 						</Link>{" "}
 						&amp; WP Engine&apos;s{" "}
 						<Link
-							noDefaultStyles
 							className="font-normal text-gray-300 no-underline"
 							href="https://wpengine.com/headless-wordpress/"
+							noDefaultStyles
 						>
 							Headless platform
 						</Link>
@@ -57,18 +58,18 @@ function FooterColumns({ data }) {
 		const columnTitle = column[0]?.menu?.node?.name || "Menu";
 
 		return (
-			<div key={index} className="col-span-1 flex flex-col gap-4">
+			<div className="col-span-1 flex flex-col gap-4" key={index}>
 				<h6 className="font-bold uppercase tracking-wider text-gray-300">
 					{columnTitle}
 				</h6>
 				<ul className="my-0 list-none ps-0">
 					{column.map((item) => (
-						<li key={item.id} className="my-0 space-y-2 ps-0">
+						<li className="my-0 space-y-2 ps-0" key={item.id}>
 							<Link
-								href={item.uri}
-								target={item.target}
-								noDefaultStyles
 								className="inline-flex items-center gap-1 font-normal text-gray-400 no-underline transition duration-150 ease-in-out hover:text-gray-200"
+								href={item.uri}
+								noDefaultStyles
+								target={item.target}
 							>
 								{item.label}
 							</Link>

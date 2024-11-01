@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import Link from "@/components/link";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const GET_PRIMARY_NAV = gql`
 	query GetPrimaryNav {
@@ -59,13 +59,13 @@ export default function PrimaryMenu() {
 				{menuItems.length > 0 ? (
 					menuItems.map((item) => (
 						<li
-							key={item.databaseId}
 							className="text-gray-400 hover:text-gray-200"
+							key={item.databaseId}
 						>
 							<Link
-								noDefaultStyles
 								className="block px-1 py-1.5"
 								href={item.uri}
+								noDefaultStyles
 							>
 								{item.label}
 							</Link>
