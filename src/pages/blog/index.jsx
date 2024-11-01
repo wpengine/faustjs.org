@@ -15,9 +15,9 @@ export default function BlogIndex() {
 	if (error) return <p>Error! {error.message}</p>;
 
 	return (
-		<div className="container-main container mb-24 mt-16 lg:mb-32 lg:mt-16">
+		<main className="container-main container prose prose-invert px-8 py-14 lg:px-16 lg:py-24">
 			<h1 className="mb-8 text-3xl font-bold">Faust.js news</h1>
-			<ul>
+			<ul className="my-0 list-none ps-0">
 				{posts.map((post) => (
 					<li className="mb-8" key={post.databaseId}>
 						<div className="mb-2 text-gray-600">
@@ -36,7 +36,7 @@ export default function BlogIndex() {
 					</li>
 				))}
 			</ul>
-		</div>
+		</main>
 	);
 }
 

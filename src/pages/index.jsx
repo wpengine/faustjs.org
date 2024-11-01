@@ -1,10 +1,11 @@
 import {
+	ArrowTopRightOnSquareIcon,
 	ChevronRightIcon,
 	CodeBracketIcon,
 	CursorArrowRaysIcon,
 	KeyIcon,
 	RectangleGroupIcon,
-} from "@heroicons/react/16/solid";
+} from "@heroicons/react/24/outline";
 import Link from "@/components/link";
 
 // The Component is required
@@ -21,15 +22,27 @@ export default function Index() {
 							A robust set of tools for Next.js that unlock powerful headless
 							WordPress capabilities.
 						</p>
-						<p>
+						<p className="not-prose inline-flex gap-4">
 							<Link
-								className="not-prose group inline-flex items-center rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-300 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
+								className="not-prose text-gray-1000 group inline-flex items-center gap-1 rounded-full border border-blue-800/20 bg-gradient-to-tr from-blue-600/50 from-20% to-blue-900/50 px-8 py-2 text-base leading-none tracking-tight shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 								href="/docs/"
 								noDefaultStyles
 							>
 								Read the Docs
 								<ChevronRightIcon
-									className="transition-duration-150 group-hover:fill-gray-1000 inline h-6 transition group-hover:translate-x-1"
+									className="group-hover:fill-gray-1000 inline h-5 w-5 transition group-hover:translate-x-1"
+									focusable="false"
+								/>
+							</Link>
+							<Link
+								className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
+								disableExternalIcon
+								href="https://discord.gg/J2khkF9XYK"
+								noDefaultStyles
+							>
+								Join the Discord
+								<ArrowTopRightOnSquareIcon
+									className="group-hover:fill-gray-1000 inline h-5 transition group-hover:translate-x-1"
 									focusable="false"
 								/>
 							</Link>
@@ -38,7 +51,7 @@ export default function Index() {
 				</div>
 			</section>
 			<section className="bg-gray-950">
-				<div className="container-main container prose prose-invert py-14 prose-h2:font-medium prose-h3:my-4 lg:py-24">
+				<div className="container-main container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
 					<h2 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
 						The features you need to build a headless WordPress site with.
 					</h2>
@@ -99,13 +112,13 @@ export default function Index() {
 					</div>
 					<p className="mt-16 text-center">
 						<Link
-							className="not-prose group inline-flex items-center rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-300 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
+							className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 							href="/docs/"
 							noDefaultStyles
 						>
 							Get Started
 							<ChevronRightIcon
-								className="transition-duration-150 group-hover:fill-gray-1000 inline h-6 transition group-hover:translate-x-1"
+								className="group-hover:fill-gray-1000 inline h-5 w-5 transition group-hover:translate-x-1"
 								focusable="false"
 							/>
 						</Link>
