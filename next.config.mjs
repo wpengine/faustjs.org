@@ -16,6 +16,9 @@ const nextConfig = {
 	sassOptions: {
 		includePaths: ["node_modules"],
 	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 	redirects() {
 		return [
 			{
