@@ -9,11 +9,16 @@ import {
 } from "eslint-config-neon";
 import jsxA11y from "eslint-config-neon/jsx-a11y";
 import * as mdx from "eslint-plugin-mdx";
+// eslint-disable-next-line import-x/no-extraneous-dependencies -- we want the version of unicorn that is bundled with eslint-config-neon
+import unicorn from "eslint-plugin-unicorn";
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
 const config = [
+	{
+		ignores: ["node_modules", ".next", ".faust", "public"],
+	},
 	...common,
 	...browser,
 	...node,
@@ -21,17 +26,11 @@ const config = [
 	...jsxA11y,
 	...next,
 	{
-		plugins: {
-			// unicorn,
-			// import: importPlugin,
-		},
+		files: ["**/*.{js,jsx,cjs,mjs}"],
 		settings: {
 			react: {
 				version: "detect",
 			},
-			// "import/resolver": {
-			// 	alias: [["@", "./src"]],
-			// },
 		},
 		languageOptions: {
 			parserOptions: {
@@ -39,22 +38,9 @@ const config = [
 			},
 		},
 		rules: {
-			// "react/react-in-jsx-scope": "off",
-			"react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
-		},
-		// rules: {
-		// 	// ...unicorn.configs.recommended.rules,
-		// 	// ...importPlugin.flatConfigs.recommended.rules,
-		// },
-	},
-	{
-		ignores: ["node_modules", ".next", ".faust", "public"],
-	},
-	{
-		files: ["src/**/*.{js,mjs,jsx}", "mdx-components.js"],
-
-		rules: {
 			"react/prop-types": "off",
+			...unicorn.configs["flat/recommended"].rules, // neno disables a lot of unicorn rules so this reenables defaults
+			"react/no-danger": "warn",
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{
@@ -70,6 +56,15 @@ const config = [
 			],
 		},
 	},
+
+	{
+		files: ["**/*.jsx",],
+		rules: {
+			"consistent-return": "off",
+			"no-use-before-define": "off",
+			"array-callback-return": "off",
+		},
+	},
 	{
 		files: ["tailwind.config.js", "postcss.config.js", "next.config.js"],
 		languageOptions: {
@@ -79,12 +74,12 @@ const config = [
 			"unicorn/prefer-module": "off",
 		},
 	},
-	{
-		files: ["src/pages/**/*.{js,jsx}"],
-		rules: {
-			"unicorn/filename-case": ["off"],
-		},
-	},
+	// {
+	// 	files: ["src/pages/**/*.{js,jsx}"],
+	// 	rules: {
+	// 		"unicorn/filename-case": ["off"],
+	// 	},
+	// },
 	{
 		...mdx.flat,
 		processor: mdx.createRemarkProcessor({
