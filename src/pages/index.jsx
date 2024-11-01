@@ -6,6 +6,7 @@ import {
 	KeyIcon,
 	RectangleGroupIcon,
 } from "@heroicons/react/24/outline";
+import Card from "@/components/card";
 import Link from "@/components/link";
 
 // The Component is required
@@ -56,7 +57,10 @@ export default function Index() {
 						The features you need to build a headless WordPress site with.
 					</h2>
 					<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
-						<div className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8">
+						<Card
+							as="div"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
+						>
 							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<KeyIcon className="h-8 w-8" />
 							</div>
@@ -65,8 +69,11 @@ export default function Index() {
 								Easily authenticate users so your Next.js app &quot;knows&quot;
 								who&apos;s logged in and what capabilities that person has.
 							</p>
-						</div>
-						<div className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8">
+						</Card>
+						<Card
+							as="div"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
+						>
 							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<CursorArrowRaysIcon className="h-8 w-8" />
 							</div>
@@ -76,8 +83,11 @@ export default function Index() {
 								the &quot;Preview&quot; link to preview that page in the
 								decoupled Next.js app before the change goes live.
 							</p>
-						</div>
-						<div className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8">
+						</Card>
+						<Card
+							as="div"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
+						>
 							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<CodeBracketIcon className="h-8 w-8" />
 							</div>
@@ -94,8 +104,11 @@ export default function Index() {
 								the appropriate Next.js page template depending on the type of
 								WordPress content being displayed.
 							</p>
-						</div>
-						<div className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8">
+						</Card>
+						<Card
+							as="div"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
+						>
 							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<RectangleGroupIcon className="h-8 w-8" />
 							</div>
@@ -108,7 +121,7 @@ export default function Index() {
 								override core block markup, render third party blocks in
 								Next.js, and more.
 							</p>
-						</div>
+						</Card>
 					</div>
 					<p className="mt-16 text-center">
 						<Link
