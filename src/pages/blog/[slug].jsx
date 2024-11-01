@@ -87,7 +87,7 @@ SinglePost.variables = ({ params }) => ({ slug: params.slug });
 export async function getStaticProps(context) {
 	return getNextStaticProps(context, {
 		Page: SinglePost,
-		revalidate: 3600,
+		revalidate: 3_600,
 	});
 }
 

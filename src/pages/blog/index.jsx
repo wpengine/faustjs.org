@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { getNextStaticProps } from "@faustwp/core";
-
 import Link from "next/link";
+
 export default function BlogIndex() {
 	const {
 		loading,
@@ -19,7 +19,7 @@ export default function BlogIndex() {
 			<h1 className="mb-8 text-3xl font-bold">Faust.js news</h1>
 			<ul className="my-0 list-none ps-0">
 				{posts.map((post) => (
-					<li key={post.databaseId} className="mb-8">
+					<li className="mb-8" key={post.databaseId}>
 						<div className="mb-2 text-gray-600">
 							{new Date(post.date).toLocaleDateString()}
 						</div>
@@ -30,7 +30,7 @@ export default function BlogIndex() {
 							className="mb-4"
 							dangerouslySetInnerHTML={{ __html: post.excerpt }}
 						/>
-						<Link href={post.uri} className="text-blue-500 hover:underline">
+						<Link className="text-blue-500 hover:underline" href={post.uri}>
 							Read more
 						</Link>
 					</li>

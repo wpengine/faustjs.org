@@ -18,13 +18,13 @@ export function useMDXComponents(components) {
 		// },
 		img: ({ src }, ...props) => (
 			<Image
-				width={src.width}
-				height={src.height}
+				alt={props.alt}
 				blurDataURL={src.blurDataURL}
+				height={src.height}
 				placeholder="blur"
 				src={src.src}
 				style={{ width: "100%", height: "auto" }}
-				alt={props.alt}
+				width={src.width}
 			/>
 		),
 		a: (props) => <CustomLink {...props} />,
