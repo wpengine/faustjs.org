@@ -20,8 +20,6 @@ Component.query = gql`
 	}
 `;
 
-Component.variables = (seedQuery) => {
-	return {
+Component.variables = (seedQuery) => ({
 		uri: seedQuery?.uri,
-	};
-};
+	});

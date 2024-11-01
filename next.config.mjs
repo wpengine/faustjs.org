@@ -1,14 +1,14 @@
 import { withFaust, getWpHostname } from "@faustwp/core";
-import { createSecureHeaders } from "next-secure-headers";
 import createMDX from "@next/mdx";
+import { transformerNotationDiff } from "@shikijs/transformers";
+import { createSecureHeaders } from "next-secure-headers";
 import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
-import { transformerNotationDiff } from "@shikijs/transformers";
 
 /**
  * @type {import('next').NextConfig}
- **/
+ */
 const nextConfig = {
 	trailingSlash: true,
 	reactStrictMode: true,

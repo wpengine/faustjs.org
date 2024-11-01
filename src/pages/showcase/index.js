@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
 import Link from "@/components/link";
 
 const showcases = [
@@ -34,18 +34,18 @@ export default function Showcase() {
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 				{showcases.map((showcase) => (
 					<Link
+						className="relative block overflow-hidden rounded-lg shadow-md transition duration-300 hover:shadow-lg"
+						disableExternalIcon
 						href={showcase.url}
 						key={showcase.url}
-						disableExternalIcon
-						className="relative block overflow-hidden rounded-lg shadow-md transition duration-300 hover:shadow-lg"
 					>
 						{/* Using Next.js Image for optimized image loading */}
 						<Image
-							src={showcase.image}
 							alt={showcase.title}
-							width={500}
-							height={300}
 							className="h-full w-full rounded-lg object-cover"
+							height={300}
+							src={showcase.image}
+							width={500}
 						/>
 
 						{/* Applying solid blue background with opacity and making it fit the card width */}

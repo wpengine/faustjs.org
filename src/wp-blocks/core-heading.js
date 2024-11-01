@@ -1,5 +1,6 @@
 import { CoreBlocks } from "@faustwp/blocks";
 import slugify from "@sindresorhus/slugify";
+
 const { CoreHeading: FaustCoreHeading } = CoreBlocks;
 
 export default function CoreHeading(props) {
@@ -11,9 +12,7 @@ export default function CoreHeading(props) {
 	};
 
 	return (
-		<>
-			<FaustCoreHeading {...props} attributes={customAttributes} />
-		</>
+		<FaustCoreHeading {...props} attributes={customAttributes} />
 	);
 }
 

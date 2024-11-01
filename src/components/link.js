@@ -20,10 +20,10 @@ export default function CustomLink({
 	if (href.startsWith("http")) {
 		return (
 			<a
-				href={href}
-				target="_blank"
-				rel="noopener noreferrer"
 				className={calculatedClasses}
+				href={href}
+				rel="noopener noreferrer"
+				target="_blank"
 				{...props}
 			>
 				{children}
@@ -38,14 +38,14 @@ export default function CustomLink({
 
 	if (href?.startsWith("#")) {
 		return (
-			<a href={href} className={calculatedClasses} {...props}>
+			<a className={calculatedClasses} href={href} {...props}>
 				{children}
 			</a>
 		);
 	}
 
 	return (
-		<Link href={href} className={calculatedClasses} {...props}>
+		<Link className={calculatedClasses} href={href} {...props}>
 			{children}
 		</Link>
 	);

@@ -1,58 +1,45 @@
 import Head from "next/head";
 
-/**
- * Provide SEO related meta tags to a page.
- *
- * @param {Props} props The props object.
- * @param {string} props.title Used for the page title, og:title, twitter:title, etc.
- * @param {string} props.description Used for the meta description, og:description, twitter:description, etc.
- * @param {string} props.imageUrl Used for the og:image and twitter:image. NOTE: Must be an absolute url.
- * @param {string} props.url Used for the og:url and twitter:url.
- *
- * @returns {React.ReactElement} The SEO component
- */
 export default function SEO({ title, description, imageUrl, url }) {
 	if (!title && !description && !imageUrl && !url) {
 		return;
 	}
 
 	return (
-		<>
-			<Head>
-				<meta property="og:type" content="website" />
-				<meta property="twitter:card" content="summary_large_image" />
+		<Head>
+				<meta content="website" property="og:type" />
+				<meta content="summary_large_image" property="twitter:card" />
 
 				{title && (
 					<>
 						<title>{title}</title>
-						<meta name="title" content={title} />
-						<meta property="og:title" content={title} />
-						<meta property="twitter:title" content={title} />
+						<meta content={title} name="title" />
+						<meta content={title} property="og:title" />
+						<meta content={title} property="twitter:title" />
 					</>
 				)}
 
 				{description && (
 					<>
-						<meta name="description" content={description} />
-						<meta property="og:description" content={description} />
-						<meta property="twitter:description" content={description} />
+						<meta content={description} name="description" />
+						<meta content={description} property="og:description" />
+						<meta content={description} property="twitter:description" />
 					</>
 				)}
 
 				{imageUrl && (
 					<>
-						<meta property="og:image" content={imageUrl} />
-						<meta property="twitter:image" content={imageUrl} />
+						<meta content={imageUrl} property="og:image" />
+						<meta content={imageUrl} property="twitter:image" />
 					</>
 				)}
 
 				{url && (
 					<>
-						<meta property="og:url" content={url} />
-						<meta property="twitter:url" content={url} />
+						<meta content={url} property="og:url" />
+						<meta content={url} property="twitter:url" />
 					</>
 				)}
 			</Head>
-		</>
 	);
 }

@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import Link from "@/components/link";
+
 export default function Footer() {
 	const { data, loading, error } = useQuery(GET_FOOTER_NAV_ITEMS);
 
@@ -45,18 +46,18 @@ function FooterColumns({ data }) {
 		const columnTitle = column[0]?.menu?.node?.name || "Menu";
 
 		return (
-			<div key={index} className="col-span-1 flex flex-col gap-4">
+			<div className="col-span-1 flex flex-col gap-4" key={index}>
 				<h6 className="text-sm font-extrabold uppercase tracking-wider text-gray-500">
 					{columnTitle}
 				</h6>
 				<ul>
 					{column.map((item) => (
-						<li key={item.id} className="space-y-2">
+						<li className="space-y-2" key={item.id}>
 							<Link
-								href={item.uri}
-								target={item.target}
-								noDefaultStyles
 								className="inline-flex items-center gap-1 text-sm text-gray-400 transition duration-150 ease-in-out hover:text-gray-200"
+								href={item.uri}
+								noDefaultStyles
+								target={item.target}
 							>
 								{item.label}
 							</Link>
