@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useState, useEffect } from "react";
 
 const DOC_SEARCH_QUERY = gql`
 	query DOC_SEARCH_QUERY($searchTerm: String!) {
@@ -45,6 +45,7 @@ export default function SearchBar() {
 			event.preventDefault();
 			openModal();
 		}
+
 		if (event.key === "Escape") {
 			closeModal();
 		}
@@ -61,8 +62,8 @@ export default function SearchBar() {
 		<>
 			<button
 				className="inline-flex items-center rounded-md bg-gray-800 px-2 py-1.5 text-sm font-medium text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700"
-				type="button"
 				onClick={openModal}
+				type="button"
 			>
 				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
@@ -85,20 +86,20 @@ export default function SearchBar() {
 						</button>
 						<div className="relative mt-8 flex items-center">
 							<input
-								type="text"
-								placeholder="Search documentation..."
-								value={query}
-								onChange={(event) => setQuery(event.target.value)}
 								className="w-full rounded-lg bg-gray-800 py-2 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+								onChange={(event) => setQuery(event.target.value)}
+								placeholder="Search documentation..."
+								type="text"
+								value={query}
 							/>
 							<MagnifyingGlassIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
 						</div>
-						<div id="searchResults" className="mt-4 max-h-96 overflow-y-auto">
+						<div className="mt-4 max-h-96 overflow-y-auto" id="searchResults">
 							{loading && <p>Loading...</p>}
 							{error && <p>Error: {error.message}</p>}
 							{results.map((result) => (
-								<div key={result.id} className="border-b border-gray-700 p-2">
-									<a href={result.uri} className="text-white hover:underline">
+								<div className="border-b border-gray-700 p-2" key={result.id}>
+									<a className="text-white hover:underline" href={result.uri}>
 										{result.title}
 									</a>
 								</div>
