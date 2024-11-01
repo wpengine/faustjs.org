@@ -52,7 +52,7 @@ export default function Index() {
 					</div>
 				</section>
 				<section className="bg-gray-950">
-					<div className="container-main container prose prose-invert py-14 prose-h2:font-medium prose-h3:my-4 lg:py-24">
+					<div className="container-main container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
 						<h2 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
 							The features you need to build a headless WordPress site with.
 						</h2>
