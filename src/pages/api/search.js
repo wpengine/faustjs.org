@@ -1,5 +1,10 @@
 import process from "node:process";
 
+// Example input: /src/pages/docs/how-to/authentication/index.mdx
+// Example output: /docs/how-to/authentication
+const generateDocPath = (filePath) =>
+	filePath.replace(/^\/src\/pages/, "").replace(/\/index\.mdx$/, "");
+
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
 	const accessToken = process.env.NEXT_SEARCH_ACCESS_TOKEN;
@@ -48,7 +53,7 @@ export default async function handler(req, res) {
 				return {
 					id: content.id,
 					title: content.data.title || "Untitled",
-					path: content.data.path || "#", // TODO - make this a relative path, like /docs/slug
+					path: content.data.path ? generateDocPath(content.data.path) : "#",
 					type: contentType,
 				};
 			}
@@ -56,12 +61,12 @@ export default async function handler(req, res) {
 			return {
 				id: content.id,
 				title: content.data.post_title || "Untitled",
-				path: content.data.path || "#", // TODO - make this a relative path, like /blog/slug for a blog post or /slug for a page
+				path: `/blog/${content.data.post_name}`,
 				type: contentType,
 			};
 		});
 
-		return res.status(200).json({ results: formattedResults });
+		return res.status(200).json(formattedResults);
 	} catch (error) {
 		console.error("Error fetching MDX data:", error);
 		return res.status(500).json({ error: error.message });

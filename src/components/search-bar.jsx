@@ -1,28 +1,22 @@
-import { useEffect, useRef } from "react";
-import AsyncSelect from "react-select/async";
-import debounce from "just-debounce-it";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-
-async function fetchFromApi(query) {
-	try {
-		const res = await fetch(`/api/search?query=${encodeURIComponent(query)}`);
-		if (!res.ok) throw new Error(`Error: ${res.status} - ${res.statusText}`);
-		const data = await res.json();
-		return data.results || [];
-	} catch (error) {
-		console.error("Fetch error:", error);
-		return [];
-	}
-}
+import { useCombobox } from "downshift";
+import debounce from "lodash.debounce";
+import { useState, useEffect, useRef } from "react";
 
 export default function SearchBar() {
+	const [items, setItems] = useState([]); // Search results
+	const [inputValue, setInputValue] = useState(""); // Input value
 	const dialogRef = useRef(null);
 
 	const openModal = () => dialogRef.current?.showModal();
 	const closeModal = () => dialogRef.current?.close();
 
 	const handleOutsideClick = (event) => {
-		if (event.target === dialogRef.current) closeModal();
+		if (event.target === dialogRef.current) {
+			closeModal();
+			setInputValue("");
+			setItems([]);
+		}
 	};
 
 	const handleKeyDown = (event) => {
@@ -30,29 +24,71 @@ export default function SearchBar() {
 			event.preventDefault();
 			openModal();
 		}
-		if (event.key === "Escape") closeModal();
+
+		if (event.key === "Escape") {
+			closeModal();
+		}
 	};
 
 	useEffect(() => {
 		document.addEventListener("keydown", handleKeyDown);
 		return () => document.removeEventListener("keydown", handleKeyDown);
-	}, [handleKeyDown]);
+	}, []);
 
-	const handleSearchDebounced = debounce(async (inputValue) => {
-		console.log("handleSearchDebounced called!");
-		if (!inputValue) {
-			return [];
-		}
+	// Reference to store the debounced fetch function
+	const debouncedFetchItems = useRef(
+		debounce(async (value) => {
+			if (!value) {
+				setItems([]);
+				return;
+			}
 
-		return fetchFromApi(inputValue);
-	}, 500);
+			try {
+				const response = await fetch(
+					`/api/search?query=${encodeURIComponent(value)}`,
+				);
+				const data = await response.json();
+				setItems(data);
+			} catch (error) {
+				console.error("Error fetching search results:", error);
+			}
+		}, 500),
+	).current;
+
+	useEffect(() => {
+		// Cleanup function to cancel debounced calls on unmount
+		return () => {
+			debouncedFetchItems.cancel();
+		};
+	}, [debouncedFetchItems]);
+
+	const {
+		isOpen,
+		getMenuProps,
+		getInputProps,
+		getItemProps,
+		highlightedIndex,
+	} = useCombobox({
+		items,
+		inputValue,
+		onInputValueChange: ({ inputValue: newValue }) => {
+			setInputValue(newValue);
+			debouncedFetchItems(newValue);
+		},
+		// onSelectedItemChange: ({ selectedItem }) => {
+		// 	if (selectedItem) {
+		// 		window.location.href = selectedItem.path;
+		// 	}
+		// },
+		itemToString: (item) => (item ? item.title : ""),
+	});
 
 	return (
 		<>
 			<button
 				className="inline-flex items-center rounded-md bg-gray-800 px-2 py-1.5 text-sm font-medium text-gray-400 hover:bg-gray-700"
-				type="button"
 				onClick={openModal}
+				type="button"
 			>
 				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
@@ -64,8 +100,8 @@ export default function SearchBar() {
 			</button>
 
 			<dialog
-				ref={dialogRef}
 				className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
+				ref={dialogRef}
 				onClick={handleOutsideClick}
 			>
 				<button
@@ -75,49 +111,47 @@ export default function SearchBar() {
 				>
 					Esc
 				</button>
-				<AsyncSelect cacheOptions loadOptions={handleSearchDebounced} />
-				{/* <div className="relative mt-8 flex items-center">
+				<div>
 					<input
-						type="text"
-						placeholder="Search documentation..."
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-						className="w-full rounded-lg bg-gray-800 py-2 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+						autoFocus
+						{...getInputProps({
+							placeholder: "Search...",
+							"aria-label": "Search input",
+							style: { width: "100%", padding: "8px" },
+						})}
 					/>
-					<MagnifyingGlassIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+					<ul {...getMenuProps()}>
+						{isOpen &&
+							items.map((item, index) => {
+								const isHighlighted = highlightedIndex === index;
+								return (
+									<li
+										key={item.id}
+										{...getItemProps({
+											item,
+											index,
+										})}
+										style={{
+											backgroundColor: isHighlighted ? "#bde4ff" : "white",
+											padding: "8px",
+										}}
+									>
+										<a
+											href={item.path}
+											style={{
+												textDecoration: "none",
+												color: "inherit",
+												display: "block",
+											}}
+										>
+											{item.title}
+										</a>
+									</li>
+								);
+							})}
+					</ul>
 				</div>
-				<div id="searchResults" className="mt-4 max-h-96 overflow-y-auto">
-					{loading && <p className="text-white">Loading...</p>}
-					{results.length === 0 && query && !loading && (
-						<p className="text-white">No results found.</p>
-					)}
-					{renderSearchResults(results)}
-				</div> */}
 			</dialog>
 		</>
 	);
 }
-
-// function renderSearchResults(results) {
-// 	return results
-// 		.filter((result) => result.title && result.title !== "Untitled") // Filter out "Untitled" items
-// 		.map((result, index) => {
-// 			const title = result.title || "Untitled";
-// 			const type = result.type === "blog" ? "Blog Post" : "Documentation";
-
-// 			let path = result.path;
-// 			if (result.type === "doc") {
-// 				path = path.replace(/^\/pages/, "").replace(/\/index\.mdx$/, "");
-// 			} else if (result.type === "blog") {
-// 				path = path.replace(/^\/blog\/blog\//, "/blog/");
-// 			}
-
-// 			return (
-// 				<div key={index} className="border-b border-gray-700 p-2">
-// 					<a href={path} className="text-white hover:underline">
-// 						{title} <span className="text-gray-500">({type})</span>
-// 					</a>
-// 				</div>
-// 			);
-// 		});
-// }
