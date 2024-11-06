@@ -1,8 +1,4 @@
-import {
-	SiDiscord,
-	SiGithub,
-	SiWordpress,
-} from "@icons-pack/react-simple-icons";
+import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
 import FaustLogo from "./faust-logo";
 import PrimaryMenu from "./primary-menu";
 import SearchBar from "./search-bar";
@@ -13,11 +9,6 @@ const socialIcons = [
 		name: "GitHub",
 		url: "https://github.com/wpengine/faustjs",
 		icon: SiGithub,
-	},
-	{
-		name: "WordPress",
-		url: "https://wordpress.org/plugins/faustwp/",
-		icon: SiWordpress,
 	},
 	{
 		name: "Discord",
