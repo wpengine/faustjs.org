@@ -1,41 +1,49 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/router";
 
 export default function SearchBar() {
-	const [items, setItems] = useState([]); // Search results
-	const [inputValue, setInputValue] = useState(""); // Input value
+	const [items, setItems] = useState([]);
+	const [inputValue, setInputValue] = useState("");
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const dialogRef = useRef(null);
+	const router = useRouter(); // Get router instance
 
-	const openModal = () => dialogRef.current?.showModal();
-	const closeModal = () => dialogRef.current?.close();
+	const openModal = useCallback(() => setIsModalOpen(true), []);
+	const closeModal = useCallback(() => setIsModalOpen(false), []);
 
-	const handleOutsideClick = (event) => {
-		if (event.target === dialogRef.current) {
-			closeModal();
-			setInputValue("");
-			setItems([]);
-		}
-	};
+	const handleOutsideClick = useCallback(
+		(event) => {
+			if (event.target === dialogRef.current) {
+				closeModal();
+				setInputValue("");
+				setItems([]);
+			}
+		},
+		[closeModal],
+	);
 
-	const handleKeyDown = (event) => {
-		if (event.metaKey && event.key === "k") {
-			event.preventDefault();
-			openModal();
-		}
+	const handleKeyDown = useCallback(
+		(event) => {
+			if (event.metaKey && event.key === "k") {
+				event.preventDefault();
+				openModal();
+			}
 
-		if (event.key === "Escape") {
-			closeModal();
-		}
-	};
+			if (event.key === "Escape") {
+				closeModal();
+			}
+		},
+		[openModal, closeModal],
+	);
 
 	useEffect(() => {
 		document.addEventListener("keydown", handleKeyDown);
 		return () => document.removeEventListener("keydown", handleKeyDown);
-	}, []);
+	}, [handleKeyDown]);
 
-	// Reference to store the debounced fetch function
 	const debouncedFetchItems = useRef(
 		debounce(async (value) => {
 			if (!value) {
@@ -56,7 +64,6 @@ export default function SearchBar() {
 	).current;
 
 	useEffect(() => {
-		// Cleanup function to cancel debounced calls on unmount
 		return () => {
 			debouncedFetchItems.cancel();
 		};
@@ -68,18 +75,27 @@ export default function SearchBar() {
 		getInputProps,
 		getItemProps,
 		highlightedIndex,
+		openMenu,
+		closeMenu,
 	} = useCombobox({
 		items,
 		inputValue,
+		defaultHighlightedIndex: 0, // Highlight the first item by default
 		onInputValueChange: ({ inputValue: newValue }) => {
 			setInputValue(newValue);
 			debouncedFetchItems(newValue);
+			if (newValue.trim() !== "") {
+				openMenu();
+			} else {
+				closeMenu();
+			}
 		},
-		// onSelectedItemChange: ({ selectedItem }) => {
-		// 	if (selectedItem) {
-		// 		window.location.href = selectedItem.path;
-		// 	}
-		// },
+		onSelectedItemChange: ({ selectedItem }) => {
+			if (selectedItem) {
+				closeModal();
+				router.push(selectedItem.path);
+			}
+		},
 		itemToString: (item) => (item ? item.title : ""),
 	});
 
@@ -99,59 +115,62 @@ export default function SearchBar() {
 				</span>
 			</button>
 
-			<dialog
-				className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
-				ref={dialogRef}
-				onClick={handleOutsideClick}
-			>
-				<button
-					type="button"
-					className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
-					onClick={closeModal}
+			{isModalOpen && (
+				<div
+					className="bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50"
+					onClick={handleOutsideClick}
+					ref={dialogRef}
 				>
-					Esc
-				</button>
-				<div>
-					<input
-						autoFocus
-						{...getInputProps({
-							placeholder: "Search...",
-							"aria-label": "Search input",
-							style: { width: "100%", padding: "8px" },
-						})}
-					/>
-					<ul {...getMenuProps()}>
-						{isOpen &&
-							items.map((item, index) => {
-								const isHighlighted = highlightedIndex === index;
-								return (
-									<li
-										key={item.id}
-										{...getItemProps({
-											item,
-											index,
-										})}
-										style={{
-											backgroundColor: isHighlighted ? "#bde4ff" : "white",
-											padding: "8px",
-										}}
-									>
-										<a
-											href={item.path}
-											style={{
-												textDecoration: "none",
-												color: "inherit",
-												display: "block",
-											}}
-										>
-											{item.title}
-										</a>
-									</li>
-								);
-							})}
-					</ul>
+					<div
+						className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
+						onClick={(e) => e.stopPropagation()}
+					>
+						<button
+							type="button"
+							className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
+							onClick={closeModal}
+						>
+							Esc
+						</button>
+						<div role="combobox" aria-expanded={isOpen} aria-haspopup="listbox">
+							<input
+								autoFocus
+								{...getInputProps({
+									placeholder: "Search...",
+									"aria-label": "Search input",
+									className:
+										"w-full p-2 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500",
+								})}
+							/>
+							<ul {...getMenuProps()} className="mt-2 max-h-60 overflow-y-auto">
+								{isOpen &&
+									items.map((item, index) => {
+										const isHighlighted = highlightedIndex === index;
+										return (
+											<li
+												key={item.id}
+												{...getItemProps({
+													key: item.id,
+													index,
+													item,
+												})}
+												className={`cursor-pointer ${
+													isHighlighted
+														? "bg-blue-600 text-white"
+														: "bg-gray-800 text-white"
+												}`}
+											>
+												<div className="text-inherit block w-full p-2 no-underline">
+													{item.title}
+												</div>
+											</li>
+										);
+									})}
+							</ul>
+						</div>
+					</div>
 				</div>
-			</dialog>
+			)}
 		</>
 	);
 }
