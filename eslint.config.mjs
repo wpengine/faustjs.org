@@ -41,6 +41,7 @@ const config = [
 			"react/prop-types": "off",
 			...unicorn.configs["flat/recommended"].rules, // neno disables a lot of unicorn rules so this reenables defaults
 			"react/no-danger": "warn",
+			"react/jsx-sort-props": "off",
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{
@@ -51,6 +52,8 @@ const config = [
 						doc: true,
 						Doc: true,
 						Docs: true,
+						req: true,
+						res: true,
 					},
 				},
 			],
