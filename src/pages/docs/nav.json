@@ -14,7 +14,11 @@
 		]
 	},
 	{
-		"title": "Integrating with WordPress",
+		"title": "Integrating with WordPress"
+	},
+	{
+		"title": "Faust Features",
+		"route": "/docs/how-to/",
 		"children": [
 			{
 				"title": "Authentication",
