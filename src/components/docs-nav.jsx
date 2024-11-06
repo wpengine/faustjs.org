@@ -1,8 +1,9 @@
 import Link from "@/components/link";
+import { classNames } from "@/utils/strings";
 
-export default function DocsNav({ routes }) {
+export default function DocsNav({ routes, className }) {
 	return (
-		<ul>
+		<ul className={classNames("", className)}>
 			{routes.map((item) => (
 				<NavItem key={item.title} item={item} />
 			))}
