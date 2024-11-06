@@ -17,7 +17,7 @@ export default function Index() {
 				<div className="container-main container prose prose-invert mt-0 md:prose-lg lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
 					<div className="mx-auto max-w-4xl px-8 py-14 text-center lg:py-24">
 						<h1 className="bg-gradient-to-br from-purple-300 to-teal-300 bg-clip-text text-transparent">
-							The Headless WordPress Toolkit for Next.js
+							The Next.js Headless Toolkit for WordPress
 						</h1>
 						<p className="mx-auto max-w-xl">
 							A robust set of tools for Next.js that unlock powerful headless
@@ -38,7 +38,7 @@ export default function Index() {
 							<Link
 								className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 								disableExternalIcon
-								href="https://discord.gg/J2khkF9XYK"
+								href="/discord"
 								noDefaultStyles
 							>
 								Join the Discord
@@ -54,7 +54,7 @@ export default function Index() {
 			<section className="bg-gray-950">
 				<div className="container-main container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
 					<h2 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
-						The features you need to build a headless WordPress site with.
+						The features you need to build headless WordPress sites.
 					</h2>
 					<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
 						<Card
