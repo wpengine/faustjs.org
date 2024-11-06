@@ -17,7 +17,7 @@ export default function CustomLink({
 		className,
 	);
 
-	if (href.startsWith("http")) {
+	if (href.startsWith("http") || href === "/discord") {
 		return (
 			<a
 				className={calculatedClasses}
