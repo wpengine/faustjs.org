@@ -23,11 +23,8 @@ export default function DocumentPage({ children }) {
 					)}
 					<span className="pl-1">Menu</span>
 				</button>
-				<nav className="">
-					<DocsNav
-						routes={routes}
-						className={classNames({ hidden: !isOpen })}
-					/>
+				<nav className={classNames({ hidden: !isOpen })}>
+					<DocsNav routes={routes} />
 				</nav>
 			</div>
 			<div className="lg:max-w-8xl mx-auto flex flex-col gap-6 lg:flex-row">

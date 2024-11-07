@@ -4,10 +4,10 @@ import { useState } from "react";
 import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
 
-export default function DocsNav({ routes, className, level = 0 }) {
+export default function DocsNav({ routes, level = 0 }) {
 	return (
 		<ul
-			className={classNames("my-1", className, {
+			className={classNames("my-1", {
 				"ml-2 border-l-[.5px] border-gray-500": level > 0,
 			})}
 			data-doc-nav-level={level}
@@ -62,7 +62,7 @@ function DropdownNavItem({ item, level }) {
 					<ChevronRightIcon className="inline h-4 w-4" />
 				)}
 			</Link>
-			{isCurrent && <DocsNav level={++level} routes={item.children} />}
+			{isCurrent && <DocsNav level={level + 1} routes={item.children} />}
 		</li>
 	);
 }
