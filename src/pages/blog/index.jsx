@@ -1,6 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { getNextStaticProps } from "@faustwp/core";
 import Link from "next/link";
+import Card from "@/components/card";
+import Date from "@/components/date";
 
 export default function BlogIndex() {
 	const {
@@ -15,28 +17,34 @@ export default function BlogIndex() {
 	if (error) return <p>Error! {error.message}</p>;
 
 	return (
-		<div className="container-main container mb-24 mt-16 lg:mb-32 lg:mt-16">
-			<h1 className="mb-8 text-3xl font-bold">Faust.js news</h1>
-			<ul>
+		<main className="container-main container prose prose-invert px-8 py-14 prose-h2:mt-0 prose-h2:text-lg lg:px-16 lg:py-24">
+			<h1 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
+				Faust.js news
+			</h1>
+			<ul className="mt-8 grid list-none auto-rows-max grid-cols-6 gap-4 pl-0 md:grid-cols-12 md:gap-6 xl:gap-8">
 				{posts.map((post) => (
-					<li className="mb-8" key={post.databaseId}>
-						<div className="mb-2 text-gray-600">
-							{new Date(post.date).toLocaleDateString()}
-						</div>
-						<Link href={post.uri}>
-							<h2 className="mb-2 text-2xl font-semibold">{post.title}</h2>
-						</Link>
+					<Card
+						as="li"
+						className="group relative col-span-full flex flex-col rounded-2xl p-4 shadow-gray-900 transition duration-100 hover:bg-gray-900 hover:shadow-xl hover:ring-blue-600/40 md:col-span-6 md:p-6 lg:col-span-4 lg:p-8"
+						key={post.databaseId}
+					>
+						<h2>
+							<Link
+								className="text-gray-300 no-underline before:absolute before:inset-0 before:block"
+								href={post.uri}
+							>
+								{post.title}
+							</Link>
+						</h2>
+						<Date className="text-blue-100/70" dateString={post.date} />
 						<div
 							className="mb-4"
 							dangerouslySetInnerHTML={{ __html: post.excerpt }}
 						/>
-						<Link className="text-blue-500 hover:underline" href={post.uri}>
-							Read more
-						</Link>
-					</li>
+					</Card>
 				))}
 			</ul>
-		</div>
+		</main>
 	);
 }
 

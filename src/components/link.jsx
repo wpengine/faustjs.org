@@ -1,4 +1,4 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { classNames } from "@/utils/strings";
 
@@ -17,7 +17,7 @@ export default function CustomLink({
 		className,
 	);
 
-	if (href.startsWith("http")) {
+	if (href.startsWith("http") || href === "/discord") {
 		return (
 			<a
 				className={calculatedClasses}

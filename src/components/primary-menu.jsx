@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import Link from "@/components/link";
 
@@ -37,27 +38,36 @@ export default function PrimaryMenu() {
 	const menuItems = data?.menu?.menuItems?.nodes || [];
 
 	return (
-		<nav className="text-sm">
-			<div className="flex items-center justify-between">
-				<button
-					className="text-2xl text-white md:hidden"
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					{isOpen ? "✖" : "☰"}
-				</button>
-			</div>
+		<nav className="relative">
+			<button
+				className={`group px-2 py-1.5 text-white/70 hover:text-white md:hidden ${isOpen ? "rounded-t-md bg-gray-800/80" : "rounded-md"}`}
+				onClick={() => setIsOpen(!isOpen)}
+				type="button"
+			>
+				{isOpen ? (
+					<XMarkIcon className="relative z-20 inline h-5 w-5" />
+				) : (
+					<Bars3Icon className="inline h-5 w-5" />
+				)}
+			</button>
 			<ul
 				className={`md:flex ${
-					isOpen ? "mt-4 flex flex-col items-center" : "hidden"
-				} md:flex-row md:gap-6`}
+					isOpen
+						? "absolute right-0 top-full z-10 rounded-bl-md rounded-br-md rounded-tl-md bg-gray-800/80 px-9 py-5 text-right backdrop-blur-sm"
+						: "hidden"
+				} md:flex-row md:gap-2 md:text-sm`}
 			>
 				{menuItems.length > 0 ? (
 					menuItems.map((item) => (
 						<li
-							className="my-2 text-gray-400 hover:text-gray-200 md:my-0"
+							className="text-gray-400 hover:text-gray-200"
 							key={item.databaseId}
 						>
-							<Link href={item.uri} noDefaultStyles>
+							<Link
+								className="block px-1 py-1.5"
+								href={item.uri}
+								noDefaultStyles
+							>
 								{item.label}
 							</Link>
 						</li>

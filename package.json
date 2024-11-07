@@ -28,6 +28,7 @@
 		"@sindresorhus/slugify": "^2.2.1",
 		"classnames": "^2.5.1",
 		"downshift": "^9.0.8",
+		"date-fns": "^4.1.0",
 		"graphql": "^16.8.1",
 		"html-to-text": "^9.0.5",
 		"lodash.debounce": "^4.0.8",

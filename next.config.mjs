@@ -25,7 +25,7 @@ const nextConfig = {
 		return [
 			{
 				source: "/discord",
-				destination: "https://discord.gg/J2khkF9XYK",
+				destination: "https://discord.gg/headless-wordpress-836253505944813629",
 				permanent: false,
 			},
 		];

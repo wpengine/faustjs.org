@@ -1,6 +1,6 @@
 export default function DocsLayout({ children }) {
 	return (
-		<div className="container-main container prose-lg prose-invert mb-24 mt-16 lg:mb-32 lg:mt-16">
+		<div className="container-main container prose prose-invert px-8 py-14 lg:px-16 lg:py-24">
 			{children}
 		</div>
 	);
