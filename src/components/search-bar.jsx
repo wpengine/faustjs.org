@@ -3,13 +3,14 @@ import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function SearchBar() {
 	const [items, setItems] = useState([]);
 	const [inputValue, setInputValue] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const dialogRef = useRef(null);
-	const router = useRouter(); // Get router instance
+	const router = useRouter();
 
 	const openModal = useCallback(() => setIsModalOpen(true), []);
 	const closeModal = useCallback(() => setIsModalOpen(false), []);
@@ -31,7 +32,6 @@ export default function SearchBar() {
 				event.preventDefault();
 				openModal();
 			}
-
 			if (event.key === "Escape") {
 				closeModal();
 			}
@@ -56,7 +56,12 @@ export default function SearchBar() {
 					`/api/search?query=${encodeURIComponent(value)}`,
 				);
 				const data = await response.json();
-				setItems(data);
+				setItems(
+					data.map((item) => ({
+						...item,
+						path: cleanPath(item.path), // Apply URL cleanup
+					})),
+				);
 			} catch (error) {
 				console.error("Error fetching search results:", error);
 			}
@@ -80,7 +85,7 @@ export default function SearchBar() {
 	} = useCombobox({
 		items,
 		inputValue,
-		defaultHighlightedIndex: 0, // Highlight the first item by default
+		defaultHighlightedIndex: 0,
 		onInputValueChange: ({ inputValue: newValue }) => {
 			setInputValue(newValue);
 			debouncedFetchItems(newValue);
@@ -147,23 +152,21 @@ export default function SearchBar() {
 									items.map((item, index) => {
 										const isHighlighted = highlightedIndex === index;
 										return (
-											<li
-												key={item.id}
-												{...getItemProps({
-													key: item.id,
-													index,
-													item,
-												})}
-												className={`cursor-pointer ${
-													isHighlighted
-														? "bg-blue-600 text-white"
-														: "bg-gray-800 text-white"
-												}`}
-											>
-												<div className="text-inherit block w-full p-2 no-underline">
+											<Link href={item.path} key={item.id} passHref>
+												<li
+													{...getItemProps({
+														item,
+														index,
+													})}
+													className={`block w-full cursor-pointer p-2 ${
+														isHighlighted
+															? "bg-blue-600 text-white"
+															: "bg-gray-800 text-white"
+													}`}
+												>
 													{item.title}
-												</div>
-											</li>
+												</li>
+											</Link>
 										);
 									})}
 							</ul>
