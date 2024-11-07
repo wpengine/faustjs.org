@@ -1,5 +1,4 @@
-// pages/404.js
-import Link from "next/link";
+import CustomLink from "@/components/link";
 
 export default function Custom404() {
 	const suggestions = [
@@ -22,11 +21,11 @@ export default function Custom404() {
 			</p>
 			<div className="mt-8 text-6xl" aria-hidden="true">
 				🧭
-			</div>
+			</div>{" "}
 			{/* Fun emoji character */}
 			<p className="mt-4 text-lg text-white">
-				You seem to have reached a non-existent page. Please try the searching
-				with the search bar or one of the links below.
+				You seem to have reached a non-existent page. Please try one of the
+				links below.
 			</p>
 			<section aria-labelledby="suggestions-title" className="mt-6">
 				<h2 id="suggestions-title" className="text-lg text-white">
@@ -35,11 +34,12 @@ export default function Custom404() {
 				<ul className="mt-4 space-y-2">
 					{suggestions.map((suggestion, index) => (
 						<li key={index} className="text-lg">
-							<Link href={suggestion.href}>
-								<span className="text-blue-400 hover:underline">
-									{suggestion.title}
-								</span>
-							</Link>
+							<CustomLink
+								href={suggestion.href}
+								className="text-blue-400 hover:underline"
+							>
+								{suggestion.title}
+							</CustomLink>
 						</li>
 					))}
 				</ul>
