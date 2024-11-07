@@ -21,11 +21,10 @@ export default function Custom404() {
 			</p>
 			<div className="mt-8 text-6xl" aria-hidden="true">
 				🧭
-			</div>{" "}
-			{/* Fun emoji character */}
+			</div>
 			<p className="mt-4 text-lg text-white">
-				You seem to have reached a non-existent page. Please try one of the
-				links below.
+				You seem to have reached a non-existent page. Please try search or one
+				of the links below.
 			</p>
 			<section aria-labelledby="suggestions-title" className="mt-6">
 				<h2 id="suggestions-title" className="text-lg text-white">
