@@ -4,7 +4,6 @@ import debounce from "lodash.debounce";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
 import CustomLink from "@/components/link";
-
 export default function SearchBar() {
 	const [items, setItems] = useState([]);
 	const [inputValue, setInputValue] = useState("");
@@ -12,7 +11,12 @@ export default function SearchBar() {
 	const dialogRef = useRef(null);
 	const router = useRouter();
 
-	const openModal = useCallback(() => setIsModalOpen(true), []);
+	const openModal = useCallback(() => {
+		setIsModalOpen(true);
+		setInputValue("");
+		setItems([]);
+	}, [setInputValue, setItems]);
+
 	const closeModal = useCallback(() => setIsModalOpen(false), []);
 
 	const handleOutsideClick = useCallback(
@@ -117,31 +121,33 @@ export default function SearchBar() {
 
 			{isModalOpen && (
 				<div
-					className="bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50"
+					className="bg-black fixed inset-0 z-50 flex items-start justify-center bg-opacity-50 backdrop-blur-sm"
 					onClick={handleOutsideClick}
 					ref={dialogRef}
 				>
 					<div
-						className="relative w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
+						className="relative mt-10 w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
 						onClick={(e) => e.stopPropagation()}
 					>
-						<button
-							type="button"
-							className="absolute right-4 top-4 rounded-md bg-gray-800 px-2 py-1 text-xs text-gray-400 hover:bg-gray-700"
-							onClick={closeModal}
-						>
-							Esc
-						</button>
 						<div role="combobox" aria-expanded={isOpen} aria-haspopup="listbox">
-							<input
-								autoFocus
-								{...getInputProps({
-									placeholder: "Search...",
-									"aria-label": "Search input",
-									className:
-										"w-full p-2 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500",
-								})}
-							/>
+							<div className="relative">
+								<input
+									autoFocus
+									{...getInputProps({
+										placeholder: "What are you searching for?",
+										"aria-label": "Search input",
+										className:
+											"w-full pr-10 p-2 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500",
+									})}
+								/>
+								<button
+									type="button"
+									className="absolute right-2 top-1/2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
+									onClick={closeModal}
+								>
+									Esc
+								</button>
+							</div>
 							<ul {...getMenuProps()} className="mt-2 max-h-60 overflow-y-auto">
 								{isOpen &&
 									items.map((item, index) => {
@@ -149,6 +155,7 @@ export default function SearchBar() {
 										return (
 											<CustomLink href={item.path} key={item.id} passHref>
 												<li
+													key={item.id}
 													{...getItemProps({
 														item,
 														index,
