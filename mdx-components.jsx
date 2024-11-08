@@ -1,21 +1,28 @@
+import slugify from "@sindresorhus/slugify";
 import Image from "next/image";
 import DocsLayout from "@/components/docs-layout";
 import CustomLink from "@/components/link";
-// This file allows you to provide custom React components
-// to be used in MDX files. You can import and use any
-// React component you want, including inline styles,
-// components from other libraries, and more.
+
+// Custom heading component with clickable anchor links
+const Heading = ({ level, children, ...props }) => {
+	const Tag = `h${level}`;
+	// Ensure children are treated as a single string for slug generation
+	const textContent = Array.isArray(children)
+		? children.join("") // Join array items if children is an array
+		: children?.toString() || ""; // Convert children to string or fallback to empty
+	const id = slugify(textContent); // Generate slug from heading text
+
+	return (
+		<Tag id={id} {...props} className="group">
+			<CustomLink href={`#${id}`} className="text-blue-500 no-underline">
+				{children}
+			</CustomLink>
+		</Tag>
+	);
+};
 
 export function useMDXComponents(components) {
 	return {
-		// Allows customizing built-in components, e.g. to add styling.
-		// pre: ({children, ...props}) => {
-		//   return <pre {...props}>{children}</pre>
-		// },
-		// code: ({children, ...props}) => {
-		//   console.log("code", props)
-		//   return <code >{children}</code>
-		// },
 		img: ({ src }, ...props) => (
 			<Image
 				alt={props.alt}
@@ -29,6 +36,12 @@ export function useMDXComponents(components) {
 		),
 		a: (props) => <CustomLink {...props} />,
 		wrapper: DocsLayout,
+		h1: (props) => <Heading level={1} {...props} />,
+		h2: (props) => <Heading level={2} {...props} />,
+		h3: (props) => <Heading level={3} {...props} />,
+		h4: (props) => <Heading level={4} {...props} />,
+		h5: (props) => <Heading level={5} {...props} />,
+		h6: (props) => <Heading level={6} {...props} />,
 		...components,
 	};
 }
