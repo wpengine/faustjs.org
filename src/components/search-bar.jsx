@@ -1,14 +1,14 @@
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/router";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/router";
-import CustomLink from "@/components/link";
+
 export default function SearchBar() {
 	const [items, setItems] = useState([]);
 	const [inputValue, setInputValue] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const dialogRef = useRef(null);
+	const dialogReference = useRef(null);
 	const router = useRouter();
 
 	const openModal = useCallback(() => {
@@ -21,7 +21,7 @@ export default function SearchBar() {
 
 	const handleOutsideClick = useCallback(
 		(event) => {
-			if (event.target === dialogRef.current) {
+			if (event.target === dialogReference.current) {
 				closeModal();
 				setInputValue("");
 				setItems([]);
@@ -47,6 +47,8 @@ export default function SearchBar() {
 		document.addEventListener("keydown", handleKeyDown);
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [handleKeyDown]);
+
+	// Add a blank line before this statement
 
 	const debouncedFetchItems = useRef(
 		debounce(async (value) => {
@@ -88,10 +90,10 @@ export default function SearchBar() {
 		onInputValueChange: ({ inputValue: newValue }) => {
 			setInputValue(newValue);
 			debouncedFetchItems(newValue);
-			if (newValue.trim() !== "") {
-				openMenu();
-			} else {
+			if (newValue.trim() === "") {
 				closeMenu();
+			} else {
+				openMenu();
 			}
 		},
 		onSelectedItemChange: ({ selectedItem }) => {
@@ -123,13 +125,28 @@ export default function SearchBar() {
 				<div
 					className="bg-black fixed inset-0 z-50 flex items-start justify-center bg-opacity-50 backdrop-blur-sm"
 					onClick={handleOutsideClick}
-					ref={dialogRef}
+					onKeyDown={(event) => {
+						if (event.key === "Enter" || event.key === " ") {
+							handleOutsideClick(event);
+						}
+					}}
+					role="button"
+					tabIndex="0"
+					ref={dialogReference}
 				>
 					<div
 						className="relative mt-10 w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
-						onClick={(e) => e.stopPropagation()}
+						onClick={(event) => event.stopPropagation()}
+						onKeyDown={(event) => event.stopPropagation()}
+						role="dialog"
+						tabIndex="-1"
 					>
-						<div role="combobox" aria-expanded={isOpen} aria-haspopup="listbox">
+						<div
+							role="combobox"
+							aria-expanded={isOpen}
+							aria-haspopup="listbox"
+							aria-controls="search-results"
+						>
 							<div className="relative">
 								<input
 									autoFocus
@@ -148,29 +165,42 @@ export default function SearchBar() {
 									Esc
 								</button>
 							</div>
-							<ul {...getMenuProps()} className="mt-2 max-h-60 overflow-y-auto">
+							<ul
+								{...getMenuProps({
+									id: "search-results",
+								})}
+								className="mt-2 max-h-60 overflow-y-auto"
+							>
 								{isOpen &&
-									items.map((item, index) => {
-										const isHighlighted = highlightedIndex === index;
-										return (
-											<CustomLink href={item.path} key={item.id} passHref>
-												<li
-													key={item.id}
-													{...getItemProps({
-														item,
-														index,
-													})}
-													className={`block w-full cursor-pointer p-2 ${
-														isHighlighted
-															? "bg-blue-600 text-white"
-															: "bg-gray-800 text-white"
-													}`}
-												>
-													{item.title}
-												</li>
-											</CustomLink>
-										);
-									})}
+									items.map((item, index) => (
+										<li
+											key={item.id}
+											{...getItemProps({
+												item,
+												index,
+												onClick: () => {
+													closeModal();
+													router.push(item.path);
+												},
+												onKeyDown: (event) => {
+													if (event.key === "Enter") {
+														closeModal();
+														router.push(item.path);
+													}
+												},
+											})}
+											role="option"
+											aria-selected={highlightedIndex === index}
+											tabIndex={0}
+											className={`block w-full cursor-pointer p-2 ${
+												highlightedIndex === index
+													? "bg-blue-600 text-white"
+													: "bg-gray-800 text-white"
+											}`}
+										>
+											{item.title}
+										</li>
+									))}
 							</ul>
 						</div>
 					</div>

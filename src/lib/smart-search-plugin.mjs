@@ -46,7 +46,7 @@ async function collectPages(directory) {
 
 			// Safely extract metadata using regex
 			const metadataMatch = content.match(
-				/export const metadata = ({[\s\S]+?});/,
+				/export const metadata = ({[\S\s]+?});/,
 			);
 			let metadata = {};
 
