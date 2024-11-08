@@ -3,7 +3,7 @@ import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import CustomLink from "@/components/link";
 
 export default function SearchBar() {
 	const [items, setItems] = useState([]);
@@ -56,12 +56,7 @@ export default function SearchBar() {
 					`/api/search?query=${encodeURIComponent(value)}`,
 				);
 				const data = await response.json();
-				setItems(
-					data.map((item) => ({
-						...item,
-						path: cleanPath(item.path), // Apply URL cleanup
-					})),
-				);
+				setItems(data);
 			} catch (error) {
 				console.error("Error fetching search results:", error);
 			}
@@ -152,7 +147,7 @@ export default function SearchBar() {
 									items.map((item, index) => {
 										const isHighlighted = highlightedIndex === index;
 										return (
-											<Link href={item.path} key={item.id} passHref>
+											<CustomLink href={item.path} key={item.id} passHref>
 												<li
 													{...getItemProps({
 														item,
@@ -166,7 +161,7 @@ export default function SearchBar() {
 												>
 													{item.title}
 												</li>
-											</Link>
+											</CustomLink>
 										);
 									})}
 							</ul>
