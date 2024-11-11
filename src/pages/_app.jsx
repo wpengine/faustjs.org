@@ -7,12 +7,12 @@ import "@faustwp/core/dist/css/toolbar.css";
 import blocks from "@/wp-blocks";
 
 export default function MyApp({ Component, pageProps }) {
-	const content = <Component {...pageProps} />;
-
 	return (
 		<FaustProvider pageProps={pageProps}>
 			<WordPressBlocksProvider config={{ blocks, theme: undefined }}>
-				<Layout>{content}</Layout>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
 			</WordPressBlocksProvider>
 		</FaustProvider>
 	);
