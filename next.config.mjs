@@ -1,3 +1,4 @@
+import { env } from "node:process";
 import { withFaust, getWpHostname } from "@faustwp/core";
 import createMDX from "@next/mdx";
 import { transformerNotationDiff } from "@shikijs/transformers";
@@ -5,6 +6,7 @@ import { createSecureHeaders } from "next-secure-headers";
 import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
 
 /**
  * @type {import('next').NextConfig}
@@ -50,6 +52,18 @@ const nextConfig = {
 				}),
 			},
 		];
+	},
+	webpack: (config, { isServer }) => {
+		if (isServer) {
+			config.plugins.push(
+				smartSearchPlugin({
+					endpoint: env.NEXT_PUBLIC_SEARCH_ENDPOINT,
+					accessToken: env.NEXT_SEARCH_ACCESS_TOKEN,
+				}),
+			);
+		}
+
+		return config;
 	},
 };
 
