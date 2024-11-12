@@ -18,6 +18,7 @@
 		"@faustwp/blocks": "^4.1.0",
 		"@faustwp/cli": "^3.1.1",
 		"@faustwp/core": "^3.1.0",
+		"@headlessui/react": "^2.2.0",
 		"@heroicons/react": "^2.1.5",
 		"@icons-pack/react-simple-icons": "^10.0.0",
 		"@mdx-js/loader": "^3.0.1",

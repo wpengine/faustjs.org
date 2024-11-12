@@ -1,7 +1,12 @@
 import { gql, useQuery } from "@apollo/client";
+import {
+	Disclosure,
+	DisclosureButton,
+	DisclosurePanel,
+} from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react";
 import Link from "@/components/link";
+import { classNames } from "@/utils/strings";
 
 const GET_PRIMARY_NAV = gql`
 	query GetPrimaryNav {
@@ -19,15 +24,29 @@ const GET_PRIMARY_NAV = gql`
 	}
 `;
 
-export default function PrimaryMenu() {
-	const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
-	const [isOpen, setIsOpen] = useState(false);
+const NavMenu = ({ items, as = Link }) => {
+	const As = as;
 
-	useEffect(() => {
-		if (data) {
-			console.log("Data received:", data);
-		}
-	}, [data]);
+	return items.length > 0 ? (
+		items.map((item) => (
+			<li key={item.databaseId} className="text-gray-400 hover:text-gray-200">
+				<As
+					as={as === Link ? undefined : Link}
+					className="block px-1 py-1.5"
+					href={item.uri}
+					noDefaultStyles
+				>
+					{item.label}
+				</As>
+			</li>
+		))
+	) : (
+		<p>No menu items found</p>
+	);
+};
+
+export default function PrimaryMenu({ className }) {
+	const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) {
@@ -38,44 +57,26 @@ export default function PrimaryMenu() {
 	const menuItems = data?.menu?.menuItems?.nodes || [];
 
 	return (
-		<nav className="relative">
-			<button
-				className={`group px-2 py-1.5 text-white/70 hover:text-white md:hidden ${isOpen ? "rounded-t-md bg-gray-800/80" : "rounded-md"}`}
-				onClick={() => setIsOpen(!isOpen)}
-				type="button"
-			>
-				{isOpen ? (
-					<XMarkIcon className="relative z-20 inline h-5 w-5" />
-				) : (
-					<Bars3Icon className="inline h-5 w-5" />
-				)}
-			</button>
-			<ul
-				className={`md:flex ${
-					isOpen
-						? "absolute right-0 top-full z-10 rounded-bl-md rounded-br-md rounded-tl-md bg-gray-800/80 px-9 py-5 text-right backdrop-blur-sm"
-						: "hidden"
-				} md:flex-row md:gap-2 md:text-sm`}
-			>
-				{menuItems.length > 0 ? (
-					menuItems.map((item) => (
-						<li
-							className="text-gray-400 hover:text-gray-200"
-							key={item.databaseId}
-						>
-							<Link
-								className="block px-1 py-1.5"
-								href={item.uri}
-								noDefaultStyles
-							>
-								{item.label}
-							</Link>
-						</li>
-					))
-				) : (
-					<p>No menu items found</p>
-				)}
+		<Disclosure
+			as="nav"
+			className={classNames("flex items-center space-x-4", className)}
+		>
+			<DisclosureButton className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden">
+				<span className="sr-only">Open main nav</span>
+				<XMarkIcon className="z-20 hidden size-6 group-data-[open]:block" />
+				<Bars3Icon className="size-6 group-data-[open]:hidden" />
+			</DisclosureButton>
+			<ul className="hidden flex-row md:flex">
+				<NavMenu items={menuItems} />
 			</ul>
-		</nav>
+			<DisclosurePanel
+				as="ul"
+				className="absolute inset-0 -left-4 top-[84.5px] md:hidden md:text-sm"
+			>
+				<div className="flex justify-center gap-6 border-b-[.5px] border-gray-400 bg-gray-900/80 backdrop-blur-sm">
+					<NavMenu items={menuItems} as={DisclosureButton} />
+				</div>
+			</DisclosurePanel>
+		</Disclosure>
 	);
 }
