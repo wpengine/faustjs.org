@@ -89,6 +89,7 @@ export default function IndexTemplate() {
 				</div>
 			)}
 			<WordPressBlocksViewer blocks={blockList} />
+
 			{/* <h2>Raw editorBlocks</h2> */}
 			{
 				/**
