@@ -1,7 +1,6 @@
 {
-	"name": "@faustwp/getting-started-example",
+	"name": "faustjs.org Site",
 	"private": true,
-	"version": "0.1.0",
 	"scripts": {
 		"dev": "faust dev",
 		"build": "faust build",
@@ -27,8 +26,8 @@
 		"@shikijs/transformers": "^1.22.2",
 		"@sindresorhus/slugify": "^2.2.1",
 		"classnames": "^2.5.1",
-		"downshift": "^9.0.8",
 		"date-fns": "^4.1.0",
+		"downshift": "^9.0.8",
 		"graphql": "^16.8.1",
 		"html-to-text": "^9.0.5",
 		"lodash.debounce": "^4.0.8",
