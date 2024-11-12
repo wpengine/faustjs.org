@@ -31,7 +31,13 @@ const nextConfig = {
 		];
 	},
 	images: {
-		domains: [getWpHostname()],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: getWpHostname(),
+				pathname: "/**",
+			},
+		],
 	},
 	i18n: {
 		locales: ["en"],
