@@ -28,9 +28,8 @@
 }
 
 @layer theme {
-	a,
-	button {
-		@apply outline-teal-400;
+	* {
+		@apply outline-teal-800;
 	}
 }
 
