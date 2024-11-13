@@ -42,27 +42,6 @@ export default function IndexTemplate() {
 
 	const { editorBlocks } = node;
 
-	const toc = [];
-
-	if (editorBlocks) {
-		editorBlocks
-			.filter((blocks) => blocks?.attributes?.level)
-			.map((block) => {
-				if (block.attributes.level === 2 || block.attributes.level === 3) {
-					const heading = {
-						tagName: `h${block.attributes.level}`,
-						children: [
-							{
-								type: "text",
-								value: block.attributes.content,
-							},
-						],
-					};
-					toc.push(heading);
-				}
-			});
-	}
-
 	const blockList = flatListToHierarchical(editorBlocks, {
 		childrenKey: "innerBlocks",
 	});
@@ -80,7 +59,7 @@ export default function IndexTemplate() {
 
 			{node?.modified && (
 				<div className="text-sm text-gray-500" id="last-updated">
-					Last Upated:{" "}
+					Last Updated:{" "}
 					{new Date(node.modified).toLocaleDateString("en-us", {
 						weekday: "long",
 						year: "numeric",
