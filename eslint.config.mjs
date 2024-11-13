@@ -58,7 +58,6 @@ const config = [
 					},
 				},
 			],
-			"arrow-body-style": ["off"],
 		},
 	},
 
