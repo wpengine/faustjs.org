@@ -10,7 +10,9 @@ const inter = localFont({
 
 export default function Layout({ children }) {
 	return (
-		<div className={`${inter.variable} flex min-h-screen flex-col font-inter`}>
+		<div
+			className={`${inter.variable} flex min-h-screen flex-col font-inter selection:bg-purple-700`}
+		>
 			<Header />
 			{children}
 			<Footer />

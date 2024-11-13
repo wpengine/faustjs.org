@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
@@ -112,6 +112,7 @@ export default function SearchBar() {
 				onClick={openModal}
 				type="button"
 			>
+				<span className="sr-only md:hidden">Open search</span>
 				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
 					<span className="pl-3">Search docs...</span>
