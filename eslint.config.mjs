@@ -38,6 +38,7 @@ const config = [
 			},
 		},
 		rules: {
+			"arrow-body-style": "off",
 			"react/prop-types": "off",
 			...unicorn.configs["flat/recommended"].rules, // neno disables a lot of unicorn rules so this reenables defaults
 			"react/no-danger": "warn",

@@ -1,12 +1,16 @@
 import { gql } from "@apollo/client";
 
-// The Component is required
 export default function Component(props) {
 	return (
-		<>
-			<h1>{props.data.page.title}</h1>
-			<div dangerouslySetInnerHTML={{ __html: props.data.page.content }} />
-		</>
+		<div className="mx-auto w-full max-w-5xl p-6">
+			<h1 className="mb-6 text-center text-4xl font-bold">
+				{props.data.page.title}
+			</h1>
+			<div
+				className="prose prose-lg prose-invert mx-auto"
+				dangerouslySetInnerHTML={{ __html: props.data.page.content }}
+			/>
+		</div>
 	);
 }
 
