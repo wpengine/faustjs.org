@@ -11,5 +11,23 @@
 		"stylesheet",
 		"tailwindcss"
 	],
-	"eslint.useFlatConfig": true
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.run": "onSave",
+	"eslint.useFlatConfig": true,
+	"eslint.codeActionsOnSave.mode": "problems",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
