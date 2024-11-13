@@ -47,8 +47,13 @@ export default function PrimaryMenu({ className }) {
 			</ul>
 			<Menu>
 				<MenuButton className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden">
-					<span className="sr-only">Open main nav</span>
+					<span className="sr-only hidden group-data-[open]:block">
+						Open main nav
+					</span>
 					<XMarkIcon className="hidden size-6 group-data-[open]:block" />
+					<span className="sr-only group-data-[open]:hidden">
+						Open main nav
+					</span>
 					<Bars3Icon className="size-6 group-data-[open]:hidden" />
 				</MenuButton>
 				<MenuItems

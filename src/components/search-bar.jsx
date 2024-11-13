@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/router";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { Dialog } from "@headlessui/react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
+import { useRouter } from "next/router";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export default function SearchBar() {
 	const [items, setItems] = useState([]);
@@ -36,6 +37,7 @@ export default function SearchBar() {
 				event.preventDefault();
 				openModal();
 			}
+
 			if (event.key === "Escape") {
 				closeModal();
 			}
@@ -69,11 +71,12 @@ export default function SearchBar() {
 		}, 500),
 	).current;
 
-	useEffect(() => {
-		return () => {
+	useEffect(
+		() => () => {
 			debouncedFetchItems.cancel();
-		};
-	}, [debouncedFetchItems]);
+		},
+		[debouncedFetchItems],
+	);
 
 	const {
 		isOpen,
@@ -112,6 +115,7 @@ export default function SearchBar() {
 				onClick={openModal}
 				type="button"
 			>
+				<span className="sr-only md:hidden">Open search</span>
 				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
 					<span className="pl-3">Search docs...</span>
