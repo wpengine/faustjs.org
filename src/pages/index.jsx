@@ -25,7 +25,7 @@ export default function Index() {
 						</p>
 						<p className="not-prose inline-flex gap-4">
 							<Link
-								className="not-prose text-gray-1000 group inline-flex items-center gap-1 rounded-full border border-blue-800/20 bg-gradient-to-tr from-blue-600/50 from-20% to-blue-900/50 px-8 py-2 text-base leading-none tracking-tight shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
+								className="not-prose text-gray-1000 group inline-flex items-center gap-1 rounded-full border border-blue-800/20 bg-gradient-to-tr from-blue-600/50 from-20% to-purple-900/50 px-8 py-2 text-base leading-none tracking-tight shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-purple-400/80 hover:to-teal-400/80 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 								href="/docs/"
 								noDefaultStyles
 							>
@@ -36,7 +36,7 @@ export default function Index() {
 								/>
 							</Link>
 							<Link
-								className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
+								className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-teal-400/80 hover:to-purple-400/80 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 								disableExternalIcon
 								href="/discord"
 								noDefaultStyles
@@ -125,7 +125,7 @@ export default function Index() {
 					</div>
 					<p className="mt-16 text-center">
 						<Link
-							className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-gray-100/70 hover:to-white/70 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
+							className="not-prose group inline-flex items-center gap-1 rounded-full border border-gray-200/20 bg-gradient-to-br from-purple-600/20 from-10% to-blue-600/20 px-8 py-2 text-base leading-none tracking-tight text-gray-200 shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-purple-400/80 hover:to-teal-300/80 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 							href="/docs/"
 							noDefaultStyles
 						>
