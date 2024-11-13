@@ -1,5 +1,5 @@
 {
-	"name": "faustjs.org Site",
+	"name": "faustjs-org-site",
 	"private": true,
 	"scripts": {
 		"dev": "faust dev",
