@@ -21,6 +21,16 @@
 	.container-main {
 		@apply mx-auto flex-grow px-4 sm:px-6 md:max-w-6xl md:px-8;
 	}
+
+	.container-blur-bg {
+		@apply before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:backdrop-blur-sm;
+	}
+}
+
+@layer theme {
+	* {
+		@apply outline-teal-800;
+	}
 }
 
 /* Styles for code blocks */
@@ -62,9 +72,9 @@ span[data-highlighted-line] {
 	background-color: rgba(100, 123, 255, 0.2);
 }
 
-/*  
+/*
 * - Diff highlighting
-* - https://shiki.style/packages/transformers#transformernotationdiff 
+* - https://shiki.style/packages/transformers#transformernotationdiff
 */
 .has-diff {
 	position: relative;
