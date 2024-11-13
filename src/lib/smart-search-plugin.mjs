@@ -46,14 +46,14 @@ async function collectPages(directory) {
 
 			// Safely extract metadata using regex
 			const metadataMatch = content.match(
-				/export const metadata = ({[\S\s]+?});/,
+				/export const metadata = (?<metadata>{[\S\s]+?});/,
 			);
 			let metadata = {};
 
 			if (metadataMatch) {
 				try {
 					// eslint-disable-next-line no-eval
-					metadata = eval(`(${metadataMatch[1]})`); // Parse the metadata block
+					metadata = eval(`(${metadataMatch.metadata})`); // Parse the metadata block
 				} catch (error) {
 					console.error("Error parsing metadata:", error);
 				}
