@@ -10,7 +10,7 @@ export default function CustomLink({
 	disableExternalIcon,
 	...props
 }) {
-	const defaultClasses = "underline text-blue-500";
+	const defaultClasses = "text-blue-500";
 
 	const calculatedClasses = classNames(
 		{ [defaultClasses]: !noDefaultStyles },
