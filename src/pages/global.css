@@ -31,6 +31,11 @@
 	* {
 		@apply outline-teal-800;
 	}
+
+	:target {
+		@apply scroll-mt-[100px] bg-teal-600/50;
+		@apply animate-bounce motion-reduce:animate-none;
+	}
 }
 
 /* Styles for code blocks */
