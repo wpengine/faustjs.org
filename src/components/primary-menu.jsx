@@ -24,26 +24,23 @@ const GET_PRIMARY_NAV = gql`
 	}
 `;
 
-const NavMenu = ({ items, as = Link }) => {
-	const As = as;
-
-	return items.length > 0 ? (
+const NavMenu = ({ items, close }) =>
+	items.length > 0 ? (
 		items.map((item) => (
 			<li key={item.databaseId} className="text-gray-400 hover:text-gray-200">
-				<As
-					as={as === Link ? undefined : Link}
-					className="block px-1 py-1.5"
+				<Link
+					className="block px-1"
 					href={item.uri}
 					noDefaultStyles
+					onClick={close}
 				>
 					{item.label}
-				</As>
+				</Link>
 			</li>
 		))
 	) : (
 		<p>No menu items found</p>
 	);
-};
 
 export default function PrimaryMenu({ className }) {
 	const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
@@ -71,11 +68,10 @@ export default function PrimaryMenu({ className }) {
 			</ul>
 			<DisclosurePanel
 				as="ul"
-				className="absolute inset-0 -left-4 top-[84.5px] md:hidden md:text-sm"
+				transition
+				className="absolute -left-4 top-[84.5px] flex w-full origin-top flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg backdrop-blur-sm transition duration-200 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0 md:hidden"
 			>
-				<div className="flex justify-center gap-6 border-b-[.5px] border-gray-400 bg-gray-900/80 backdrop-blur-sm">
-					<NavMenu items={menuItems} as={DisclosureButton} />
-				</div>
+				{({ close }) => <NavMenu items={menuItems} close={close} />}
 			</DisclosurePanel>
 		</Disclosure>
 	);

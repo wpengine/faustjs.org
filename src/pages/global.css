@@ -23,6 +23,13 @@
 	}
 }
 
+@layer theme {
+	a,
+	button {
+		@apply outline-teal-400;
+	}
+}
+
 /* Styles for code blocks */
 span[data-rehype-pretty-code-figure] code {
 	padding: 0.3rem;
@@ -62,9 +69,9 @@ span[data-highlighted-line] {
 	background-color: rgba(100, 123, 255, 0.2);
 }
 
-/*  
+/*
 * - Diff highlighting
-* - https://shiki.style/packages/transformers#transformernotationdiff 
+* - https://shiki.style/packages/transformers#transformernotationdiff
 */
 .has-diff {
 	position: relative;
