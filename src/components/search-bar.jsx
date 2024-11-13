@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/router";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
+import { useRouter } from "next/router";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export default function SearchBar() {
 	const [items, setItems] = useState([]);
@@ -21,7 +21,8 @@ export default function SearchBar() {
 
 	const handleOutsideClick = useCallback(
 		(event) => {
-			if (event.target === dialogReference.current) {
+			const isClickOutsideOfModal = event.target === dialogReference.current;
+			if (isClickOutsideOfModal) {
 				closeModal();
 				setInputValue("");
 				setItems([]);
@@ -36,6 +37,7 @@ export default function SearchBar() {
 				event.preventDefault();
 				openModal();
 			}
+
 			if (event.key === "Escape") {
 				closeModal();
 			}
@@ -47,8 +49,6 @@ export default function SearchBar() {
 		document.addEventListener("keydown", handleKeyDown);
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [handleKeyDown]);
-
-	// Add a blank line before this statement
 
 	const debouncedFetchItems = useRef(
 		debounce(async (value) => {
@@ -136,8 +136,6 @@ export default function SearchBar() {
 				>
 					<div
 						className="relative mt-10 w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
-						onClick={(event) => event.stopPropagation()}
-						onKeyDown={(event) => event.stopPropagation()}
 						role="dialog"
 						tabIndex="-1"
 					>

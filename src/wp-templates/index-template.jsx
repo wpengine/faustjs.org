@@ -44,7 +44,7 @@ export default function IndexTemplate() {
 
 	const toc = [];
 
-	editorBlocks &&
+	if (editorBlocks) {
 		editorBlocks
 			.filter((blocks) => blocks?.attributes?.level)
 			.map((block) => {
@@ -61,6 +61,7 @@ export default function IndexTemplate() {
 					toc.push(heading);
 				}
 			});
+	}
 
 	const blockList = flatListToHierarchical(editorBlocks, {
 		childrenKey: "innerBlocks",
@@ -89,15 +90,6 @@ export default function IndexTemplate() {
 				</div>
 			)}
 			<WordPressBlocksViewer blocks={blockList} />
-
-			{/* <h2>Raw editorBlocks</h2> */}
-			{
-				/**
-				 *  uncomment to debug editorBlocks
-				 *  <pre>{JSON.stringify(node.editorBlocks, null, 2)}</pre>
-				 */
-				// <pre>{JSON.stringify(node, null, 2)}</pre>
-			}
 		</>
 	);
 }
