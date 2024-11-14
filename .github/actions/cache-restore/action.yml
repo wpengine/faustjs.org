@@ -27,4 +27,4 @@ runs:
         path: |
           **/node_modules
           ~/.cache
-        key: ${{ runner.os }}-npm-${{ inputs.node-version }}-${{ hashFiles('package-lock.json') }}
+        key: ${{ runner.os }}-pnpm-${{ inputs.node-version }}-${{ hashFiles('pnpm-lock.yaml') }}
