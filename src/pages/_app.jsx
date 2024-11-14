@@ -9,7 +9,8 @@ import blocks from "@/wp-blocks";
 export default function MyApp({ Component, pageProps }) {
 	return (
 		<FaustProvider pageProps={pageProps}>
-			<WordPressBlocksProvider config={{ blocks, theme: undefined }}>
+			{/*  eslint-disable-next-line unicorn/no-null */}
+			<WordPressBlocksProvider config={{ blocks, theme: null }}>
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
