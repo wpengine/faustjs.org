@@ -28,7 +28,7 @@ This project users [pnpm](https://pnpm.io/). While not significantly different t
 
 - `npm run dev` => `pnpm dev` or `pnpm run dev` :: commands can be shortened, or use your muscle memory
 - `npx` => `pnpx` or `pnpm dlx` :: either way it still works
-- `pnpm update` -- a whole suite of [native tools](https://pnpm.io/cli/update) to manage dependencies. No need for 3rd party tools to update dependencies.
+- `pnpm update` :: a whole suite of [native tools](https://pnpm.io/cli/update) to manage dependencies. No need for 3rd party tools to update dependencies.
 
 ## Linting and Formatting
 
