@@ -2,7 +2,27 @@
 
 Frontend for the [faustjs.org](https://faustjs.org/) website.
 
+# Prerequisites
+
+- [`nvm` (Node Version Manager)](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+- Cloned repository
+
+## Getting started
+
+```bash
+$ nvm install		# Install the correct version of node
+$ corepack enable 	# Enable Corepack
+$ corepack install	# Install `pnpm` via Corepack
+$ pnpm install		# Install project dependencies via `pnpm`
+$ pnpm dev 			# Start dev server; See `scripts` in `package.json` for more
+```
+
 ## PNPM Package Manager
+
+```bash
+corepack enable
+corepack install
+```
 
 This project users [pnpm](https://pnpm.io/). While not significantly different than `npm` here are some basic differences and I'd recommend you checkout the [`pnpm` docs](https://pnpm.io/) for more info.
 
