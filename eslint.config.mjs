@@ -80,6 +80,12 @@ const config = [
 		},
 	},
 	{
+		files: ["src/pages/**/*.{js,jsx}"],
+		rules: {
+			"react-refresh/only-export-components": ["off"],
+		},
+	},
+	{
 		...mdx.flat,
 		processor: mdx.createRemarkProcessor({
 			lintCodeBlocks: false,
