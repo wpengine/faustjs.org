@@ -53,7 +53,7 @@ async function collectPages(directory) {
 			if (metadataMatch) {
 				try {
 					// eslint-disable-next-line no-eval
-					metadata = eval(`(${metadataMatch.metadata})`); // Parse the metadata block
+					metadata = eval(`(${metadataMatch.groups.metadata})`); // Parse the metadata block
 				} catch (error) {
 					console.error("Error parsing metadata:", error);
 				}
