@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { forwardRef } from "react";
 import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
 
@@ -21,7 +22,15 @@ const GET_PRIMARY_NAV = gql`
 `;
 
 const navItemClass =
-	"text-gray-400 data-[focus]:text-purple-500 data-[focus]:outline rounded-md";
+	"text-gray-400 data-[focus]:text-purple-500 data-[focus]:outline rounded-md px-1";
+
+const CustomLink = forwardRef((props, reference) => {
+	return (
+		<li>
+			<Link {...props} ref={reference} noDefaultStyles />
+		</li>
+	);
+});
 
 export default function PrimaryMenu({ className }) {
 	const { data, loading, error } = useQuery(GET_PRIMARY_NAV);
@@ -62,10 +71,14 @@ export default function PrimaryMenu({ className }) {
 					className="container-blur-bg absolute -left-4 top-[84.5px] flex w-full origin-top flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg transition duration-200 ease-out focus-within:outline-none data-[closed]:-translate-y-10 data-[closed]:opacity-0 md:hidden"
 				>
 					{menuItems.map((item) => (
-						<MenuItem key={item.databaseId} as="li" className={navItemClass}>
-							<a className="block px-1" href={item.uri}>
-								{item.label}
-							</a>
+						<MenuItem
+							as={CustomLink}
+							key={item.databaseId}
+							className={navItemClass}
+							noDefaultStyles
+							href={item.uri}
+						>
+							{item.label}
 						</MenuItem>
 					))}
 				</MenuItems>
