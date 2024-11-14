@@ -4,7 +4,6 @@ import Link from "./link";
 // Custom heading component with clickable anchor links
 export default function Heading({ level, children, id, ...props }) {
 	const Tag = `h${level}`;
-	console.log("props", props);
 	return (
 		<Tag
 			id={id.toString()}

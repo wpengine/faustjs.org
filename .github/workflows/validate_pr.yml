@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [22]
 
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
   check_format:
     name: Validate formating with Prettier
@@ -47,7 +47,7 @@ jobs:
         run: corepack enable
 
       - name: Format source code
-        run: npm run test:format
+        run: pnpm run test:format
 
   check_lint:
     name: Validate linting with ES Lint
@@ -64,7 +64,7 @@ jobs:
         run: corepack enable
 
       - name: Check Linting
-        run: npm run test:lint
+        run: pnpm run test:lint
 
   # run-tests:
   #   name: Run package tests on (Node.js v${{ matrix.node }})
@@ -88,7 +88,7 @@ jobs:
   #       run: corepack enable
 
   #     - name: Build packages
-  #       run: npm build
+  #       run: pnpm build
 
   #     - name: Set up S3 Server
   #       uses: ./.github/actions/s3-test-server

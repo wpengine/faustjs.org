@@ -39,6 +39,7 @@ export default function BlogIndex() {
 						<Date className="text-blue-100/70" dateString={post.date} />
 						<div
 							className="mb-4"
+							// eslint-disable-next-line react/no-danger
 							dangerouslySetInnerHTML={{ __html: post.excerpt }}
 						/>
 					</Card>

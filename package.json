@@ -56,11 +56,12 @@
 		"tailwindcss": "^3.4.4"
 	},
 	"engines": {
-		"node": "^22"
+		"node": "^22",
+		"npm": "use-pnpm"
 	},
-	"packageManager": "npm@10.9.0+sha512.65a9c38a8172948f617a53619762cd77e12b9950fe1f9239debcb8d62c652f2081824b986fee7c0af6c0a7df615becebe4bf56e17ec27214a87aa29d9e038b4b",
+	"packageManager": "pnpm@9.13.0+sha512.beb9e2a803db336c10c9af682b58ad7181ca0fbd0d4119f2b33d5f2582e96d6c0d93c85b23869295b765170fbdaa92890c0da6ada457415039769edf3c959efe",
 	"lint-staged": {
-		"*": "npm run format",
-		"*.{js,jsx}": "npm run lint"
+		"*": "pnpm format",
+		"*.{js,jsx}": "pnpm lint"
 	}
 }
