@@ -1,5 +1,3 @@
-// src/lib/smart-search-plugin.mjs
-
 import fs from "node:fs/promises";
 import path from "node:path";
 import { cwd } from "node:process";
@@ -51,24 +49,24 @@ async function collectPages(directory) {
 			const content = await fs.readFile(entryPath, "utf8");
 
 			const metadataMatch = content.match(
-				/export\s+const\s+metadata\s*=\s*({[\S\s]*?});/,
+				/export\s+const\s+metadata\s*=\s*(?<metadata>{[\S\s]*?});/,
 			);
+
 			let metadata = {};
 
-			if (metadataMatch) {
+			if (
+				metadataMatch &&
+				metadataMatch.groups &&
+				metadataMatch.groups.metadata
+			) {
 				try {
-					metadata = eval(`(${metadataMatch[1]})`);
+					metadata = eval(`(${metadataMatch.groups.metadata})`);
 				} catch (error) {
 					console.error("Error parsing metadata:", error);
 					continue;
 				}
 			} else {
 				console.warn(`No metadata found in ${entryPath}. Skipping.`);
-				continue;
-			}
-
-			if (!metadata.title) {
-				console.warn(`No title in metadata of ${entryPath}. Skipping.`);
 				continue;
 			}
 
@@ -180,7 +178,15 @@ async function sendPagesToEndpoint(pages, endpoint, accessToken) {
 			body: JSON.stringify({ query: bulkIndexQuery, variables }),
 		});
 
+		if (!response.ok) {
+			console.error(
+				`Error during bulk indexing: ${response.status} ${response.statusText}`,
+			);
+			return;
+		}
+
 		const result = await response.json();
+
 		if (result.errors) {
 			console.error("GraphQL bulk indexing error:", result.errors);
 		} else {

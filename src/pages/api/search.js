@@ -1,8 +1,5 @@
-// src/pages/api/search.js
-
 import process from "node:process";
 
-// Function to clean up the path
 function cleanPath(filePath) {
 	return (
 		filePath
@@ -82,16 +79,23 @@ export default async function handler(req, res) {
 						type: "post",
 					};
 				} else {
-					// If none of the conditions match, set item to undefined
 					item = undefined;
 				}
 
-				return item; // Always return a value
+				return item;
 			})
-			.filter((item) => item !== undefined); // Filter out undefined values
+			.filter((item) => item !== undefined);
 
 		// Remove duplicates based on ID
-		const uniqueResults = [...new Map(formattedResults.map((item) => [item.id, item])).values()];
+		const seenIds = new Set();
+		const uniqueResults = formattedResults.filter((item) => {
+			if (seenIds.has(item.id)) {
+				return false; // Skip if already in the Set
+			}
+
+			seenIds.add(item.id); // Add new ID to the Set
+			return true; // Keep this item
+		});
 
 		return res.status(200).json(uniqueResults);
 	} catch (error) {
