@@ -1,9 +1,14 @@
 import process from "node:process";
 
-// Example input: /src/pages/docs/how-to/authentication/index.mdx
-// Example output: /docs/how-to/authentication
-const generateDocPath = (filePath) =>
-	filePath.replace(/^\/src\/pages/, "").replace(/\/index\.mdx$/, "");
+function cleanPath(filePath) {
+	return (
+		filePath
+			.replace(/^\/?src\/pages/, "")
+			.replace(/^\/?pages/, "")
+			.replace(/\/index\.mdx$/, "")
+			.replace(/\.mdx$/, "") || "/"
+	);
+}
 
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
@@ -15,16 +20,16 @@ export default async function handler(req, res) {
 	}
 
 	const graphqlQuery = `
-      query FindDocuments($query: String!) {
-        find(query: $query) {
-          total
-          documents {
-            id
-            data
-          }
+    query FindDocuments($query: String!) {
+      find(query: $query) {
+        total
+        documents {
+          id
+          data
         }
       }
-    `;
+    }
+  `;
 
 	try {
 		const response = await fetch(endpoint, {
@@ -42,33 +47,59 @@ export default async function handler(req, res) {
 		const result = await response.json();
 
 		if (result.errors) {
-			console.error("Elasticsearch errors:", result.errors);
+			console.error("Search errors:", result.errors);
 			return res.status(500).json({ errors: result.errors });
 		}
 
-		const formattedResults = result.data.find.documents.map((content) => {
-			const contentType = content.data.post_type ?? "doc";
+		const formattedResults = result.data.find.documents
+			.map((content) => {
+				const contentType = content.data.content_type || content.data.post_type;
+				let item; // Initialize the variable to hold the result
 
-			if (contentType === "doc") {
-				return {
-					id: content.id,
-					title: content.data.title || "Untitled",
-					path: content.data.path ? generateDocPath(content.data.path) : "#",
-					type: contentType,
-				};
+				if (contentType === "mdx_doc" && content.data.title) {
+					// MDX Document
+					const path = content.data.path ? cleanPath(content.data.path) : "/";
+
+					item = {
+						id: content.id,
+						title: content.data.title,
+						path,
+						type: "mdx_doc",
+					};
+				} else if (
+					(contentType === "wp_post" || contentType === "post") &&
+					content.data.post_title &&
+					content.data.post_name
+				) {
+					// WordPress Post
+					item = {
+						id: content.id,
+						title: content.data.post_title,
+						path: `/blog/${content.data.post_name}`,
+						type: "post",
+					};
+				} else {
+					item = undefined;
+				}
+
+				return item;
+			})
+			.filter((item) => item !== undefined);
+
+		// Remove duplicates based on ID
+		const seenIds = new Set();
+		const uniqueResults = formattedResults.filter((item) => {
+			if (seenIds.has(item.id)) {
+				return false; // Skip if already in the Set
 			}
 
-			return {
-				id: content.id,
-				title: content.data.post_title || "Untitled",
-				path: `/blog/${content.data.post_name}`,
-				type: contentType,
-			};
+			seenIds.add(item.id); // Add new ID to the Set
+			return true; // Keep this item
 		});
 
-		return res.status(200).json(formattedResults);
+		return res.status(200).json(uniqueResults);
 	} catch (error) {
-		console.error("Error fetching MDX data:", error);
+		console.error("Error fetching search data:", error);
 		return res.status(500).json({ error: error.message });
 	}
 }
