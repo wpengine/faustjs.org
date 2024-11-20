@@ -106,21 +106,19 @@ function cleanPath(filePath) {
 }
 
 async function deleteExistingDocs(endpoint, accessToken) {
-	const variables = {
-		filter: {
-			content_type: "mdx_doc",
-		},
-	};
+	const queryDocuments = `
+	  query FindDocumentsToDelete($query: String!) {
+		find(query: $query) {
+		  documents {
+			id
+		  }
+		}
+	  }
+	`;
 
-	const deleteQuery = `
-    mutation DeleteDocs($filter: DocumentFilterInput) {
-      deleteMany(filter: $filter) {
-        code
-        message
-        success
-      }
-    }
-  `;
+	const variablesForQuery = {
+		query: 'content_type:"mdx_doc"',
+	};
 
 	try {
 		const response = await fetch(endpoint, {
@@ -129,17 +127,73 @@ async function deleteExistingDocs(endpoint, accessToken) {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${accessToken}`,
 			},
-			body: JSON.stringify({ query: deleteQuery, variables }),
+			body: JSON.stringify({
+				query: queryDocuments,
+				variables: variablesForQuery,
+			}),
 		});
 
 		const result = await response.json();
+
 		if (result.errors) {
-			console.error("GraphQL deletion error:", result.errors);
-		} else {
-			console.log("Existing MDX documents deleted:", result.data.deleteMany);
+			console.error("Error fetching documents to delete:", result.errors);
+			return;
+		}
+
+		const documentsToDelete = result.data.find.documents;
+
+		if (!documentsToDelete || documentsToDelete.length === 0) {
+			console.log("No documents to delete.");
+			return;
+		}
+
+		for (const doc of documentsToDelete) {
+			const deleteMutation = `
+		  mutation DeleteDocument($id: ID!) {
+			delete(id: $id) {
+			  code
+			  message
+			  success
+			}
+		  }
+		`;
+
+			const variablesForDelete = {
+				id: doc.id,
+			};
+
+			try {
+				const deleteResponse = await fetch(endpoint, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${accessToken}`,
+					},
+					body: JSON.stringify({
+						query: deleteMutation,
+						variables: variablesForDelete,
+					}),
+				});
+
+				const deleteResult = await deleteResponse.json();
+
+				if (deleteResult.errors) {
+					console.error(
+						`Error deleting document ID ${doc.id}:`,
+						deleteResult.errors,
+					);
+				} else {
+					console.log(
+						`Deleted document ID ${doc.id}:`,
+						deleteResult.data.delete,
+					);
+				}
+			} catch (error) {
+				console.error(`Network error deleting document ID ${doc.id}:`, error);
+			}
 		}
 	} catch (error) {
-		console.error("Error deleting existing documents:", error);
+		console.error("Error during deletion process:", error);
 	}
 }
 

@@ -15,7 +15,7 @@ export default function SearchBar() {
 		setIsModalOpen(true);
 		setInputValue("");
 		setItems([]);
-	}, [setInputValue, setItems]);
+	}, []);
 
 	const closeModal = useCallback(() => setIsModalOpen(false), []);
 
@@ -61,10 +61,26 @@ export default function SearchBar() {
 				const response = await fetch(
 					`/api/search?query=${encodeURIComponent(value)}`,
 				);
+
+				if (!response.ok) {
+					console.error(
+						`Search API error: ${response.status} ${response.statusText}`,
+					);
+					setItems([]);
+					return;
+				}
+
 				const data = await response.json();
-				setItems(data);
+
+				if (Array.isArray(data)) {
+					setItems(data);
+				} else {
+					console.error("Search API returned unexpected data:", data);
+					setItems([]);
+				}
 			} catch (error) {
 				console.error("Error fetching search results:", error);
+				setItems([]);
 			}
 		}, 500),
 	).current;
@@ -171,6 +187,8 @@ export default function SearchBar() {
 								className="mt-2 max-h-60 overflow-y-auto"
 							>
 								{isOpen &&
+									items &&
+									items.length > 0 &&
 									items.map((item, index) => (
 										<li
 											key={item.id}
@@ -201,6 +219,9 @@ export default function SearchBar() {
 										</li>
 									))}
 							</ul>
+							{isOpen && items.length === 0 && (
+								<div className="mt-2 text-gray-500">No results found.</div>
+							)}
 						</div>
 					</div>
 				</div>
