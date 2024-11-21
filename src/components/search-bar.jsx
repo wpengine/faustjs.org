@@ -152,7 +152,7 @@ export default function SearchBar() {
 					ref={dialogReference}
 				>
 					<div
-						className="relative mt-10 w-full max-w-3xl rounded-lg bg-gray-900 p-6 shadow-lg"
+						className="relative mt-10 w-full max-w-3xl rounded-lg bg-gray-800 p-6 shadow-lg"
 						role="dialog"
 						tabIndex="-1"
 					>
@@ -169,7 +169,7 @@ export default function SearchBar() {
 										placeholder: "What are you searching for?",
 										"aria-label": "Search input",
 										className:
-											"w-full pr-10 p-2 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500",
+											"w-full pr-10 p-2 bg-gray-700 text-white placeholder-gray-400 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500",
 									})}
 								/>
 								<button
@@ -209,16 +209,20 @@ export default function SearchBar() {
 											role="option"
 											aria-selected={highlightedIndex === index}
 											tabIndex={0}
-											className={`block w-full cursor-pointer p-2 ${
+											className={`flex w-full cursor-pointer items-center justify-between px-4 py-4 ${
 												highlightedIndex === index
 													? "bg-blue-600 text-white"
 													: "bg-gray-800 text-white"
 											}`}
 										>
-											{item.title}
+											<span className="text-left">{item.title}</span>
+											<span className="text-right text-sm text-gray-400">
+												{item.type === "mdx_doc" ? "Doc" : "Blog"}
+											</span>
 										</li>
 									))}
 							</ul>
+
 							{isOpen && items.length === 0 && (
 								<div className="mt-2 text-gray-500">No results found.</div>
 							)}
