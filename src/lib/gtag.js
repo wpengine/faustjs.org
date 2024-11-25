@@ -1,5 +1,6 @@
-// eslint-disable-next-line no-restricted-globals, n/prefer-global/process
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_KEY;
+import { env } from "node:process";
+
+export const GA_TRACKING_ID = env.NEXT_PUBLIC_GOOGLE_ANALYTICS_KEY;
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const logPageview = (url) => {
