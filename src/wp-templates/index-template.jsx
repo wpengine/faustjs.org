@@ -68,7 +68,9 @@ export default function IndexTemplate() {
 					})}
 				</div>
 			)}
-			<WordPressBlocksViewer blocks={blockList} />
+			<div className="prose prose-lg prose-invert mx-auto">
+				<WordPressBlocksViewer blocks={blockList} />
+			</div>
 		</>
 	);
 }

@@ -1,9 +1,14 @@
 import process from "node:process";
 
-// Example input: /src/pages/docs/how-to/authentication/index.mdx
-// Example output: /docs/how-to/authentication
-const generateDocPath = (filePath) =>
-	filePath.replace(/^\/src\/pages/, "").replace(/\/index\.mdx$/, "");
+function cleanPath(filePath) {
+	return (
+		filePath
+			.replace(/^\/?src\/pages/, "")
+			.replace(/^\/?pages/, "")
+			.replace(/\/index\.mdx$/, "")
+			.replace(/\.mdx$/, "") || "/"
+	);
+}
 
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
@@ -15,15 +20,15 @@ export default async function handler(req, res) {
 	}
 
 	const graphqlQuery = `
-      query FindDocuments($query: String!) {
-        find(query: $query) {
-          total
-          documents {
-            id
-            data
-          }
+        query FindDocuments($query: String!) {
+            find(query: $query) {
+                total
+                documents {
+                    id
+                    data
+                }
+            }
         }
-      }
     `;
 
 	try {
@@ -42,33 +47,53 @@ export default async function handler(req, res) {
 		const result = await response.json();
 
 		if (result.errors) {
-			console.error("Elasticsearch errors:", result.errors);
 			return res.status(500).json({ errors: result.errors });
 		}
 
-		const formattedResults = result.data.find.documents.map((content) => {
-			const contentType = content.data.post_type ?? "doc";
+		const formattedResults = result.data.find.documents
+			.map((content) => {
+				const contentType =
+					content.data.content_type || content.data.post_type || "mdx_doc";
 
-			if (contentType === "doc") {
-				return {
-					id: content.id,
-					title: content.data.title || "Untitled",
-					path: content.data.path ? generateDocPath(content.data.path) : "#",
-					type: contentType,
-				};
+				if (contentType === "mdx_doc" && content.data.title) {
+					const path = content.data.path ? cleanPath(content.data.path) : "/";
+					return {
+						id: content.id,
+						title: content.data.title,
+						path,
+						type: "mdx_doc",
+					};
+				}
+
+				if (
+					(contentType === "wp_post" || contentType === "post") &&
+					content.data.post_title &&
+					content.data.post_name
+				) {
+					return {
+						id: content.id,
+						title: content.data.post_title,
+						path: `/blog/${content.data.post_name}`,
+						type: "post",
+					};
+				}
+
+				return null;
+			})
+			.filter((item) => item !== null);
+
+		const seenIds = new Set();
+		const uniqueResults = formattedResults.filter((item) => {
+			if (seenIds.has(item.id)) {
+				return false;
 			}
-
-			return {
-				id: content.id,
-				title: content.data.post_title || "Untitled",
-				path: `/blog/${content.data.post_name}`,
-				type: contentType,
-			};
+			seenIds.add(item.id);
+			return true;
 		});
 
-		return res.status(200).json(formattedResults);
+		return res.status(200).json(uniqueResults);
 	} catch (error) {
-		console.error("Error fetching MDX data:", error);
-		return res.status(500).json({ error: error.message });
+		console.error("Error fetching search data:", error);
+		return res.status(500).json({ error: "Internal server error" });
 	}
 }
