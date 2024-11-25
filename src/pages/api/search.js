@@ -50,43 +50,42 @@ export default async function handler(req, res) {
 			return res.status(500).json({ errors: result.errors });
 		}
 
-		const formattedResults = result.data.find.documents
-			.map((content) => {
-				const contentType =
-					content.data.content_type || content.data.post_type || "mdx_doc";
+		const formattedResults = [];
 
-				if (contentType === "mdx_doc" && content.data.title) {
-					const path = content.data.path ? cleanPath(content.data.path) : "/";
-					return {
-						id: content.id,
-						title: content.data.title,
-						path,
-						type: "mdx_doc",
-					};
-				}
+		for (const content of result.data.find.documents) {
+			const contentType =
+				content.data.content_type || content.data.post_type || "mdx_doc";
 
-				if (
-					(contentType === "wp_post" || contentType === "post") &&
-					content.data.post_title &&
-					content.data.post_name
-				) {
-					return {
-						id: content.id,
-						title: content.data.post_title,
-						path: `/blog/${content.data.post_name}`,
-						type: "post",
-					};
-				}
+			if (contentType === "mdx_doc" && content.data.title) {
+				const path = content.data.path ? cleanPath(content.data.path) : "/";
+				return {
+					id: content.id,
+					title: content.data.title,
+					path,
+					type: "mdx_doc",
+				};
+			}
 
-				return null;
-			})
-			.filter((item) => item !== null);
+			if (
+				(contentType === "wp_post" || contentType === "post") &&
+				content.data.post_title &&
+				content.data.post_name
+			) {
+				return {
+					id: content.id,
+					title: content.data.post_title,
+					path: `/blog/${content.data.post_name}`,
+					type: "post",
+				};
+			}
+		}
 
 		const seenIds = new Set();
 		const uniqueResults = formattedResults.filter((item) => {
 			if (seenIds.has(item.id)) {
 				return false;
 			}
+
 			seenIds.add(item.id);
 			return true;
 		});
