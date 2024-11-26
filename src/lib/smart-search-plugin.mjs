@@ -1,11 +1,12 @@
+import { hash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { cwd } from "node:process";
 import { htmlToText } from "html-to-text";
 
-function smartSearchPlugin({ endpoint, accessToken }) {
-	let isPluginExecuted = false;
+let isPluginExecuted = false;
 
+function smartSearchPlugin({ endpoint, accessToken }) {
 	return {
 		apply: (compiler) => {
 			compiler.hooks.done.tapPromise("SmartSearchPlugin", async () => {
@@ -25,8 +26,8 @@ function smartSearchPlugin({ endpoint, accessToken }) {
 
 					console.log("Docs Pages collected for indexing:", pages.length);
 
-					await deleteExistingDocs(endpoint, accessToken);
-					await sendPagesToEndpoint(pages, endpoint, accessToken);
+					await deleteOldDocs({ endpoint, accessToken }, pages);
+					await sendPagesToEndpoint({ endpoint, accessToken }, pages);
 				} catch (error) {
 					console.error("Error in smartSearchPlugin:", error);
 				}
@@ -54,12 +55,9 @@ async function collectPages(directory) {
 
 			let metadata = {};
 
-			if (
-				metadataMatch &&
-				metadataMatch.groups &&
-				metadataMatch.groups.metadata
-			) {
+			if (metadataMatch?.groups?.metadata) {
 				try {
+					// eslint-disable-next-line no-eval
 					metadata = eval(`(${metadataMatch.groups.metadata})`);
 				} catch (error) {
 					console.error("Error parsing metadata:", error);
@@ -74,9 +72,7 @@ async function collectPages(directory) {
 
 			const cleanedPath = cleanPath(entryPath);
 
-			const id = `mdx:${cleanedPath}`;
-
-			console.log(`Indexing document with ID: ${id}, path: ${cleanedPath}`);
+			const id = hash("sha-1", `mdx:${cleanedPath}`);
 
 			pages.push({
 				id,
@@ -105,16 +101,28 @@ function cleanPath(filePath) {
 	);
 }
 
-async function deleteExistingDocs(endpoint, accessToken) {
-	const queryDocuments = `
-	  query FindDocumentsToDelete($query: String!) {
-		find(query: $query) {
-		  documents {
-			id
-		  }
+const queryDocuments = `
+query FindIndexedMdxDocs($query: String!) {
+	find(query: $query) {
+		documents {
+		id
 		}
-	  }
-	`;
+	}
+}
+`;
+
+const deleteMutation = `
+mutation DeleteDocument($id: ID!) {
+	delete(id: $id) {
+		code
+		message
+		success
+	}
+}
+`;
+
+async function deleteOldDocs({ endpoint, accessToken }, pages) {
+	const currentMdxDocuments = new Set(pages.map((page) => page.id));
 
 	const variablesForQuery = {
 		query: 'content_type:"mdx_doc"',
@@ -136,30 +144,25 @@ async function deleteExistingDocs(endpoint, accessToken) {
 		const result = await response.json();
 
 		if (result.errors) {
-			console.error("Error fetching documents to delete:", result.errors);
+			console.error("Error fetching existing documents:", result.errors);
 			return;
 		}
 
-		const documentsToDelete = result.data.find.documents;
+		const existingIndexedDocuments = new Set(
+			result.data.find.documents.map((doc) => doc.id),
+		);
 
-		if (!documentsToDelete || documentsToDelete.length === 0) {
+		const documentsToDelete =
+			existingIndexedDocuments.difference(currentMdxDocuments);
+
+		if (documentsToDelete?.size === 0) {
 			console.log("No documents to delete.");
 			return;
 		}
 
-		for (const doc of documentsToDelete) {
-			const deleteMutation = `
-		  mutation DeleteDocument($id: ID!) {
-			delete(id: $id) {
-			  code
-			  message
-			  success
-			}
-		  }
-		`;
-
+		for (const doc of documentsToDelete.values()) {
 			const variablesForDelete = {
-				id: doc.id,
+				id: doc,
 			};
 
 			try {
@@ -179,14 +182,11 @@ async function deleteExistingDocs(endpoint, accessToken) {
 
 				if (deleteResult.errors) {
 					console.error(
-						`Error deleting document ID ${doc.id}:`,
+						`Error deleting document ID ${doc}:`,
 						deleteResult.errors,
 					);
 				} else {
-					console.log(
-						`Deleted document ID ${doc.id}:`,
-						deleteResult.data.delete,
-					);
+					console.log(`Deleted document ID ${doc}:`, deleteResult.data.delete);
 				}
 			} catch (error) {
 				console.error(`Network error deleting document ID ${doc.id}:`, error);
@@ -198,18 +198,17 @@ async function deleteExistingDocs(endpoint, accessToken) {
 }
 
 const bulkIndexQuery = `
-  mutation BulkIndex($documents: [DocumentInput!]!) {
-    bulkIndex(input: { documents: $documents }) {
+  mutation BulkIndex($input: BulkIndexInput!) {
+    bulkIndex(input: $input) {
       code
       documents {
         id
-        data
       }
     }
   }
 `;
 
-async function sendPagesToEndpoint(pages, endpoint, accessToken) {
+async function sendPagesToEndpoint({ endpoint, accessToken }, pages) {
 	if (pages.length === 0) {
 		console.warn("No documents found for indexing.");
 		return;
@@ -220,7 +219,7 @@ async function sendPagesToEndpoint(pages, endpoint, accessToken) {
 		data: page.data,
 	}));
 
-	const variables = { documents };
+	const variables = { input: { documents } };
 
 	try {
 		const response = await fetch(endpoint, {
