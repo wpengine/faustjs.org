@@ -15,16 +15,16 @@
 	},
 	"dependencies": {
 		"@apollo/client": "^3.10.4",
-		"@faustwp/blocks": "^4.1.0",
+		"@faustwp/blocks": "^5.0.0",
 		"@faustwp/cli": "^3.1.1",
 		"@faustwp/core": "^3.1.0",
 		"@headlessui/react": "^2.2.0",
-		"@heroicons/react": "^2.1.5",
-		"@icons-pack/react-simple-icons": "^10.0.0",
+		"@heroicons/react": "^2.2.0",
+		"@icons-pack/react-simple-icons": "^10.2.0",
 		"@mdx-js/loader": "^3.0.1",
 		"@mdx-js/react": "^3.0.1",
 		"@next/mdx": "^15.0.1",
-		"@shikijs/transformers": "^1.22.2",
+		"@shikijs/transformers": "^1.23.1",
 		"@sindresorhus/slugify": "^2.2.1",
 		"classnames": "^2.5.1",
 		"date-fns": "^4.1.0",
@@ -39,28 +39,28 @@
 		"rehype-mdx-import-media": "^1.2.0",
 		"rehype-pretty-code": "^0.14.0",
 		"rehype-slug": "^6.0.0",
-		"shiki": "^1.22.0"
+		"shiki": "^1.23.1"
 	},
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.13",
 		"autoprefixer": "^10.4.19",
-		"eslint": "^9.13.0",
-		"eslint-config-neon": "^0.2.0",
+		"eslint": "^9.15.0",
+		"eslint-config-neon": "^0.2.3",
 		"eslint-plugin-mdx": "^3.1.5",
-		"husky": "^9.1.6",
+		"husky": "^9.1.7",
 		"lint-staged": "^15.2.10",
 		"next-secure-headers": "^2.2.0",
 		"postcss": "^8.4.39",
 		"postcss-nesting": "^13.0.0",
 		"prettier": "^3.3.3",
-		"prettier-plugin-tailwindcss": "^0.6.5",
-		"tailwindcss": "^3.4.4"
+		"prettier-plugin-tailwindcss": "^0.6.9",
+		"tailwindcss": "^3.4.15"
 	},
 	"engines": {
 		"node": "^22",
 		"npm": "use-pnpm"
 	},
-	"packageManager": "pnpm@9.13.0+sha512.beb9e2a803db336c10c9af682b58ad7181ca0fbd0d4119f2b33d5f2582e96d6c0d93c85b23869295b765170fbdaa92890c0da6ada457415039769edf3c959efe",
+	"packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387",
 	"lint-staged": {
 		"*": "pnpm format",
 		"*.{js,jsx}": "pnpm lint"
