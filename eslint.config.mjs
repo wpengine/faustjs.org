@@ -26,7 +26,7 @@ const config = [
 	...jsxA11y,
 	...next,
 	{
-		files: ["**/*.{js,jsx,cjs,mjs}"],
+		files: ["**/*.{js,jsx,cjs,mjs,mdx}"],
 		settings: {
 			react: {
 				version: "detect",
@@ -43,6 +43,10 @@ const config = [
 			...unicorn.configs["flat/recommended"].rules, // neon disables a lot of unicorn rules so this reenables defaults
 			"react/no-danger": "warn",
 			"react/jsx-sort-props": "off",
+			"react/jsx-filename-extension": [
+				"warn",
+				{ extensions: [".jsx", ".mdx"] },
+			],
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{

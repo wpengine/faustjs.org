@@ -3,6 +3,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import DocsNav from "@/components/docs-nav";
 import routes from "@/pages/docs/nav.json";
+import "rehype-callouts/theme/vitepress";
 
 export default function DocumentPage({ children }) {
 	return (
