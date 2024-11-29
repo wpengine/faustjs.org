@@ -8,6 +8,7 @@ export default function Component(props) {
 			</h1>
 			<div
 				className="prose prose-lg prose-invert mx-auto"
+				// eslint-disable-next-line react/no-danger
 				dangerouslySetInnerHTML={{ __html: props.data.page.content }}
 			/>
 		</div>

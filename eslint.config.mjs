@@ -43,6 +43,7 @@ const config = [
 			...unicorn.configs["flat/recommended"].rules, // neon disables a lot of unicorn rules so this reenables defaults
 			"react/no-danger": "warn",
 			"react/jsx-sort-props": "off",
+			"@stylistic/jsx/jsx-sort-props": "off",
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{
