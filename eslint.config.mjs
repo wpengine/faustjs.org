@@ -47,6 +47,7 @@ const config = [
 				"warn",
 				{ extensions: [".jsx", ".mdx"] },
 			],
+			"@stylistic/jsx/jsx-sort-props": "off",
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{

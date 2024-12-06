@@ -46,11 +46,6 @@ export default function IndexTemplate() {
 		childrenKey: "innerBlocks",
 	});
 
-	console.log({
-		editorBlocks,
-		blockList,
-	});
-
 	return (
 		<>
 			<Head>
