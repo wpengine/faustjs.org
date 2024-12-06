@@ -1,32 +1,50 @@
 [
 	{
 		"title": "Getting Started",
-		"route": "/docs/",
+		"route": "/docs/"
+	},
+	{
+		"title": "How-To Guides",
+		"route": "/docs/how-to/",
 		"children": [
 			{
 				"title": "Basic Setup",
-				"route:": "/docs/how-to/basic-setup"
+				"route": "/docs/how-to/basic-setup/"
 			},
 			{
-				"route": "/docs/explanation/introduction/",
-				"title": "Introduction"
+				"title": "Template Hierarchy",
+				"route": "/docs/how-to/template-hierarchy/"
+			},
+			{
+				"title": "Rendering Blocks",
+				"route": "/docs/how-to/rendering-blocks/"
+			},
+			{
+				"title": "Rendering Blocks with Template Hierarchy",
+				"route": "/docs/how-to/rendering-blocks/"
+			},
+			{
+				"title": "Authentication",
+				"route": "/docs/how-to/authentication/"
+			},
+			{
+				"title": "Post Previews",
+				"route": "/docs/how-to/post-previews/"
 			}
 		]
 	},
 	{
-		"title": "Integrating with WordPress"
+		"title": "Reference",
+		"route": "/docs/reference/",
+		"children": []
 	},
 	{
-		"title": "Faust Features",
-		"route": "/docs/how-to/",
+		"title": "Explanation",
+		"route": "/docs/explanation/",
 		"children": [
 			{
-				"title": "Authentication",
-				"route": "/docs/how-to/authentication"
-			},
-			{
-				"route": "/docs/how-to/post-previews/",
-				"title": "Post Previews"
+				"title": "Example",
+				"route": "/docs/explanation/example"
 			}
 		]
 	}
