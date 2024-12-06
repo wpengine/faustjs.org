@@ -9,7 +9,7 @@ export default function Footer() {
 
 	return (
 		<footer className="bg-gray-950 px-8 pb-14 lg:px-16 lg:pb-24">
-			<div className="container-main container prose prose-invert border-t border-gray-900">
+			<div className="container-main container-max container prose prose-invert border-t border-gray-900">
 				<div className="grid grid-cols-1 gap-8 pt-14 sm:grid-cols-2 lg:grid-cols-3 lg:pt-24">
 					<FooterColumns data={data} />
 				</div>

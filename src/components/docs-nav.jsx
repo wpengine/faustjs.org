@@ -1,15 +1,13 @@
-import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/router";
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
 
-export default function DocsNav({ as, routes, level = 0 }) {
+export default function DocsNav({ as, routes, level = 0, className }) {
 	const As = as || Fragment;
 	return (
 		<ul
-			className={classNames("my-1", {
-				"ml-2 border-l-[.5px] border-gray-500": level > 0,
+			className={classNames(className, "my-1", {
+				"ml-2 border-l-[.5px] border-gray-500 pl-2": level > 0,
 			})}
 			data-doc-nav-level={level}
 		>
@@ -23,13 +21,8 @@ export default function DocsNav({ as, routes, level = 0 }) {
 }
 
 function NavItem({ item, level, ...props }) {
-	// If the item doesn't have a route, it's a heading
 	if (!item?.route) {
-		return (
-			<li>
-				<span>{item.title}</span>
-			</li>
-		);
+		throw new Error("Item must have a route");
 	}
 
 	return (
@@ -42,36 +35,9 @@ function NavItem({ item, level, ...props }) {
 			>
 				{item.title}
 			</Link>
+			{item.children && (
+				<DocsNav as="ul" level={level + 1} routes={item.children} />
+			)}
 		</li>
 	);
 }
-
-// function DropdownNavItem({ item, level, ...props }) {
-// 	const router = useRouter();
-
-// 	const isCurrent = router.asPath.includes(item.route);
-
-// 	const [isOpen, setIsOpen] = useState(isCurrent);
-
-// 	return (
-// 		<li className="my-2 font-light">
-// 			<Link
-// 				data-doc-nav-level={level}
-// 				href={item.route}
-// 				noDefaultStyles
-// 				{...props}
-// 			>
-// 				<span>{item.title}</span>
-// 				{isOpen ? (
-// 					<ChevronDownIcon
-// 						className="inline h-4 w-4"
-// 						onClick={() => setIsOpen(!isOpen)}
-// 					/>
-// 				) : (
-// 					<ChevronRightIcon className="inline h-4 w-4" />
-// 				)}
-// 			</Link>
-// 			{isCurrent && <DocsNav level={level + 1} routes={item.children} />}
-// 		</li>
-// 	);
-// }
