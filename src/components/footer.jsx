@@ -1,5 +1,4 @@
 import Link from "@/components/link";
-import { FooterMenus, FooterMenuSections } from "@/constants/menus";
 
 export default function Footer() {
 	return (
@@ -38,40 +37,155 @@ export default function Footer() {
 }
 
 function FooterColumns() {
-	const columns = [
-		FooterMenus.filter((item) => item.section === "downloads"),
-		FooterMenus.filter((item) => item.section === "community"),
-		FooterMenus.filter((item) => item.section === "wpengine"),
-	];
+	const columnClass = "col-span-1 flex flex-col gap-4";
+	const listClass = "my-0 list-none ps-0";
+	const headingClass = "font-bold uppercase tracking-wider text-gray-300";
+	const listItemClass = "my-0 space-y-2 ps-0";
+	const linkClass =
+		"inline-flex items-center gap-1 font-normal text-gray-400 no-underline transition duration-150 ease-in-out hover:text-gray-200";
 
-	return columns.map((column, index) => {
-		if (!column || column.length === 0) {
-			return; // Skip rendering if no menu items are found
-		}
-
-		const columnSection = column[0]?.section || "menu";
-		const columnTitle = FooterMenuSections[columnSection] || "Menu";
-
-		return (
-			<div className="col-span-1 flex flex-col gap-4" key={index}>
-				<h6 className="font-bold uppercase tracking-wider text-gray-300">
-					{columnTitle}
-				</h6>
-				<ul className="my-0 list-none ps-0">
-					{column.map((item) => (
-						<li className="my-0 space-y-2 ps-0" key={item.id}>
-							<Link
-								className="inline-flex items-center gap-1 font-normal text-gray-400 no-underline transition duration-150 ease-in-out hover:text-gray-200"
-								href={item.uri}
-								noDefaultStyles
-								target={item.target}
-							>
-								{item.label}
-							</Link>
-						</li>
-					))}
+	return (
+		<>
+			<div className={columnClass} key="downloads">
+				<h6 className={headingClass}>Downloads</h6>
+				<ul className={listClass}>
+					<li className={listItemClass} key="faustwp-cli">
+						<Link
+							className={linkClass}
+							href="https://www.npmjs.com/package/@faustwp/cli"
+							noDefaultStyles
+							target="_blank"
+						>
+							@faustwp/cli
+						</Link>
+					</li>
+					<li className={listItemClass} key="faustwp-core">
+						<Link
+							className={linkClass}
+							href="https://www.npmjs.com/package/@faustwp/core"
+							noDefaultStyles
+							target="_blank"
+						>
+							@faustwp/core
+						</Link>
+					</li>
+					<li className={listItemClass} key="faustwp-blocks">
+						<Link
+							className={linkClass}
+							href="https://www.npmjs.com/package/@faustwp/blocks"
+							noDefaultStyles
+							target="_blank"
+						>
+							@faustwp/blocks
+						</Link>
+					</li>
+					<li className={listItemClass} key="faustwp-companion-plugin">
+						<Link
+							className={linkClass}
+							href="https://github.com/wpengine/faustjs/tree/canary/plugins/faustwp"
+							noDefaultStyles
+							target="_blank"
+						>
+							Faust.js Companion Plugin
+						</Link>
+					</li>
+					<li className={listItemClass} key="wpgraphql-content-blocks">
+						<Link
+							className={linkClass}
+							href="https://github.com/wpengine/wp-graphql-content-blocks"
+							noDefaultStyles
+							target="_blank"
+						>
+							WPGraphQL Content Blocks
+						</Link>
+					</li>
 				</ul>
 			</div>
-		);
-	});
+			<div className={columnClass} key="community">
+				<h6 className={headingClass}>Community</h6>
+				<ul className={listClass}>
+					<li className={listItemClass} key="github">
+						<Link
+							className={linkClass}
+							href="https://github.com/wpengine/faustjs?ref=faustjs"
+							noDefaultStyles
+							target="_blank"
+						>
+							Github
+						</Link>
+					</li>
+					<li className={listItemClass} key="twitter">
+						<Link
+							className={linkClass}
+							href="https://twitter.com/wpengine"
+							noDefaultStyles
+							target="_blank"
+						>
+							Twitter
+						</Link>
+					</li>
+					<li className={listItemClass} key="youtube">
+						<Link
+							className={linkClass}
+							href="https://www.youtube.com/channel/UCh1WuL54XFb9ZI6m6goFv1g"
+							noDefaultStyles
+							target="_blank"
+						>
+							YouTube
+						</Link>
+					</li>
+					<li className={listItemClass} key="discord">
+						<Link
+							className={linkClass}
+							href="/discord/"
+							noDefaultStyles
+							target="_blank"
+						>
+							Discord
+						</Link>
+					</li>
+				</ul>
+			</div>
+			<div className={columnClass} key="wpengine">
+				<h6 className={headingClass}>WP Engine</h6>
+				<ul className={listClass}>
+					<li className={listItemClass} key="privacy-policy">
+						<Link className={linkClass} href="/privacy-policy/" noDefaultStyles>
+							Privacy Policy
+						</Link>
+					</li>
+					<li className={listItemClass} key="developers">
+						<Link
+							className={linkClass}
+							href="https://wpengine.com/builders/headless"
+							noDefaultStyles
+							target="_blank"
+						>
+							Developers
+						</Link>
+					</li>
+					<li className={listItemClass} key="hiring">
+						<Link
+							className={linkClass}
+							href="https://wpengine.careers/?ref=faustjs"
+							noDefaultStyles
+							target="_blank"
+						>
+							We're Hiring!
+						</Link>
+					</li>
+					<li className={listItemClass} key="headless-hosting">
+						<Link
+							className={linkClass}
+							href="https://wpengine.com/atlas?ref=faustjs"
+							noDefaultStyles
+							target="_blank"
+						>
+							Headless Hosting
+						</Link>
+					</li>
+				</ul>
+			</div>
+		</>
+	);
 }
