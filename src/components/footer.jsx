@@ -127,7 +127,7 @@ function FooterColumns() {
 						</Link>
 					</li>
 					<li className={listItemClass}>
-						<Link className={linkClass} href="/discord/" noDefaultStyles>
+						<Link className={linkClass} href="/discord" noDefaultStyles>
 							Discord
 						</Link>
 					</li>
