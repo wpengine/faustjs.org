@@ -46,115 +46,107 @@ function FooterColumns() {
 
 	return (
 		<>
-			<div className={columnClass} key="downloads">
+			<div className={columnClass}>
 				<h6 className={headingClass}>Downloads</h6>
 				<ul className={listClass}>
-					<li className={listItemClass} key="faustwp-cli">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://www.npmjs.com/package/@faustwp/cli"
 							noDefaultStyles
-							target="_blank"
 						>
 							@faustwp/cli
 						</Link>
 					</li>
-					<li className={listItemClass} key="faustwp-core">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://www.npmjs.com/package/@faustwp/core"
 							noDefaultStyles
-							target="_blank"
 						>
 							@faustwp/core
 						</Link>
 					</li>
-					<li className={listItemClass} key="faustwp-blocks">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://www.npmjs.com/package/@faustwp/blocks"
 							noDefaultStyles
-							target="_blank"
 						>
 							@faustwp/blocks
 						</Link>
 					</li>
-					<li className={listItemClass} key="faustwp-companion-plugin">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://github.com/wpengine/faustjs/tree/canary/plugins/faustwp"
 							noDefaultStyles
-							target="_blank"
 						>
 							Faust.js Companion Plugin
 						</Link>
 					</li>
-					<li className={listItemClass} key="wpgraphql-content-blocks">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://github.com/wpengine/wp-graphql-content-blocks"
 							noDefaultStyles
-							target="_blank"
 						>
 							WPGraphQL Content Blocks
 						</Link>
 					</li>
 				</ul>
 			</div>
-			<div className={columnClass} key="community">
+			<div className={columnClass}>
 				<h6 className={headingClass}>Community</h6>
 				<ul className={listClass}>
-					<li className={listItemClass} key="github">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://github.com/wpengine/faustjs?ref=faustjs"
 							noDefaultStyles
-							target="_blank"
 						>
 							Github
 						</Link>
 					</li>
-					<li className={listItemClass} key="twitter">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://twitter.com/wpengine"
 							noDefaultStyles
-							target="_blank"
 						>
 							Twitter
 						</Link>
 					</li>
-					<li className={listItemClass} key="youtube">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://www.youtube.com/channel/UCh1WuL54XFb9ZI6m6goFv1g"
 							noDefaultStyles
-							target="_blank"
 						>
 							YouTube
 						</Link>
 					</li>
-					<li className={listItemClass} key="discord">
-						<Link
-							className={linkClass}
-							href="/discord/"
-							noDefaultStyles
-							target="_blank"
-						>
+					<li className={listItemClass}>
+						<Link className={linkClass} href="/discord/" noDefaultStyles>
 							Discord
 						</Link>
 					</li>
 				</ul>
 			</div>
-			<div className={columnClass} key="wpengine">
+			<div className={columnClass}>
 				<h6 className={headingClass}>WP Engine</h6>
 				<ul className={listClass}>
-					<li className={listItemClass} key="privacy-policy">
-						<Link className={linkClass} href="/privacy-policy/" noDefaultStyles>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="/privacy-policy/"
+							noDefaultStyles
+							target="_self"
+						>
 							Privacy Policy
 						</Link>
 					</li>
-					<li className={listItemClass} key="developers">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://wpengine.com/builders/headless"
@@ -164,22 +156,20 @@ function FooterColumns() {
 							Developers
 						</Link>
 					</li>
-					<li className={listItemClass} key="hiring">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://wpengine.careers/?ref=faustjs"
 							noDefaultStyles
-							target="_blank"
 						>
 							We're Hiring!
 						</Link>
 					</li>
-					<li className={listItemClass} key="headless-hosting">
+					<li className={listItemClass}>
 						<Link
 							className={linkClass}
 							href="https://wpengine.com/atlas?ref=faustjs"
 							noDefaultStyles
-							target="_blank"
 						>
 							Headless Hosting
 						</Link>
