@@ -1,17 +1,11 @@
-import { gql, useQuery } from "@apollo/client";
 import Link from "@/components/link";
 
 export default function Footer() {
-	const { data, loading, error } = useQuery(GET_FOOTER_NAV_ITEMS);
-
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error! {error.message}</p>;
-
 	return (
 		<footer className="bg-gray-950 px-8 pb-14 lg:px-16 lg:pb-24">
 			<div className="container-main container prose prose-invert border-t border-gray-900">
 				<div className="grid grid-cols-1 gap-8 pt-14 sm:grid-cols-2 lg:grid-cols-3 lg:pt-24">
-					<FooterColumns data={data} />
+					<FooterColumns />
 				</div>
 				<div className="mt-24 text-gray-500">
 					<p>
@@ -42,91 +36,146 @@ export default function Footer() {
 	);
 }
 
-function FooterColumns({ data }) {
-	const { footer1MenuItems, footer2MenuItems, footer3MenuItems } = data;
-	const columns = [
-		footer1MenuItems?.menuItems?.nodes,
-		footer2MenuItems?.menuItems?.nodes,
-		footer3MenuItems?.menuItems?.nodes,
-	];
+function FooterColumns() {
+	const columnClass = "col-span-1 flex flex-col gap-4";
+	const listClass = "my-0 list-none ps-0";
+	const headingClass = "font-bold uppercase tracking-wider text-gray-300";
+	const listItemClass = "my-0 space-y-2 ps-0";
+	const linkClass =
+		"inline-flex items-center gap-1 font-normal text-gray-400 no-underline transition duration-150 ease-in-out hover:text-gray-200";
 
-	return columns.map((column, index) => {
-		if (!column || column.length === 0) {
-			return; // Skip rendering if no menu items are found
-		}
-
-		const columnTitle = column[0]?.menu?.node?.name || "Menu";
-
-		return (
-			<div className="col-span-1 flex flex-col gap-4" key={index}>
-				<h6 className="font-bold uppercase tracking-wider text-gray-300">
-					{columnTitle}
-				</h6>
-				<ul className="my-0 list-none ps-0">
-					{column.map((item) => (
-						<li className="my-0 space-y-2 ps-0" key={item.id}>
-							<Link
-								className="inline-flex items-center gap-1 font-normal text-gray-400 no-underline transition duration-150 ease-in-out hover:text-gray-200"
-								href={item.uri}
-								noDefaultStyles
-								target={item.target}
-							>
-								{item.label}
-							</Link>
-						</li>
-					))}
+	return (
+		<>
+			<div className={columnClass}>
+				<h6 className={headingClass}>Downloads</h6>
+				<ul className={listClass}>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://www.npmjs.com/package/@faustwp/cli"
+							noDefaultStyles
+						>
+							@faustwp/cli
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://www.npmjs.com/package/@faustwp/core"
+							noDefaultStyles
+						>
+							@faustwp/core
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://www.npmjs.com/package/@faustwp/blocks"
+							noDefaultStyles
+						>
+							@faustwp/blocks
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://github.com/wpengine/faustjs/tree/canary/plugins/faustwp"
+							noDefaultStyles
+						>
+							Faust.js Companion Plugin
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://github.com/wpengine/wp-graphql-content-blocks"
+							noDefaultStyles
+						>
+							WPGraphQL Content Blocks
+						</Link>
+					</li>
 				</ul>
 			</div>
-		);
-	});
+			<div className={columnClass}>
+				<h6 className={headingClass}>Community</h6>
+				<ul className={listClass}>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://github.com/wpengine/faustjs?ref=faustjs"
+							noDefaultStyles
+						>
+							Github
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://twitter.com/wpengine"
+							noDefaultStyles
+						>
+							Twitter
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://www.youtube.com/channel/UCh1WuL54XFb9ZI6m6goFv1g"
+							noDefaultStyles
+						>
+							YouTube
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link className={linkClass} href="/discord" noDefaultStyles>
+							Discord
+						</Link>
+					</li>
+				</ul>
+			</div>
+			<div className={columnClass}>
+				<h6 className={headingClass}>WP Engine</h6>
+				<ul className={listClass}>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="/privacy-policy/"
+							noDefaultStyles
+							target="_self"
+						>
+							Privacy Policy
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://wpengine.com/builders/headless"
+							noDefaultStyles
+							target="_blank"
+						>
+							Developers
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://wpengine.careers/?ref=faustjs"
+							noDefaultStyles
+						>
+							We're Hiring!
+						</Link>
+					</li>
+					<li className={listItemClass}>
+						<Link
+							className={linkClass}
+							href="https://wpengine.com/atlas?ref=faustjs"
+							noDefaultStyles
+						>
+							Headless Hosting
+						</Link>
+					</li>
+				</ul>
+			</div>
+		</>
+	);
 }
-
-const GET_FOOTER_NAV_ITEMS = gql`
-	query GetFooterNavItems {
-		footer1MenuItems: menu(id: "downloads", idType: NAME) {
-			menuItems {
-				nodes {
-					id
-					uri
-					label
-					target
-					menu {
-						node {
-							name
-						}
-					}
-				}
-			}
-		}
-		footer2MenuItems: menu(id: "community", idType: NAME) {
-			menuItems {
-				nodes {
-					id
-					uri
-					label
-					target
-					menu {
-						node {
-							name
-						}
-					}
-				}
-			}
-		}
-		footer3MenuItems: menu(id: "WP engine", idType: NAME) {
-			menuItems {
-				nodes {
-					id
-					uri
-					label
-					target
-					menu {
-						node {
-							name
-						}
-					}
-				}
-			}
-		}
-	}
-`;
