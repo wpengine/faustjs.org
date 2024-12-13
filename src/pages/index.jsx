@@ -14,12 +14,12 @@ export default function Index() {
 	return (
 		<main>
 			<section className="bg-100-full bg-default-pos bg-hero-gradient">
-				<div className="container-main container prose prose-invert mt-0 md:prose-lg lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
-					<div className="mx-auto max-w-4xl px-8 py-14 text-center lg:py-24">
+				<div className="container-main container prose prose-invert mt-0 md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
+					<div className="mx-auto max-w-xl px-8 py-24 text-center md:max-w-2xl md:py-36 lg:max-w-3xl">
 						<h1 className="bg-gradient-to-br from-purple-300 to-teal-300 bg-clip-text text-transparent">
 							The Next.js Headless Toolkit for WordPress
 						</h1>
-						<p className="mx-auto max-w-xl">
+						<p className="mx-auto max-w-md md:max-w-lg">
 							A robust set of tools for Next.js that unlock powerful headless
 							WordPress capabilities.
 						</p>
