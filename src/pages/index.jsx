@@ -53,8 +53,8 @@ export default function Index() {
 			</section>
 			<section className="bg-gray-950">
 				<div className="container-main container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
-					<h2 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
-						The features you need to build headless WordPress sites.
+					<h2 className="bg-gradient-to-tr from-blue-400 to-teal-300 bg-clip-text text-transparent">
+						The essential features you need to build headless WordPress sites.
 					</h2>
 					<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
 						<Card
