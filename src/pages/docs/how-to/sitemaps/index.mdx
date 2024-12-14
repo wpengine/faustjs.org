@@ -1,0 +1,153 @@
+export const metadata = {
+	title: "Sitemaps",
+	date: "2024-12-14",
+};
+
+# How to Use Sitemaps
+
+Sitemaps can be a complicated process when using WordPress in a headless environment. Thankfully, Faust takes care of all your sitemap needs through a simple function, `getSitemapProps`.
+
+## How It Works
+
+`getSitemapProps` works by proxying your existing sitemaps from WordPress to your frontend, while replacing any WordPress URLs with your headless frontend’s URL.
+
+This means there are no constraints in how your sitemaps are created on WordPress, giving you the flexibility to use plugins such as **Yoast** or **XML Sitemaps**. As long as your WordPress sitemaps match the following criteria, they will be proxied:
+
+- Conform to the XML Sitemaps specification
+- Have `sitemap` in their pathname (e.g., `/page-sitemap.xml`)
+- Have `.xml` as their extension
+
+## Steps
+
+### Prerequisites
+
+Ensure that you have completed the steps in the following pages before proceeding.
+
+- [Basic setup](/docs/how-to/basic-setup)
+
+- [Set up template hierarchy support](/docs/how-to/template-hierarchy/)
+
+To get started, create `sitemap.xml.js` in your `pages` directory with the following content:
+
+```javascript
+// In pages/sitemap.xml.js:
+
+import { getSitemapProps } from "@faustwp/core";
+
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		frontendUrl: process.env.FRONTEND_URL,
+	});
+}
+```
+
+`getSitemapProps` accepts two required arguments. The first is the `ctx` object passed from `getServerSideProps`, and the second is the `getSitemapProps` configuration object. There is only one required property in the configuration object, and it’s the `frontendUrl`. This is the URL to your frontend Faust site. In the example above, we reference this from the environment. You can do the same by setting the `process.env.FRONTEND_URL` environment variable.
+
+This is all the configuration you need to get started. As you can see, if you now go to `/sitemap.xml` on your headless frontend, you will see the sitemap index file being proxied over with properly formatted URLs.
+
+## Additional configuration
+
+### Ignoring Paths
+
+There will be instances in which you don’t want to proxy over a specific path. For example, if you have a custom post type that you want to exclude from your sitemap, you can do so by adding it to the `sitemapPathsToIgnore` array:
+
+```javascript
+// pages/sitemap.xml.js:
+
+import { getSitemapProps } from "@faustwp/core";
+
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		frontendUrl: process.env.FRONTEND_URL,
+		sitemapPathsToIgnore: ["/wp-sitemap-users-1.xml"],
+	});
+}
+```
+
+You can additionally use a wildcard to ignore sitemap paths that may be paginated:
+
+```javascript
+// pages/sitemap.xml.js:
+
+import { getSitemapProps } from "@faustwp/core";
+
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		frontendUrl: process.env.FRONTEND_URL,
+		sitemapPathsToIgnore: ["/wp-sitemap-users-*"],
+	});
+}
+```
+
+### Defining Next.js Pages for Sitemaps
+
+The above code examples account for adding your WordPress content to your sitemap, but what about the file-based pages you’ve created in Next.js? For example, if you have `src/pages/about.tsx` and want to include it in your sitemap, you can do so by creating a pages property in the `getSitemapProps` config object:
+
+```javascript
+// pages/sitemap.xml.js:
+
+import { getSitemapProps } from "@faustwp/core";
+
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		frontendUrl: process.env.FRONTEND_URL,
+		pages: [
+			{
+				path: "/about",
+			},
+		],
+	});
+}
+```
+
+The `path` property is a relative path to the page you want to include in your sitemap and is the only required field. Take a look at the reference doc for more of the available options.
+
+## Examples
+
+Below you can find some drop-in examples for different XML Sitemap configurations on WordPress.
+
+_NOTE:_ Be sure to define your pages property in your `getSitemapProps` config object if you have any Next.js specific pages you want included in your sitemap.
+
+### Usage with default WordPress Sitemaps
+
+Below is a drop in configuration using default WordPress sitemaps. This assumes you want to ignore the “users” sitemap:
+
+```javascript
+// pages/sitemap.xml.js:
+
+import { getSitemapProps } from "@faustwp/core";
+
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		frontendUrl: process.env.FRONTEND_URL,
+		sitemapPathsToIgnore: ["/wp-sitemap-users-*"],
+	});
+}
+```
+
+### Usage with Yoast
+
+```javascript
+// pages/sitemap.xml.js:
+
+import { getSitemapProps } from "@faustwp/core";
+
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		frontendUrl: process.env.FRONTEND_URL,
+		sitemapPathsToIgnore: ["/author-sitemap.xml"],
+	});
+}
+```
