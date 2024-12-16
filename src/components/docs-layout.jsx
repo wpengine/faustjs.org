@@ -1,10 +1,10 @@
-// import OnThisPageNav from "@/components/on-this-page-nav";
 import {
 	Disclosure,
 	DisclosureButton,
 	DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
 import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
@@ -29,8 +29,8 @@ export default function DocumentPage({ children }) {
 				<nav className="sticky top-[70px] hidden h-[calc(100vh-70px)] w-60 p-6 md:block">
 					<DocsNav routes={routes} />
 				</nav>
-				<nav className="w-70 order-last hidden p-6 lg:block">
-					{/* <OnThisPageNav editorBlocks={editorBlocks} /> */}
+				<nav className="sticky top-[70px] order-last hidden h-[calc(100vh-70px)] w-[240px] p-6 lg:block">
+					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
 				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] py-14 md:py-24">
 					{children}
