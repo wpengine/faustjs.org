@@ -25,14 +25,14 @@ export default function DocumentPage({ children }) {
 					<DocsNav className="container-main" routes={routes} />
 				</DisclosurePanel>
 			</Disclosure>
-			<main className="mx-auto flex grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid">
-				<nav className="sticky top-[70px] hidden h-[calc(100vh-70px)] w-60 p-6 md:block">
+			<main className="relative mx-auto flex grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid">
+				<nav className="sticky top-[70px] hidden h-[calc(100vh-70px)] w-60 overflow-y-auto p-6 md:block">
 					<DocsNav routes={routes} />
 				</nav>
 				<nav className="sticky top-[70px] order-last hidden h-[calc(100vh-70px)] w-[240px] p-6 lg:block">
 					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
-				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] py-14 md:py-24">
+				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] overflow-y-auto py-14 md:py-24">
 					{children}
 				</article>
 			</main>
