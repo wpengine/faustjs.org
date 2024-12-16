@@ -29,10 +29,10 @@ export default function DocumentPage({ children }) {
 				<nav className="sticky top-[70px] hidden h-[calc(100vh-70px)] w-60 overflow-y-auto p-6 md:block">
 					<DocsNav routes={routes} />
 				</nav>
-				<nav className="sticky top-[70px] order-last hidden h-[calc(100vh-70px)] w-[240px] p-6 lg:block">
+				<nav className="sticky top-[70px] order-last hidden h-[calc(100vh-70px)] w-[240px] overflow-y-auto p-6 lg:block">
 					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
-				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] overflow-y-auto py-14 md:py-24">
+				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] py-14 md:py-24">
 					{children}
 				</article>
 			</main>
