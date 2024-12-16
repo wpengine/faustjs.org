@@ -19,7 +19,7 @@ const socialIcons = [
 
 export default function Header() {
 	return (
-		<div className="container-blur-bg sticky top-0 z-10 border-b-[0.5px] border-gray-800 bg-gray-900/80">
+		<div className="container-blur-bg sticky top-0 z-10 border-b-[0.5px] border-gray-500 bg-gray-900/80">
 			<header className="container mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
 				<div className="flex items-center gap-8">
 					<Link
