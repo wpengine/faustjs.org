@@ -7,7 +7,7 @@ export default function DocsNav({ as, routes, level = 0, className }) {
 	return (
 		<ul
 			className={classNames(className, "my-1", {
-				"ml-4 border-l-[.5px] border-gray-500 pl-4": level > 0,
+				"ml-4 border-l-[1px] border-gray-700 pl-4": level > 0,
 			})}
 			data-doc-nav-level={level}
 		>
