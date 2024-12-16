@@ -1,0 +1,51 @@
+[
+	{
+		"title": "Getting Started",
+		"route": "/docs/"
+	},
+	{
+		"title": "How-To Guides",
+		"route": "/docs/how-to/",
+		"children": [
+			{
+				"title": "Basic Setup",
+				"route": "/docs/how-to/basic-setup/"
+			},
+			{
+				"title": "Template Hierarchy",
+				"route": "/docs/how-to/template-hierarchy/"
+			},
+			{
+				"title": "Rendering Blocks",
+				"route": "/docs/how-to/rendering-blocks/"
+			},
+			{
+				"title": "Rendering Blocks with the Template Hierarchy",
+				"route": "/docs/how-to/rendering-blocks-with-the-template-hierarchy/"
+			},
+			{
+				"title": "Authentication",
+				"route": "/docs/how-to/authentication/"
+			},
+			{
+				"title": "Post Previews",
+				"route": "/docs/how-to/post-previews/"
+			}
+		]
+	},
+	{
+		"title": "Reference",
+		"route": "/docs/reference/",
+		"children": []
+	},
+	{
+		"title": "Explanation",
+		"route": "/docs/explanation/",
+		"children": [
+			{
+				"title": "Example",
+				"route": "/docs/explanation/example"
+			}
+		]
+	}
+]

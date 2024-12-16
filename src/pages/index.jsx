@@ -14,7 +14,7 @@ export default function Index() {
 	return (
 		<main>
 			<section className="bg-100-full bg-default-pos bg-hero-gradient">
-				<div className="container-main container prose prose-invert mt-0 md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
+				<div className="container-main container-max container prose prose-invert mt-0 md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
 					<div className="mx-auto max-w-xl px-8 py-24 text-center md:max-w-2xl md:py-36 lg:max-w-3xl">
 						<h1 className="bg-gradient-to-br from-purple-300 to-teal-300 bg-clip-text text-transparent">
 							The Next.js Headless Toolkit for WordPress
@@ -52,7 +52,7 @@ export default function Index() {
 				</div>
 			</section>
 			<section className="bg-gray-950">
-				<div className="container-main container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
+				<div className="container-main container-max container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
 					<h2 className="bg-gradient-to-tr from-blue-400 to-teal-300 bg-clip-text text-transparent">
 						The essential features you need to build headless WordPress sites.
 					</h2>
