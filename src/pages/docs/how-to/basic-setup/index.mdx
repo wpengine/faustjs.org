@@ -46,7 +46,7 @@ Save your `.env.local` file.
 Install the `@apollo/client`, gql and `@faustwp/core` NPM packages in your Next.js app.
 
 ```bash
-npm install @apollo/client @faustwp/core graphql
+npm install @apollo/client @faustwp/core graphql @faustwp/cli
 ```
 
 ## Create Faust config file
@@ -94,11 +94,138 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
+## Setup the Template Hierarchy
+
+### Generate types
+
+In order for Faust.js to run the GraphQL queries it needs to determine the correct template to use, it needs to have a list of all the types available in the GraphQL schema. We'll generate this list of types now.
+
+Add the following generate script to your Next.js project's `package.json` file, in the scripts block:
+
+```json
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "generate": "faust generatePossibleTypes",
+    "start": "next start",
+    "lint": "next lint"
+  },
+```
+
+Run `npm run generate` on the command line. Confirm that a possibleTypes.json has been generated in the root of your project.
+
+### Add a template
+
+Create a new `wp-templates` folder in the root of your project. This is where your template files will be stored. We'll start by adding a template for rendering single blog posts.
+
+Inside the `wp-templates` folder, create a `single.js` file that contains the following code.
+
+```jsx
+import { gql } from "@apollo/client";
+
+export default function SingleTemplate(props) {
+	const { title, content } = props.data.post;
+
+	return (
+		<>
+			<h1>{title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: content }} />
+		</>
+	);
+}
+
+SingleTemplate.query = gql`
+	query GetPost($uri: ID!) {
+		post(id: $uri, idType: URI) {
+			title
+			content
+		}
+	}
+`;
+
+SingleTemplate.variables = (seedQuery, ctx) => {
+	return {
+		uri: seedQuery?.uri,
+	};
+};
+```
+
+Inside of the `SingleTemplate.variables` function, we pass in the URI of the current page so that it's available for GraphQL queries to use.
+
+Inside the `SingleTemplate.query` tagged template literal, we pass the `uri` for the current page into the GraphQL query, telling WordPress that we want to fetch the `title` and `content` for the post matching that URI.
+
+In the `SingleTemplate` component, we receive the props, destructure the `title` and `content`, then return some JSX to render the title and content to the page.
+
+Finally, we have to make Faust.js aware that this template exists. To do that, create an `index.js` file inside the `wp-templates` folder with this code inside:
+
+```javascript
+import single from "./single";
+
+const templates = {
+	single,
+};
+
+export default templates;
+```
+
+### Pass in Templates and Types in Faust.js config
+
+Put the following code inside your Faust.js config:
+
+```javascript
+import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates/index.js";
+import possibleTypes from "./possibleTypes.json";
+
+/**
+ * @type {import('@faustwp/core').FaustConfig}
+ **/
+export default setConfig({
+	templates,
+	possibleTypes,
+});
+```
+
+Here, we call the `setConfig()` function that Faust.js provides, passing in our `templates` and `possibleTypes` to it.
+
+### Create a catch-all route
+
+Create a `[...wordpressNode].js` file inside your `pages` folder. Add the following code to it.
+
+```jsx
+import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
+
+export default function Page(props) {
+	return <WordPressTemplate {...props} />;
+}
+
+export function getStaticProps(ctx) {
+	return getWordPressProps({ ctx });
+}
+
+export async function getStaticPaths() {
+	return {
+		paths: [],
+		fallback: "blocking",
+	};
+}
+```
+
+This catch-all route tells Next.js to use the templates to render pages.
+
+Note that it is still possible to override this with hardcoded pages. For example, if you have a page in your WordPress site with a URI of `/about`, Faust.js will render that page using the relevant template in your project's `wp-templates` folder. However, if you add a `pages/about.js` file to your project, Next.js will render the `/about` path in your app using that file instead.
+
+## Test your template
+
+You should now be able to make use of this template.
+
+Run `npm run dev` to get your Next.js project running in development mode, then visit the URL for one of the blog posts– something like `http://localhost:3000/blog/hello-world/`.
+
+If you've wired everything up correctly, the page should render and display the post's title and content.
+
 ### Next steps
 
 You are now ready to leverage Faust's other features, including:
-
-- Template Hierarchy
 
 - Authentication
 
