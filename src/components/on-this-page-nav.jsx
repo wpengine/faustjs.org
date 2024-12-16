@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Link from "@/components/link";
 
 export default function OnThisPageNav({ children }) {
 	const [headings, setHeadings] = useState([]);
@@ -57,6 +57,7 @@ export default function OnThisPageNav({ children }) {
 							<Link
 								dangerouslySetInnerHTML={{ __html: heading.text }}
 								href={`#${heading.id}`}
+								noDefaultStyles
 							/>
 						</li>
 					))}
