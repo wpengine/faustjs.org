@@ -26,7 +26,7 @@ export default function DocumentPage({ children }) {
 				</DisclosurePanel>
 			</Disclosure>
 			<main className="mx-auto flex grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid">
-				<nav className="hidden w-60 p-6 md:block">
+				<nav className="sticky top-[70px] hidden h-[calc(100vh-70px)] w-60 p-6 md:block">
 					<DocsNav routes={routes} />
 				</nav>
 				<nav className="w-70 order-last hidden p-6 lg:block">
