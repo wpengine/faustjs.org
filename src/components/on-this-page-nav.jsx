@@ -49,14 +49,17 @@ export default function OnThisPageNav({ children }) {
 		<>
 			<h2 className="font-semibold">On This Page</h2>
 			{headings.length > 0 ? (
-				<ul className="mt-4 space-y-2.5 text-sm text-gray-400">
+				<ul className="mt-4 text-sm text-gray-400">
 					{headings.map((heading) => (
 						<li
 							key={heading.id}
 							className={classNames(
-								{ "active text-blue-500": activeId === heading.id },
-								{ "ml-4": heading.level === 3 },
-								"w-full whitespace-normal break-words",
+								{
+									"ml-2 border-l-[1px] border-gray-800 pl-3":
+										heading.level === 3,
+									"active text-blue-500": activeId === heading.id,
+								},
+								"w-full whitespace-normal break-words py-2",
 							)}
 						>
 							<Link href={`#${heading.id}`} noDefaultStyles>
