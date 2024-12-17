@@ -17,7 +17,7 @@ export default function BlogIndex() {
 	if (error) return <p>Error! {error.message}</p>;
 
 	return (
-		<main className="container-main container prose prose-invert px-8 py-14 prose-h2:mt-0 prose-h2:text-lg lg:px-16 lg:py-24">
+		<main className="container-main container-max container prose prose-invert px-8 py-14 prose-h2:mt-0 prose-h2:text-lg lg:px-16 lg:py-24">
 			<h1 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
 				Faust.js news
 			</h1>
@@ -39,6 +39,7 @@ export default function BlogIndex() {
 						<Date className="text-blue-100/70" dateString={post.date} />
 						<div
 							className="mb-4"
+							// eslint-disable-next-line react/no-danger
 							dangerouslySetInnerHTML={{ __html: post.excerpt }}
 						/>
 					</Card>

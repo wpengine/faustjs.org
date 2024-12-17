@@ -26,7 +26,7 @@ const config = [
 	...jsxA11y,
 	...next,
 	{
-		files: ["**/*.{js,jsx,cjs,mjs}"],
+		files: ["**/*.{js,jsx,cjs,mjs,mdx}"],
 		settings: {
 			react: {
 				version: "detect",
@@ -40,9 +40,14 @@ const config = [
 		rules: {
 			"arrow-body-style": "off",
 			"react/prop-types": "off",
-			...unicorn.configs["flat/recommended"].rules, // neno disables a lot of unicorn rules so this reenables defaults
+			...unicorn.configs["flat/recommended"].rules, // neon disables a lot of unicorn rules so this reenables defaults
 			"react/no-danger": "warn",
 			"react/jsx-sort-props": "off",
+			"react/jsx-filename-extension": [
+				"warn",
+				{ extensions: [".jsx", ".mdx"] },
+			],
+			"@stylistic/jsx/jsx-sort-props": "off",
 			"unicorn/prevent-abbreviations": [
 				"error",
 				{
@@ -79,12 +84,12 @@ const config = [
 			"unicorn/prefer-module": "off",
 		},
 	},
-	// {
-	// 	files: ["src/pages/**/*.{js,jsx}"],
-	// 	rules: {
-	// 		"unicorn/filename-case": ["off"],
-	// 	},
-	// },
+	{
+		files: ["src/pages/**/*.{js,jsx}"],
+		rules: {
+			"react-refresh/only-export-components": ["off"],
+		},
+	},
 	{
 		...mdx.flat,
 		processor: mdx.createRemarkProcessor({

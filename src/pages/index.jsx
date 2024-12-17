@@ -14,16 +14,16 @@ export default function Index() {
 	return (
 		<main>
 			<section className="bg-100-full bg-default-pos bg-hero-gradient">
-				<div className="container-main container prose prose-invert mt-0 md:prose-lg lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
-					<div className="mx-auto max-w-4xl px-8 py-14 text-center lg:py-24">
+				<div className="container-main container-max container prose prose-invert mt-0 md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
+					<div className="mx-auto max-w-xl px-8 py-24 text-center md:max-w-2xl md:py-36 lg:max-w-3xl">
 						<h1 className="bg-gradient-to-br from-purple-300 to-teal-300 bg-clip-text text-transparent">
 							The Next.js Headless Toolkit for WordPress
 						</h1>
-						<p className="mx-auto max-w-xl">
+						<p className="mx-auto max-w-md md:max-w-lg">
 							A robust set of tools for Next.js that unlock powerful headless
 							WordPress capabilities.
 						</p>
-						<p className="not-prose inline-flex gap-4">
+						<p className="not-prose flex flex-col items-center gap-4 sm:inline-flex sm:flex-row">
 							<Link
 								className="not-prose text-gray-1000 group inline-flex items-center gap-1 rounded-full border border-blue-800/20 bg-gradient-to-tr from-blue-600/50 from-20% to-purple-900/50 px-8 py-2 text-base leading-none tracking-tight shadow-lg backdrop-blur-lg transition duration-75 hover:border-gray-100/50 hover:bg-gradient-to-tl hover:from-purple-400/80 hover:to-teal-400/80 hover:text-gray-900 hover:backdrop-blur-xl lg:py-3"
 								href="/docs/"
@@ -52,9 +52,9 @@ export default function Index() {
 				</div>
 			</section>
 			<section className="bg-gray-950">
-				<div className="container-main container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
-					<h2 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
-						The features you need to build headless WordPress sites.
+				<div className="container-main container-max container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
+					<h2 className="bg-gradient-to-tr from-blue-400 to-teal-300 bg-clip-text text-transparent">
+						The essential features you need to build headless WordPress sites.
 					</h2>
 					<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
 						<Card
