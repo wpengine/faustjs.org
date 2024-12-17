@@ -3,11 +3,12 @@ import { withFaust, getWpHostname } from "@faustwp/core";
 import createMDX from "@next/mdx";
 import { transformerNotationDiff } from "@shikijs/transformers";
 import { createSecureHeaders } from "next-secure-headers";
+import rehypeCallouts from "rehype-callouts";
 import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -69,10 +70,11 @@ const nextConfig = {
 
 const withMDX = createMDX({
 	options: {
-		// remarkPlugins: [],
+		remarkPlugins: [remarkGfm],
 		rehypePlugins: [
 			rehypeMdxImportMedia,
 			rehypeSlug,
+			rehypeCallouts,
 			[
 				rehypePrettyCode,
 				{

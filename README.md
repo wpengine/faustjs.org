@@ -41,9 +41,11 @@ Both are run against staged files on commit. If it's failing for a good reason a
 
 Docs are MDX in the `docs` folder. Here are a couple things you should know!
 
-1.  Images should be stored along side the doc that uses them.
-2.  Shared Images can be stored in a shared folder @ `docs/images`
-3.  Code Blocks:
+1.  Our MDX supports [Github Flavored Markdown](https://github.github.com/gfm/) (GFM).
+2.  Images should be stored along side the doc that uses them.
+3.  Shared Images can be stored in a shared folder @ `docs/images`
+4.  [Callouts](https://github.com/lin-stephanie/rehype-callouts?tab=readme-ov-file#rehype-callouts): These are similar to block quotes or an aside but for various warnings, info, pro times, etc.
+5.  Code Blocks:
 
     - Required
       1. Specify a language: ` ```js ` or `` `const inlineCode = [1,2,3];{:js}` ``
