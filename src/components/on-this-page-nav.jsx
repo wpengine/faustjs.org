@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "@/components/link";
+import { classNames } from "@/utils/strings";
 
 export default function OnThisPageNav({ children }) {
 	const [headings, setHeadings] = useState([]);
@@ -52,13 +53,15 @@ export default function OnThisPageNav({ children }) {
 					{headings.map((heading) => (
 						<li
 							key={heading.id}
-							className={`${heading.level === 3 ? "ml-4" : ""} ${activeId === heading.id ? "active text-blue-500" : ""} w-full whitespace-normal break-words`}
+							className={classNames(
+								"w-full whitespace-normal break-words",
+								heading.level === 3 ? "ml-4" : "",
+								activeId === heading.id ? "active text-blue-500" : "",
+							)}
 						>
-							<Link
-								dangerouslySetInnerHTML={{ __html: heading.text }}
-								href={`#${heading.id}`}
-								noDefaultStyles
-							/>
+							<Link href={`#${heading.id}`} noDefaultStyles>
+								{heading.text}
+							</Link>
 						</li>
 					))}
 				</ul>
