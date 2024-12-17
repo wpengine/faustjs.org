@@ -14,7 +14,7 @@ export default function DocumentPage({ children }) {
 		<>
 			<Disclosure
 				as="div"
-				className="sticky top-[84px] border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-sm md:hidden"
+				className="sticky top-[85px] z-10 border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-sm md:hidden"
 			>
 				<DisclosureButton className="group flex items-center rounded-md px-2 py-1.5 text-white/70 hover:text-white">
 					<ChevronDownIcon className="relative z-20 hidden h-4 w-4 group-data-[open]:inline" />
