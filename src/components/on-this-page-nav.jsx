@@ -33,8 +33,8 @@ export default function OnThisPageNav({ children }) {
 				}
 			},
 			{
-				rootMargin: "0px 0px -25% 0px",
-				threshold: 1,
+				rootMargin: "0px 0px -50% 0px",
+				threshold: 0,
 			},
 		);
 
@@ -54,9 +54,9 @@ export default function OnThisPageNav({ children }) {
 						<li
 							key={heading.id}
 							className={classNames(
+								{ "active text-blue-500": activeId === heading.id },
+								{ "ml-4": heading.level === 3 },
 								"w-full whitespace-normal break-words",
-								heading.level === 3 ? "ml-4" : "",
-								activeId === heading.id ? "active text-blue-500" : "",
 							)}
 						>
 							<Link href={`#${heading.id}`} noDefaultStyles>
