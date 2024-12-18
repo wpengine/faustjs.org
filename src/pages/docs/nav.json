@@ -11,18 +11,12 @@
 				"title": "Basic Setup",
 				"route": "/docs/how-to/basic-setup/"
 			},
-			{
-				"title": "Template Hierarchy",
-				"route": "/docs/how-to/template-hierarchy/"
-			},
+
 			{
 				"title": "Rendering Blocks",
 				"route": "/docs/how-to/rendering-blocks/"
 			},
-			{
-				"title": "Rendering Blocks with the Template Hierarchy",
-				"route": "/docs/how-to/rendering-blocks-with-the-template-hierarchy/"
-			},
+
 			{
 				"title": "Authentication",
 				"route": "/docs/how-to/authentication/"
