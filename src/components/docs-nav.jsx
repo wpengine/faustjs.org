@@ -7,7 +7,7 @@ export default function DocsNav({ as, routes, level = 0, className }) {
 	return (
 		<ul
 			className={classNames(className, "my-1", {
-				"ml-4 border-l-[1px] border-gray-700 pl-4": level > 0,
+				"ml-2 border-l-[1px] border-gray-800 pl-3": level > 0,
 			})}
 			data-doc-nav-level={level}
 		>
@@ -26,12 +26,12 @@ function NavItem({ item, level, ...props }) {
 	}
 
 	return (
-		<li className="py-2">
+		<li className="py-2 text-gray-400">
 			<Link
 				data-doc-nav-level={level}
 				href={item.route}
 				noDefaultStyles
-				activeClassName="underline"
+				activeClassName="text-blue-500 active"
 				{...props}
 			>
 				{item.title}
