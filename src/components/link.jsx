@@ -1,5 +1,6 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { forwardRef } from "react";
 import { classNames } from "@/utils/strings";
 
@@ -11,13 +12,19 @@ const CustomLink = forwardRef(
 			className,
 			noDefaultStyles,
 			disableExternalIcon,
+			activeClassName,
 			...props
 		},
 		reference,
 	) => {
+		const router = useRouter();
+
 		const defaultClasses = "text-blue-500";
 		const calculatedClasses = classNames(
-			{ [defaultClasses]: !noDefaultStyles },
+			{
+				[defaultClasses]: !noDefaultStyles,
+				[activeClassName]: router.asPath === href,
+			},
 			className,
 		);
 
