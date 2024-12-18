@@ -8,11 +8,11 @@ The `getNextServerSideProps` function lets you server side render your page with
 
 The `getNextServerSideProps` function accepts two arguments: the server side props `context`, and an object (type `GetNextServerSidePropsConfig`) with a `Page` key— this should be your Next.js page component.
 
-```js
+```ts
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return getNextServerSideProps(context, {
-    Page: MyPage,
-  });
+	return getNextServerSideProps(context, {
+		Page: MyPage,
+	});
 }
 ```
 
