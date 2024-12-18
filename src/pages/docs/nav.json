@@ -36,7 +36,12 @@
 	{
 		"title": "Reference",
 		"route": "/docs/reference/",
-		"children": []
+		"children": [
+			{
+				"title": "Telemetry",
+				"route": "/docs/reference/telemetry/"
+			}
+		]
 	},
 	{
 		"title": "Explanation",
