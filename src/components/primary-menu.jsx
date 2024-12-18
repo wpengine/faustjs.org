@@ -20,17 +20,32 @@ export default function PrimaryMenu({ className }) {
 		<nav className={classNames("flex items-center space-x-4", className)}>
 			<ul className="hidden flex-row space-x-4 pl-4 md:flex">
 				<li key="docs" className={navItemClass}>
-					<Link className="block px-1" href="/docs/" noDefaultStyles>
+					<Link
+						className="block px-1"
+						href="/docs/"
+						noDefaultStyles
+						activeClassName="text-purple-500"
+					>
 						Docs
 					</Link>
 				</li>
 				<li key="blog" className={navItemClass}>
-					<Link className="block px-1" href="/blog/" noDefaultStyles>
+					<Link
+						className="block px-1"
+						href="/blog/"
+						noDefaultStyles
+						activeClassName="text-purple-500"
+					>
 						Blog
 					</Link>
 				</li>
 				<li key="showcase" className={navItemClass}>
-					<Link className="block px-1" href="/showcase/" noDefaultStyles>
+					<Link
+						className="block px-1"
+						href="/showcase/"
+						noDefaultStyles
+						activeClassName="text-purple-500"
+					>
 						Showcase
 					</Link>
 				</li>
