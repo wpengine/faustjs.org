@@ -62,10 +62,6 @@
 				"route": "/docs/reference/get-wordpress-props"
 			},
 			{
-				"title": "Telemetry",
-				"route": "/docs/reference/telemetry/"
-			},
-			{
 				"title": "useAuth",
 				"route": "/docs/reference/use-auth"
 			},
@@ -99,6 +95,10 @@
 		"title": "Explanation",
 		"route": "/docs/explanation/",
 		"children": [
+			{
+				"title": "Telemetry",
+				"route": "/docs/reference/telemetry/"
+			},
 			{
 				"title": "Example",
 				"route": "/docs/explanation/example"
