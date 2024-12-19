@@ -14,7 +14,7 @@ First things first, you should consider using @graphql-codegen to generate types
 
 Below is a sample config for generating the relevant typings:
 
-```typescript
+```ts title="codegen.ts"
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
@@ -37,7 +37,7 @@ export default config;
 
 Add the following npm script that works by scanning the `src` folder for GraphQL queries and generating a bunch of files inside `/src/**generated**/` for the TypeScript types:
 
-```javascript
+```json title="package.json"
 {
   "scripts": {
     ...
@@ -50,7 +50,7 @@ Add the following npm script that works by scanning the `src` folder for GraphQL
 
 The most important file is the `graphql.ts` which contains all the schema types from the WPGraphQL endpoint plus the types of the queries:
 
-```javascript
+```ts title="/src/__generated__/graphql.ts"
 ...
 export type GetPostQueryVariables = Exact<{
   databaseId: Scalars['ID'];
@@ -66,7 +66,7 @@ You can use these types with the `FaustTemplate` helper which we will explain ne
 
 When creating a new WP Template page, you can use the `FaustTemplate` to declare the type of the function component passing the type of the GraphQL query that was generated for that page:
 
-```javascript
+```ts title="src/wp-templates/single.tsx"
 import { gql } from "../__generated__";
 
 import { GetPostQuery } from "../__generated__/graphql";
@@ -89,7 +89,7 @@ All the data from the query results will be properly typed based on the introspe
 
 Similarly, when creating Block components using `@faustwp/blocks` packages, you can use the `WordPressBlock` type that will include all the relevant properties of that block:
 
-```typescript
+```ts title="src/wp-blocks/CoreParagraph.tsx"
 import { gql } from "../__generated__";
 import { WordPressBlock } from "@faustwp/blocks";
 import { CoreParagraphFragmentFragment } from "../__generated__/graphql";
@@ -118,9 +118,7 @@ Here we pass the `CoreParagraphFragmentFragment` type that corresponds to the `C
 
 Faust providers a `FaustHooks` type that you can use for applying the corresponding type of the `hooks` parameter:
 
-```typescript
-// src/plugins/ProjectTemplatePlugin.ts
-
+```ts title="src/plugins/ProjectTemplatePlugin.ts"
 import { FaustHooks, FaustPlugin } from "@faustwp/core";
 
 export class ProjectTemplatePlugin implements FaustPlugin {
@@ -154,8 +152,8 @@ To summarize, you should use the following types available:
 
 Let’s see an example of how to type the `[...wordpressNode].tsx` page:
 
-```typescript
-// src/pages/[...wordpressNode].tsx
+```ts title=" src/pages/[...wordpressNode].tsx"
+
 
 import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -180,6 +178,6 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 Here, since we are not exposing the type parameters of the `WordPressTemplate` function, you will need to extract them using the [Parameters](https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterstype) utility type:
 
-```typescript
+```ts title="[...wordpressNode].tsx"
 export type WordPressTemplateProps = Parameters<typeof WordPressTemplate>[0];
 ```
