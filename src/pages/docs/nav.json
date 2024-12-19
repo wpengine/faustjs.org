@@ -11,10 +11,7 @@
 				"title": "Basic Setup",
 				"route": "/docs/how-to/basic-setup/"
 			},
-			{
-				"title": "Template Hierarchy",
-				"route": "/docs/how-to/template-hierarchy/"
-			},
+
 			{
 				"title": "Rendering Blocks",
 				"route": "/docs/how-to/rendering-blocks/"
@@ -36,7 +33,12 @@
 	{
 		"title": "Reference",
 		"route": "/docs/reference/",
-		"children": []
+		"children": [
+			{
+				"title": "Sitemaps",
+				"route": "/docs/reference/sitemaps/"
+			}
+		]
 	},
 	{
 		"title": "Explanation",

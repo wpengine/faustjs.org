@@ -1,9 +1,6 @@
 export const metadata = {
 	title: "Sitemaps",
-	date: "2024-12-14",
 };
-
-## How to Use Sitemaps
 
 Sitemaps can be a complicated process when using WordPress in a headless environment. Thankfully, Faust takes care of all your sitemap needs through a simple function, `getSitemapProps`.
 
@@ -25,13 +22,9 @@ Ensure that you have completed the steps in the following pages before proceedin
 
 - [Basic setup](/docs/how-to/basic-setup)
 
-- [Set up template hierarchy support](/docs/how-to/template-hierarchy/)
-
 To get started, create `sitemap.xml.js` in your `pages` directory with the following content:
 
-```javascript
-// In pages/sitemap.xml.js:
-
+```js title="pages/sitemap.xml.js"
 import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
@@ -53,9 +46,7 @@ This is all the configuration you need to get started. As you can see, if you no
 
 There will be instances in which you don’t want to proxy over a specific path. For example, if you have a custom post type that you want to exclude from your sitemap, you can do so by adding it to the `sitemapPathsToIgnore` array:
 
-```javascript
-// pages/sitemap.xml.js:
-
+```js title="pages/sitemap.xml.js"
 import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
@@ -70,9 +61,7 @@ export function getServerSideProps(ctx) {
 
 You can additionally use a wildcard to ignore sitemap paths that may be paginated:
 
-```javascript
-// pages/sitemap.xml.js:
-
+```js title="pages/sitemap.xml.js"
 import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
@@ -89,9 +78,7 @@ export function getServerSideProps(ctx) {
 
 The above code examples account for adding your WordPress content to your sitemap, but what about the file-based pages you’ve created in Next.js? For example, if you have `src/pages/about.tsx` and want to include it in your sitemap, you can do so by creating a pages property in the `getSitemapProps` config object:
 
-```javascript
-// pages/sitemap.xml.js:
-
+```js title="pages/sitemap.xml.js"
 import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
@@ -120,9 +107,7 @@ _NOTE:_ Be sure to define your pages property in your `getSitemapProps` config o
 
 Below is a drop in configuration using default WordPress sitemaps. This assumes you want to ignore the “users” sitemap:
 
-```javascript
-// pages/sitemap.xml.js:
-
+```js title="pages/sitemap.xml.js"
 import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
@@ -137,9 +122,7 @@ export function getServerSideProps(ctx) {
 
 ### Usage with Yoast
 
-```javascript
-// pages/sitemap.xml.js:
-
+```js title="pages/sitemap.xml.js"
 import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
