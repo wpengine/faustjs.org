@@ -42,6 +42,18 @@
 		"route": "/docs/reference/",
 		"children": [
 			{
+				"title": "fromThemeJson",
+				"route": "/docs/reference/from-theme-json"
+			},
+			{
+				"title": "getNextServerSideProps",
+				"route": "/docs/reference/get-next-server-side-props"
+			},
+			{
+				"title": "getNextStaticProps",
+				"route": "/docs/reference/get-next-static-props"
+			},
+			{
 				"title": "getSiteMapProps",
 				"route": "/docs/reference/get-site-map-props"
 			},
@@ -54,6 +66,10 @@
 				"route": "/docs/reference/get-wordpress-props"
 			},
 			{
+				"title": "useAuth",
+				"route": "/docs/reference/use-auth"
+			},
+			{
 				"title": "useBlocksTheme",
 				"route": "/docs/reference/use-blocks-theme"
 			},
@@ -64,6 +80,10 @@
 			{
 				"title": "useLogout",
 				"route": "/docs/reference/use-logout"
+			},
+			{
+				"title": "withFaust",
+				"route": "/docs/reference/with-faust"
 			},
 			{
 				"title": "WordPressBlocksProvider",
@@ -79,6 +99,10 @@
 		"title": "Explanation",
 		"route": "/docs/explanation/",
 		"children": [
+			{
+				"title": "Telemetry",
+				"route": "/docs/reference/telemetry/"
+			},
 			{
 				"title": "Example",
 				"route": "/docs/explanation/example"
