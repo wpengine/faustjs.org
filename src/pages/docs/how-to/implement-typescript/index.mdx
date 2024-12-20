@@ -2,13 +2,11 @@ export const metadata = {
 	title: "Implement TypeScript",
 };
 
-## Implementing TypeScript
-
 Faust.js provides support for TypeScript, including built-in types for Templates, Blocks, and more.
 
 [View the Faust.js TypeScript scaffold application](https://github.com/wpengine/faust-scaffold-ts)
 
-### Using graphql-codegen
+## Using graphql-codegen
 
 First things first, you should consider using @graphql-codegen to generate types for the GraphQL queries.
 
@@ -62,7 +60,7 @@ export type GetPostQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Po
 
 You can use these types with the `FaustTemplate` helper which we will explain next.
 
-### How to apply types for WP Template Pages
+## How to apply types for WP Template Pages
 
 When creating a new WP Template page, you can use the `FaustTemplate` to declare the type of the function component passing the type of the GraphQL query that was generated for that page:
 
