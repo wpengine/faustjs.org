@@ -4,6 +4,7 @@ import {
 	DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import DocsPageTitle from "./docs-title";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
 import routes from "@/pages/docs/nav.json";
@@ -33,6 +34,7 @@ export default function DocumentPage({ children }) {
 					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
 				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] py-14 md:py-24">
+					<DocsPageTitle />
 					{children}
 				</article>
 			</main>
