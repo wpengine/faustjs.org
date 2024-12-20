@@ -20,12 +20,12 @@ Install and activate the [FaustWP](https://wordpress.org/plugins/faustwp/) and [
 
 Create a `.env.local` file in the root of your Next.js project that contains these environment variables:
 
-```ini {2,5} title=".env.local"
+```ini title=".env.local"
 # Your WordPress site URL
-NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com
+NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com // [!code ++]
 
 # Plugin secret found in WordPress Settings->Faust
- FAUST_SECRET_KEY=YOUR_PLUGIN_SECRET
+FAUST_SECRET_KEY=YOUR_PLUGIN_SECRET // [!code ++]
 ```
 
 Replace `https://faustexample.wpengine.com` with the URL for your WordPress backend.
@@ -97,11 +97,11 @@ In order for Faust.js to run the GraphQL queries it needs to determine the corre
 
 Add the following generate script to your Next.js project's `package.json` file, in the scripts block:
 
-```json {4} title="package.json"
+```json title="package.json"
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "generate": "faust generatePossibleTypes",
+    "generate": "faust generatePossibleTypes", // [!code ++]
     "start": "next start",
     "lint": "next lint"
   },
@@ -224,6 +224,6 @@ You are now ready to leverage Faust's other features, including:
 
 - [Authentication](/docs/how-to/authentication/)
 
-- [Post Previews](docs/how-to/post-previews)
+- [Post Previews](/docs/how-to/post-previews/)
 
-- [Render Blocks](docs/how-to/rendering-blocks)
+- [Render Blocks](/docs/how-to/rendering-blocks/)
