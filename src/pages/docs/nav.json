@@ -11,12 +11,14 @@
 				"title": "Basic Setup",
 				"route": "/docs/how-to/basic-setup/"
 			},
-
 			{
 				"title": "Rendering Blocks",
 				"route": "/docs/how-to/rendering-blocks/"
 			},
-
+			{
+				"title": "Override Blocks",
+				"route": "/docs/how-to/override-blocks/"
+			},
 			{
 				"title": "Authentication",
 				"route": "/docs/how-to/authentication/"
