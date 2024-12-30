@@ -9,7 +9,7 @@ import DocsNav from "@/components/docs-nav";
 import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
 
-export default function DocumentPage({ children, ...props }) {
+export default function DocumentPage({ children, metadata }) {
 	return (
 		<>
 			<Disclosure
@@ -33,8 +33,8 @@ export default function DocumentPage({ children, ...props }) {
 					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
 				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-[80ch] py-14 md:py-24">
-					{props.metadata && props.metadata.title && (
-						<h1 className="article-title">{props.metadata.title}</h1>
+					{metadata?.title && (
+						<h1 className="article-title">{metadata.title}</h1>
 					)}
 					{children}
 				</article>
