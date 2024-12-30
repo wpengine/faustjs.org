@@ -8,7 +8,7 @@ Faust.js provides support for TypeScript, including built-in types for Templates
 
 ## Steps
 
-## Basic setup
+## Step 1. Basic setup
 
 If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) steps to get Faust.js set up.
 
@@ -30,7 +30,7 @@ export type GetPostQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Po
 
 You can use these types with the `FaustTemplate` helper which we will explain next.
 
-## How to apply types for WP Template Pages
+## Step 2. Apply types for WP Template Pages
 
 When creating a new WP Template page, you can use the `FaustTemplate` to declare the type of the function component passing the type of the GraphQL query that was generated for that page:
 
@@ -53,7 +53,7 @@ All the data from the query results will be properly typed based on the introspe
 
 ![](./images/ts-image-two.png)
 
-## How to apply types for block components
+## Step 3. Apply types for block components
 
 Similarly, when creating Block components using `@faustwp/blocks` packages, you can use the `WordPressBlock` type that will include all the relevant properties of that block:
 
@@ -82,7 +82,7 @@ export const fragments = {
 
 Here we pass the `CoreParagraphFragmentFragment` type that corresponds to the `CoreParagraphFragment` fragment mapping all fields to TypeScript types. Then TypeScript will only allow the declared types to be used in the props parameter.
 
-## How to apply types for the plugin system
+## Step 4. Apply types for the plugin system
 
 Faust providers a `FaustHooks` type that you can use for applying the corresponding type of the `hooks` parameter:
 
@@ -107,7 +107,7 @@ Here the `hooks` parameter will autocomplete all correct types from each filter 
 
 ![](./images/typescript-fausthooks-type.png)
 
-## How to migrate existing pages to TypeScript
+## Step 5. Migrate existing pages to TypeScript
 
 In general terms, most of the strategies for migrating existing pages to TypeScript should follow the relevant guide described in the [TypeScript Docs](https://www.typescriptlang.org/docs/).
 
