@@ -3,6 +3,7 @@ import { withFaust, getWpHostname } from "@faustwp/core";
 import createMDX from "@next/mdx";
 import { transformerNotationDiff } from "@shikijs/transformers";
 import { createSecureHeaders } from "next-secure-headers";
+import recmaNextjsStaticProps from "recma-nextjs-static-props";
 import rehypeCallouts from "rehype-callouts";
 import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
@@ -70,6 +71,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
 	options: {
+		recmaPlugins: [recmaNextjsStaticProps],
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [
 			rehypeMdxImportMedia,
