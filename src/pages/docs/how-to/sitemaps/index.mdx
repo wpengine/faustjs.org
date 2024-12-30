@@ -12,21 +12,24 @@ Ensure that you have completed the steps in the following pages before proceedin
 
 - [Basic setup](/docs/how-to/basic-setup)
 
-## Setting Permalinks and Reading Visibility
+## Step 1. Set Permalinks
 
-- Navigate to your WordPress Admin.
-- Go to **Settings > Permalinks**.
-- Set the permalink structure to: `/posts/%postname%/`
+1. Navigate to your WordPress Admin.
+2. Go to **Settings > Permalinks**.
+3. Set the permalink structure to:`/posts/%postname%/`
 
 ![](./images/perma-settings.png)
 
-Then, uncheck the "Search Engine Visibility" box in your reading settings:
+## Step 2. Disable Search Engine Visibility
 
-![](./images/reading-settings.png)
+1. In your WordPress Admin, go to **Settings > Reading**.
+2. Uncheck the **Search Engine Visibility** box.
 
-## Faust.js App
+   ![](./images/reading-settings.png)
 
-Navigate back to your Faust.js app, and in the root of the project, go to the `/pages` directory. Within the pages directory, create a file and name it `sitemap.xml.js`.
+## Step 3. Create `sitemap.xml.js`
+
+Go to the root of your Faust.js app. Navigate to the `/pages` directory. Within the pages directory, create a file and name it `sitemap.xml.js`.
 
 In the `sitemap.xml.js` you just created, copy and paste this code block:
 
@@ -52,7 +55,7 @@ This file does the following:
 Save the file and run `npm run dev` in your terminal and visit `localhost:3000/sitemap.xml`.
 You now will dynamically serve WordPress content to your headless site through the sitemap.
 
-### Defining Next.js Pages for Sitemaps
+## Step 4. Defining Next.js Pages for Sitemaps
 
 Since we are using Headless WordPress, the front-end URLs need to be on the sitemap as well. Within the same `sitemap.xml.js` file, simply add a pages property array and place the relative paths of Next.js in the objects within the array like so:
 
