@@ -6,43 +6,13 @@ Faust.js provides support for TypeScript, including built-in types for Templates
 
 [View the Faust.js TypeScript scaffold application](https://github.com/wpengine/faust-scaffold-ts)
 
-## Using graphql-codegen
+## Steps
 
-First things first, you should consider using @graphql-codegen to generate types for the GraphQL queries.
+## Basic setup
 
-Below is a sample config for generating the relevant typings:
+If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) steps to get Faust.js set up.
 
-```ts title="codegen.ts"
-import { CodegenConfig } from "@graphql-codegen/cli";
-
-const config: CodegenConfig = {
-	schema: "https://faustexample.wpengine.com/graphql",
-	documents: ["src/**/*.{tsx,ts}"],
-	generates: {
-		"./src/__generated__/": {
-			preset: "client",
-			plugins: [],
-			presetConfig: {
-				gqlTagName: "gql",
-			},
-		},
-	},
-	ignoreNoDocuments: true,
-};
-
-export default config;
-```
-
-Add the following npm script that works by scanning the `src` folder for GraphQL queries and generating a bunch of files inside `/src/**generated**/` for the TypeScript types:
-
-```json title="package.json"
-{
-  "scripts": {
-    ...
-    "generate": "graphql-codegen",
-  }
-}
-```
+Once you have completed the basic setup, you now can run `npm run generate` the built in generate command that comes with faust. This will generate types and implements TS.
 
 > **_Note:_** Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is disabled by default.
 
