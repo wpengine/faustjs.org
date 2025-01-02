@@ -4,6 +4,7 @@ import {
 	DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import DocsPreviousNextLinks from "./docs-previous-next-link";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
 import routes from "@/pages/docs/nav.json";
@@ -40,6 +41,7 @@ export default function DocumentPage({ children, metadata }) {
 						<h1 className="article-title break-words">{metadata.title}</h1>
 					)}
 					{children}
+					<DocsPreviousNextLinks routes={routes} />
 				</article>
 			</main>
 		</>
