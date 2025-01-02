@@ -21,12 +21,14 @@ const socialIcons = [
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isSearchOpen, setIsSearchOpen] = useState(false);
 
 	return (
 		<div
 			className={classNames(
-				"container-blur-bg top-0 z-10 border-b-[1px] border-gray-800 bg-gray-900/80",
-				isMenuOpen ? "fixed w-full" : "sticky",
+				"container-blur-bg top-0 border-b-[1px] border-gray-800 bg-gray-900/80",
+				isMenuOpen ? "fixed z-[11] w-full" : "sticky z-10",
+				isSearchOpen ? "z-[11]" : "z-10",
 			)}
 		>
 			<header className="container mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
@@ -51,7 +53,7 @@ export default function Header() {
 						setIsMenuOpen={setIsMenuOpen}
 					/>
 					<span className="flex gap-5">
-						<SearchBar />
+						<SearchBar setIsSearchOpen={setIsSearchOpen} />
 						<div className="hidden items-center space-x-4 md:flex">
 							{socialIcons.map(({ url, name, icon: Icon }) => (
 								<Link
