@@ -2,15 +2,15 @@ export const metadata = {
 	title: "Create A Plugin",
 };
 
-Faust plugins are a structured way to extend or alter the framework’s behavior, very much like WordPress plugins do in a traditional WordPress environment. Instead of `PHP`, however, Faust’s plugins are written in JavaScript/TypeScript, leveraging actions and filters to deliver similar flexibility in a headless architecture.
+Faust plugins are a structured way to extend or alter the framework's behavior, very much like WordPress plugins do in a traditional WordPress environment. Instead of `PHP`, however, Faust's plugins are written in JavaScript/TypeScript, leveraging actions and filters to deliver similar flexibility in a headless architecture.
 
 ## Steps
 
-### 1\. Basic setup
+### 1. Basic setup
 
 If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) steps to get Faust.js set up.
 
-### 2\. Create A Plugins Folder and file
+### 2. Create A Plugins Folder and file
 
 In its very basic form, a Faust Plugin is a JavaScript class with an `apply` method. This apply method has a parameter called `hooks`, which is passed from `@wordpress/hooks`. Create a folder in the root of your Faust project called `plugin`. In the folder, create a file called `SamplePlugin.js`. In this file, add this code block:
 
@@ -50,13 +50,13 @@ export class MyPlugin {
 }
 ```
 
-> **NOTE:**  
-> `experimentalPlugins` is being deprecated and replaced with `plugins` in the `faust.config.js` file.  
+> [!important] Please Note
+> `experimentalPlugins` is being deprecated and replaced with `plugins` in the `faust.config.js` file.
 > Please update your configuration accordingly.
 
-### 3\. Add The Plugin to the Faust Config
+### 3. Add The Plugin to the Faust Config
 
-You can then implement the plugin by adding it to the plugins property in the App’s `faust.config.js` file:
+You can then implement the plugin by adding it to the plugins property in the App's `faust.config.js` file:
 
 ```js title="faust.config.js"
 import { setConfig } from "@faustwp/core";
