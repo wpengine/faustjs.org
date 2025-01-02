@@ -22,7 +22,10 @@ export default function DocumentPage({ children, metadata }) {
 					<span className="pl-1">Menu</span>
 				</DisclosureButton>
 				<DisclosurePanel as="nav" className="hidden data-[open]:block">
-					<DocsNav className="container-main" routes={routes} />
+					<DocsNav
+						className="container-main h-screen max-h-screen overflow-y-scroll"
+						routes={routes}
+					/>
 				</DisclosurePanel>
 			</Disclosure>
 			<main className="relative mx-auto flex w-full max-w-full grid-cols-[1fr_auto_1fr] flex-col gap-6 overflow-x-hidden md:grid">
