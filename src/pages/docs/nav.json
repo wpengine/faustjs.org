@@ -27,6 +27,10 @@
 			{
 				"title": "Post Previews",
 				"route": "/docs/how-to/post-previews/"
+			},
+			{
+				"title": "Create A Plugin",
+				"route": "/docs/how-to/create-a-plugin/"
 			}
 		]
 	},
