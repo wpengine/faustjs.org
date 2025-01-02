@@ -16,10 +16,6 @@
 				"route": "/docs/how-to/implement-typescript/"
 			},
 			{
-				"title": "Template Hierarchy",
-				"route": "/docs/how-to/template-hierarchy/"
-			},
-			{
 				"title": "Rendering Blocks",
 				"route": "/docs/how-to/rendering-blocks/"
 			},

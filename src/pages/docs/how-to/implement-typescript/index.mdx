@@ -6,15 +6,16 @@ Faust.js provides support for TypeScript, including built-in types for Templates
 
 [View the Faust.js TypeScript scaffold application](https://github.com/wpengine/faust-scaffold-ts)
 
-## Steps
-
-## Step 1. Basic setup
+## Prerequisites
 
 If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) steps to get Faust.js set up.
 
-Once you have completed the basic setup, you now can run `npm run generate` the built in generate command that comes with faust. This will generate types and implements TS.
+## Step 1. Generate Types
 
-> **_Note:_** Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is disabled by default.
+Run `npm run generate` the built in generate command that comes with faust. This will generate types and implements TS.
+
+> [!important] Important
+> Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is disabled by default.
 
 The most important file is the `graphql.ts` which contains all the schema types from the WPGraphQL endpoint plus the types of the queries:
 
@@ -118,7 +119,7 @@ To summarize, you should use the following types available:
 - `GetStaticProps`, `GetServerSideProps`, and `GetStaticPaths`: For the result type of the Next.js `getStaticProps`, `getServerSideProps`, and `getStaticPaths` functions.
 - `FaustHooks`: For the Plugin system hooks.
 
-Let’s see an example of how to type the `[...wordpressNode].tsx` page:
+Let's see an example of how to type the `[...wordpressNode].tsx` page:
 
 ```ts title=" src/pages/[...wordpressNode].tsx"
 
