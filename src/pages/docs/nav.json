@@ -31,6 +31,10 @@
 			{
 				"title": "Sitemaps",
 				"route": "/docs/how-to/sitemaps/"
+			},
+			{
+				"title": "Create A Plugin",
+				"route": "/docs/how-to/create-a-plugin/"
 			}
 		]
 	},
