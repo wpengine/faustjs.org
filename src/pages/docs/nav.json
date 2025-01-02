@@ -31,6 +31,10 @@
 			{
 				"title": "Create A Plugin",
 				"route": "/docs/how-to/create-a-plugin/"
+			},
+			{
+				"title": "Apollo",
+				"route": "/docs/how-to/work-with-apollo/"
 			}
 		]
 	},

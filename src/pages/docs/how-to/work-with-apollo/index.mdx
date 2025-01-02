@@ -1,0 +1,176 @@
+export const metadata = {
+    title: "Work With Apollo",
+
+}
+
+Faust.js uses `@apollo/client` under the hood for its GraphQL client. You can use the client as usual in your components and pages.
+
+## Prerequisites
+
+### 1. Basic setup
+
+If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) steps to get Faust.js set up.
+
+### 2. The Apollo Client
+
+A basic understanding of how the [queries](https://www.apollographql.com/docs/react/data/queries) and [fragments](https://www.apollographql.com/docs/react/data/fragments) in the Apollo Client work.
+
+## Using the client in components and pages
+
+You can use the client as usual in your components and pages. Take the following example of querying the `title` and `description` from `generalSettings` in your app:
+
+```js {12-19}title="page/SamplePage.js"
+
+import { gql, useQuery } from '@apollo/client';
+
+export default function Page(props) {
+  const { data } = useQuery(Page.query);
+  const { title, description } = data.generalSettings;
+  return(
+    <h1>{title}</h1>
+    <p>{description}</p>
+  )
+}
+
+Page.query = gql`
+  query {
+    generalSettings {
+      title
+      description
+    }
+  }
+`
+```
+
+It co-locates the GraphQL query within the same file. You can also import and use queries from a file.
+
+The benefit with Faust is that you don’t have to create the client object in your codebase. It is automatically created when you first import the `@faustwp-core package`. Instead you can customize it by using a plugin filter.
+
+## Using Persisted Queries
+
+Faust has built in support for persisted queries with Apollo Client as of 0.3.0. This is required for tools like [WPGraphQL Smart Cache](https://wordpress.org/plugins/wpgraphql-smart-cache/), which caches your WPGraphQL requests and automatically evicts those cached requests when the data changes.
+
+To enable persisted queries in your Faust app, you can add the following property to your `faust.config.js`:
+
+> **NOTE**  
+> `experimentalPlugins` is being deprecated and replaced with `plugins` in the `faust.config.js` file.  
+> Please update your configuration accordingly.
+
+```js {12}title="faust.config.js"
+import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates";
+import possibleTypes from "./possibleTypes.json";
+
+/**
+ * @type {import('@faustwp/core').FaustConfig}
+ **/
+export default setConfig({
+	templates,
+	plugins: [],
+	possibleTypes,
+	usePersistedQueries: true,
+});
+```
+
+#### usePersistedQueries
+
+`getPersistedQueries` is used to enable persisted queries in the Faust app. Persisted queries are a way to improve the performance of GraphQL applications by only sending a hash of the query string to the server rather than the entire query string. This is especially useful for large queries or when the same query is used repeatedly.
+
+> **NOTE**  
+> If using `usePersistedQueries`, you cannot use `GET` unless **WPGraphQL Smart Cache** is installed.  
+> This plugin is required when using **Faust.js**’ persisted queries + `GET` functionality.
+
+### Changing the Desired HTTP Method for Your GraphQL Requests
+
+Since Faust **0.3.0**, GraphQL requests are made using the `GET` HTTP method. Since most hosting providers cache `GET` requests, this will help keep your WordPress instance below capacity. However, there are some instances where you may want Apollo to use the `POST` HTTP method for GraphQL requests:
+
+- You are receiving stale data
+- Your GraphQL queries are too long to be stringified into a URL (this length is determined by your hosting provider)
+
+If you want Faust to use **POST** requests instead of **GET** requests, you can set the following property in your `faust.config.js`:
+
+```js {12}title="faust.config.js"
+import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates";
+import possibleTypes from "./possibleTypes.json";
+
+/**
+ * @type {import('@faustwp/core').FaustConfig}
+ **/
+export default setConfig({
+	templates,
+	plugins: [],
+	possibleTypes,
+	useGETForQueries: false,
+});
+```
+
+### Making One-Off POST/GET Requests
+
+If you want to execute a GraphQL request with a different method than the default behavior on a one-off basis, you can modify the `fetchOptions` in the Apollo `useQuery` hook to specify your desired method:
+
+```js
+const { data, loading, error } = useQuery(MY_QUERY, {
+	context: {
+		fetchOptions: {
+			method: "POST",
+		},
+	},
+});
+```
+
+### Generating Possible types JSON
+
+Apollo Client v3 requires you to provide a `possibleTypes` object that maps interfaces to all their possible types. With Faust, we provide a cli command you can use on your package.json scripts that generates this file for you. Before you run it, make sure you have provided the `FAUST_SECRET_KEY`, which enables authenticated GraphQL introspection queries. If you have not provided the `FAUST_SECRET_KEY`, you will need to enable public [WPGraphQL introspection](https://www.wpgraphql.com/docs/security#introspection-disabled-by-default).
+
+```json title="package.json"
+
+{
+  "scripts": {
+    ...
+    "generate": "faust generatePossibleTypes",
+  }
+}
+
+```
+
+Running the command will create the following file: `possibleTypes.json`. You can commit this file to your version control system. Now make sure you import this file to the `faust.config.js`:
+
+```js {3, 11}title="faust.config.js"
+import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates";
+import possibleTypes from "./possibleTypes.json";
+
+/**
+ * @type {import('@faustwp/core').FaustConfig}
+ **/
+export default setConfig({
+	templates,
+	plugins: [],
+	possibleTypes,
+});
+```
+
+You don’t have to run the command each time you build the application, but only when you update something in the schema (by adding a new Custom Post Type for example).
+
+## WPGraphQL Smart Cache: A Requirement for Persisted Queries + GET
+
+> **NOTE**  
+> While **WPGraphQL Smart Cache** offers advantages for persisted queries, it is required when using persisted queries with the `GET` HTTP method.
+
+Faust, by default, sends GraphQL requests using `GET`. This leverages browser caching mechanisms to reduce server load on your WordPress instance. However, using persisted queries with `GET` requires using the WPGraphQL Smart Cache plugin for proper functionality.
+
+### Why is WPGraphQL Smart Cache Required?
+
+Standard browser caching mechanisms for `GET` requests can lead to stale data issues when using persisted queries. **WPGraphQL Smart Cache** addresses this by:
+
+- Caching the results of your GraphQL queries based on the unique query hash.
+- Automatically invalidating the cache whenever the underlying data on your WordPress site changes.
+
+### Further Reading
+
+Additionally, the following docs may be helpful:
+
+- [Mutations](https://www.apollographql.com/docs/react/data/mutations)
+- [Refetching](https://www.apollographql.com/docs/react/data/refetching)
+- [Best Practices](https://www.apollographql.com/docs/react/data/operation-best-practices)
