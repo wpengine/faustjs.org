@@ -28,24 +28,22 @@ Set up the [template hierarchy](/docs/how-to/template-hierarchy/) in Faust.js.
 
 The `@faust/blocks` package contains a small reference list of blocks that you can use in your site. To use them, you need to import the relevant blocks into your block list:
 
-JavaScript
-
-```
+```js title="wp-blocks/index.js"
 // wp-blocks/index.js
-import { CoreBlocks } from '@faustwp/blocks';
+import { CoreBlocks } from "@faustwp/blocks";
 
 export default {
-  CoreParagraph: CoreBlocks.CoreParagraph,
-  CoreColumns: CoreBlocks.CoreColumns,
-  CoreColumn: CoreBlocks.CoreColumn,
-  CoreCode: CoreBlocks.CoreCode,
-  CoreQuote: CoreBlocks.CoreQuote,
-  CoreImage: CoreBlocks.CoreImage,
-  CoreSeparator: CoreBlocks.CoreSeparator,
-  CoreList: CoreBlocks.CoreList,
-  CoreButton: CoreBlocks.CoreButton,
-  CoreButtons: CoreBlocks.CoreButtons,
-  CoreHeading: CoreBlocks.CoreHeading,
+	CoreParagraph: CoreBlocks.CoreParagraph,
+	CoreColumns: CoreBlocks.CoreColumns,
+	CoreColumn: CoreBlocks.CoreColumn,
+	CoreCode: CoreBlocks.CoreCode,
+	CoreQuote: CoreBlocks.CoreQuote,
+	CoreImage: CoreBlocks.CoreImage,
+	CoreSeparator: CoreBlocks.CoreSeparator,
+	CoreList: CoreBlocks.CoreList,
+	CoreButton: CoreBlocks.CoreButton,
+	CoreButtons: CoreBlocks.CoreButtons,
+	CoreHeading: CoreBlocks.CoreHeading,
 };
 ```
 
@@ -53,11 +51,8 @@ You can add the code block above to your `wp-blocks/index.js` file.
 
 Then in your template query, you need to pass the provided fragment entries:
 
-JavaScript
-
-```
-// wp-templates/front-page.js
-import blocks from '../wp-blocks';
+```js title=" wp-templates/front-page.js"
+import blocks from "../wp-blocks";
 
 Component.query = gql`
   ${blocks.CoreParagraph.fragments.entry}
@@ -103,10 +98,8 @@ Component.query = gql`
 
 Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
 
-JavaScript
+```js title="wp-templates/front-page.js"
 
-```
-// wp-templates/front-page.js
 
 import { gql } from '@apollo/client';
 import { flatListToHierarchical } from '@faustwp/core';
@@ -134,10 +127,8 @@ export default function Component({ loading, data }) {
 
 ### WordPressBlocksProvider- Theme Use
 
-If you do not need a theme, you must pass `null` as the `theme` prop for the `WordPressBlocksProvider` like below. If you don’t pass a theme, it will fail.
+If you do not need a theme, you must pass `null` as the `theme` prop for the `WordPressBlocksProvider` like the example below. If you don’t pass a theme, it will fail.
 
-JavaScript
-
-```
+```js
 <WordPressBlocksProvider config={{ blocks, theme: null }}>
 ```
