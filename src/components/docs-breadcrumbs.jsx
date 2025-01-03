@@ -34,14 +34,13 @@ export default function DocsBreadcrumbs({ routes }) {
 	const currentPath = router.pathname;
 	const breadcrumbLinks = generateBreadcrumbs(routes, currentPath);
 
-	if (breadcrumbLinks.length === 0) {
+	if (breadcrumbLinks.length === 0 || currentPath === "/docs") {
 		return;
 	}
 
-	if (currentPath !== "/docs") {
-		breadcrumbLinks.unshift(routes[0]);
-	}
-	// breadcrumbs.unshift({ title: "Getti", route: "/docs" });
+	const homeRoute = routes[0];
+	homeRoute.title = "Docs";
+	breadcrumbLinks.unshift(homeRoute);
 
 	return (
 		<div className="mb-7 mt-4 md:mb-10 md:mt-2">
