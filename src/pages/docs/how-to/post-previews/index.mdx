@@ -43,7 +43,7 @@ export default function MyApp({ Component, pageProps }) {
 
 With your headless secret set and the `authorizeHandler` ready to handle requests, you can now create a Next.js [page](https://nextjs.org/docs/basic-features/pages) for previews. Create a file at `pages/preview.js` with the following code:
 
-```js
+```js title="pages/preview.js"
 import { WordPressTemplate } from "@faustwp/core";
 
 export default function Preview(props) {
@@ -59,7 +59,7 @@ Just a note, we don't use the `getWordPressProps` here as opposed in some other 
 
 Now that we have everything set up, it is time to add post previews to your WPGraphQL queries. Navigate to your `wp-templates` folder. You should have a `single.js` from the template hierarchy step. This `single.js` file is the component that is responsible for rendering post-type data from WordPress. In your `single.js` file, add this code block:
 
-```js
+```js title="wp-templates/single.js"
 import { gql } from "@apollo/client";
 
 export default function Component(props) {

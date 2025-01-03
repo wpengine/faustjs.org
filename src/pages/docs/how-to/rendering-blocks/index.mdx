@@ -52,8 +52,6 @@ In WordPress block development, a `block.json` file is a configuration file that
 
 As an example, given the following `block.json` definition of a block:
 
-JSON
-
 ```json title="block.json"
 // block.json
 {
@@ -133,7 +131,7 @@ export default {
 
 To query specific block data you need to define that data in the `contentBlock` as the appropriate type. Here is an example query to get all the rendered HTML from the `editorBlocks` field:
 
-```gql
+```graphql
 query GetBlocksByURI($uri: ID!) {
 	post(id: $uri, idType: URI) {
 		title

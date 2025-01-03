@@ -113,7 +113,7 @@ Here are some things you can do to continue to test and add to your auth strateg
 
 - You can verify that authentication is working by adding a `console.log()` with the current user's name to check whether they are being authenticated properly. Using the above code example, it would look like this:
 
-```js
+```js title="pages/gated/index.js"
 import { useAuth, getApolloAuthClient, useLogout } from "@faustwp/core";
 import { gql, useQuery } from "@apollo/client";
 
@@ -142,7 +142,7 @@ function AuthenticatedView() {
   }
 
   // Console log the current user's name to verify authentication
-  console.log("Authenticated user's name:", data?.viewer?.name);
+  console.log("Authenticated user's name:", data?.viewer?.name); // [!code ++]
 
 // Rest of your component
 ```

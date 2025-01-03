@@ -34,6 +34,10 @@
 			{
 				"title": "Post Previews",
 				"route": "/docs/how-to/post-previews/"
+			},
+			{
+				"title": "Create A Plugin",
+				"route": "/docs/how-to/create-a-plugin/"
 			}
 		]
 	},
@@ -101,7 +105,7 @@
 		"children": [
 			{
 				"title": "Telemetry",
-				"route": "/docs/reference/telemetry/"
+				"route": "/docs/explanation/telemetry/"
 			},
 			{
 				"title": "Example",
