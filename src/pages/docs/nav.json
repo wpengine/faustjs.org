@@ -102,7 +102,7 @@
 		"children": [
 			{
 				"title": "Telemetry",
-				"route": "/docs/reference/telemetry/"
+				"route": "/docs/explanation/telemetry/"
 			},
 			{
 				"title": "Example",
