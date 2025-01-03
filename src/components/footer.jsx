@@ -7,7 +7,7 @@ export default function Footer() {
 				<div className="grid grid-cols-1 gap-8 pt-14 sm:grid-cols-2 lg:grid-cols-3 lg:pt-24">
 					<FooterColumns />
 				</div>
-				<div className="mt-24 text-gray-500">
+				<div className="mt-2 text-gray-500 lg:mt-24">
 					<p>
 						Powered by{" "}
 						<Link

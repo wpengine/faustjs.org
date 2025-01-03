@@ -1,8 +1,6 @@
 import { Fragment } from "react";
 import Link from "@/components/link";
-import { classNames } from "@/utils/strings";
-
-const normalizeHref = (path) => (path.endsWith("/") ? path : `${path}/`);
+import { normalizeHref, classNames } from "@/utils/strings";
 
 export default function DocsNav({ as, routes, level = 0, className }) {
 	const As = as || Fragment;
