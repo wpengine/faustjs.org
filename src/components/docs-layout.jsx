@@ -49,7 +49,7 @@ export default function DocumentPage({ children, metadata }) {
 					/>
 				</DisclosurePanel>
 			</Disclosure>
-			<main className="relative mx-auto flex w-full max-w-full grid-cols-[1fr_auto_1fr] flex-col gap-6 overflow-x-hidden md:grid">
+			<main className="relative mx-auto flex grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid">
 				<nav className="sticky top-[84px] hidden h-min w-60 overflow-y-auto p-6 md:block">
 					<DocsNav routes={routes} />
 				</nav>

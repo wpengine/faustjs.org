@@ -8,8 +8,6 @@ export default function DocsBreadcrumbs({ routes }) {
 		const breadcrumbs = [];
 
 		const traverse = (navigationRoutes, path) => {
-			console.log(navigationRoutes);
-
 			const currentIndex = navigationRoutes.findIndex(
 				(route) => normalizeHref(route.route) === normalizeHref(path),
 			);
