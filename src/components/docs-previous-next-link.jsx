@@ -19,7 +19,7 @@ export default function DocsPreviousNextLinks({ routes }) {
 	const nextPage = routes[currentIndex + 1];
 
 	return (
-		<nav aria-label="pagination" className="mt-8 flex justify-between">
+		<nav aria-label="pagination" className="mb-4 mt-8 flex justify-between">
 			{previousPage && (
 				<Link
 					className="max-w-[200px] font-normal text-gray-400 no-underline transition duration-200 ease-in hover:text-white focus:text-white"
