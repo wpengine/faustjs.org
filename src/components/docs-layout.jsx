@@ -4,13 +4,33 @@ import {
 	DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import DocsBreadcrumbs from "./docs-breadcrumbs";
 import DocsPreviousNextLinks from "./docs-previous-next-link";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
 import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
 
+const flattenRoutes = (routeConfig) => {
+	const flatRoutes = [];
+
+	const traverse = (innerRoutes, parentPath = "") => {
+		for (const route of innerRoutes) {
+			const fullPath = `${parentPath}${route.route}`;
+			flatRoutes.push({ ...route, fullPath, parentPath });
+
+			if (route.children) {
+				traverse(route.children, `${parentPath}${route.route}`);
+			}
+		}
+	};
+
+	traverse(routeConfig);
+	return flatRoutes;
+};
+
 export default function DocumentPage({ children, metadata }) {
+	const flatRoutes = flattenRoutes(routes);
 	return (
 		<>
 			<Disclosure
@@ -37,11 +57,12 @@ export default function DocumentPage({ children, metadata }) {
 					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
 				<article className="container-main prose prose-invert min-h-[calc(100vh-120px)] max-w-full py-14 sm:max-w-[80ch] md:py-24">
+					<DocsBreadcrumbs routes={flatRoutes} />
 					{metadata?.title && (
 						<h1 className="article-title break-words">{metadata.title}</h1>
 					)}
 					{children}
-					<DocsPreviousNextLinks routes={routes} />
+					<DocsPreviousNextLinks routes={flatRoutes} />
 				</article>
 			</main>
 		</>

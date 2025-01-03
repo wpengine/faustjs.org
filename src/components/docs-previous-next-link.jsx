@@ -1,33 +1,13 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import Link from "@/components/link";
-
-const normalizeHref = (path) => (path.endsWith("/") ? path : `${path}/`);
-
-const flattenRoutes = (routes) => {
-	const flatRoutes = [];
-
-	const traverse = (innerRoutes, parentPath = "") => {
-		for (const route of innerRoutes) {
-			const fullPath = `${parentPath}${route.route}`;
-			flatRoutes.push({ ...route, fullPath });
-
-			if (route.children) {
-				traverse(route.children, `${parentPath}${route.route}`);
-			}
-		}
-	};
-
-	traverse(routes);
-	return flatRoutes;
-};
+import { normalizeHref } from "@/utils/strings";
 
 export default function DocsPreviousNextLinks({ routes }) {
 	const router = useRouter();
 	const currentPath = router.pathname;
-	const flatRoutes = flattenRoutes(routes);
 
-	const currentIndex = flatRoutes.findIndex(
+	const currentIndex = routes.findIndex(
 		(route) => normalizeHref(route.route) === normalizeHref(currentPath),
 	);
 
@@ -35,8 +15,8 @@ export default function DocsPreviousNextLinks({ routes }) {
 		return;
 	}
 
-	const previousPage = flatRoutes[currentIndex - 1];
-	const nextPage = flatRoutes[currentIndex + 1];
+	const previousPage = routes[currentIndex - 1];
+	const nextPage = routes[currentIndex + 1];
 
 	return (
 		<nav aria-label="pagination" className="mt-8 flex justify-between">
