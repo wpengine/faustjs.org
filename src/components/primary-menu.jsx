@@ -15,7 +15,7 @@ const CustomLink = forwardRef((props, reference) => {
 	);
 });
 
-export default function PrimaryMenu({ className }) {
+export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 	return (
 		<nav className={classNames("flex items-center space-x-4", className)}>
 			<ul className="hidden flex-row space-x-4 pl-4 md:flex">
@@ -51,7 +51,10 @@ export default function PrimaryMenu({ className }) {
 				</li>
 			</ul>
 			<Menu>
-				<MenuButton className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden">
+				<MenuButton
+					className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden"
+					onClick={() => setIsMenuOpen(!isMenuOpen)}
+				>
 					<span className="sr-only hidden group-data-[open]:block">
 						Open main nav
 					</span>

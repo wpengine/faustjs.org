@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ setIsSearchOpen }) {
 	const [items, setItems] = useState([]);
 	const [inputValue, setInputValue] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,9 +15,13 @@ export default function SearchBar() {
 		setIsModalOpen(true);
 		setInputValue("");
 		setItems([]);
-	}, []);
+		setIsSearchOpen(true);
+	}, [setIsSearchOpen]);
 
-	const closeModal = useCallback(() => setIsModalOpen(false), []);
+	const closeModal = useCallback(() => {
+		setIsModalOpen(false);
+		setIsSearchOpen(false);
+	}, [setIsSearchOpen]);
 
 	const handleOutsideClick = useCallback(
 		(event) => {
@@ -125,7 +129,9 @@ export default function SearchBar() {
 		<>
 			<button
 				className="inline-flex items-center rounded-md bg-gray-800 px-2 py-1.5 text-sm font-medium text-gray-400 hover:bg-gray-700"
-				onClick={openModal}
+				onClick={() => {
+					openModal();
+				}}
 				type="button"
 			>
 				<span className="sr-only md:hidden">Open search</span>
