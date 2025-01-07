@@ -103,6 +103,10 @@
 			{
 				"title": "Example",
 				"route": "/docs/explanation/example"
+			},
+			{
+				"title": "Apollo Client Basics",
+				"route": "/docs/explanation/apollo-client-basics/"
 			}
 		]
 	}
