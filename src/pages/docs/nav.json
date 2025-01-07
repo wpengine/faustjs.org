@@ -31,6 +31,10 @@
 			{
 				"title": "Create A Plugin",
 				"route": "/docs/how-to/create-a-plugin/"
+			},
+			{
+				"title": "Query Data in the Browser",
+				"route": "/docs/how-to/query-data-in-the-browser/"
 			}
 		]
 	},

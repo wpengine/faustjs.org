@@ -1,0 +1,45 @@
+export const metadata = {
+    title: "Query Data in the Browser",
+
+}
+
+When you query data in the browser, you’re leveraging Apollo’s `useQuery` hook within your React components. This is client-side data fetching, which means the data is fetched after your page renders in the browser **_(rather than at build time or request time on the server)_**.
+
+## Steps
+
+### 1. Basic setup
+
+If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) steps to get Faust.js set up.
+
+## Using the client in components and pages
+
+You can use the client as usual in your components and pages. Take the following example of querying the `title` and `description` from `generalSettings` in your app:
+
+```js {12-18} title="page/SamplePage.js"
+import { gql, useQuery } from '@apollo/client';
+
+export default function Page(props) {
+  const { data } = useQuery(Page.query);
+  const { title, description } = data.generalSettings;
+  return(
+    <h1>{title}</h1>
+    <p>{description}</p>
+  )
+}
+
+Page.query = gql`
+  query {
+    generalSettings {
+      title
+      description
+    }
+  }
+`
+```
+
+It co-locates the GraphQL query within the same file. You can also import and use queries from a file.
+
+The benefit with Faust is that you don’t have to create the client object in your codebase. It is automatically created when you first import the `@faustwp-core package`. Instead you can customize it by using a plugin filter.
+
+> **NOTE**  
+> This data is not server-rendered. Since it is fetched at runtime in the user’s browser, it may have performance implications if the query is large or slow.
