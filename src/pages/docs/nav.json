@@ -31,6 +31,10 @@
 			{
 				"title": "Create A Plugin",
 				"route": "/docs/how-to/create-a-plugin/"
+			},
+			{
+				"title": "Using WPGraphQL Smart Cache",
+				"route": "/docs/how-to/use-wpgraphql-smart-cache/"
 			}
 		]
 	},
