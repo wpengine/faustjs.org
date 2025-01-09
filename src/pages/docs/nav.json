@@ -39,6 +39,10 @@
 			{
 				"title": "Query Data in the Browser",
 				"route": "/docs/how-to/query-data-in-the-browser/"
+			},
+			{
+				"title": "Query Data in Next.js Routes",
+				"route": "/docs/how-to/query-data-in-nextjs-routes/"
 			}
 		]
 	},
