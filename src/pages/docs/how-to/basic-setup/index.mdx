@@ -20,7 +20,7 @@ Install and activate the [FaustWP](https://wordpress.org/plugins/faustwp/) and [
 
 Create a `.env.local` file in the root of your Next.js project that contains these environment variables:
 
-```ini title=".env.local"
+```env title=".env.local"
 # Your WordPress site URL
 NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com // [!code ++]
 
@@ -61,7 +61,7 @@ export default setConfig({
 
 ### Create Faust API route
 
-Create an API route for Faust.js to use. You can do this by creating a file in `pages/api/faust/[[...route]].`js, with the following code:
+Create an API route for Faust.js to use. You can do this by creating a file in `pages/api/faust/[[...route]].js`, with the following code:
 
 ```js title="pages/api/faust/[[...route]].js"
 import "../../../faust.config";
@@ -71,7 +71,7 @@ export { apiRouter as default } from "@faustwp/core";
 
 ### Update `_app.js` file
 
-Once the API router is set up, head to `pages/_api.js` and paste this code into the file:
+Once the API router is set up, head to `pages/_api.js` and add this code to the file:
 
 ```js title="pages/_app.js"
 import { useRouter } from "next/router";
@@ -89,7 +89,7 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-## Setup the Template Hierarchy
+## Set up the Template Hierarchy
 
 ### Generate types
 
@@ -108,6 +108,9 @@ Add the following generate script to your Next.js project's `package.json` file,
 ```
 
 Run `npm run generate` on the command line. Confirm that a possibleTypes.json has been generated in the root of your project.
+
+> [!important] Important
+> Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is [disabled by default](https://www.wpgraphql.com/docs/security#introspection-disabled-by-default).
 
 ### Add a template
 

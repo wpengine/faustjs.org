@@ -12,10 +12,10 @@ If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) step
 
 ## Step 1. Generate Types
 
-Run `npm run generate` the built in generate command that comes with faust. This will generate types and implements TS.
+Run the `npm run generate` command that comes with faust. This will generate types and implement TS.
 
 > [!important] Important
-> Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is disabled by default.
+> Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is [disabled by default](https://www.wpgraphql.com/docs/security#introspection-disabled-by-default).
 
 The most important file is the `graphql.ts` which contains all the schema types from the WPGraphQL endpoint plus the types of the queries:
 
@@ -110,7 +110,7 @@ Here the `hooks` parameter will autocomplete all correct types from each filter 
 
 ## Step 5. Migrate existing pages to TypeScript
 
-In general terms, most of the strategies for migrating existing pages to TypeScript should follow the relevant guide described in the [TypeScript Docs](https://www.typescriptlang.org/docs/).
+In general terms, most of the strategies for migrating existing pages to TypeScript should follow the relevant guide described in the [TypeScript docs](https://www.typescriptlang.org/docs/).
 
 To summarize, you should use the following types available:
 
