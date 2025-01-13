@@ -12,8 +12,8 @@
 				"route": "/docs/how-to/basic-setup/"
 			},
 			{
-				"title": "Typing the GraphQL Client",
-				"route": "/docs/how-to/type-the-graphql-client/"
+				"title": "Generate types with GraphQL Codegen",
+				"route": "/docs/how-to/generate-types-with-graphql-codegen/"
 			},
 			{
 				"title": "Template Hierarchy",
