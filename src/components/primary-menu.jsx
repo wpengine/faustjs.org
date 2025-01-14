@@ -75,6 +75,7 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						className={navItemClass}
 						noDefaultStyles
 						href="/docs/"
+						activeClassName="text-purple-500"
 					>
 						Docs
 					</MenuItem>
@@ -84,6 +85,7 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						className={navItemClass}
 						noDefaultStyles
 						href="/blog/"
+						activeClassName="text-purple-500"
 					>
 						Blog
 					</MenuItem>
@@ -93,6 +95,7 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						className={navItemClass}
 						noDefaultStyles
 						href="/showcase/"
+						activeClassName="text-purple-500"
 					>
 						Showcase
 					</MenuItem>
