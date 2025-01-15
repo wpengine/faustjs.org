@@ -11,14 +11,7 @@
 				"title": "Basic Setup",
 				"route": "/docs/how-to/basic-setup/"
 			},
-			{
-				"title": "Generate types with GraphQL Codegen",
-				"route": "/docs/how-to/generate-types-with-graphql-codegen/"
-			},
-			{
-				"title": "Template Hierarchy",
-				"route": "/docs/how-to/template-hierarchy/"
-			},
+
 			{
 				"title": "Rendering Blocks",
 				"route": "/docs/how-to/rendering-blocks/"
@@ -36,8 +29,16 @@
 				"route": "/docs/how-to/post-previews/"
 			},
 			{
+				"title": "Sitemaps",
+				"route": "/docs/how-to/sitemaps/"
+			},
+			{
 				"title": "Create A Plugin",
 				"route": "/docs/how-to/create-a-plugin/"
+			},
+			{
+				"title": "Query Data in the Browser",
+				"route": "/docs/how-to/query-data-in-the-browser/"
 			}
 		]
 	},
@@ -110,6 +111,10 @@
 			{
 				"title": "Example",
 				"route": "/docs/explanation/example"
+			},
+			{
+				"title": "Apollo Client Basics",
+				"route": "/docs/explanation/apollo-client-basics/"
 			}
 		]
 	}

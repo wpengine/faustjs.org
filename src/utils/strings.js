@@ -22,3 +22,7 @@ export function classNames(...arguments_) {
 
 	return classes;
 }
+
+export function normalizeHref(path) {
+	return path.endsWith("/") ? path : `${path}/`;
+}
