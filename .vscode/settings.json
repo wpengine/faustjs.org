@@ -28,7 +28,8 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[mdx]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.wordWrap": "on"
 	},
 	"[json]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
