@@ -50,6 +50,10 @@
 			{
 				"title": "Query Data in Next.js Routes",
 				"route": "/docs/how-to/query-data-in-nextjs-routes/"
+			},
+			{
+				"title": "Deploy",
+				"route": "/docs/how-to/deploy-your-app/"
 			}
 		]
 	},
