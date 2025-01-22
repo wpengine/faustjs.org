@@ -14,8 +14,6 @@ Ensure that you have completed the steps in the following pages before proceedin
 
 - [Set up authentication](/docs/how-to/authentication/)
 
-- [Set up template hierarchy support](/docs/how-to/template-hierarchy/)
-
 Implementing authentication is necessary so that Faust.js "knows" whether the current user has the permissions necessary to view draft posts. Template hierarchy support is necessary so that Faust.js can query for draft blog post data and render it using the appropriate page template.
 
 ### Step 1. Update the `_app.js` file
@@ -103,6 +101,12 @@ This approach allows for dynamic previews of WordPress content directly on the f
 If the `asPreview` parameter is not required for a specific template, you can omit it, effectively disabling previews for that component.
 
 ### Step 4. Navigating to Preview Pages
+
+> [!TIP] For Safari Users
+>
+> Safari has an active bug where `Secure` cookies cannot be set on `localhost`, even when other browsers allow them. (Faust sets a `Secure` cookie for its auth implementation). See the [WebKit bug report](https://bugs.webkit.org/).
+>
+> For `localhost`, it is advised to set up [**HTTPS**](https://web.dev/articles/how-to-use-local-https), which will make previews work with Safari.
 
 Start by logging into your WordPress Admin. For this example, we'll create a new post.
 
