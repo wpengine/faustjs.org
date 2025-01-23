@@ -43,7 +43,7 @@ export default function DocsBreadcrumbs({ routes }) {
 	breadcrumbLinks.unshift(homeRoute);
 
 	return (
-		<div className="mb-7 mt-4 md:mb-10 md:mt-2">
+		<div className="mt-4 mb-7 md:mt-2 md:mb-10">
 			<div className="flex flex-wrap items-center gap-2 text-sm">
 				{breadcrumbLinks.map((breadcrumb, index) =>
 					normalizeHref(breadcrumb.route) === normalizeHref(currentPath) ? (

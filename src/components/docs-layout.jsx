@@ -35,14 +35,14 @@ export default function DocumentPage({ children, metadata }) {
 		<>
 			<Disclosure
 				as="div"
-				className="sticky top-[84px] z-10 border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-sm md:hidden"
+				className="sticky top-[84px] z-10 border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-xs md:hidden"
 			>
 				<DisclosureButton className="group flex items-center rounded-md px-2 py-1.5 text-white/70 hover:text-white">
-					<ChevronDownIcon className="relative z-20 hidden h-4 w-4 group-data-[open]:inline" />
-					<ChevronRightIcon className="inline h-4 w-4 group-data-[open]:hidden" />
+					<ChevronDownIcon className="relative z-20 hidden h-4 w-4 group-data-open:inline" />
+					<ChevronRightIcon className="inline h-4 w-4 group-data-open:hidden" />
 					<span className="pl-1">Menu</span>
 				</DisclosureButton>
-				<DisclosurePanel as="nav" className="hidden data-[open]:block">
+				<DisclosurePanel as="nav" className="hidden data-open:block">
 					<DocsNav
 						className="container-main h-screen max-h-screen overflow-y-scroll"
 						routes={routes}
