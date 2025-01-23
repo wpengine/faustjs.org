@@ -1,10 +1,6 @@
 import Head from "next/head";
 
 export default function SEO({ title, description, imageUrl, url }) {
-	if (!title && !description && !imageUrl && !url) {
-		return;
-	}
-
 	return (
 		<Head>
 			<meta content="website" property="og:type" />
@@ -12,7 +8,7 @@ export default function SEO({ title, description, imageUrl, url }) {
 
 			{title && (
 				<>
-					<title>{title}</title>
+					<title>{`${title} | Faust.js`}</title>
 					<meta content={title} name="title" />
 					<meta content={title} property="og:title" />
 					<meta content={title} property="twitter:title" />

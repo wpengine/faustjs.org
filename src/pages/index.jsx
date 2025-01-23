@@ -8,11 +8,16 @@ import {
 } from "@heroicons/react/24/outline";
 import Card from "@/components/card";
 import Link from "@/components/link";
+import Seo from "@/components/seo";
 
-// The Component is required
 export default function Index() {
 	return (
 		<main>
+			<Seo
+				title="Home"
+				description="The Next.js Headless Toolkit for WordPress."
+				url="/"
+			/>
 			<section className="bg-100-full bg-default-pos bg-hero-gradient">
 				<div className="container-main container-max prose prose-invert md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight container mt-0">
 					<div className="mx-auto max-w-xl px-8 py-24 text-center md:max-w-2xl md:py-36 lg:max-w-3xl">
