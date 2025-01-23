@@ -8,12 +8,10 @@ export const getServerSideProps = async (ctx) => {
 	const client = getApolloClient();
 
 	async function getPaginatedQuery(query, previousPosts = []) {
-		console.log("current post count:", previousPosts.length);
 		const res = await client.query(query);
 
 		const newPosts = [...previousPosts, ...res.data.posts.nodes];
 		if (res.data.posts.pageInfo.hasNextPage) {
-			console.log("fetching more posts");
 			return getPaginatedQuery(
 				{
 					query: query.query,
@@ -46,8 +44,6 @@ export const getServerSideProps = async (ctx) => {
 		`,
 		variables: { first: 10 },
 	});
-
-	console.log("Final Post Count:", posts.length);
 
 	const fields = posts.map((post) => ({
 		loc: new URL(post.uri, env.NEXT_PUBLIC_SITE_URL).href, // Absolute url
