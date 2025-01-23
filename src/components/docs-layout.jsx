@@ -37,7 +37,11 @@ export default function DocumentPage({ children, metadata }) {
 
 	return (
 		<>
-			<Seo title={metadata.title} url={asPath} />
+			<Seo
+				title={metadata.title}
+				description={metadata?.description}
+				url={asPath}
+			/>
 			<Disclosure
 				as="div"
 				className="sticky top-[84px] z-10 border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-xs md:hidden"
