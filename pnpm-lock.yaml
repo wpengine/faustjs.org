@@ -65,6 +65,9 @@ importers:
       lodash.debounce:
         specifier: ^4.0.8
         version: 4.0.8
+      next:
+        specifier: ^15.1.1
+        version: 15.1.1(@babel/core@7.25.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next-sitemap:
         specifier: ^4.2.3
         version: 4.2.3(next@15.1.1(@babel/core@7.25.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
