@@ -31,7 +31,7 @@ export default function Showcase() {
 		<main className="container-main container-max prose prose-invert md:prose-lg lg:prose-xl prose-h1:mb-2 prose-h1:font-semibold prose-h1:leading-tight prose-img:my-0 container px-8 py-14 lg:px-16 lg:py-24">
 			<Seo
 				title="Showcase"
-				description="Faust.js showcase with sites powered by Faust."
+				description="Sites powered by Faust.js."
 				url="/showcase/"
 			/>
 			<h1 className="bg-linear-to-br from-white/80 to-gray-300 bg-clip-text text-center text-transparent">
