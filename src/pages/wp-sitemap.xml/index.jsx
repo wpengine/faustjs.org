@@ -1,3 +1,4 @@
+import { env } from "node:process";
 import { URL } from "node:url";
 import { gql } from "@apollo/client";
 import { getApolloClient } from "@faustwp/core";
@@ -49,7 +50,7 @@ export const getServerSideProps = async (ctx) => {
 	console.log("Final Post Count:", posts.length);
 
 	const fields = posts.map((post) => ({
-		loc: new URL(post.uri, "https://faustjs.org").href, // Absolute url
+		loc: new URL(post.uri, env.NEXT_PUBLIC_SITE_URL).href, // Absolute url
 		lastmod: post.modified,
 	}));
 
