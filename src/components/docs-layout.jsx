@@ -4,10 +4,12 @@ import {
 	DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
 import DocsBreadcrumbs from "./docs-breadcrumbs";
 import DocsPreviousNextLinks from "./docs-previous-next-link";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
+import Seo from "@/components/seo";
 import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
 
@@ -31,8 +33,11 @@ const flattenRoutes = (routeConfig) => {
 
 export default function DocumentPage({ children, metadata }) {
 	const flatRoutes = flattenRoutes(routes);
+	const { asPath } = useRouter();
+
 	return (
 		<>
+			<Seo title={metadata.title} url={asPath} />
 			<Disclosure
 				as="div"
 				className="sticky top-[84px] z-10 border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-sm md:hidden"

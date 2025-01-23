@@ -1,6 +1,7 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "@/components/link";
+import Seo from "@/components/seo";
 
 const showcases = [
 	{
@@ -28,6 +29,11 @@ const showcases = [
 export default function Showcase() {
 	return (
 		<main className="container-main container-max container prose prose-invert px-8 py-14 md:prose-lg lg:prose-xl prose-h1:mb-2 prose-h1:font-semibold prose-h1:leading-tight prose-img:my-0 lg:px-16 lg:py-24">
+			<Seo
+				title="Showcase"
+				description="Faust.js showcase with sites powered by Faust."
+				url="/showcase/"
+			/>
 			<h1 className="bg-gradient-to-br from-white/80 to-gray-300 bg-clip-text text-center text-transparent">
 				Faust.js™ Showcase
 			</h1>
