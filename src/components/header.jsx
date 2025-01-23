@@ -27,8 +27,8 @@ export default function Header() {
 		<div
 			className={classNames(
 				"container-blur-bg top-0 border-b-[1px] border-gray-800 bg-gray-900/80",
-				isMenuOpen ? "fixed z-[11] w-full" : "sticky z-10",
-				isSearchOpen ? "z-[11]" : "z-10",
+				isMenuOpen ? "fixed z-11 w-full" : "sticky z-10",
+				isSearchOpen ? "z-11" : "z-10",
 			)}
 		>
 			<header className="container mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
