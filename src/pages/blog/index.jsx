@@ -82,8 +82,8 @@ export default function BlogIndex() {
 	};
 
 	return (
-		<main className="container-main container-max container prose prose-invert px-8 py-14 prose-h2:mt-0 prose-h2:text-lg lg:px-16 lg:py-24">
-			<h1 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
+		<main className="container-main container-max prose prose-invert prose-h2:mt-0 prose-h2:text-lg container px-8 py-14 lg:px-16 lg:py-24">
+			<h1 className="bg-linear-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
 				Faust.js news
 			</h1>
 			<ul className="mt-8 grid list-none auto-rows-max grid-cols-6 gap-4 pl-0 md:grid-cols-12 md:gap-6 xl:gap-8">
@@ -114,7 +114,7 @@ export default function BlogIndex() {
 				<div className="mt-8 flex justify-center">
 					<button
 						type="button"
-						className="flex items-center rounded bg-purple-500 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
+						className="flex items-center rounded-sm bg-purple-500 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
 						onClick={loadMorePosts}
 						disabled={loadingMore}
 					>

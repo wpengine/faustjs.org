@@ -126,6 +126,10 @@
 			{
 				"title": "Apollo Client Basics",
 				"route": "/docs/explanation/apollo-client-basics/"
+			},
+			{
+				"title": "Deploying Your App",
+				"route": "/docs/explanation/deploy-your-app/"
 			}
 		]
 	}
