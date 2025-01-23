@@ -26,6 +26,42 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/tutorial/getting-started-with-the-experimental-app-router",
+				destination:
+					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getting-started.md",
+				permanent: true,
+			},
+			{
+				source: "/reference/faustroutehandler",
+				destination:
+					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/faustroutehandler.md",
+				permanent: true,
+			},
+			{
+				source: "/reference/getauthclient",
+				destination:
+					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getauthclient.md",
+				permanent: true,
+			},
+			{
+				source: "/reference/getclient",
+				destination:
+					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getclient.md",
+				permanent: true,
+			},
+			{
+				source: "/reference/onlogin-server-action",
+				destination:
+					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/onlogin-server-action.md",
+				permanent: true,
+			},
+			{
+				source: "/reference/onlogout-server-action",
+				destination:
+					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/onlogout-server-action.md",
+				permanent: true,
+			},
+			{
 				source: "/discord",
 				destination: "https://discord.gg/headless-wordpress-836253505944813629",
 				permanent: false,
