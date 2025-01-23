@@ -35,12 +35,6 @@ export const FEED_QUERY = gql`
 					}
 				}
 			}
-			pageInfo {
-				endCursor
-				startCursor
-				hasPreviousPage
-				hasNextPage
-			}
 		}
 		last_modified: posts(
 			where: { orderby: { field: MODIFIED, order: DESC } }

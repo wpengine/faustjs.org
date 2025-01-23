@@ -63,7 +63,7 @@ export default async function HandleFeeds(req, res) {
 			}
 		}
 
-		// Spec specifies hash bieng in quotes
+		// Spec specifies hash being in quotes
 		const etag_for_body = `"${createHash("md5")
 			.update(resp.body)
 			.digest("hex")}"`;
