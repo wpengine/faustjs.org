@@ -1,20 +1,20 @@
 export const metadata = {
-	title: "Deploy Your App",
+	title: "Deploying Your App",
 };
 
 The following explains the various options for deploying your Faust.js App to production.
 
 ## Picking The Right Node.js Version
 
-Faust.js supports Node.js v16.0.0 or newer (v16.8.0 when using Next.js 13 and v18.17 when using Next.js 14). Please make sure you are using a Node.js version that is compatible when deploying to avoid unexpected errors.
+Faust.js supports supported versions of Node.js v16.0.0 or newer. The [latest LTS version](https://nodejs.org/en/about/previous-releases) of Node.js is recommended and anything [compatible with your Next.js](https://nextjs.org/docs/pages/getting-started/installation) version. Please make sure you are using a Node.js version that is compatible when deploying to avoid unexpected errors.
 
 Faust.js uses the `package.json` [engines field](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#engines) that will produce warnings when your package is installed as a dependency under a non compatible NPM/Node version.
 
 ## Building Your App
 
-Since Faust.js is built on top of Next.js, it shares the same build process. For details on how Next.js generates optimized production builds, refer to the [Next.js Build API](<(https://nextjs.org/docs/pages/building-your-application/deploying#nextjs-build-api)>) documentation. Additionally, you can explore the Headless Platform framework guide for standalone Next.js apps [here](https://developers.wpengine.com/docs/atlas/framework-guides/next-js/next/).
+Since Faust.js is built on top of Next.js, it shares the same build process. For details on how Next.js generates optimized production builds, refer to the [Next.js Build API](<(https://nextjs.org/docs/pages/building-your-application/deploying#nextjs-build-api)>) documentation. Additionally, you can explore the Headless Platform framework guide for Next.js apps [here](https://developers.wpengine.com/docs/atlas/framework-guides/next-js/next/).
 
-### Deploying to WP Engine's Headless Platform
+## Deploying to WP Engine's Headless Platform
 
 The Headless Platform is the most effortless way to deploy a Faust.js app. Connect your GitHub repo and Atlas will automatically build and deploy your Faust.js project on each push. Some of the benefits you get out of the box are:
 
@@ -27,12 +27,12 @@ The Headless Platform is the most effortless way to deploy a Faust.js app. Conne
 
 Deploy your Faust.js app and try for the [Headless Platform](https://wpengine.com/headless-wordpress/#form) for free!
 
-For further reference, please check out the Headless Platform framework guide docs on Faust.js [here](https://developers.wpengine.com/docs/atlas/framework-guides/faust/).
+For further reference, please check out the Headless Platform framework guide docs on Deploying Next.js [here](https://developers.wpengine.com/docs/atlas/framework-guides/next-js/next/).
 
-> [!NOTE]  
+> [!NOTE]
 > If deploying from the WP Engine portal using your own repository (without beginning with a blueprint), you will need to set your environment variables manually. Learn how by taking a look at our [platform docs](https://developers.wpengine.com/docs/atlas/getting-started/deploy-from-existing-repo/#set-environment-variables-optional).
 
-### Self Hosted
+## Self Hosted
 
 You can also self host Faust.js apps on any hosting provider that supports Node.js.
 
