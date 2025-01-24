@@ -16,7 +16,7 @@ Download the [Advanced Custom Fields](https://www.advancedcustomfields.com/downl
 
 ### 3\. Verify Your CPT Was Setup Properly
 
-For this example, let's create a custom post type called `movies` with that same slug." If you are new to using the ACF plugin, please reference their [docs](https://www.advancedcustomfields.com/resources/) on how to create post types and fields.
+You can create any CPT you want but for the sake of this example, let's create a custom post type called `movies` with that same slug. If you are new to using the ACF plugin, please reference their [docs](https://www.advancedcustomfields.com/resources/) on how to create post types and fields.
 
 Once you create a custom post type called `movies`, create a field called `title` for the post type. Then toggle the **_Archive_** slider to the color blue. In the **_Archive Slug_** field, input the string `/movies`. You should have a page that looks like this:
 
@@ -58,7 +58,7 @@ Then add the query variables:
 
 Once you press the play button in the GraphQL IDE, you should successfully get the CPT data of `title` and `content` back:
 
-![](images/wpgraphql-cpt-response.png)
+![](images/cpt-gql-response-os.png)
 
 Finally, let's check to see if the archive is accessible. Copy and paste this query into the GraphQL IDE:
 
@@ -83,7 +83,7 @@ And the query variables:
 
 The CPT should come back in response in the IDE:
 
-![](images/cpt-response-wpgraphql.png)
+![](images/archive-gql-response.png)
 
 ### 5. Generate Possible Types
 
@@ -97,3 +97,119 @@ With possible types generated, we can now start creating Faust templates for our
 
 Before we begin, start the dev server in the Faust app with the dev command:
 `npm run dev`
+
+Now, let's build our single movie template for our CPT. If you navigate to `http://localhost:3000/movies/office-space you will get a 404. But upon inspecting the server output, you will see the possible templates route:
+![](images/single-movies-opt.png)
+
+And you can use any of the following templates that will resolve for the route.
+
+Since we want this template to be for any single movie, we’ll create a template called `single-movies`. In your `wp-templates` directory, create a file called `single-movies.js` and add the following code block:
+
+```jsx title="wp-templates/single-movies.jsx"
+import { gql } from "@apollo/client";
+
+export default function SingleMovie(props) {
+	const { title, content } = props.data.nodeByUri;
+
+	return (
+		<>
+			<h1>{title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: content }} />
+		</>
+	);
+}
+
+SingleMovie.variables = ({ uri }) => {
+	return { uri };
+};
+
+SingleMovie.query = gql`
+	query GetMovieByUri($uri: String!) {
+		nodeByUri(uri: $uri) {
+			... on NodeWithTitle {
+				title
+			}
+			... on NodeWithContentEditor {
+				content
+			}
+		}
+	}
+`;
+```
+
+Now that we have created our template, we need to register it by adding it to the object in `wp-templates/index.js`:
+
+```js title="wp-templates/index.js"
+import single from "./single";
+import SingleMovie from "./single-movies";
+
+export default {
+	single: single,
+	"single-movies": SingleMovie,
+};
+```
+
+You now have a movie template registered to your Faust.js project. If you visit `http://localhost:3000/movies/office-space` again, you now will see the template resolve properly:
+
+![](images/single-movies-resolved.png)
+
+#### Archive Movie Template
+
+With our single movie template created, let’s create our template for the movie archive next.
+
+If you navigate to `http://localhost:3000/movies` you will get a 404. Inspect the server output, and you will see the possible templates for the route:
+
+![](images/archive-output.png)
+
+Since we want this template to be just for our movie archive, we’ll create a template called `archive-movies`. In your `wp-templates` directory, create a file called `archive-movies.jsx` and add the following code block:
+
+```jsx title="wp-templates/archive-movies.jsx"
+import { gql } from "@apollo/client";
+import Link from "next/link";
+
+export default function ArchiveMovies(props) {
+	const { label, contentNodes } = props.data.nodeByUri;
+
+	return (
+		<>
+			<h1>{label} Archive</h1>
+
+			<ul>
+				{contentNodes.nodes.map((node) => (
+					<li>
+						<Link href={node.uri}>{node.title}</Link>
+					</li>
+				))}
+			</ul>
+		</>
+	);
+}
+
+ArchiveMovies.variables = ({ uri }) => {
+	return { uri };
+};
+
+ArchiveMovies.query = gql`
+	query MovieArchive($uri: String!) {
+		nodeByUri(uri: $uri) {
+			... on ContentType {
+				label
+				description
+				contentNodes {
+					nodes {
+						databaseId
+						uri
+						... on NodeWithTitle {
+							title
+						}
+					}
+				}
+			}
+		}
+	}
+`;
+```
+
+Our archive movie template has now been registered. If you visit `http://localhost:3000/movies` again you can see the template properly resolves:
+
+![](images/archive-page.png)
