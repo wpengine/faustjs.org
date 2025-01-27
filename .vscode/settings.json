@@ -14,7 +14,8 @@
 		"shikijs",
 		"sindresorhus",
 		"stylesheet",
-		"tailwindcss"
+		"tailwindcss",
+		"wpgraphql"
 	],
 	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {

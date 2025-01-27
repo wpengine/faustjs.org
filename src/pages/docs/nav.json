@@ -130,6 +130,10 @@
 			{
 				"title": "Deploying Your App",
 				"route": "/docs/explanation/deploy-your-app/"
+			},
+			{
+				"title": "Migrate from wp-graphql-gutenberg",
+				"route": "/docs/explanation/migrate-from-wp-graphql-gutenberg/"
 			}
 		]
 	}
