@@ -11,7 +11,7 @@ Below are the different types of filters available to you in the Faust Plugin Sy
 
 This allows you to modify the [Apollo Client’s `InMemoryCache` config](https://www.apollographql.com/docs/react/api/cache/InMemoryCache).
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 import {
   InMemoryCacheConfig,
 } from '@apollo/client';
@@ -31,7 +31,7 @@ addFilter(
 
 Allows you to modify the [Apollo Client’s options](https://www.apollographql.com/docs/react/api/core/ApolloClient).
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 import {
   ApolloClientOptions,
   NormalizedCacheObject,
@@ -75,7 +75,7 @@ Allows you to modify the templates that are returned for a given URI.
 
 - `seedNode: SeedNode`: The seed node requested from the seed query
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
     hookName: 'possibleTemplatesList',
     namespace: string,
@@ -95,7 +95,7 @@ Allows you to override the Seed Query.
 
 - `resolvedUrl: string`: The resolved URL for the given route.
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
     hookName: 'seedQueryDocumentNode',
     namespace: string,
@@ -115,7 +115,7 @@ Allows you to override the GraphQL Endpoint.
 
 - `wpUrl: string`: The URL to the WordPress site
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
     hookName: 'graphqlEndpoint',
     namespace: string,
@@ -132,7 +132,7 @@ Allows you to override the WordPress site URLs `hostname`.
 
 - `wpUrl: string`: The URL to the WordPress site
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
     hookName: 'wpHostname',
     namespace: string,
@@ -149,7 +149,7 @@ Allows you to override the WordPress site URL.
 
 - `wpUrl: string`: The URL to the WordPress site
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
     hookName: 'wpUrl',
     namespace: string,
@@ -169,7 +169,7 @@ Allows you to modify Faust’s Toolbar nodes.
 
 - `seedNode: SeedNode`: The seed node requested from the seed query
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
     hookName: 'toolbarNodes',
     namespace: string,
@@ -189,7 +189,7 @@ Allows you to override the resolved URL in the Faust template system.
 
 - `nextContext: GetServerSidePropsContext | GetStaticPropsContext: The Next.js context object from either getServerSidePropsorgetStaticProps`.
 
-```ts title="config"
+```ts title="faustFilters.config.ts"
 addFilter(
   hookName: 'resolvedUrl',
   namespace: string,
