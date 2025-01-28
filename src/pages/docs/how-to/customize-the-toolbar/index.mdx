@@ -1,0 +1,42 @@
+export const metadata = {
+	title: "Customize The Toolbar",
+};
+
+This guide covers how to customize your site’s Toolbar utilizing the `toolbarNodes` filter.
+
+## Steps
+
+### Prerequisites
+
+Ensure that you have completed the steps in the following pages before proceeding.
+
+- [Basic setup](/docs/how-to/basic-setup)
+
+- [Set up authentication](/docs/how-to/authentication/)
+
+Implementing authentication is necessary so that Faust.js "knows" whether the current user has the permissions necessary to view and access the toolbar.
+
+> [!NOTE]
+> The Toolbar is currently an experimental feature that was introduced in `@faustwp/core@0.2.5`.
+
+### Step 1. Add Toolbar to your project
+
+The Faust Toolbar shares mostly the the same HTML as the WordPress core Toolbar. This enables the use of the same styles that exist in WordPress core, and have been provided for you to import within `@faustwp/core`.
+
+```js title="pages/_app.js"
+import "@faustwp/core/dist/css/toolbar.css";
+```
+
+Add `experimentalToolbar: true` to your project’s `faust.config.js`.
+
+```js title="faust.config.js"
+import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates";
+import possibleTypes from "./possibleTypes.json";
+
+export default setConfig({
+	experimentalToolbar: true, // Enable experimental toolbar
+	templates,
+	possibleTypes,
+});
+```
