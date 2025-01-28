@@ -59,13 +59,13 @@ export default function DocumentPage({ children, metadata }) {
 				</DisclosurePanel>
 			</Disclosure>
 			<main className="relative mx-auto flex max-w-full grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid">
-				<nav className="sticky top-[84px] hidden h-min w-60 overflow-y-auto p-6 md:block">
+				<nav className="sticky top-[84px] hidden h-[calc(100vh-84px)] w-60 overflow-y-auto p-6 md:block">
 					<DocsNav routes={routes} />
 				</nav>
-				<nav className="sticky top-[84px] order-last hidden h-min w-[240px] overflow-y-auto p-6 lg:block">
+				<nav className="sticky top-[84px] order-last hidden h-[calc(100vh-84px)] w-[240px] overflow-y-auto p-6 lg:block">
 					<OnThisPageNav>{children}</OnThisPageNav>
 				</nav>
-				<article className="container-main xs:py-20 prose prose-invert min-h-[calc(100vh-120px)] max-w-full py-0 sm:max-w-[80ch] sm:py-20 md:py-24">
+				<article className="container-main xs:py-20 prose prose-invert min-h-[calc(100vh-120px)] max-w-full py-0 sm:max-w-[80ch] sm:py-20 md:py-8">
 					<DocsBreadcrumbs routes={flatRoutes} />
 					{metadata?.title && (
 						<h1 className="article-title break-words">{metadata.title}</h1>
