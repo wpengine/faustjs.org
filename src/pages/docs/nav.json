@@ -58,6 +58,10 @@
 		"route": "/docs/reference/",
 		"children": [
 			{
+				"title": "Faust Plugin System Filters",
+				"route": "/docs/reference/faust-plugin-system-filters"
+			},
+			{
 				"title": "fromThemeJson",
 				"route": "/docs/reference/from-theme-json"
 			},
