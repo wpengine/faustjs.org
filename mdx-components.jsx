@@ -5,15 +5,16 @@ import CustomLink from "@/components/link";
 
 export function useMDXComponents(components) {
 	return {
-		img: ({ src }, ...props) => (
+		img: ({ src, alt }, ...props) => (
 			<Image
-				alt={props.alt}
+				alt={alt}
 				blurDataURL={src.blurDataURL}
 				height={src.height}
 				placeholder="blur"
 				src={src.src}
 				style={{ width: "100%", height: "auto" }}
 				width={src.width}
+				{...props}
 			/>
 		),
 		a: (props) => <CustomLink {...props} />,
