@@ -1,5 +1,6 @@
 export const metadata = {
 	title: "Customize The Toolbar",
+	description: "",
 };
 
 This guide covers how to customize your site’s Toolbar utilizing the `toolbarNodes` filter.
@@ -41,12 +42,12 @@ export default setConfig({
 });
 ```
 
-### Step 2. Login to your site
+### Step 2. Login to your WP Admin
 
 The Toolbar was designed to only load for the authenticated user.
 
-> [!NOTE]
-> A WordPress user will be automatically authenticated with your site when previewing a post. This approach can be used as a quick way view the Toolbar for development purposes.
+> [!IMPORTANT]
+> A WordPress user will be automatically authenticated with your site when previewing a post. This approach can be used as a quick way to view the Toolbar for development purposes.
 
 ### Step 3. Create The Plugin
 
@@ -161,4 +162,6 @@ export default setConfig({
 });
 ```
 
-You should now be able to see your new Custom Nodes.
+You should now be able to see your new Custom Nodes and toolbar at the top of the page if you visit a route as an authenticated user like so:
+
+![](./images/custom-toolbar-nodes.png)
