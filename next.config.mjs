@@ -26,6 +26,38 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/guide/how-to-use-sitemaps",
+				destination: "/docs/how-to/sitemaps/",
+				permanent: true,
+			},
+			{
+				source: "/guide/how-to-create-a-plugin",
+				destination: "/docs/how-to/create-a-plugin/",
+			},
+			{
+				source: "/guide/how-to-use-apollo-in-faust",
+				destination: "/docs/how-to/use-wpgraphql-smart-cache/",
+			},
+			{
+				source: "/guide/how-to-setup-post-and-page-previews",
+				destination: "/docs/how-to/post-previews/",
+			},
+			{
+				source: "/guide/how-to-handle-authentication",
+				destination: "/docs/how-to/authentication/",
+				permanent: true,
+			},
+			{
+				source: "/guide/how-to-implement-typescript",
+				destination: "/docs/how-to/generate-types-with-graphql-codegen/",
+				permanent: true,
+			},
+			{
+				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
+				destination: "/docs/how-to/rendering-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/tutorial/getting-started-with-the-experimental-app-router",
 				destination:
 					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getting-started.md",
