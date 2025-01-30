@@ -34,13 +34,17 @@ export default function DocsBreadcrumbs({ routes }) {
 	const currentPath = router.pathname;
 	const breadcrumbLinks = generateBreadcrumbs(routes, currentPath);
 
-	if (breadcrumbLinks.length === 0 || currentPath === "/docs") {
+	if (breadcrumbLinks.length === 0) {
 		return;
 	}
 
 	const homeRoute = routes[0];
 	homeRoute.title = "Docs";
 	breadcrumbLinks.unshift(homeRoute);
+
+	if (currentPath === "/docs") {
+		breadcrumbLinks.shift(0);
+	}
 
 	return (
 		<div className="mt-4 mb-7 md:mt-2 md:mb-10">
