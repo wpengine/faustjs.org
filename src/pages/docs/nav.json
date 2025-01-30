@@ -12,6 +12,10 @@
 				"route": "/docs/how-to/basic-setup/"
 			},
 			{
+				"title": "Customize the Toolbar",
+				"route": "/docs/how-to/customize-the-toolbar/"
+			},
+			{
 				"title": "Generate types with GraphQL Codegen",
 				"route": "/docs/how-to/generate-types-with-graphql-codegen/"
 			},
