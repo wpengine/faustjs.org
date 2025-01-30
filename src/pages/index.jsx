@@ -14,7 +14,7 @@ export default function Index() {
 	return (
 		<main>
 			<section className="bg-100-full bg-default-pos bg-hero-gradient">
-				<div className="container-main container-max prose prose-invert md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight container mt-0">
+				<div className="container-main container-max container prose prose-invert mt-0 md:prose-xl lg:prose-2xl prose-h1:mb-2 prose-h1:font-bold prose-h1:leading-tight">
 					<div className="mx-auto max-w-xl px-8 py-24 text-center md:max-w-2xl md:py-36 lg:max-w-3xl">
 						<h1 className="bg-gradient-to-br from-purple-300 to-teal-300 bg-clip-text text-transparent">
 							The Next.js Headless Toolkit for WordPress
@@ -52,16 +52,16 @@ export default function Index() {
 				</div>
 			</section>
 			<section className="bg-gray-950">
-				<div className="container-main container-max prose prose-invert prose-h2:font-medium prose-h3:my-4 container px-8 py-14 lg:px-16 lg:py-24">
+				<div className="container-main container-max container prose prose-invert px-8 py-14 prose-h2:font-medium prose-h3:my-4 lg:px-16 lg:py-24">
 					<h2 className="bg-gradient-to-tr from-blue-400 to-teal-300 bg-clip-text text-transparent">
 						The essential features you need to build headless WordPress sites.
 					</h2>
 					<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
 						<Card
 							as="div"
-							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
 						>
-							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
+							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<KeyIcon className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Authentication</h3>
@@ -72,9 +72,9 @@ export default function Index() {
 						</Card>
 						<Card
 							as="div"
-							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
 						>
-							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
+							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<CursorArrowRaysIcon className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Post previews</h3>
@@ -86,9 +86,9 @@ export default function Index() {
 						</Card>
 						<Card
 							as="div"
-							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
 						>
-							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
+							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<CodeBracketIcon className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Template hierarchy</h3>
@@ -107,9 +107,9 @@ export default function Index() {
 						</Card>
 						<Card
 							as="div"
-							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
+							className="col-span-full flex flex-col overflow-hidden rounded-2xl bg-blue-1100/20 p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
 						>
-							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
+							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 bg-opacity-30 text-teal-200">
 								<RectangleGroupIcon className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Block editor support</h3>

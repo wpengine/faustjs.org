@@ -146,7 +146,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 
 			{isModalOpen && (
 				<div
-					className="bg-opacity-50 fixed inset-0 z-50 flex items-start justify-center bg-black backdrop-blur-sm"
+					className="bg-black fixed inset-0 z-50 flex items-start justify-center bg-opacity-50 backdrop-blur-sm"
 					onClick={handleOutsideClick}
 					onKeyDown={(event) => {
 						if (event.key === "Enter" || event.key === " ") {
@@ -180,7 +180,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 								/>
 								<button
 									type="button"
-									className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
+									className="absolute right-2 top-1/2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
 									onClick={closeModal}
 								>
 									Esc

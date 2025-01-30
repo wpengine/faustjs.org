@@ -82,7 +82,7 @@ export default function BlogIndex() {
 	};
 
 	return (
-		<main className="container-main container-max prose prose-invert prose-h2:mt-0 prose-h2:text-lg container px-8 py-14 lg:px-16 lg:py-24">
+		<main className="container-main container-max container prose prose-invert px-8 py-14 prose-h2:mt-0 prose-h2:text-lg lg:px-16 lg:py-24">
 			<h1 className="bg-gradient-to-tr from-blue-200 to-teal-300 bg-clip-text text-transparent">
 				Faust.js news
 			</h1>
