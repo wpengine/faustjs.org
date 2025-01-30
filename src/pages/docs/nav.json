@@ -12,6 +12,10 @@
 				"route": "/docs/how-to/basic-setup/"
 			},
 			{
+				"title": "Customize the Toolbar",
+				"route": "/docs/how-to/customize-the-toolbar/"
+			},
+			{
 				"title": "Generate types with GraphQL Codegen",
 				"route": "/docs/how-to/generate-types-with-graphql-codegen/"
 			},
@@ -46,6 +50,10 @@
 			{
 				"title": "Query Data in Next.js Routes",
 				"route": "/docs/how-to/query-data-in-nextjs-routes/"
+			},
+			{
+				"title": "Custom Post Types",
+				"route": "/docs/how-to/setup-cpt-in-faustjs/"
 			}
 		]
 	},
