@@ -41,6 +41,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/guide/how-to-migrate-from-wp-graphql-gutenberg",
+				destination: "/docs/explanation/migrate-from-wp-graphql-gutenberg/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-setup-post-and-page-previews",
 				destination: "/docs/how-to/post-previews/",
 				permanent: true,
