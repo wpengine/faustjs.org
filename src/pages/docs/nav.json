@@ -62,6 +62,10 @@
 		"route": "/docs/reference/",
 		"children": [
 			{
+				"title": "Faust Plugin System Filters",
+				"route": "/docs/reference/faust-plugin-system-filters"
+			},
+			{
 				"title": "fromThemeJson",
 				"route": "/docs/reference/from-theme-json"
 			},
@@ -123,13 +127,14 @@
 				"title": "Telemetry",
 				"route": "/docs/explanation/telemetry/"
 			},
-			{
-				"title": "Example",
-				"route": "/docs/explanation/example"
-			},
+
 			{
 				"title": "Apollo Client Basics",
 				"route": "/docs/explanation/apollo-client-basics/"
+			},
+			{
+				"title": "Deploying Your App",
+				"route": "/docs/explanation/deploy-your-app/"
 			}
 		]
 	}
