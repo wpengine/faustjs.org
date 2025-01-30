@@ -1,14 +1,14 @@
 export const metadata = {
 	title: "Customize The Toolbar",
 	description:
-		"This guide explains how to customize the Faust.js Toolbar using the toolbarNodes filter. It walks through the process of enabling the experimental toolbar feature, adding authentication, and creating a custom plugin to extend the Toolbar with new menu items and submenus.",
+		"Learn how to customize the Faust.js Toolbar using the toolbarNodes filter. We'll walk you through the process of enabling the experimental toolbar feature, adding authentication, and creating a custom plugin to extend the Toolbar with new menu items and submenus.",
 };
 
 This guide covers how to customize your site’s Toolbar utilizing the `toolbarNodes` filter.
 
 ## Steps
 
-### Prerequisites
+### 0. Prerequisites
 
 Ensure that you have completed the steps in the following pages before proceeding.
 
@@ -18,10 +18,10 @@ Ensure that you have completed the steps in the following pages before proceedin
 
 Implementing authentication is necessary so that Faust.js "knows" whether the current user has the permissions necessary to view and access the toolbar.
 
-> [!NOTE]
-> The Toolbar is currently an experimental feature that was introduced in `@faustwp/core@0.2.5`.
+> [!WARNING]
+> The Toolbar was an experimental feature introduced in `@faustwp/core@0.2.5`. As of [`@faustwp/core@3.2.0`](https://github.com/wpengine/faustjs/releases/tag/%40faustwp%2Fcore%403.2.0) this feature is deprecated and will no longer be maintained.
 
-### Step 1. Add Toolbar to your project
+## 1. Add Toolbar
 
 The Faust Toolbar shares mostly the the same HTML as the WordPress core Toolbar. This enables the use of the same styles that exist in WordPress core, and have been provided for you to import within `@faustwp/core`.
 
