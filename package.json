@@ -71,5 +71,10 @@
 	"lint-staged": {
 		"*": "pnpm format",
 		"*.{js,jsx}": "pnpm lint"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"rehype-pretty-code": "patches/rehype-pretty-code.patch"
+		}
 	}
 }
