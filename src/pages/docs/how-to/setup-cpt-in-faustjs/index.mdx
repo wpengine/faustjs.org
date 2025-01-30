@@ -1,8 +1,8 @@
 export const metadata = {
 	title: "Set up Custom Post Types (CPTs) in Faust",
+	description:
+		"This doc walks you through creating CPTs in WordPress, accessing them via GraphQL, generating possible types for Apollo, and building Faust templates for both single and archive CPT views. Follow step-by-step instructions to ensure your headless WordPress setup properly handles custom content types.",
 };
-
-This guide covers how to set up Custom Post Types in your Faust templates.
 
 ## Steps
 
@@ -20,16 +20,16 @@ You can create any CPT you want but for the sake of this example, let's create a
 
 Once you create a custom post type called `movies`, create a field called `title` for the post type. Then toggle the **_Archive_** slider to the color blue. In the **_Archive Slug_** field, input the string `/movies`. You should have a page that looks like this:
 
-![](images/cpt-archive-setting.png)
+![WordPress Custom Post Type settings page with the Archive toggle enabled and the archive slug set to /movies](images/cpt-archive-setting.png)
 
 Do not forget to toggle the **_"Show in GraphQL"_** slider to blue in the advanced settings section of the edit post type page or you will not have see it in WPGraphQL:
 
-![](images/wpgraphql-cpt-setting.png)
+![WordPress Custom Post Type advanced settings with the "Show in GraphQL" option enabled for WPGraphQL integration.](images/wpgraphql-cpt-setting.png)
 
 Next, navigate to the edit page of the movies post type you just created and add some content and a title.
 Then, visit the page on WordPress to make sure it’s public:
 
-![](images/wp-cpt-page.png)
+![WordPress page on the browser displaying a custom post type (CPT) entry for "Movies" with a title and content](images/wp-cpt-page.png)
 
 ### 4. Access the data in WPGraphQL
 
@@ -58,7 +58,7 @@ Then add the query variables:
 
 Once you press the play button in the GraphQL IDE, you should successfully get the CPT data of `title` and `content` back:
 
-![](images/cpt-gql-response-os.png)
+![GraphQL IDE response showing a successful query result returning the title and content of a "Movies" custom post type entry.](images/cpt-gql-response-os.png)
 
 Finally, let's check to see if the archive is accessible. Copy and paste this query into the GraphQL IDE:
 
@@ -83,7 +83,7 @@ And the query variables:
 
 The CPT should come back in response in the IDE:
 
-![](images/archive-gql-response.png)
+![GraphQL IDE response displaying the archive query result for the "Movies" custom post type, confirming its accessibility in WPGraphQL.](images/archive-gql-response.png)
 
 ### 5. Generate Possible Types
 
@@ -99,7 +99,7 @@ Before we begin, start the dev server in the Faust app with the dev command:
 `npm run dev`
 
 Now, let's build our single movie template for our CPT. If you navigate to `http://localhost:3000/movies/office-space you will get a 404. But upon inspecting the server output, you will see the possible templates route:
-![](images/single-movies-opt.png)
+![Terminal output showing possible template resolutions for a single custom post type route in a Faust.js application.](images/single-movies-opt.png)
 
 And you can use any of the following templates that will resolve for the route.
 
@@ -151,7 +151,7 @@ export default {
 
 You now have a movie template registered to your Faust.js project. If you visit `http://localhost:3000/movies/office-space` again, you now will see the template resolve properly:
 
-![](images/single-movies-resolved.png)
+![Web page rendering a single "Movies" custom post type entry, displaying the title and content using a Faust.js template.](images/single-movies-resolved.png)
 
 #### Archive Movie Template
 
@@ -159,7 +159,7 @@ With our single movie template created, let’s create our template for the movi
 
 If you navigate to `http://localhost:3000/movies` you will get a 404. Inspect the server output, and you will see the possible templates for the route:
 
-![](images/archive-output.png)
+![Terminal output listing possible template resolutions for an archive page of a "Movies" custom post type in Faust.js](images/archive-output.png)
 
 Since we want this template to be just for our movie archive, we’ll create a template called `archive-movies`. In your `wp-templates` directory, create a file called `archive-movies.jsx` and add the following code block:
 
@@ -212,4 +212,4 @@ ArchiveMovies.query = gql`
 
 Our archive movie template has now been registered. If you visit `http://localhost:3000/movies` again you can see the template properly resolves:
 
-![](images/archive-page.png)
+![Rendered archive page displaying a list of "Movies" custom post type entries with links to individual movie posts.](images/archive-page.png)
