@@ -12,12 +12,16 @@
 				"route": "/docs/how-to/basic-setup/"
 			},
 			{
+				"title": "Generate types with GraphQL Codegen",
+				"route": "/docs/how-to/generate-types-with-graphql-codegen/"
+			},
+			{
 				"title": "Rendering Blocks",
 				"route": "/docs/how-to/rendering-blocks/"
 			},
 			{
-				"title": "Override Blocks",
-				"route": "/docs/how-to/override-blocks/"
+				"title": "Rendering Blocks with the Template Hierarchy",
+				"route": "/docs/how-to/rendering-blocks-with-the-template-hierarchy/"
 			},
 			{
 				"title": "Authentication",
@@ -26,6 +30,26 @@
 			{
 				"title": "Post Previews",
 				"route": "/docs/how-to/post-previews/"
+			},
+			{
+				"title": "Sitemaps",
+				"route": "/docs/how-to/sitemaps/"
+			},
+			{
+				"title": "Create A Plugin",
+				"route": "/docs/how-to/create-a-plugin/"
+			},
+			{
+				"title": "Using WPGraphQL Smart Cache",
+				"route": "/docs/how-to/use-wpgraphql-smart-cache/"
+			},
+			{
+				"title": "Query Data in the Browser",
+				"route": "/docs/how-to/query-data-in-the-browser/"
+			},
+			{
+				"title": "Query Data in Next.js Routes",
+				"route": "/docs/how-to/query-data-in-nextjs-routes/"
 			}
 		]
 	},
@@ -33,6 +57,10 @@
 		"title": "Reference",
 		"route": "/docs/reference/",
 		"children": [
+			{
+				"title": "Faust Plugin System Filters",
+				"route": "/docs/reference/faust-plugin-system-filters"
+			},
 			{
 				"title": "fromThemeJson",
 				"route": "/docs/reference/from-theme-json"
@@ -93,11 +121,16 @@
 		"children": [
 			{
 				"title": "Telemetry",
-				"route": "/docs/reference/telemetry/"
+				"route": "/docs/explanation/telemetry/"
+			},
+
+			{
+				"title": "Apollo Client Basics",
+				"route": "/docs/explanation/apollo-client-basics/"
 			},
 			{
-				"title": "Example",
-				"route": "/docs/explanation/example"
+				"title": "Deploying Your App",
+				"route": "/docs/explanation/deploy-your-app/"
 			}
 		]
 	}
