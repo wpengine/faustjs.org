@@ -31,6 +31,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/guide/setting-up-custom-post-types-cpts-in-faust",
+				destination: "/docs/how-to/setup-cpt-in-faustjs/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-create-a-plugin",
 				destination: "/docs/how-to/create-a-plugin/",
 				permanent: true,
