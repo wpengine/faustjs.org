@@ -32,7 +32,7 @@ Replace `https://faustexample.wpengine.com` with the URL for your WordPress back
 
 Replace `YOUR_PLUGIN_SECRET` with the Secret Key found in `Settings → Faust` in your WordPress admin area.
 
-![](./images/headless-admin-secret-1024x743.png)
+![Screenshot of the Headless Settings page in the WordPress admin panel, showing the Faust plugin settings. The Secret Key field is highlighted, which is required to enable authentication features like post previews in Faust.js.](./images/headless-admin-secret.png)
 
 Save your `.env.local` file.
 
@@ -50,12 +50,16 @@ Create a `faust.config` file in the root of your project with this code:
 
 ```js title="faust.config.js"
 import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates";
+import possibleTypes from "./possibleTypes.json";
 
 /**
  * @type {import('@faustwp/core').FaustConfig}
  **/
 export default setConfig({
+	templates,
 	plugins: [],
+	possibleTypes,
 });
 ```
 
