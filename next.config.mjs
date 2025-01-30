@@ -31,6 +31,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "guide/how-to-customize-the-toolbar",
+				destination: "/docs/how-to/customize-the-toolbar/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-create-a-plugin",
 				destination: "/docs/how-to/create-a-plugin/",
 				permanent: true,
