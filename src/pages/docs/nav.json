@@ -54,6 +54,10 @@
 			{
 				"title": "Query Data in Next.js Routes",
 				"route": "/docs/how-to/query-data-in-nextjs-routes/"
+			},
+			{
+				"title": "Custom Post Types",
+				"route": "/docs/how-to/setup-cpt-in-faustjs/"
 			}
 		]
 	},
