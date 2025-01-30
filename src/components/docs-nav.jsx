@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Link from "@/components/link";
-import { classNames } from "@/utils/strings";
+import { normalizeHref, classNames } from "@/utils/strings";
 
 export default function DocsNav({ as, routes, level = 0, className }) {
 	const As = as || Fragment;
@@ -29,7 +29,7 @@ function NavItem({ item, level, ...props }) {
 		<li className="py-2 text-gray-400">
 			<Link
 				data-doc-nav-level={level}
-				href={item.route}
+				href={normalizeHref(item.route)}
 				noDefaultStyles
 				activeClassName="text-blue-500 active"
 				{...props}

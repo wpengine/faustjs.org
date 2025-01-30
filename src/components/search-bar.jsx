@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ setIsSearchOpen }) {
 	const [items, setItems] = useState([]);
 	const [inputValue, setInputValue] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,9 +15,13 @@ export default function SearchBar() {
 		setIsModalOpen(true);
 		setInputValue("");
 		setItems([]);
-	}, []);
+		setIsSearchOpen(true);
+	}, [setIsSearchOpen]);
 
-	const closeModal = useCallback(() => setIsModalOpen(false), []);
+	const closeModal = useCallback(() => {
+		setIsModalOpen(false);
+		setIsSearchOpen(false);
+	}, [setIsSearchOpen]);
 
 	const handleOutsideClick = useCallback(
 		(event) => {
@@ -125,14 +129,16 @@ export default function SearchBar() {
 		<>
 			<button
 				className="inline-flex items-center rounded-md bg-gray-800 px-2 py-1.5 text-sm font-medium text-gray-400 hover:bg-gray-700"
-				onClick={openModal}
+				onClick={() => {
+					openModal();
+				}}
 				type="button"
 			>
 				<span className="sr-only md:hidden">Open search</span>
 				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
 					<span className="pl-3">Search docs...</span>
-					<kbd className="ml-8 rounded bg-gray-700 px-2 py-1 text-gray-400">
+					<kbd className="ml-8 rounded-sm bg-gray-700 px-2 py-1 text-gray-400">
 						⌘K
 					</kbd>
 				</span>
@@ -140,7 +146,7 @@ export default function SearchBar() {
 
 			{isModalOpen && (
 				<div
-					className="bg-black fixed inset-0 z-50 flex items-start justify-center bg-opacity-50 backdrop-blur-sm"
+					className="bg-opacity-50 fixed inset-0 z-50 flex items-start justify-center bg-black backdrop-blur-xs"
 					onClick={handleOutsideClick}
 					onKeyDown={(event) => {
 						if (event.key === "Enter" || event.key === " ") {
@@ -169,12 +175,12 @@ export default function SearchBar() {
 										placeholder: "What are you searching for?",
 										"aria-label": "Search input",
 										className:
-											"w-full pr-10 p-2 bg-gray-700 text-white placeholder-gray-400 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500",
+											"w-full pr-10 p-2 bg-gray-700 text-white placeholder-gray-400 border border-gray-700 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500",
 									})}
 								/>
 								<button
 									type="button"
-									className="absolute right-2 top-1/2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
+									className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
 									onClick={closeModal}
 								>
 									Esc

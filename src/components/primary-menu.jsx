@@ -5,7 +5,7 @@ import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
 
 const navItemClass =
-	"text-gray-400 data-[focus]:text-purple-500 data-[focus]:outline rounded-md px-1";
+	"text-gray-400 data-focus:text-purple-500 data-focus:outline rounded-md px-1";
 
 const CustomLink = forwardRef((props, reference) => {
 	return (
@@ -15,7 +15,7 @@ const CustomLink = forwardRef((props, reference) => {
 	);
 });
 
-export default function PrimaryMenu({ className }) {
+export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 	return (
 		<nav className={classNames("flex items-center space-x-4", className)}>
 			<ul className="hidden flex-row space-x-4 pl-4 md:flex">
@@ -51,20 +51,21 @@ export default function PrimaryMenu({ className }) {
 				</li>
 			</ul>
 			<Menu>
-				<MenuButton className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden">
-					<span className="sr-only hidden group-data-[open]:block">
+				<MenuButton
+					className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden"
+					onClick={() => setIsMenuOpen(!isMenuOpen)}
+				>
+					<span className="sr-only hidden group-data-open:block">
 						Open main nav
 					</span>
-					<XMarkIcon className="hidden size-6 group-data-[open]:block" />
-					<span className="sr-only group-data-[open]:hidden">
-						Open main nav
-					</span>
-					<Bars3Icon className="size-6 group-data-[open]:hidden" />
+					<XMarkIcon className="hidden size-6 group-data-open:block" />
+					<span className="sr-only group-data-open:hidden">Open main nav</span>
+					<Bars3Icon className="size-6 group-data-open:hidden" />
 				</MenuButton>
 				<MenuItems
 					as="ul"
 					transition
-					className="container-blur-bg absolute -left-4 top-[84.5px] flex w-full origin-top flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg transition duration-200 ease-out focus-within:outline-none data-[closed]:-translate-y-10 data-[closed]:opacity-0 md:hidden"
+					className="container-blur-bg absolute top-[84.5px] -left-4 flex w-full origin-top flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg transition duration-200 ease-out focus-within:outline-hidden data-closed:-translate-y-10 data-closed:opacity-0 md:hidden"
 				>
 					<MenuItem
 						as={CustomLink}
@@ -72,6 +73,7 @@ export default function PrimaryMenu({ className }) {
 						className={navItemClass}
 						noDefaultStyles
 						href="/docs/"
+						activeClassName="text-purple-500"
 					>
 						Docs
 					</MenuItem>
@@ -81,6 +83,7 @@ export default function PrimaryMenu({ className }) {
 						className={navItemClass}
 						noDefaultStyles
 						href="/blog/"
+						activeClassName="text-purple-500"
 					>
 						Blog
 					</MenuItem>
@@ -90,6 +93,7 @@ export default function PrimaryMenu({ className }) {
 						className={navItemClass}
 						noDefaultStyles
 						href="/showcase/"
+						activeClassName="text-purple-500"
 					>
 						Showcase
 					</MenuItem>

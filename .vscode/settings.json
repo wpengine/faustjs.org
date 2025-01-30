@@ -1,11 +1,14 @@
 {
 	"cSpell.words": [
+		"codegen",
 		"combobox",
 		"Diátaxis",
 		"faustjs",
 		"faustwp",
 		"heroicons",
 		"Kevinbatdorf",
+		"lastmod",
+		"recma",
 		"rehype",
 		"shiki",
 		"shikijs",
@@ -27,7 +30,8 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[mdx]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.wordWrap": "on"
 	},
 	"[json]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"

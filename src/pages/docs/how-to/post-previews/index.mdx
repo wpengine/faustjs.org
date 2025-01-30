@@ -14,8 +14,6 @@ Ensure that you have completed the steps in the following pages before proceedin
 
 - [Set up authentication](/docs/how-to/authentication/)
 
-- [Set up template hierarchy support](/docs/how-to/template-hierarchy/)
-
 Implementing authentication is necessary so that Faust.js "knows" whether the current user has the permissions necessary to view draft posts. Template hierarchy support is necessary so that Faust.js can query for draft blog post data and render it using the appropriate page template.
 
 ### Step 1. Update the `_app.js` file
@@ -43,7 +41,7 @@ export default function MyApp({ Component, pageProps }) {
 
 With your headless secret set and the `authorizeHandler` ready to handle requests, you can now create a Next.js [page](https://nextjs.org/docs/basic-features/pages) for previews. Create a file at `pages/preview.js` with the following code:
 
-```js
+```js title="pages/preview.js"
 import { WordPressTemplate } from "@faustwp/core";
 
 export default function Preview(props) {
@@ -59,7 +57,7 @@ Just a note, we don't use the `getWordPressProps` here as opposed in some other 
 
 Now that we have everything set up, it is time to add post previews to your WPGraphQL queries. Navigate to your `wp-templates` folder. You should have a `single.js` from the template hierarchy step. This `single.js` file is the component that is responsible for rendering post-type data from WordPress. In your `single.js` file, add this code block:
 
-```js
+```js title="wp-templates/single.js"
 import { gql } from "@apollo/client";
 
 export default function Component(props) {
@@ -104,14 +102,21 @@ If the `asPreview` parameter is not required for a specific template, you can om
 
 ### Step 4. Navigating to Preview Pages
 
+> [!TIP] For Safari Users
+>
+> Safari has an active bug where `Secure` cookies cannot be set on `localhost`, even when other browsers allow them. (Faust sets a `Secure` cookie for its auth implementation). See the [WebKit bug report](https://bugs.webkit.org/).
+>
+> For `localhost`, it is advised to set up [**HTTPS**](https://web.dev/articles/how-to-use-local-https), which will make previews work with Safari.
+
 Start by logging into your WordPress Admin. For this example, we'll create a new post.
 
 So far, I've added a title and a simple line of text for the content. To view this post as a preview on your front end, click the `Preview` link (1). From there, click, `Preview in new tab` (2):
 
-![](./images/post-preview-1024x806-1.png)
+![WordPress editor with a draft post titled 'My Post' and a simple text block for post content. The Preview dropdown menu is open, showing options to preview the post on Desktop, Tablet, and Mobile, along with a 'Preview in new tab' option highlighted.
+](./images/post-preview.png)
 
 Notice that the `Publish` button is also visible, meaning that you still need to publish the post. Therefore, you can now view the post on the frontend without being authenticated.
 
 Clicking on `Preview in new tab` should take you to your post preview page with the current preview content:
 
-![](./images/post-preview-frontend-1024x806-1.png)
+![Frontend preview of a WordPress post in a Faust.js headless setup. The page displays 'My Post' as the title with preview content below. The preview URL includes `?preview=true`, indicating that the user is viewing an unpublished draft.](./images/post-preview-frontend.png)

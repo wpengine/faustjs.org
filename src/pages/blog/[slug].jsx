@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, getNextStaticProps } from "@faustwp/core";
+import Seo from "@/components/seo";
 import blocks from "@/wp-blocks";
 
 export default function SinglePost(properties) {
@@ -15,13 +16,18 @@ export default function SinglePost(properties) {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error! {error.message}</p>;
 
-	const { title, date, author, editorBlocks } = post;
+	const { title, date, author, uri, excerpt, editorBlocks } = post;
 	const blockList = flatListToHierarchical(editorBlocks, {
 		childrenKey: "innerBlocks",
 	});
 
 	return (
 		<div className="container mx-auto px-4 py-8">
+			<Seo
+				title={title}
+				url={uri}
+				description={excerpt.replaceAll(/<\/?\S+>/gm, "")}
+			/>
 			<h1 className="mb-4 text-3xl font-bold">{title}</h1>
 			<p className="mb-8 text-white">
 				{author.node.name} &middot;{" "}
@@ -43,6 +49,8 @@ SinglePost.query = gql`
     post(id: $slug, idType: SLUG) {
       title
       date
+			uri
+			excerpt
       author {
         node {
           name
