@@ -161,7 +161,11 @@ const withMDX = createMDX({
 			[
 				rehypePrettyCode,
 				{
-					transformers: [transformerNotationDiff()],
+					transformers: [
+						transformerNotationDiff({
+							matchAlgorithm: "v3",
+						}),
+					],
 					theme: "github-dark-dimmed",
 					defaultLang: "plaintext",
 					bypassInlineCode: false,
