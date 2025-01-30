@@ -70,3 +70,23 @@ export function getServerSideProps(ctx) {
 ```
 
 Run the dev server again and visit the sitemap URL. You now have WordPress content and Next.js content in your Faust app.
+
+## 4. Changing the sitemap URL for other WordPress SEO plugins
+
+If you wanted to use a different sitemap than the one that comes out of the box with WordPress this is possible with Faust for other WordPress SEO plugins like Rank Math or Yoast SEO.
+
+You just need to update the argument for `sitemapIndexPath` to point to the plugins sitemap URL.
+
+e.g. for Rank Math:
+
+```js title="pages/sitemap.xml.js"
+import { getSitemapProps } from "@faustwp/core";
+export default function Sitemap() {}
+
+export function getServerSideProps(ctx) {
+	return getSitemapProps(ctx, {
+		sitemapIndexPath: "sitemap_index.xml",
+		frontendUrl: process.env.FRONTEND_URL,
+	});
+}
+```
