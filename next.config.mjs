@@ -33,14 +33,17 @@ const nextConfig = {
 			{
 				source: "/guide/how-to-create-a-plugin",
 				destination: "/docs/how-to/create-a-plugin/",
+				permanent: true,
 			},
 			{
 				source: "/guide/how-to-use-apollo-in-faust",
 				destination: "/docs/how-to/use-wpgraphql-smart-cache/",
+				permanent: true,
 			},
 			{
 				source: "/guide/how-to-setup-post-and-page-previews",
 				destination: "/docs/how-to/post-previews/",
+				permanent: true,
 			},
 			{
 				source: "/guide/how-to-handle-authentication",
