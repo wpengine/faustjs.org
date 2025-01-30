@@ -20,10 +20,6 @@
 				"route": "/docs/how-to/rendering-blocks/"
 			},
 			{
-				"title": "Rendering Blocks with the Template Hierarchy",
-				"route": "/docs/how-to/rendering-blocks-with-the-template-hierarchy/"
-			},
-			{
 				"title": "Authentication",
 				"route": "/docs/how-to/authentication/"
 			},

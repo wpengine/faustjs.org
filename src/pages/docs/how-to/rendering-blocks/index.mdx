@@ -1,14 +1,14 @@
 export const metadata = {
-	title: "Rendering Blocks",
+	title: "Rendering Blocks with the Template Hierarchy",
 };
 
-In headless WordPress, it's possible to take the HTML for an entire page and insert it into the DOM in your decoupled front-end app. On most sites, though, it becomes necessary to map WordPress blocks to React components in your front-end app so you can control how individual blocks are rendered. This document details how to do just that.
+In headless WordPress with Faust.js, the template router offers a powerful way to dynamically map WordPress pages and posts to specific templates, streamlining how content is fetched and rendered. When working with WordPress block data, the template router allows you to efficiently map block types to React components, giving you greater control over how individual blocks are rendered within each template.
 
-Note that this page only covers rendering native WordPress core blocks. Once you have that set up, if you want to go further, you can follow our documentation on how to override WordPress core blocks or work with custom blocks.
+This guide walks you through rendering native WordPress core blocks using the template router.
 
 ## Steps
 
-### 1\. Basic setup
+### 1\. Basic Setup
 
 If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) to get Faust.js set up.
 
@@ -20,219 +20,111 @@ If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) to g
 
 3\. Activate the plugin on the WordPress plugins page.
 
-### 3\. Test Block Queries in GraphQL IDE
+### 3. Render Blocks from the @faust/blocks package
 
-Once the plugin is installed and activated, head over to the GraphQL IDE. You can find it in the WordPress toolbar.
-
-You should be able to perform queries for the block data. There is a new field added in the Post and Page models called `editorBlocks`. This represents a list of available blocks for that content type:
-
-![GraphQL IDE interface showing a WPGraphQL query fetching post block data. The query requests `editorBlocks` fields, including `name` and `renderedHtml`, while the response displays structured JSON data containing block names and their corresponding rendered HTML content.](images/graphqlide-block.png)
-
-If you search in GraphQL IDE documentation explorer tab for the `editorBlocks` type you will be able to see the available block fields. The most important ones are:
-
-- `renderedHTML`: It's the HTML of the block as rendered by the [render_block](https://developer.wordpress.org/reference/functions/render_block/) function.
-
-- `name`: The actual name of the block taken from its `block.json` spec.
-
-- `__typename`: The type of block transformed from the `name` field in camel-case notation.
-
-- `apiVersion`: The apiVersion of the block taken from its `block.json` spec.
-
-- `innerBlocks`: The inner block list of that block.
-
-- `isDynamic`: Whether the block is dynamic or not, taken from its `block.json` spec.
-
-- `clientId`, `parentClientId`: Unique identifiers for the block and the parent of the block. We will explain their usage later.
-
-### How does the plugin work?
-
-The plugin iterates over the `block.json` types as registered within WordPress and creates WPGraphQL types and resolvers. As long as your blocks use the [register_block_type](https://developer.wordpress.org/reference/functions/register_block_type/) function passing a `block.json`, it will be available in the system without any extra steps.
-
-In WordPress block development, a `block.json` file is a configuration file that provides metadata and settings for a block. It defines the block’s name, title, icon, category, and other settings related to its appearance and behavior. For more information, see [the section on block.json files](https://developer.wordpress.org/block-editor/getting-started/fundamentals/block-json/) in the WordPress Developer’s Handbook.
-
-As an example, given the following `block.json` definition of a block:
-
-```json title="block.json"
-// block.json
-{
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
-	"name": "my-plugin/notice",
-	"icon": "star",
-	"version": "1.0.3",
-	"attributes": {
-		"message": {
-			"type": "string",
-			"source": "html",
-			"selector": ".message"
-		}
-	}
-}
-```
-
-The plugin will create the following WPGraphQL type:
-
-```json
-type MyPluginNotice {
-    attributes: MyPluginNoticeAttributes;
-}
-type MyPluginNoticeAttributes {
-    message: String;
-}
-```
-
-When you request to resolve the `message` attribute for `MyPluginNotice`, the plugin will use a resolver that tries to extract the field by sourcing the text element using the `selector`. As an example, with the following HTML:
-
-```html
-<div class="message">Hello World</div>
-```
-
-Since the `block.json` message attribute uses the `.message` class selector to source the text for that field, this will resolve to:
-
-`"Hello World"`
-
-#### Attribute Types
-
-Currently, the plugin handles the following attribute types taken from the [reference list](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/):
-
-- boolean
-
-- number
-
-- integer
-
-- string
-
-- object
-
-- array
-
-### 4\. Install the Necessary Packages
-
-Install the `@faustwp/blocks` NPM packages in your Next.js app.
-
-```bash
-npm install @faustwp/blocks
-```
-
-### 5.Create A Blocks Directory
-
-In the root of your Next.js project, set up `wp-blocks/index.js` with this:
+The `@faust/blocks` package contains a small reference list of blocks that you can use in your site. To use them, you need to import the relevant blocks into your block list:
 
 ```js title="wp-blocks/index.js"
+// wp-blocks/index.js
 import { CoreBlocks } from "@faustwp/blocks";
 
 export default {
-	...CoreBlocks,
+	CoreParagraph: CoreBlocks.CoreParagraph,
+	CoreColumns: CoreBlocks.CoreColumns,
+	CoreColumn: CoreBlocks.CoreColumn,
+	CoreCode: CoreBlocks.CoreCode,
+	CoreQuote: CoreBlocks.CoreQuote,
+	CoreImage: CoreBlocks.CoreImage,
+	CoreSeparator: CoreBlocks.CoreSeparator,
+	CoreList: CoreBlocks.CoreList,
+	CoreButton: CoreBlocks.CoreButton,
+	CoreButtons: CoreBlocks.CoreButtons,
+	CoreHeading: CoreBlocks.CoreHeading,
 };
 ```
 
-### 6.Query For Block Data
+You can add the code block above to your `wp-blocks/index.js` file.
 
-To query specific block data you need to define that data in the `contentBlock` as the appropriate type. Here is an example query to get all the rendered HTML from the `editorBlocks` field:
+Then in your template query, you need to pass the provided fragment entries:
 
-```graphql
-query GetBlocksByURI($uri: ID!) {
-	post(id: $uri, idType: URI) {
-		title
-		editorBlocks {
-			__typename
-			name
-			renderedHtml
-			... on CoreParagraph {
-				attributes {
-					className
-				}
-			}
-		}
-	}
-}
-```
+```js title=" wp-templates/front-page.js"
+import blocks from "../wp-blocks";
 
-This WPGraphQL query is designed to retrieve specific data for a single post from WordPress, focusing on block-based content. Here’s what it does:
-
-1. **`post(id: $uri, idType: URI)`**:
-
-   - The query retrieves a post based on its URI. The `idType: URI` indicates that the post is identified by its unique slug (e.g., "example-page"), passed as a variable (`$uri`).
-   - This ensures that the content returned corresponds to the post or page associated with that specific URI.
-
-2. **`title`**:
-
-   - The `title` field fetches the title of the queried post. This is the only post-level information returned by the query.
-
-3. **`editorBlocks`**:
-
-   - This field queries the blocks used within the post, such as paragraphs, headings, lists, etc.
-   - It returns:
-     - **`__typename`**: Indicates the block type (e.g., `CoreParagraph`, `CoreHeading`), allowing the frontend to distinguish between different block types.
-     - **`name`**: Provides the block's name as registered in the WordPress block editor (e.g., `core/paragraph`).
-     - **`renderedHtml`**: Contains the fully rendered HTML for the block, allowing direct rendering of the block content in the frontend.
-
-4. **`... on CoreParagraph`**:
-   - This is a fragment specific to `CoreParagraph` blocks. It queries additional attributes for paragraph blocks:
-     - **`attributes { className }`**: Fetches the `className` attribute if it exists, allowing for custom CSS classes to be applied to paragraph blocks.
-
-Now, we can add that query into a Next.js dynamic route file to grab a single post detail page and all its block data. For example:
-
-```js title="pages/posts/[slug].js"
-import { gql, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-
-const GET_BLOCKS_BY_URI = gql`
-	query GetBlocksByURI($uri: ID!) {
-		post(id: $uri, idType: URI) {
-			title
-			editorBlocks {
-				__typename
-				name
-				renderedHtml
-				... on CoreParagraph {
-					attributes {
-						className
-					}
-				}
-			}
-		}
-	}
+Component.query = gql`
+  ${blocks.CoreParagraph.fragments.entry}
+  ${blocks.CoreColumns.fragments.entry}
+  ${blocks.CoreColumn.fragments.entry}
+  ${blocks.CoreCode.fragments.entry}
+  ${blocks.CoreButtons.fragments.entry}
+  ${blocks.CoreButton.fragments.entry}
+  ${blocks.CoreQuote.fragments.entry}
+  ${blocks.CoreImage.fragments.entry}
+  ${blocks.CoreSeparator.fragments.entry}
+  ${blocks.CoreList.fragments.entry}
+  ${blocks.CoreHeading.fragments.entry}
+  query GetPage(
+    $databaseId: ID!
+    $asPreview: Boolean = false
+  ) {
+    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      title
+      content
+      editorBlocks {
+        name
+        __typename
+        renderedHtml
+        id: clientId
+        parentId: parentClientId
+        ...${blocks.CoreParagraph.fragments.key}
+        ...${blocks.CoreColumns.fragments.key}
+        ...${blocks.CoreColumn.fragments.key}
+        ...${blocks.CoreCode.fragments.key}
+        ...${blocks.CoreButtons.fragments.key}
+        ...${blocks.CoreButton.fragments.key}
+        ...${blocks.CoreQuote.fragments.key}
+        ...${blocks.CoreImage.fragments.key}
+        ...${blocks.CoreSeparator.fragments.key}
+        ...${blocks.CoreList.fragments.key}
+        ...${blocks.CoreHeading.fragments.key}
+      }
+    }
+  }
 `;
-
-export default function SinglePost() {
-	const router = useRouter();
-	const { slug } = router.query; // Dynamically get the slug from the URL
-
-	const { loading, error, data } = useQuery(GET_BLOCKS_BY_URI, {
-		variables: { uri: slug }, // Pass the dynamic slug to the query
-		skip: !slug, // Skip the query if slug is not available yet
-	});
-
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error: {error.message}</p>;
-
-	const { post } = data;
-	const { title, editorBlocks } = post;
-
-	return (
-		<div className="container mx-auto px-4 py-8">
-			<h1 className="mb-4 text-3xl font-bold">{title}</h1>
-
-			{/* Render the blocks */}
-			<div className="prose prose-lg prose-invert">
-				{editorBlocks.map((block, index) => {
-					return (
-						<div
-							key={index}
-							dangerouslySetInnerHTML={{ __html: block.renderedHtml }}
-						/>
-					);
-				})}
-			</div>
-		</div>
-	);
-}
 ```
 
-This code will render a single post detail page with all the block data coming from WordPress.
+Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
 
-## Next Steps
+```js title="wp-templates/front-page.js"
 
-Next, you can use the template hierarchy to map block types to React components.
+
+import { gql } from '@apollo/client';
+import { flatListToHierarchical } from '@faustwp/core';
+import { WordPressBlocksViewer } from '@faustwp/blocks';
+import blocks from '../wp-blocks';
+
+export default function Component({ loading, data }) {
+  // Loading state for previews.
+  if (loading) {
+    return <>Loading...</>;
+  }
+
+  const { title, editorBlocks } = data?.page ?? { title: '' };
+  const blockList = flatListToHierarchical(editorBlocks, { childrenKey: 'innerBlocks' });
+
+  return (
+    <div className='is-layout-constrained'>
+      <h1>{title}</h1>
+      <WordPressBlocksViewer blocks={blockList} />
+    </div>
+  );
+}
+...
+```
+
+### WordPressBlocksProvider- Theme Use
+
+If you do not need a theme, you must pass `null` as the `theme` prop for the `WordPressBlocksProvider` like the example below. If you don’t pass a theme, it will fail.
+
+```js
+<WordPressBlocksProvider config={{ blocks, theme: null }}>
+```
