@@ -59,7 +59,7 @@ export default function OnThisPageNav({ children }) {
 										heading.level === 3,
 									"active text-blue-500": activeId === heading.id,
 								},
-								"w-full py-2 break-words whitespace-normal",
+								"w-full whitespace-normal break-words py-2",
 							)}
 						>
 							<Link href={`#${heading.id}`} noDefaultStyles>
