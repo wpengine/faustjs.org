@@ -1,31 +1,38 @@
 export const metadata = {
-	title: "Rendering Blocks with the Template Hierarchy",
+	title: "Rendering Blocks",
 };
 
 In headless WordPress with Faust.js, the template router offers a powerful way to dynamically map WordPress pages and posts to specific templates, streamlining how content is fetched and rendered. When working with WordPress block data, the template router allows you to efficiently map block types to React components, giving you greater control over how individual blocks are rendered within each template.
 
 This guide walks you through rendering native WordPress core blocks using the template router.
 
-## Steps
+## 0. Basic Setup
 
-### 1\. Basic Setup
+If you don't already have a working Faust.js site, follow the [Basic Setup](/docs/how-to/basic-setup/) to get Faust.js set up.
 
-If you haven't already, follow the [Basic Setup](/docs/how-to/basic-setup/) to get Faust.js set up.
+## 1. WPGraphQL Content Blocks Plugin
 
-### 2\. WPGraphQL Content Blocks Plugin
+### A. Download the WPGraphQL Content Blocks Plugin
 
-1\. Set up the [WPGraphQL Content Blocks plugin](https://github.com/wpengine/wp-graphql-content-blocks) on the WP backend. Head over to the [GitHub repo](https://github.com/wpengine/wp-graphql-content-blocks) and download the [latest version](https://github.com/wpengine/wp-graphql-content-blocks/releases/latest/download/wp-graphql-content-blocks.zip) of the `wp-graphql-content-blocks` plugin from the releases tab.
+To set up the [WPGraphQL Content Blocks plugin](https://github.com/wpengine/wp-graphql-content-blocks) on the WP backend. Head over to the [GitHub repo](https://github.com/wpengine/wp-graphql-content-blocks) and download the [latest version](https://github.com/wpengine/wp-graphql-content-blocks/releases/latest/download/wp-graphql-content-blocks.zip) of the `wp-graphql-content-blocks` plugin from the releases tab.
 
-2\. Upload the plugins `.zip` file to your WordPress site via the plugins page or unzip and copy the file contents into your WordPress `wp-content/plugins` folder manually.
+### B. Upload the Plugin
 
-3\. Activate the plugin on the WordPress plugins page.
+Upload the plugins `.zip` file to your WordPress site via the plugins page or unzip and copy the file contents into your WordPress `wp-content/plugins` folder manually.
 
-### 3. Render Blocks from the @faust/blocks package
+### C. Activate the plugin
 
-The `@faust/blocks` package contains a small reference list of blocks that you can use in your site. To use them, you need to import the relevant blocks into your block list:
+Activate the plugin on the WordPress plugins page.
+
+## 2. Render Blocks from the @faust/blocks package
+
+The `@faust/blocks` package contains a small reference list of blocks that you can use in your site.
+
+### A. Import Block Components
+
+To use them, you need to import the relevant blocks into your `wp-blocks/index.js` block list:
 
 ```js title="wp-blocks/index.js"
-// wp-blocks/index.js
 import { CoreBlocks } from "@faustwp/blocks";
 
 export default {
@@ -43,11 +50,11 @@ export default {
 };
 ```
 
-You can add the code block above to your `wp-blocks/index.js` file.
+### B. Import Fragments
 
-Then in your template query, you need to pass the provided fragment entries:
+Then in your template queries, you will need to pass the provided fragment entries. here's an example of how to do that using the `front-page` template:
 
-```js title=" wp-templates/front-page.js"
+```js title="wp-templates/front-page.js"
 import blocks from "../wp-blocks";
 
 Component.query = gql`
@@ -92,39 +99,32 @@ Component.query = gql`
 `;
 ```
 
+### C. Rendering Blocks
+
 Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
 
-```js title="wp-templates/front-page.js"
-
-
-import { gql } from '@apollo/client';
-import { flatListToHierarchical } from '@faustwp/core';
-import { WordPressBlocksViewer } from '@faustwp/blocks';
-import blocks from '../wp-blocks';
+```js {2-4, 12,13,18} title="wp-templates/front-page.js"
+import { gql } from "@apollo/client";
+import { flatListToHierarchical } from "@faustwp/core";
+import { WordPressBlocksViewer } from "@faustwp/blocks";
+import blocks from "../wp-blocks";
 
 export default function Component({ loading, data }) {
-  // Loading state for previews.
-  if (loading) {
-    return <>Loading...</>;
-  }
+	// Loading state for previews.
+	if (loading) {
+		return <>Loading...</>;
+	}
 
-  const { title, editorBlocks } = data?.page ?? { title: '' };
-  const blockList = flatListToHierarchical(editorBlocks, { childrenKey: 'innerBlocks' });
+	const { title, editorBlocks } = data?.page ?? { title: "" };
+	const blockList = flatListToHierarchical(editorBlocks, {
+		childrenKey: "innerBlocks",
+	});
 
-  return (
-    <div className='is-layout-constrained'>
-      <h1>{title}</h1>
-      <WordPressBlocksViewer blocks={blockList} />
-    </div>
-  );
+	return (
+		<div className="is-layout-constrained">
+			<h1>{title}</h1>
+			<WordPressBlocksViewer blocks={blockList} />
+		</div>
+	);
 }
-...
-```
-
-### WordPressBlocksProvider- Theme Use
-
-If you do not need a theme, you must pass `null` as the `theme` prop for the `WordPressBlocksProvider` like the example below. If you don’t pass a theme, it will fail.
-
-```js
-<WordPressBlocksProvider config={{ blocks, theme: null }}>
 ```
