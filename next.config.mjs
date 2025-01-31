@@ -26,6 +26,11 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
+				destination: "/docs/how-to/rendering-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-use-sitemaps",
 				destination: "/docs/how-to/sitemaps/",
 				permanent: true,
