@@ -1,5 +1,7 @@
 export const metadata = {
 	title: "Rendering Blocks",
+	description:
+		"WordPress Core Blocks give content creators the ability to create rich content. Learn how to map them to React components using the `@faustwp/blocks` package.",
 };
 
 In headless WordPress with Faust.js, the template router offers a powerful way to dynamically map WordPress pages and posts to specific templates, streamlining how content is fetched and rendered. When working with WordPress block data, the template router allows you to efficiently map block types to React components, giving you greater control over how individual blocks are rendered within each template.
@@ -31,7 +33,13 @@ The `@faust/blocks` package contains a small reference list of core blocks that 
 > [!TIP]
 > These blocks are provided as a quick start option and reference. Blocks can be customized to fit your site's needs. Check out the [Custom Blocks](/docs/how-to/custom-blocks/) guide for more information on how to create custom blocks.
 
-### A. Import Block Components
+### A. Install the @faust/blocks package
+
+```bash
+npm install @faustwp/blocks
+```
+
+### B. Import Block Components
 
 To use them, you need to import the relevant blocks into your `wp-blocks/index.js` block list:
 
@@ -43,7 +51,7 @@ export default {
 };
 ```
 
-### B. Import Fragments
+### C. Import Fragments
 
 Then in your template queries, you will need to pass the provided fragment entries. here's an example of how to do that using the `front-page` template:
 
@@ -92,7 +100,7 @@ Component.query = gql`
 `;
 ```
 
-### C. Rendering Blocks
+### D. Rendering Blocks
 
 Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
 
@@ -121,3 +129,7 @@ export default function Component({ loading, data }) {
 	);
 }
 ```
+
+## 3. ALl done!
+
+run `npm run dev` and navigate to your front page to see the blocks rendered!
