@@ -10,7 +10,7 @@ This guide walks you through rendering native WordPress core blocks using the te
 
 If you don't already have a working Faust.js site, follow the [Basic Setup](/docs/how-to/basic-setup/) to get Faust.js set up.
 
-## 1. WPGraphQL Content Blocks Plugin
+## 1. Setup WPGraphQL Content Blocks Plugin
 
 ### A. Download the WPGraphQL Content Blocks Plugin
 
@@ -26,7 +26,10 @@ Activate the plugin on the WordPress plugins page.
 
 ## 2. Render Blocks from the @faust/blocks package
 
-The `@faust/blocks` package contains a small reference list of blocks that you can use in your site.
+The `@faust/blocks` package contains a small reference list of core blocks that you can use in your site.
+
+> [!TIP]
+> These blocks are provided as a quick start option and reference. Blocks can be customized to fit your site's needs. Check out the [Custom Blocks](/docs/how-to/custom-blocks/) guide for more information on how to create custom blocks.
 
 ### A. Import Block Components
 
@@ -36,17 +39,7 @@ To use them, you need to import the relevant blocks into your `wp-blocks/index.j
 import { CoreBlocks } from "@faustwp/blocks";
 
 export default {
-	CoreParagraph: CoreBlocks.CoreParagraph,
-	CoreColumns: CoreBlocks.CoreColumns,
-	CoreColumn: CoreBlocks.CoreColumn,
-	CoreCode: CoreBlocks.CoreCode,
-	CoreQuote: CoreBlocks.CoreQuote,
-	CoreImage: CoreBlocks.CoreImage,
-	CoreSeparator: CoreBlocks.CoreSeparator,
-	CoreList: CoreBlocks.CoreList,
-	CoreButton: CoreBlocks.CoreButton,
-	CoreButtons: CoreBlocks.CoreButtons,
-	CoreHeading: CoreBlocks.CoreHeading,
+	...CoreBlocks,
 };
 ```
 
