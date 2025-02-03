@@ -26,6 +26,11 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
+				destination: "/docs/how-to/rendering-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-use-sitemaps",
 				destination: "/docs/how-to/sitemaps/",
 				permanent: true,
@@ -48,6 +53,11 @@ const nextConfig = {
 			{
 				source: "/guide/how-to-use-apollo-in-faust",
 				destination: "/docs/how-to/use-wpgraphql-smart-cache/",
+				permanent: true,
+			},
+			{
+				source: "/guide/how-to-migrate-from-wp-graphql-gutenberg",
+				destination: "/docs/explanation/migrate-from-wp-graphql-gutenberg/",
 				permanent: true,
 			},
 			{

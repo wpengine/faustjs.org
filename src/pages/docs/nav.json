@@ -24,10 +24,6 @@
 				"route": "/docs/how-to/rendering-blocks/"
 			},
 			{
-				"title": "Rendering Blocks with the Template Hierarchy",
-				"route": "/docs/how-to/rendering-blocks-with-the-template-hierarchy/"
-			},
-			{
 				"title": "Authentication",
 				"route": "/docs/how-to/authentication/"
 			},
@@ -139,6 +135,10 @@
 			{
 				"title": "Deploying Your App",
 				"route": "/docs/explanation/deploy-your-app/"
+			},
+			{
+				"title": "Migrate from wp-graphql-gutenberg",
+				"route": "/docs/explanation/migrate-from-wp-graphql-gutenberg/"
 			}
 		]
 	}
