@@ -1,6 +1,7 @@
 export const metadata = {
 	title: "Migrate from Legacy Faust",
-	description: "",
+	description:
+		"Upgrading your headless WordPress setup from GQty-based Faust to the current version. Learn how to reuse presentational components, write GraphQL queries, and adopt the WP Template system for a smooth transition",
 };
 
 This will explain the migration process from legacy Faust.js to the current version.
@@ -14,3 +15,112 @@ To migrate from the legacy version to the current version, follow the guide that
 The Components folder typically contains components that embody a presentational meaning.
 
 By presentational we mean they do not depend on GQty or any hooks or side-effects and they just take props and render the data. Here is an example of a presentational component taken from this blueprint:
+
+```js title="PostInfo.js"
+export default function PostInfo({ className, author, date }) {
+	if (!date && !author) {
+		return null;
+	}
+
+	return (
+		<div className={className}>
+			{date && (
+				<time dateTime={date}>
+					<FormatDate date={date} />
+				</time>
+			)}
+			{date && author && <>&nbsp;</>}
+			{author && <span>By {author}</span>}
+		</div>
+	);
+}
+```
+
+There is no reference to GQty or Apollo and this component can be safely re-used across different applications.
+
+On the other hand the following component is more difficult to migrate as it depends on the GQty client:
+
+**Before**
+
+```js title="NavMenu.js"
+export default function NavigationMenu({ className, menuLocation, children }) {
+  const { useQuery } = client;
+  const { nodes: menuItems } = useQuery().menuItems({
+    where: {
+      location: menuLocation,
+    },
+  });
+```
+
+You will have to either replace the `useQuery()` from GQty with the `useQuery()` of Apollo or perform the query on a higher level and pass on the menu items as props:
+
+**After**
+
+```js title="NavMenu.js"
+export default function NavigationMenu({ menuItems, className, children }) {
+  if (!menuItems) {
+    return null;
+  }
+
+  return (
+    <nav
+    ...
+  )
+}
+```
+
+If you developed your components using this approach, you will be able to just transfer them without modifications to the new framework.
+
+## Writing GraphQL Queries
+
+The biggest hurdle when migrating from GQty to Apollo is that now you will need to write queries manually. You just need to identify the data that your pages and components need and try to request the appropriate fields.
+
+For instance take a look at the `PostInfo` component we posted before. It is supposed to display the `Post` Information using the `author` and `date` fields.
+
+With GQty you didn’t have to write any queries, but you relied on query introspection based on usage. So you would have to do something like this:
+
+**Before**
+
+```js title="PostInfo.js"
+<PostInfo
+	className={styles.info}
+	author={post?.author?.node?.name} // will request author name
+	date={post?.date} // will request post date
+/>
+```
+
+Now you need to explicitly describe what fields you want to fetch. You can request those fields once in the post or page fragment:
+
+**After**
+
+```gql title="GraphQL"
+fragment PostsItemFragment on Post {
+	id
+	date
+	uri
+	title
+	author {
+		node {
+			name
+		}
+	}
+}
+```
+
+This fragment is reusable and can be applied to any page query when requesting the Post data fields:
+
+```gql title="GraphQL"
+query GetPostsPage($first: Int!, $after: String) {
+	posts(first: $first, after: $after) {
+		edges {
+			node {
+				...PostsItemFragment
+			}
+		}
+	}
+}
+```
+
+By following this approach, writing queries for your pages becomes more explicit, as you will be able to find and change them easily when needed
+
+## Using the WP Template System
