@@ -1,0 +1,16 @@
+export const metadata = {
+	title: "Migrate from Legacy Faust",
+	description: "",
+};
+
+This will explain the migration process from legacy Faust.js to the current version.
+
+Currently migration from previous versions of Faust that use GQty is a manual process. However, there are some conventional techniques and best practices for React Development that will definitely help you with this process.
+
+To migrate from the legacy version to the current version, follow the guide that most closely represents your business model. Each guide recommends an integration path along with example code.
+
+## Reusing Presentational Components
+
+The Components folder typically contains components that embody a presentational meaning.
+
+By presentational we mean they do not depend on GQty or any hooks or side-effects and they just take props and render the data. Here is an example of a presentational component taken from this blueprint:
