@@ -26,7 +26,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Enable Corepack
-        run: corepack enable
+        run: |
+          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
+          npm install -g corepack@latest
+          echo "After : corepack version => $(corepack --version)"
+          corepack enable
+          pnpm --version
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
