@@ -75,6 +75,9 @@
 	"pnpm": {
 		"patchedDependencies": {
 			"rehype-pretty-code": "patches/rehype-pretty-code.patch"
-		}
+		},
+		"onlyBuiltDependencies": [
+			"sharp"
+		]
 	}
 }
