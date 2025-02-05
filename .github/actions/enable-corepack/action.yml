@@ -4,13 +4,8 @@ description: "Setup Corepack with latest version and enable"
 runs:
   using: "composite" # Mandatory parameter
   steps:
-    # Setup a Node environment given a node version
-    - name: Use Node.js ${{ inputs.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ inputs.node-version }}
-
     - name: Update & Enable Corepack
+      shell: bash
       run: |
         echo "Before: corepack version => $(corepack --version || echo 'not installed')"
         npm install -g corepack@latest
