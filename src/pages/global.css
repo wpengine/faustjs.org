@@ -230,3 +230,23 @@ figcaption[data-language]::after {
 	content: attr(data-language);
 	float: right;
 }
+
+@layer utilities {
+	.custom-scrollbar::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-track {
+		background: #030712;
+		border-radius: 8px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb {
+		background: var(--color-gray-200);
+		border-radius: 8px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+		background: var(--color-gray-200);
+	}
+}
