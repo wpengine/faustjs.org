@@ -9,7 +9,6 @@ import {
 } from "eslint-config-neon";
 import jsxA11y from "eslint-config-neon/jsx-a11y";
 import * as mdx from "eslint-plugin-mdx";
-// eslint-disable-next-line import-x/no-extraneous-dependencies -- we want the version of unicorn that is bundled with eslint-config-neon
 import unicorn from "eslint-plugin-unicorn";
 
 /**
