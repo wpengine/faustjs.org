@@ -26,6 +26,11 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/guide/how-to-migrate-from-legacy-faust",
+				destination: "/docs/how-to/migrate-from-legacy-faust/",
+				permanent: true,
+			},
+			{
 				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
 				destination: "/docs/how-to/rendering-blocks/",
 				permanent: true,
