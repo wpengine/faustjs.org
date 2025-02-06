@@ -59,7 +59,7 @@ export default function DocumentPage({ children, metadata }) {
 				</DisclosurePanel>
 			</Disclosure>
 			<main className="relative mx-auto flex max-w-full grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid">
-				<nav className="sticky top-[84px] hidden h-[calc(100vh-84px)] w-60 overflow-y-auto p-6 md:block">
+				<nav className="custom-scrollbar sticky top-[84px] hidden h-[calc(100vh-84px)] w-64 overflow-y-auto p-4 md:block">
 					<DocsNav routes={routes} />
 				</nav>
 				<nav className="sticky top-[84px] order-last hidden h-[calc(100vh-84px)] w-[240px] overflow-y-auto p-6 lg:block">

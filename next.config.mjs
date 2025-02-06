@@ -121,6 +121,12 @@ const nextConfig = {
 				destination: "https://discord.gg/headless-wordpress-836253505944813629",
 				permanent: false,
 			},
+			{
+				source: "/community-meeting",
+				destination:
+					"https://discord.gg/headless-wordpress-836253505944813629?event=1336404483013480588",
+				permanent: false,
+			},
 		];
 	},
 	images: {
