@@ -26,6 +26,11 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/guide/how-to-migrate-from-legacy-faust",
+				destination: "/docs/how-to/migrate-from-legacy-faust/",
+				permanent: true,
+			},
+			{
 				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
 				destination: "/docs/how-to/rendering-blocks/",
 				permanent: true,
@@ -119,6 +124,12 @@ const nextConfig = {
 			{
 				source: "/discord",
 				destination: "https://discord.gg/headless-wordpress-836253505944813629",
+				permanent: false,
+			},
+			{
+				source: "/community-meeting",
+				destination:
+					"https://discord.gg/headless-wordpress-836253505944813629?event=1336404483013480588",
 				permanent: false,
 			},
 		];

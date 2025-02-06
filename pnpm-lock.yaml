@@ -4,9 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  eslint-plugin-unicorn: ^56.0.1
+
 patchedDependencies:
   rehype-pretty-code:
-    hash: pgwokt5cuarlruvtc6jfjh7deu
+    hash: cd67d20941f11a3159aa1d357c78f6305540c48de316b86fb3f9e07597add478
     path: patches/rehype-pretty-code.patch
 
 importers:
@@ -99,7 +102,7 @@ importers:
         version: 1.2.0
       rehype-pretty-code:
         specifier: ^0.14.0
-        version: 0.14.0(patch_hash=pgwokt5cuarlruvtc6jfjh7deu)(shiki@2.2.0)
+        version: 0.14.0(patch_hash=cd67d20941f11a3159aa1d357c78f6305540c48de316b86fb3f9e07597add478)(shiki@2.2.0)
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -125,6 +128,9 @@ importers:
       eslint-plugin-mdx:
         specifier: ^3.1.5
         version: 3.1.5(eslint@9.19.0(jiti@2.4.2))
+      eslint-plugin-unicorn:
+        specifier: ^56.0.1
+        version: 56.0.1(eslint@9.19.0(jiti@2.4.2))
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -11182,7 +11188,7 @@ snapshots:
       hast-util-from-html: 2.0.3
       unified: 11.0.5
 
-  rehype-pretty-code@0.14.0(patch_hash=pgwokt5cuarlruvtc6jfjh7deu)(shiki@2.2.0):
+  rehype-pretty-code@0.14.0(patch_hash=cd67d20941f11a3159aa1d357c78f6305540c48de316b86fb3f9e07597add478)(shiki@2.2.0):
     dependencies:
       '@types/hast': 3.0.4
       hast-util-to-string: 3.0.1
