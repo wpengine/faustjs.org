@@ -15,7 +15,7 @@ indent_style = tab
 indent_size = 2
 max_line_length = 80
 
-[*.yaml, *.yml]
+[*.{yaml,yml}]
 # YAML files should use spaces, not tabs
 indent_style = space
 indent_size = 2
