@@ -4,6 +4,16 @@
 		"route": "/docs/"
 	},
 	{
+		"title": "Tutorials",
+		"route": "/docs/tutorial/",
+		"children": [
+			{
+				"title": "Learn Faust.js",
+				"route": "/docs/tutorial/learn-faust/"
+			}
+		]
+	},
+	{
 		"title": "How-To Guides",
 		"route": "/docs/how-to/",
 		"children": [
