@@ -49,6 +49,7 @@
 		"shiki": "^2.2.0"
 	},
 	"devDependencies": {
+		"eslint-plugin-unicorn": "^56.0.1",
 		"@tailwindcss/postcss": "^4.0.1",
 		"@tailwindcss/typography": "^0.5.15",
 		"eslint": "^9.19.0",
@@ -78,6 +79,9 @@
 		},
 		"onlyBuiltDependencies": [
 			"sharp"
-		]
+		],
+		"overrides": {
+			"eslint-plugin-unicorn": "$eslint-plugin-unicorn"
+		}
 	}
 }

@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  eslint-plugin-unicorn: ^56.0.1
+
 patchedDependencies:
   rehype-pretty-code:
     hash: cd67d20941f11a3159aa1d357c78f6305540c48de316b86fb3f9e07597add478
@@ -125,6 +128,9 @@ importers:
       eslint-plugin-mdx:
         specifier: ^3.1.5
         version: 3.1.5(eslint@9.19.0(jiti@2.4.2))
+      eslint-plugin-unicorn:
+        specifier: ^56.0.1
+        version: 56.0.1(eslint@9.19.0(jiti@2.4.2))
       husky:
         specifier: ^9.1.7
         version: 9.1.7
