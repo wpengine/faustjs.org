@@ -17,10 +17,11 @@ Ensure that you have completed the steps in the following pages before proceedin
 
    ![WordPress Reading Settings screen displaying options for feed content inclusion and search engine visibility. The 'Discourage search engines from indexing this site' checkbox is unchecked, ensuring the site is visible to search engines.](./images/reading-settings.png)
 
-> [!TIP]
-> Since Faust.js fetches the sitemap data from the WordPress backend, visit your sitemap at your regular WordPress site which would be your domain then the default sitemap path `/wp-sitemap.xml` to ensure it is working.
+## 2. Check Your Sitemap in WordPress
 
-## 2. Create `sitemap.xml.js`
+Since Faust.js fetches the sitemap data from the WordPress backend, visit your sitemap at your regular WordPress site which would be your domain then the default sitemap path `/wp-sitemap.xml` to ensure it is working.
+
+## 3. Create `sitemap.xml.js`
 
 Go to the root of your Faust.js app. Navigate to the `/pages` directory. Within the pages directory, create a file and name it `sitemap.xml.js`.
 
@@ -48,7 +49,7 @@ This file does the following:
 Save the file and run `npm run dev` in your terminal and visit `localhost:3000/sitemap.xml`.
 You now will dynamically serve WordPress content to your headless site through the sitemap.
 
-## 3. Defining Next.js Pages for Sitemaps
+## 4. Defining Next.js Pages for Sitemaps
 
 Since we are using Headless WordPress, the front-end URLs need to be on the sitemap as well. Within the same `sitemap.xml.js` file, simply add a pages property array and place the relative paths of Next.js in the objects within the array like so:
 
@@ -74,7 +75,7 @@ export function getServerSideProps(ctx) {
 
 Run the dev server again and visit the sitemap URL. You now have WordPress content and Next.js content in your Faust app.
 
-## 4. Changing the sitemap URL for other WP SEO plugins
+## 5. Changing the sitemap URL for other WP SEO plugins
 
 If you prefer to use a different sitemap instead of the default one provided by WordPress, Faust allows integration with other WordPress SEO plugins like [Rank Math](https://rankmath.com/) or [Yoast SEO](https://yoast.com/wordpress/plugins/seo/).
 
