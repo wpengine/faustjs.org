@@ -25,15 +25,18 @@ You should also not have any other projects running on port `3000` or `8881`, si
 
 The steps below will get you up-and-running with the pre-built app you will use for the tutorial.
 
-### 1. Clone the repo
+### 1. Install the Next.js app
 
-Clone the repository to your local machine.
-
-// TODO: Update this repo link
+Run the command below to set up the example Next.js app we will use for the tutorial.
 
 ```sh
-git clone git@github.com:kellenmace/faust-tutorial.git
+npx create-next-app \
+    -e https://github.com/wpengine/faustjs/tree/canary \
+    --example-path examples/next/tutorial \
+    --use-npm
 ```
+
+When asked if it's okay to install the `create-next-app` package, answer `y` to confirm.
 
 ### 2. Set up headless WordPress backend
 
