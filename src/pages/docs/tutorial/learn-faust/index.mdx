@@ -2,7 +2,7 @@ export const metadata = {
 	title: "Learn Faust.js",
 };
 
-This tutorial will familiarize you with the core features of Faust.js. You'll start with a Next.js project that has been configured to work with Faust.js, then learn how to implement these features yourself:
+This tutorial will familiarize you with the core features of Faust.js. You'll start with a Next.js project that has been configured to work with Faust.js, then learn how to leverage these features yourself:
 
 - Template hierarchy
 - Authentication & Post previews
@@ -39,7 +39,7 @@ git clone git@github.com:kellenmace/faust-tutorial.git
 
 `cd` into the project directory.
 
-Run `npx @wp-now/wp-now start --blueprint faust-tutorial-blueprint.json`. This command uses the [`wp-now` NPM package](https://www.npmjs.com/package/@wp-now/wp-now) and the `faust-tutorial-blueprint.json` blueprint file to set up a local WordPress environment.
+Run `npx @wp-now/wp-now start --blueprint faust-tutorial-blueprint.json`. This command uses the [`wp-now`](https://www.npmjs.com/package/@wp-now/wp-now) NPM package and the included `faust-tutorial-blueprint.json` blueprint file to set up a local WordPress environment.
 
 When asked if it's okay to install the `@wp-now/wp-now` package, answer `y` to confirm.
 
@@ -47,27 +47,37 @@ After a moment, you should have a WordPress site up-and-running.
 
 By navigating to http://localhost:8881/wp-admin/plugins.php, You can see that the required [Faust.js](https://wordpress.org/plugins/faustwp/) and [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) plugins have already been installed and activated for you.
 
-In the WordPress admin sidebar, go to `Settings` > `Permalinks`. Check the radio button for `Post name` and save your changes.
+In the WordPress admin sidebar, go to `Settings` > `Permalinks`. Check the radio button for `Custom Structure`, enter `/blog/%postname%/` in the text field, and save your changes. With this setting, our blog posts will have URLs such as http://localhost:3000/blog/hello-world/.
 
-Next, head to `GraphQL` > `Settings`. Check the box for `Enable Public Introspection` and click the save button.
+![Permalink settings](./images/permalink-settings.png)
+
+Next, head to `GraphQL` > `Settings`. Check the box for `Enable Public Introspection` and click the save button. This allows Faust.js to run an "introspection query" on your WordPress backend to get a list of the available GraphQL types and fields.
+
+![WPGraphQL introspection setting](./images/wpgraphql-introspection.png)
 
 Finally, head to to `Settings` > `Faust` to access the Faust.js settings page. Set the `Front-end site URL` setting to `http://localhost:3000` and save your changes. This lets Faust know the URL for your decoupled frontend app, which we'll set up next.
+
+![Faust Front-end site URL setting](./images/faust-front-end-site-url.png)
 
 ### 3. Set up Faust.js frontend
 
 Run `npm run dev` to install the project's NPM packages
 
-Run `npm run generate` on the command line. Confirm that a possibleTypes.json has been generated in the root of your project.
+Run `npm run generate` on the command line. Confirm that a `possibleTypes.json` has been generated in the root of your project.
 
-Create a `.env.local` file in the root project folder and populate it with the environment variables shown below. Once again, in the WordPress admin sidebar, go to `Settings` > `Faust` to access the Faust.js settings page. Copy the value you see for the `Secret Key` and paste that in as the value of `FAUST_SECRET_KEY` in your `.env.local` file and save it. Faust.js uses this secret key to send authenticated request to WordPress.
+Create a `.env.local` file in the root project folder and populate it with the environment variables shown below.
 
 ```env
 # Your WordPress site URL
 NEXT_PUBLIC_WORDPRESS_URL=http://localhost:8881
 
 # Plugin secret found in WordPress Settings->Faust
-FAUST_SECRET_KEY=abc-123
+FAUST_SECRET_KEY=
 ```
+
+Once again, in the WordPress admin sidebar, go to `Settings` > `Faust` to access the Faust.js settings page. Copy the value you see for the `Secret Key` and paste that in as the value of `FAUST_SECRET_KEY` in your `.env.local` file and save it. Faust.js uses this secret key to send authenticated request to WordPress.
+
+![Faust Secret Key setting](./images/faust-secret-key-setting.png)
 
 In a separate terminal window from the one running your WordPress backend, run `npm run dev` to start up your frontend app. You should now be able to visit http://localhost:3000 and see your frontend app running.
 
@@ -79,7 +89,7 @@ The following image is helpful for visualizing how WordPress' template hierarchy
 
 ![WordPress template hierarchy](./images/template-hierarchy.png)
 
-Open the project in a code editor and find the `wp-templates` folder. This is the folder where you can place page template files you'd like to use. We've provided a `single.js` file for you. As you can see in the template hierarchy flowchart, the "single" page template is used to render single blog post pages. You can see this page template in action by viewing http://localhost:3000/hello-world/. That page should display the contents for the "Hello world" blog post.
+Open the project in a code editor and find the `wp-templates` folder. This is the folder where you can place page template files you'd like to use. We've provided a `single.js` file for you. As you can see in the template hierarchy flowchart, the "single" page template is used to render single blog post pages. You can see this page template in action by viewing http://localhost:3000/blog/hello-world/. That page should display the contents for the "Hello world" blog post.
 
 #### Add a template
 
@@ -173,34 +183,9 @@ You now have page templates rendering your published WordPress Posts and Pages, 
 
 In this section, we'll leverage Faust's built-in Authentication and Post Preview features to allow content creators to preview their draft blog posts. By authenticating the user, we'll know whether they have the permissions necessary to view a particular draft post. If they do, we'll handle rendering the draft blog post for them to preview.
 
-### 1. Create the Faust API route
+The app is set up so that when Faust renders a page, it includes an additional `asPreview` prop that is set to `true` if a draft post is being rendered, else `false`. Let's learn how we can make use of that prop to render draft posts.
 
-First, we'll set up an API endpoint that Faust uses to authenticate requests from WordPress.
-
-Create a new `api` folder inside of your `pages` folder. Inside of `/api`, add a `faust/[[...route]].js` file that contains the code below.
-
-```js title="src/pages/api/faust/[[...route]].js"
-import "../../../../faust.config"; // Adjust path as necessary
-import { apiRouter } from "@faustwp/core";
-
-export default apiRouter;
-```
-
-### 2. Create preview page
-
-Next, we'll create a new Next.js page to handle post previews. Create a new `pages/preview.js` file with this inside:
-
-```js title="src/pages/preview.js"
-import { WordPressTemplate } from "@faustwp/core";
-
-export default function Preview(props) {
-	return <WordPressTemplate {...props} />;
-}
-```
-
-With this code in place, Faust will render the correct `WordPressTemplate` page template according to the template hierarchy and pass to it an additional `asPreview` prop that is set to `true`. Next, we'll see how to use that prop to determine whether a post preview is being rendered in our page templates.
-
-### 3. Update `single` template
+### 1. Update `single` template
 
 Open your `wp-templates/single.js` template. Above the existing `return` statement, add the code below.
 
@@ -273,7 +258,7 @@ SingleTemplate.variables = (seedQuery, ctx) => {
 };
 ```
 
-### 4. Preview a draft post
+### 2. Preview a draft post
 
 Let's try out our new post previews feature! In the WordPress admin sidebar, click the `Posts` link. Find the `Hello world!` blog post on the list and click it to edit that post. Make a small change to it, such as modifying the title or content.
 
@@ -285,7 +270,7 @@ This should send you to `http://localhost:3000/blog/hello-world` with a number o
 
 // TODO: This doesn't work! 😬
 
-After you complete the tutorial, you can review our how-to guides on [Authentication](/docs/how-to/authentication/) and [Post Previews](/docs/how-to/post-previews/) to learn more about these features.
+After you complete the tutorial, you can read our how-to guides on [Authentication](/docs/how-to/authentication/) and [Post Previews](/docs/how-to/post-previews/) to learn more about these features.
 
 ## Blocks
 
@@ -299,23 +284,11 @@ In the WordPress admin, navigate to `Plugins` > `Add New` > `Upload`. Select the
 
 ![Install WPGraphQL Content Blocks plugin](./images/install-content-blocks-plugin.png)
 
+This plugin exposes WordPress blocks data in the GraphQL schema so that we can query for it.
+
 ### 2. Query for blocks data
 
-In the root of your Next.js project, create a new `src/wp-blocks/index.js` file with this:
-
-```js title="src/wp-blocks/index.js"
-import { CoreBlocks } from "@faustwp/blocks";
-
-const blocks = {
-	...CoreBlocks,
-};
-
-export default blocks;
-```
-
-This get the WordPress core blocks from the `@faustwp/blocks` package and tells Faust to use them for rendering blocks. It's possible to override these blocks, or add your own custom blocks, but we'll just stick with the core blocks for now.
-
-Let's update our `single` blog post template to query for and render blocks. Currently, the `single` template does this:
+Next, we'll update our `single` blog post template to query for and render blocks. Currently, the `single` template does this:
 
 1. Includes `content` in its GraphQL query to get the post content.
 2. Uses `<div dangerouslySetInnerHTML={{ __html: content }} />` to render the content as a string of HTML.
@@ -436,7 +409,7 @@ Reload the http://localhost:3000/blog/hello-world/ page in your frontend app and
 </div>
 ```
 
-More information about Faust's blocks features can be found in these how-to guides:
+More information about using Faust to render blocks, override WordPress core blocks with your own implementation, and even add support for custom blocks can be found in these how-to guides:
 
 - [Rendering Blocks](/docs/how-to/rendering-blocks/)
 - [Override Blocks](/docs/how-to/override-blocks/)
