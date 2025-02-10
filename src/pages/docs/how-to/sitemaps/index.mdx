@@ -4,16 +4,17 @@ export const metadata = {
 
 Sitemaps can be a complicated process when using WordPress in a headless environment. Thankfully, Faust takes care of all your sitemap needs through creation of a file within the pages directory.
 
-## Prerequisites
+## 0. Prerequisites
 
 Ensure that you have completed the steps in the following pages before proceeding.
 
 - [Basic setup](/docs/how-to/basic-setup)
 
-## 1. Disable Search Engine Visibility
+## 1. Enable Search Engine Visibility
 
 1. In your WordPress Admin, go to **Settings > Reading**.
-2. Uncheck the **Search Engine Visibility** box.
+2. Uncheck the _"Discourage search engines from indexing this site"_ box.
+3. Visit the sitemap url (e.g. `https://[your-domain.com]/wp-sitemap.xml`) on the WordPress domain to ensure the sitemap is loading correctly.
 
    ![WordPress Reading Settings screen displaying options for feed content inclusion and search engine visibility. The 'Discourage search engines from indexing this site' checkbox is unchecked, ensuring the site is visible to search engines.](./images/reading-settings.png)
 
