@@ -22,22 +22,24 @@ export default function SinglePost(properties) {
 	});
 
 	return (
-		<div className="container mx-auto px-4 py-8">
+		<div className="prose prose-lg prose-invert container mx-auto px-4 py-20">
 			<Seo
 				title={title}
 				url={uri}
 				description={excerpt.replaceAll(/<\/?\S+>/gm, "")}
 			/>
-			<h1 className="mb-4 text-3xl font-bold">{title}</h1>
-			<p className="mb-8 text-white">
-				{author.node.name} &middot;{" "}
-				{new Date(date).toLocaleDateString("en-US", {
-					year: "numeric",
-					month: "short",
-					day: "numeric",
-				})}
-			</p>
-			<div className="prose-lg prose-invert">
+			<div className="py-4">
+				<h1 className="mb-4">{title}</h1>
+				<p className="mb-8 text-sm text-gray-400">
+					{author.node.name} &middot;{" "}
+					{new Date(date).toLocaleDateString("en-US", {
+						year: "numeric",
+						month: "short",
+						day: "numeric",
+					})}
+				</p>
+			</div>
+			<div className="">
 				<WordPressBlocksViewer blocks={blockList} />
 			</div>
 		</div>
