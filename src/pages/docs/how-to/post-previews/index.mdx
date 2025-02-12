@@ -39,7 +39,44 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-### Step 2. Create Preview Page
+### Step 2. Update the `next.config.js` file
+
+In the root of your project, update your `next.config.js` file with this code:
+
+```js title="next.config.js"
+const { withFaust, getWpHostname } = require("@faustwp/core");
+const { createSecureHeaders } = require("next-secure-headers");
+
+/**
+ * @type {import('next').NextConfig}
+ **/
+module.exports = withFaust({
+	reactStrictMode: true,
+	sassOptions: {
+		includePaths: ["node_modules"],
+	},
+	images: {
+		domains: [getWpHostname()],
+	},
+
+	async headers() {
+		return [
+			{
+				source: "/:path*",
+				headers: createSecureHeaders({
+					xssProtection: false,
+				}),
+			},
+		];
+	},
+});
+```
+
+This configuration integrates Next.js with your headless WordPress setup by using the `withFaust` function to manage authenticated preview modes.
+
+The `getWpHostname` function then passes your WordPress instance's hostname, enabling Next.js to optimize and serve images from WordPress in both published and preview modes. Finally, the `createSecureHeaders` function generates essential security headers to protect your application from cross-site scripting (XSS) attacks.
+
+### Step 3. Create Preview Page
 
 With your headless secret set and the `authorizeHandler` ready to handle requests, you can now create a Next.js [page](https://nextjs.org/docs/basic-features/pages) for previews. Create a file at `pages/preview.js` with the following code:
 
@@ -55,7 +92,7 @@ In this code block, We are using the `WordPressTemplate` component from `@faustw
 
 Just a note, we don't use the `getWordPressProps` here as opposed in some other `wp-template` pages as we want to perform post previews in the client using CSRs.
 
-### Step 3. Add Preview Data to Your WPGraphQL Queries Within Templates
+### Step 4. Add Preview Data to Your WPGraphQL Queries Within Templates
 
 Now that we have everything set up, it is time to add post previews to your WPGraphQL queries. Navigate to your `wp-templates` folder. You should have a `single.js` from the template hierarchy step. This `single.js` file is the component that is responsible for rendering post-type data from WordPress. In your `single.js` file, add this code block:
 
@@ -102,7 +139,7 @@ This approach allows for dynamic previews of WordPress content directly on the f
 
 If the `asPreview` parameter is not required for a specific template, you can omit it, effectively disabling previews for that component.
 
-### Step 4. Navigating to Preview Pages
+### Step 5. Navigating to Preview Pages
 
 > [!TIP] For Safari Users
 >

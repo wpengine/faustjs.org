@@ -24,10 +24,10 @@ Create a `.env.local` file in the root of your Next.js project that contains the
 
 ```ini title=".env.local"
 # Your WordPress site URL
-NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com // [!code ++]
+NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com
 
 # Plugin secret found in WordPress Settings->Faust
-FAUST_SECRET_KEY=YOUR_PLUGIN_SECRET // [!code ++]
+FAUST_SECRET_KEY=YOUR_PLUGIN_SECRET
 ```
 
 Replace `https://faustexample.wpengine.com` with the URL for your WordPress backend.
@@ -172,26 +172,6 @@ const templates = {
 export default templates;
 ```
 
-### Pass in Templates and Types in Faust.js config
-
-Put the following code inside your Faust.js config:
-
-```js title="faust.config.js"
-import { setConfig } from "@faustwp/core";
-import templates from "./wp-templates/index.js";
-import possibleTypes from "./possibleTypes.json";
-
-/**
- * @type {import('@faustwp/core').FaustConfig}
- **/
-export default setConfig({
-	templates,
-	possibleTypes,
-});
-```
-
-Here, we call the `setConfig()` function that Faust.js provides, passing in our `templates` and `possibleTypes` to it.
-
 ### Create a catch-all route
 
 Create a `[...wordpressNode].js` file inside your `pages` folder. Add the following code to it.
@@ -223,7 +203,7 @@ Note that it is still possible to override this with hardcoded pages. For exampl
 
 You should now be able to make use of this template.
 
-Run `npm run dev` to get your Next.js project running in development mode, then visit the URL for one of the blog posts– something like `http://localhost:3000/blog/hello-world/`.
+Run `npm run dev` to get your Next.js project running in development mode, then visit the URL for one of the blog posts. The default starter blog path in WordPress is the "hello world" one – `http://localhost:3000/hello-world/`.
 
 If you've wired everything up correctly, the page should render and display the post's title and content.
 
