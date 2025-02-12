@@ -1,5 +1,7 @@
 export const metadata = {
 	title: "useLogin",
+	description:
+		"Reference for the useLogin hook that enables in-app authentication with WordPress without leaving your Faust.js application.",
 };
 
 `useLogin` is a React hook that facilitates login to your headless WordPress site without having to leave your Faust app.
@@ -94,4 +96,4 @@ export default function Login() {
 }
 ```
 
-It create some state values to keep track of the user email and password fields. It then uses the `useLogin` hook and extracts the return values. Based on the return values, it will either disable some fields when `loading=true` or return an error message when `data.generateAuthorizationCode.error` is not empty.
+It creates some state values to keep track of the user email and password fields. It then uses the `useLogin` hook and extracts the return values. Based on the return values, it will either disable some fields when `loading=true` or return an error message when `data.generateAuthorizationCode.error` is not empty.
