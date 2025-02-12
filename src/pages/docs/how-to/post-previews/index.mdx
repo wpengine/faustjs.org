@@ -41,7 +41,15 @@ export default function MyApp({ Component, pageProps }) {
 
 ### Step 2. Update the `next.config.js` file
 
-In the root of your project, update your `next.config.js` file with this code:
+Before we update the next config, we will need to install the [next-secure-headers](https://www.npmjs.com/package/next-secure-headers) package that we will use in it.
+
+In your terminal, run the following command:
+
+```bash
+npm i next-secure-headers
+```
+
+Now that we have that installed, go to the root of your project and update your `next.config.js` file with this code:
 
 ```js title="next.config.js"
 const { withFaust, getWpHostname } = require("@faustwp/core");
