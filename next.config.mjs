@@ -26,8 +26,13 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/guide/how-to-create-a-block-from-a-third-party-plugin",
+				destination: "/docs/how-to/custom-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
-				destination: "/docs/how-to/override-blocks/",
+				destination: "/docs/how-to/custom-blocks/",
 				permanent: true,
 			},
 			{

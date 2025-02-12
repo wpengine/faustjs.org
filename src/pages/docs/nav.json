@@ -24,8 +24,8 @@
 				"route": "/docs/how-to/rendering-blocks/"
 			},
 			{
-				"title": "Override Blocks",
-				"route": "/docs/how-to/override-blocks/"
+				"title": "Custom Blocks",
+				"route": "/docs/how-to/custom-blocks/"
 			},
 			{
 				"title": "Authentication",
