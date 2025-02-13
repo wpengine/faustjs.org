@@ -36,6 +36,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/tutorial/react-components-to-gutenberg-blocks",
+				destination: "/docs/how-to/react-components-to-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-use-sitemaps",
 				destination: "/docs/how-to/sitemaps/",
 				permanent: true,
