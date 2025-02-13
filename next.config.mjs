@@ -26,6 +26,16 @@ const nextConfig = {
 	redirects() {
 		return [
 			{
+				source: "/guide/how-to-create-a-block-from-a-third-party-plugin",
+				destination: "/docs/how-to/custom-blocks/",
+				permanent: true,
+			},
+			{
+				source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
+				destination: "/docs/how-to/custom-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-migrate-from-legacy-faust",
 				destination: "/docs/how-to/migrate-from-legacy-faust/",
 				permanent: true,

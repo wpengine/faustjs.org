@@ -250,3 +250,10 @@ figcaption[data-language]::after {
 		background: var(--color-gray-200);
 	}
 }
+
+/*
+* - Code block tab-size
+*/
+figure[data-rehype-pretty-code-figure] pre {
+	tab-size: 2;
+}

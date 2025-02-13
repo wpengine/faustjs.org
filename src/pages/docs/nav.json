@@ -24,6 +24,10 @@
 				"route": "/docs/how-to/rendering-blocks/"
 			},
 			{
+				"title": "Custom Blocks",
+				"route": "/docs/how-to/custom-blocks/"
+			},
+			{
 				"title": "Authentication",
 				"route": "/docs/how-to/authentication/"
 			},
@@ -127,7 +131,10 @@
 				"title": "Telemetry",
 				"route": "/docs/explanation/telemetry/"
 			},
-
+			{
+				"title": "WordPress Blocks FAQ",
+				"route": "/docs/explanation/blocks-faq/"
+			},
 			{
 				"title": "Apollo Client Basics",
 				"route": "/docs/explanation/apollo-client-basics/"
