@@ -116,6 +116,10 @@
 			{
 				"title": "WordPressBlocksViewer",
 				"route": "/docs/reference/wordpress-blocks-viewer"
+			},
+			{
+				"title": "blockset",
+				"route": "/docs/reference/blockset"
 			}
 		]
 	},
