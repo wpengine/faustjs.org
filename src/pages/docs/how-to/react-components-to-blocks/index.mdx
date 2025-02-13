@@ -60,7 +60,9 @@ We would like to use this React component in WordPress using the Block Editor. T
 
 That is a lot of know-how and development effort for simply trying to use the React component in the editor side. What if we just provided the React component and let the framework handle all the block registration and creating the editor form fields for changing the content?
 
-This is what `@faustwp/block-editor-utils` package tries to do. It provides a `registerFaustBlock` helper function, that handles all the necessary configuration, registration and generation of Editor Form fields and [Inspector controls](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/) for you. A developer can provide the React component and are able to review this within the WordPress Block Editor and use it in both places.
+This is what the `@faustwp/block-editor-utils` package tries to do. It provides a `registerFaustBlock` helper function, that handles all the necessary configuration, registration and generation of Editor Form fields and [Inspector controls](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/) for you. A developer can provide the React component and are able to review this within the WordPress Block Editor and use it in both places.
+
+Within your `wp-blocks/my-first-block` folder replace the `index.js` contents with the following code:
 
 ```js title="index.js"
 import "./style.scss";
