@@ -86,6 +86,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/guide/how-to-register-decoupled-blocks",
+				destination: "/docs/reference/blockset/",
+				permanent: true,
+			},
+			{
 				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
 				destination: "/docs/how-to/rendering-blocks/",
 				permanent: true,
