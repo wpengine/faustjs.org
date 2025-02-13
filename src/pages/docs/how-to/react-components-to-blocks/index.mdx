@@ -41,6 +41,10 @@ function MyFirstBlock({ style, className, attributes, children, ...props }) {
 	);
 }
 
+MyFirstBlock.config = {
+	name: "MyFirstBlock",
+};
+
 export default MyFirstBlock;
 ```
 
@@ -49,6 +53,8 @@ This React component consists of a `div` element with three attributes that cont
 - **message**: is a text message that gets displayed.
 - **bg_color**: controls the background color.
 - **text_color**: controls the text color.
+
+The `MyFirstBlock.config` object here with a `name` value inside is used to specify the name of the block.
 
 We would like to use this React component in WordPress using the Block Editor. Traditionally, this step would require us (the developers) to register a block within WordPress, provide a `block.json` and write code for the [Edit and Save](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/) functions for the editor. Once those steps are done, then the block would be usable in the Block Editor list.
 
@@ -146,31 +152,28 @@ However, a few of the attributes that control the color are using [text field](h
 
 Since the `block.json` [attribute types](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/#type-validation) do not allow `color` as a value, we will have to provide a different configuration to allow that option.
 
-When registering the React component using `registerFaustBlock` , it allows extra configuration to be used in case you want to declare which kinds of controls to use on each attribute.
+When registering the React component using `registerFaustBlock`, it allows extra configuration to be used in case you want to declare which kinds of controls to use on each attribute.
 
-Add the following config object as a property to the `MyFirstBlock` function:
+In your `MyFirstBlock.jsx` file, add the following `editorFields` to your `MyFirstBlock.config` object:
 
 ```js title="MyFirstBlock.jsx"
 ...
 MyFirstBlock.config = {
     name: "MyFirstBlock",
-    editorFields: {
-        bg_color: {
-            location: "inspector",
-            control: "color",
-        },
-        text_color: {
-            location: "inspector",
-            control: "color",
-        },
-    },
+    editorFields: {// [!code ++]
+        bg_color: {// [!code ++]
+            location: "inspector",// [!code ++]
+            control: "color",// [!code ++]
+        },// [!code ++]
+        text_color: {// [!code ++]
+            location: "inspector",// [!code ++]
+            control: "color",// [!code ++]
+        },// [!code ++]
+    },// [!code ++]
 };
 ```
 
-Here we included an object with the following properties:
-
-- **name**: the name of the block.
-- **editorFields**: the list of Editor metadata configuration. This consists of two attributes that we want to specify: the type of control to use and the location within the editor. For example, by using `location: "inspector",` we are telling this control to appear in the [Block Sidebar](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/) section. By using `control: "color"`, we are indicating that we want to use a [ColorPicker](https://developer.wordpress.org/block-editor/reference-guides/components/color-picker/) component instead of the regular `TextControl`.
+`editorFields` represents Block Editor metadata configuration data. This consists of two attributes that we want to specify: the type of control to use and the location within the editor. For example, by using `location: "inspector",` we are telling this control to appear in the [Block Sidebar](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/block-controls-toolbar-and-sidebar/) section. By using `control: "color"`, we are indicating that we want to use a [ColorPicker](https://developer.wordpress.org/block-editor/reference-guides/components/color-picker/) component instead of the regular `TextControl`.
 
 Once you update the component, you can refresh the page and create a new block. Now instead of having two text fields inside the block, we have two `ColorPicker` fields in the sidebar section:
 
