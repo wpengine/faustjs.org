@@ -46,6 +46,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/tutorial/react-components-to-gutenberg-blocks",
+				destination: "/docs/how-to/react-components-to-blocks/",
+				permanent: true,
+			},
+			{
 				source: "/guide/how-to-use-sitemaps",
 				destination: "/docs/how-to/sitemaps/",
 				permanent: true,
@@ -88,6 +93,11 @@ const nextConfig = {
 			{
 				source: "/guide/how-to-implement-typescript",
 				destination: "/docs/how-to/generate-types-with-graphql-codegen/",
+				permanent: true,
+			},
+			{
+				source: "/guide/how-to-register-decoupled-blocks",
+				destination: "/docs/reference/blockset/",
 				permanent: true,
 			},
 			{
