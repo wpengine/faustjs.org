@@ -51,7 +51,40 @@ export default {
 };
 ```
 
-### C. Import Fragments
+### C. Update the `_app.js` file
+
+Next, we update the `_app.js` file like so:
+
+```js {3-6, 13-20} title="pages/_app.js"
+import { useRouter } from "next/router";
+import "../faust.config";
+import { FaustProvider } from "@faustwp/core";
+import "@/styles/blocks.scss";
+import { WordPressBlocksProvider, fromThemeJson } from "@faustwp/blocks";
+import blocks from "../wp-blocks";
+
+export default function MyApp({ Component, pageProps }) {
+	const router = useRouter();
+
+	return (
+		<FaustProvider pageProps={pageProps}>
+			<WordPressBlocksProvider
+				config={{
+					blocks,
+				}}
+			>
+				<Component {...pageProps} key={router.asPath} />
+			</WordPressBlocksProvider>
+		</FaustProvider>
+	);
+}
+```
+
+Here, we import our custom blocks from the `wp-blocks` module, which contains all the block components tailored for our WordPress content. These imported blocks are then passed into the `WordPressBlocksProvider` as part of its configuration.
+
+The provider uses this mapping to dynamically render the appropriate block components based on the data coming from WordPress.
+
+### D. Import Fragments
 
 Then in your template queries, you will need to pass the provided fragment entries. here's an example of how to do that using the `front-page` template:
 
@@ -100,7 +133,7 @@ Component.query = gql`
 `;
 ```
 
-### D. Rendering Blocks
+### E. Rendering Blocks
 
 Now that you have all the queries ready, you can render the blocks using the provided `flatListToHierarchical` method and `WordPressBlocksViewer`:
 
@@ -130,6 +163,6 @@ export default function Component({ loading, data }) {
 }
 ```
 
-## 3. ALl done!
+## 3. All done!
 
 run `npm run dev` and navigate to your front page to see the blocks rendered! For Further customization, you can [override blocks](/docs/how-to/override-blocks/) or [create custom blocks](/docs/how-to/custom-blocks/).
