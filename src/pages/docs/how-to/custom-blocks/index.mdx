@@ -274,17 +274,26 @@ Update `CoreCode.js` with the code bellow to add code highlighting:
 
 ```js title="wp-blocks/CoreCode.js"
 import { gql } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import hljs from "highlight.js";
 
 export default function CoreCode({ attributes }) {
+	// Create a ref for the <code> element
+	const codeRef = useRef(null);
+
 	useEffect(() => {
-		hljs.highlightAll();
-	});
+		// Once the component has rendered, apply highlight.js to the code element
+		if (codeRef.current) {
+			hljs.highlightElement(codeRef.current);
+		}
+	}, [attributes?.content]);
 
 	return (
 		<pre className={attributes?.cssClassName}>
-			<code>{`${attributes?.content}`}</code>
+			<code
+				ref={codeRef}
+				dangerouslySetInnerHTML={{ __html: attributes?.content }}
+			/>
 		</pre>
 	);
 }
