@@ -6,9 +6,7 @@ export const metadata = {
 
 When editing content in the [WordPress editor](https://wordpress.com/support/wordpress-editor/), content creators can click the **Preview** link to preview what the content will look like on the frontend before the post has been published. This docs page outlines how to set up post previews in a headless WordPress app.
 
-## Steps
-
-### Prerequisites
+## 0. Prerequisites
 
 Ensure that you have completed the steps in the following pages before proceeding.
 
@@ -18,7 +16,7 @@ Ensure that you have completed the steps in the following pages before proceedin
 
 Implementing authentication is necessary so that Faust.js "knows" whether the current user has the permissions necessary to view draft posts. Template hierarchy support is necessary so that Faust.js can query for draft blog post data and render it using the appropriate page template.
 
-### Step 1. Update the `_app.js` file
+## 1. Update the `_app.js` file
 
 Navigate to `pages/_app.js` file and import your `faust.config.js` file that you have created in the previous steps like so:
 
@@ -39,7 +37,54 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-### Step 2. Create Preview Page
+## 2. Update the `next.config.js` file
+
+Before we update the next config, we will need to install the [next-secure-headers](https://www.npmjs.com/package/next-secure-headers) package that we will use in it.
+
+In your terminal, run the following command:
+
+```bash
+npm install next-secure-headers
+```
+
+Now that we have that installed, go to the root of your project and update your `next.config.js` file with this code:
+
+```js {1,2, 12-14, 16-25, 28} title="next.config.js"
+const { withFaust, getWpHostname } = require("@faustwp/core");
+const { createSecureHeaders } = require("next-secure-headers");
+
+/**
+ * @type {import('next').NextConfig}
+ **/
+const config = {
+	reactStrictMode: true,
+	sassOptions: {
+		includePaths: ["node_modules"],
+	},
+	images: {
+		domains: [getWpHostname()],
+	},
+
+	async headers() {
+		return [
+			{
+				source: "/:path*",
+				headers: createSecureHeaders({
+					xssProtection: false,
+				}),
+			},
+		];
+	},
+};
+
+module.exports = withFaust(config);
+```
+
+This configuration integrates Next.js with your headless WordPress setup by using the `withFaust` function to manage authenticated preview modes.
+
+The `getWpHostname` function then passes your WordPress instance's hostname, enabling Next.js to optimize and serve images from WordPress in both published and preview modes. Finally, the `createSecureHeaders` function generates essential security headers to protect your application from cross-site scripting (XSS) attacks.
+
+## 3. Create Preview Page
 
 With your headless secret set and the `authorizeHandler` ready to handle requests, you can now create a Next.js [page](https://nextjs.org/docs/basic-features/pages) for previews. Create a file at `pages/preview.js` with the following code:
 
@@ -55,7 +100,7 @@ In this code block, We are using the `WordPressTemplate` component from `@faustw
 
 Just a note, we don't use the `getWordPressProps` here as opposed in some other `wp-template` pages as we want to perform post previews in the client using CSRs.
 
-### Step 3. Add Preview Data to Your WPGraphQL Queries Within Templates
+## 4. Add Preview Data to Your WPGraphQL Queries Within Templates
 
 Now that we have everything set up, it is time to add post previews to your WPGraphQL queries. Navigate to your `wp-templates` folder. You should have a `single.js` from the template hierarchy step. This `single.js` file is the component that is responsible for rendering post-type data from WordPress. In your `single.js` file, add this code block:
 
@@ -102,7 +147,7 @@ This approach allows for dynamic previews of WordPress content directly on the f
 
 If the `asPreview` parameter is not required for a specific template, you can omit it, effectively disabling previews for that component.
 
-### Step 4. Navigating to Preview Pages
+## 5. Navigating to Preview Pages
 
 > [!TIP] For Safari Users
 >
