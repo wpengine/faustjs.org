@@ -3,7 +3,7 @@ import fs from "node:fs";
 const GRAPHQL_ENDPOINT = "https://faustjsorg.wpengine.com/graphql";
 
 const QUERY = `{
-	posts(first: 100) {
+	posts(first: 200) {
 		nodes {
 			uri
 		}
@@ -40,6 +40,7 @@ async function createRedirectFile($filename) {
 			"/sprint-24-update/",
 			"/sprint-22-update/",
 			"/the-future-of-faust/",
+			"/ßfaust-update-feb-3-2023/",
 		]);
 
 		const urls = [
