@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import { env } from "node:process";
 import { withFaust, getWpHostname } from "@faustwp/core";
 import createMDX from "@next/mdx";
@@ -10,6 +11,12 @@ import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
+
+const redirects = JSON.parse(fs.readFileSync("./redirects.json", "utf8"));
+const oldSiteRedirects = JSON.parse(
+	fs.readFileSync("./redirects-old-site.json", "utf8"),
+);
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -24,115 +31,7 @@ const nextConfig = {
 		ignoreDuringBuilds: true,
 	},
 	redirects() {
-		return [
-			{
-				source: "/guide/how-to-migrate-from-legacy-faust",
-				destination: "/docs/how-to/migrate-from-legacy-faust/",
-				permanent: true,
-			},
-			{
-				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
-				destination: "/docs/how-to/rendering-blocks/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-use-sitemaps",
-				destination: "/docs/how-to/sitemaps/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-customize-the-toolbar",
-				destination: "/docs/how-to/customize-the-toolbar/",
-				permanent: true,
-			},
-			{
-				source: "/guide/setting-up-custom-post-types-cpts-in-faust",
-				destination: "/docs/how-to/setup-cpt-in-faustjs/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-create-a-plugin",
-				destination: "/docs/how-to/create-a-plugin/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-use-apollo-in-faust",
-				destination: "/docs/how-to/use-wpgraphql-smart-cache/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-migrate-from-wp-graphql-gutenberg",
-				destination: "/docs/explanation/migrate-from-wp-graphql-gutenberg/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-setup-post-and-page-previews",
-				destination: "/docs/how-to/post-previews/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-handle-authentication",
-				destination: "/docs/how-to/authentication/",
-				permanent: true,
-			},
-			{
-				source: "/guide/how-to-implement-typescript",
-				destination: "/docs/how-to/generate-types-with-graphql-codegen/",
-				permanent: true,
-			},
-			{
-				source: "/tutorial/get-started-with-wp-graphql-content-blocks",
-				destination: "/docs/how-to/rendering-blocks/",
-				permanent: true,
-			},
-			{
-				source: "/tutorial/getting-started-with-the-experimental-app-router",
-				destination:
-					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getting-started.md",
-				permanent: true,
-			},
-			{
-				source: "/reference/faustroutehandler",
-				destination:
-					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/faustroutehandler.md",
-				permanent: true,
-			},
-			{
-				source: "/reference/getauthclient",
-				destination:
-					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getauthclient.md",
-				permanent: true,
-			},
-			{
-				source: "/reference/getclient",
-				destination:
-					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getclient.md",
-				permanent: true,
-			},
-			{
-				source: "/reference/onlogin-server-action",
-				destination:
-					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/onlogin-server-action.md",
-				permanent: true,
-			},
-			{
-				source: "/reference/onlogout-server-action",
-				destination:
-					"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/onlogout-server-action.md",
-				permanent: true,
-			},
-			{
-				source: "/discord",
-				destination: "https://discord.gg/headless-wordpress-836253505944813629",
-				permanent: false,
-			},
-			{
-				source: "/community-meeting",
-				destination:
-					"https://discord.gg/headless-wordpress-836253505944813629?event=1336404483013480588",
-				permanent: false,
-			},
-		];
+		return [...redirects, ...oldSiteRedirects];
 	},
 	images: {
 		remotePatterns: [

@@ -1,0 +1,197 @@
+[
+	{
+		"source": "/a-retrospective-on-4-years-of-faust-js/",
+		"destination": "/blog/a-retrospective-on-4-years-of-faust-js/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-we-made-contact/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/taking-customer-inspired-up-a-level/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/its-time-to-start-saying-goodbye-to-gqty/",
+		"destination": "/blog/its-time-to-start-saying-goodbye-to-gqty/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-js-telemetry-please-help-us-understand-how-youre-using-faust-js/",
+		"destination": "/blog/faust-js-telemetry-please-help-us-understand-how-youre-using-faust-js/",
+		"permanent": true
+	},
+	{
+		"source": "/help-us-learn-about-how-you-use-faust-js/",
+		"destination": "/blog/help-us-learn-about-how-you-use-faust-js/",
+		"permanent": true
+	},
+	{
+		"source": "/announcing-app-router-support-and-a-pathway-to-turn-react-components-into-gutenberg-blocks/",
+		"destination": "/blog/announcing-app-router-support-and-a-pathway-to-turn-react-components-into-gutenberg-blocks/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-js-showcase-october-2023/",
+		"destination": "/blog/faust-js-showcase-october-2023/",
+		"permanent": true
+	},
+	{
+		"source": "/whats-new-in-faust-js-october-2023/",
+		"destination": "/blog/whats-new-in-faust-js-october-2023/",
+		"permanent": true
+	},
+	{
+		"source": "/whats-new-in-faust-js-september-2023/",
+		"destination": "/blog/whats-new-in-faust-js-september-2023/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-js-august-update/",
+		"destination": "/blog/faust-js-august-update/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-js-new-features-and-more/",
+		"destination": "/blog/faust-js-new-features-and-more/",
+		"permanent": true
+	},
+	{
+		"source": "/announcing-a-block-library-to-get-you-started-with-faust-js-and-gutenberg/",
+		"destination": "/blog/announcing-a-block-library-to-get-you-started-with-faust-js-and-gutenberg/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-js-updates-for-july-2023/",
+		"destination": "/blog/faust-js-updates-for-july-2023/",
+		"permanent": true
+	},
+	{
+		"source": "/powered-by-faust/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-update-may-01-2023/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-update-mar-15-2023/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-update-mar-1-2023/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-update-feb-3-2023/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-update-jan-18-2023/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/faust-update-jan-04-2023/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-25-update/",
+		"destination": "/blog/sprint-25-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-24-update/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-23-update/",
+		"destination": "/blog/sprint-23-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-22-update/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-21-update/",
+		"destination": "/blog/sprint-21-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-20-update/",
+		"destination": "/blog/sprint-20-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-19-update/",
+		"destination": "/blog/sprint-19-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-18-update/",
+		"destination": "/blog/sprint-18-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-17-update/",
+		"destination": "/blog/sprint-17-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-16-update/",
+		"destination": "/blog/sprint-16-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-15-update/",
+		"destination": "/blog/sprint-15-update/",
+		"permanent": true
+	},
+	{
+		"source": "/sprint-14-update/",
+		"destination": "/blog/sprint-14-update/",
+		"permanent": true
+	},
+	{
+		"source": "/the-future-of-faust/",
+		"destination": "/blog/",
+		"permanent": true
+	},
+	{
+		"source": "/upgrading-to-faustwp/",
+		"destination": "/blog/upgrading-to-faustwp/",
+		"permanent": true
+	},
+	{
+		"source": "/faust_showcase/koko/",
+		"destination": "/showcase/",
+		"permanent": true
+	},
+	{
+		"source": "/faust_showcase/socialwork-org/",
+		"destination": "/showcase/",
+		"permanent": true
+	},
+	{
+		"source": "/faust_showcase/combat-corner/",
+		"destination": "/showcase/",
+		"permanent": true
+	},
+	{
+		"source": "/faust_showcase/wpgraphql-com/",
+		"destination": "/showcase/",
+		"permanent": true
+	}
+]
