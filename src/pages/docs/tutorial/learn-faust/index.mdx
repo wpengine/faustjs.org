@@ -1,14 +1,15 @@
 export const metadata = {
 	title: "Learn Faust.js",
+	description: "Tutorial to learn about the core features of Faust.js.",
 };
 
-This tutorial will familiarize you with the core features of Faust.js. You'll start with a Next.js project that has been configured to work with Faust.js, then learn how to leverage these features yourself:
+This tutorial introduces you to the core features of Faust.js. You'll begin with a pre-configured Next.js project and learn how to implement these features yourself:
 
 - Template hierarchy
 - Authentication & Post previews
 - Blocks
 
-After going through this tutorial, you'll be able to [configure your Next.js app]('/docs/how-to-basic-setup'), then use the knowledge you gained to implement Faust.js' features in your own apps.
+By the end of this tutorial, you'll be able to configure your Next.js app and apply your newfound knowledge to integrate Faust.js features into your own projects.
 
 ## Prerequisites
 
@@ -36,13 +37,15 @@ npx create-next-app \
     --use-npm
 ```
 
+When asked for the name of your project, enter `faust-tutorial`.
+
 When asked if it's okay to install the `create-next-app` package, answer `y` to confirm.
 
 ### 2. Set up headless WordPress backend
 
-`cd` into the project directory.
+`cd` into the `/faust-tutorial` project folder.
 
-Run `npx @wp-now/wp-now start --blueprint faust-tutorial-blueprint.json`. This command uses the [`wp-now`](https://www.npmjs.com/package/@wp-now/wp-now) NPM package and the included `faust-tutorial-blueprint.json` blueprint file to set up a local WordPress environment.
+Run `npm run wp-dev`. This command uses the [`wp-now`](https://www.npmjs.com/package/@wp-now/wp-now) NPM package and the included `faust-tutorial-blueprint.json` blueprint file to set up a local WordPress environment.
 
 When asked if it's okay to install the `@wp-now/wp-now` package, answer `y` to confirm.
 
@@ -64,29 +67,31 @@ Finally, head to to `Settings` > `Faust` to access the Faust.js settings page. S
 
 ### 3. Set up Faust.js frontend
 
-Run `npm run dev` to install the project's NPM packages
+Run `npm install` to install the project's NPM packages
 
-Run `npm run generate` on the command line. Confirm that a `possibleTypes.json` has been generated in the root of your project.
-
-Create a `.env.local` file in the root project folder and populate it with the environment variables shown below.
-
-```env
-# Your WordPress site URL
-NEXT_PUBLIC_WORDPRESS_URL=http://localhost:8881
-
-# Plugin secret found in WordPress Settings->Faust
-FAUST_SECRET_KEY=
-```
+Find the `.env.local.example` file and rename it to `.env.local`. This is where we'll store our environment variables.
 
 Once again, in the WordPress admin sidebar, go to `Settings` > `Faust` to access the Faust.js settings page. Copy the value you see for the `Secret Key` and paste that in as the value of `FAUST_SECRET_KEY` in your `.env.local` file and save it. Faust.js uses this secret key to send authenticated request to WordPress.
 
 ![Faust Secret Key setting](./images/faust-secret-key-setting.png)
 
+Your `.env.local` file should now look like this, where `ABC123` is the secret key you copied from the Faust settings page:
+
+```env title=".env.local"
+# Your WordPress site URL
+NEXT_PUBLIC_WORDPRESS_URL=http://localhost:8881
+
+# Plugin secret found in WordPress Settings->Faust
+FAUST_SECRET_KEY=ABC123
+```
+
+Run `npm run generate` on the command line. Confirm that a `possibleTypes.json` has been generated in the `/faust-tutorial` project folder.
+
 In a separate terminal window from the one running your WordPress backend, run `npm run dev` to start up your frontend app. You should now be able to visit http://localhost:3000 and see your frontend app running.
 
 ### 4. Template Hierarchy
 
-WordPress is well-known for its [template hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/) feature. It allows WordPress to determine which page template to use to render a page depending on the type of content the page contains. Faust.js allows you to leverage the template hierarchy in your frontend app.
+WordPress is well-known for its [template hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/) feature. It enables WordPress to dynamically select the most appropriate template for rendering a page based on its content type. Faust.js allows you to leverage the template hierarchy in your frontend app.
 
 The following image is helpful for visualizing how WordPress' template hierarchy feature works. The logic starts on the left side of this flowchart and progresses to the right. A series of conditionals are run to determine the appropriate page template to use. Just disregard the ".php" file extensions you see, since templates in our headless WP project will be ".js" files instead.
 
@@ -102,7 +107,7 @@ By referencing the template hierarchy image above, you can see that we can targe
 
 Copy the `gql` import and the `SingleTemplate` component from `wp-templates/single.js` and paste them into `wp-templates/page.js`. Rename the `SingleTemplate` component to `PageTemplate`. Our new page template should now look like this:
 
-```jsx
+```jsx title="wp-templates/page.js"
 import { gql } from "@apollo/client";
 
 export default function PageTemplate(props) {
@@ -121,7 +126,7 @@ You can see that the `PageTemplate` component receives the props passed into it,
 
 Next, copy the `SingleTemplate.query` and `SingleTemplate.variables` assignments from `wp-templates/single.js` and paste them into `wp-templates/page.js`. rename them to `PageTemplate.query` and `PageTemplate.variables`. The new page template should now look like this:
 
-```jsx
+```jsx title="wp-templates/page.js"
 import { gql } from "@apollo/client";
 
 export default function PageTemplate(props) {
@@ -155,7 +160,7 @@ The `PageTemplate.variables` function takes the `uri` for the current page and m
 
 `PageTemplate.query` is a `gql` [tagged template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) literal that specifies the data the component requires. In plain English, this query essentially says "hey WordPress: find the Page with this URI and give me back the title and post content for it". Once fetched, this data gets passed into the component inside of `props.data.page`.
 
-The last step is to make Faust aware of our new template. Do to this, open `wp-templates/index.js` and add these lines:
+The last step is to make Faust aware of our new template. To do this, open `wp-templates/index.js` and add these lines:
 
 ```js
 import SingleTemplate from "./single";
@@ -385,7 +390,7 @@ export default function SingleTemplate(props) {
 }
 ```
 
-You should now be able to visit the URL for a post such as http://localhost:3000/blog/hello-world/ and see the blocks content being rendered.
+You should now be able to visit http://localhost:3000/blog/hello-world/ and see the "Hello World" blog post's blocks content being rendered.
 
 Inspect the blog post content in the browser dev tools and notice that each block is being rendered and that only the paragraph blocks are wrapped in a `div` with a class name of `paragraph-block-wrapper`. Currently, we're not leveraging the `paragraph-block-wrapper` class in any way, but you can see the potential here. By being able to query for and render blocks individually, you have the ability to wrap specific blocks in arbitrary markup, override specific blocks with custom implementations, and more.
 
