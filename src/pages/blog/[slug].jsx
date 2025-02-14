@@ -15,15 +15,9 @@ export default function SinglePost(properties) {
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error! {error.message}</p>;
-	if (!post)
-		return (
-			<div className="prose prose-lg prose-invert container mx-auto px-4 py-20">
-				<p>Post not found.</p>
-				<p>
-					Please visit the <a href="/blog/">blog</a> to see all new updates.
-				</p>
-			</div>
-		);
+	if (!post) {
+		return;
+	}
 
 	const { title, date, author, uri, excerpt, editorBlocks } = post;
 	const blockList = flatListToHierarchical(editorBlocks, {
@@ -104,10 +98,18 @@ SinglePost.query = gql`
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
 
 export async function getStaticProps(context) {
-	return getNextStaticProps(context, {
+	const props = await getNextStaticProps(context, {
 		Page: SinglePost,
 		revalidate: 3_600,
 	});
+
+	if (!props?.props?.data?.post) {
+		return {
+			notFound: true,
+		};
+	}
+
+	return props;
 }
 
 export async function getStaticPaths() {
