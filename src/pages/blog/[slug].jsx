@@ -104,9 +104,7 @@ export async function getStaticProps(context) {
 	});
 
 	if (!props?.props?.data?.post) {
-		return {
-			notFound: true,
-		};
+		return { props: {}, notFound: true };
 	}
 
 	return props;
