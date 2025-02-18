@@ -95,10 +95,16 @@ SinglePost.query = gql`
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
 
 export async function getStaticProps(context) {
-	return getNextStaticProps(context, {
+	const props = await getNextStaticProps(context, {
 		Page: SinglePost,
 		revalidate: 3_600,
 	});
+
+	if (!props?.props?.data?.post) {
+		return { props: {}, notFound: true };
+	}
+
+	return props;
 }
 
 export async function getStaticPaths() {
