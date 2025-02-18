@@ -4,12 +4,12 @@ import createMDX from "@next/mdx";
 import { transformerNotationDiff } from "@shikijs/transformers";
 import { createSecureHeaders } from "next-secure-headers";
 import recmaNextjsStaticProps from "recma-nextjs-static-props";
-import redirectsOldSite from "./redirects-old-site.js";
 import rehypeCallouts from "rehype-callouts";
 import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import redirectsOldSite from "./redirects-old-site.js";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
 
 const newRedirects = [
