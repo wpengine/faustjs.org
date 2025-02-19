@@ -1,7 +1,11 @@
 [
 	{
-		"title": "Getting Started",
+		"title": "Introduction",
 		"route": "/docs/"
+	},
+	{
+		"title": "Learn Faust.js",
+		"route": "/docs/tutorial/learn-faust/"
 	},
 	{
 		"title": "How-To Guides",
