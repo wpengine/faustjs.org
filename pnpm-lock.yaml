@@ -55,6 +55,9 @@ importers:
       '@sindresorhus/slugify':
         specifier: ^2.2.1
         version: 2.2.1
+      '@wpengine/atlas-next':
+        specifier: ^2.0.0
+        version: 2.0.0(next@15.1.7(@babel/core@7.25.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(node-fetch@2.7.0)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -1813,6 +1816,17 @@ packages:
   '@wordpress/style-engine@2.11.0':
     resolution: {integrity: sha512-Yb/JhUZq6yetHiqXfPJ4yCZH9Ov4m8JLMEr+p93DbLamaEXbes+ZDm502Dvx1U2jR9bphgqBBvXUHZsbLnN6Mw==}
     engines: {node: '>=18.12.0', npm: '>=8.19.2'}
+
+  '@wpengine/atlas-next@2.0.0':
+    resolution: {integrity: sha512-PapdczNV4YvrHzBEI9zriPpy6ujBOXs2kVq/j7fN8VfNfCjiSSCZKrxBQwyBVRj99Sge6TsVtWsGMy/csCLvLw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      next: '>=15.0.0'
+      node-fetch: '>=2.6.1 <3'
+
+  '@wpengine/edge-cache@1.3.1':
+    resolution: {integrity: sha512-m5CdSWikxMAoT2EnHu/eRecaHXZYh6ilUdcL5xciE7yePvc+v8jHuwKFFz3q0iZoWFcVxpgjji+3D+myxplM9A==}
+    engines: {node: '>=18.0.0'}
 
   '@wry/caches@1.0.1':
     resolution: {integrity: sha512-bXuaUNLVVkD20wcGBWRyo7j9N3TxePEWFZj2Y+r9OoUzfqmavM84+mFykRicNsBqatba5JLay1t48wxaXaWnlA==}
@@ -7496,6 +7510,14 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       change-case: 4.1.2
+
+  '@wpengine/atlas-next@2.0.0(next@15.1.7(@babel/core@7.25.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(node-fetch@2.7.0)':
+    dependencies:
+      '@wpengine/edge-cache': 1.3.1
+      next: 15.1.7(@babel/core@7.25.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      node-fetch: 2.7.0
+
+  '@wpengine/edge-cache@1.3.1': {}
 
   '@wry/caches@1.0.1':
     dependencies:

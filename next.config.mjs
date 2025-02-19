@@ -2,6 +2,7 @@ import { env } from "node:process";
 import { withFaust, getWpHostname } from "@faustwp/core";
 import createMDX from "@next/mdx";
 import { transformerNotationDiff } from "@shikijs/transformers";
+import { withWPEConfig } from "@wpengine/atlas-next";
 import { createSecureHeaders } from "next-secure-headers";
 import recmaNextjsStaticProps from "recma-nextjs-static-props";
 import rehypeCallouts from "rehype-callouts";
@@ -104,4 +105,4 @@ const withMDX = createMDX({
 	},
 });
 
-export default withFaust(withMDX(nextConfig));
+export default withWPEConfig(withFaust(withMDX(nextConfig)));
