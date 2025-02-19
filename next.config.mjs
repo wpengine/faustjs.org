@@ -9,7 +9,7 @@ import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import redirectsOldSite from "./redirects-old-site.js";
+import redirectsOldSite from "./redirects-old-site.mjs";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
 
 const newRedirects = [

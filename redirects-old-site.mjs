@@ -75,11 +75,6 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/tutorial/get-started-with-wp-graphql-content-blocks",
-		destination: "/docs/how-to/rendering-blocks/",
-		permanent: true,
-	},
-	{
 		source: "/tutorial/getting-started-with-the-experimental-app-router",
 		destination:
 			"https://github.com/wpengine/faustjs/blob/archive-experimental-app-router/packages/experimental-app-router/docs/getting-started.md",
@@ -127,7 +122,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/reference/useauth",
-		destination: "/docs/how-to/authentication//",
+		destination: "/docs/how-to/authentication/",
 		permanent: true,
 	},
 	{
@@ -237,8 +232,8 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-feb-3-2023",
-		destination: "/blog/",
+		source: "/faust-update-feb-3-2023",
+		destination: "/blog/sprint-28-update/",
 		permanent: true,
 	},
 	{
@@ -277,37 +272,22 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-mar-15-2023",
-		destination: "/blog/",
+		source: "/faust-update-mar-1-2023",
+		destination: "/blog/sprint-29-update/",
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-mar-1-2023",
-		destination: "/blog/",
+		source: "/faust-update-may-01-2023",
+		destination: "/blog/sprint-31-update/",
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-mar-1-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/blog/faust-update-may-01-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/blog/faust-update-jan-18-202",
-		destination: "/blog/",
+		source: "/faust-update-jan-18-2023",
+		destination: "/blog/sprint-27-update/",
 		permanent: true,
 	},
 	{
 		source: "/reference/wp-graphql-content-blocks-filters",
-		destination: "/docs/",
-		permanent: true,
-	},
-	{
-		source: "/guide/how-to-register-decoupled-blocks",
 		destination: "/docs/",
 		permanent: true,
 	},
@@ -347,11 +327,6 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/tutorial/getting-started-with-the-block-support-example-project",
-		destination: "/docs/",
-		permanent: true,
-	},
-	{
 		source: "/guide/how-to-migrate-portfolio-blueprint-to-new-faust-js",
 		destination: "/docs/",
 		permanent: true,
@@ -362,11 +337,6 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/guide/how-to-create-a-block-from-a-third-party-plugin",
-		destination: "/docs/how-to/create-a-plugin/",
-		permanent: true,
-	},
-	{
 		source: "/author/chriswiegman-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
 		destination: "/",
 		permanent: true,
@@ -374,11 +344,6 @@ const redirectsOldSite = [
 	{
 		source: "/author/faustjsorg-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-3",
 		destination: "/",
-		permanent: true,
-	},
-	{
-		source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
-		destination: "/docs/",
 		permanent: true,
 	},
 	{
@@ -393,7 +358,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/taking-customer-inspired-up-a-level",
-		destination: "/blog/",
+		destination: "/blog/taking-customer-inspired-up-a-level/",
 		permanent: true,
 	},
 	{
@@ -459,37 +424,12 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/powered-by-faust",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/faust-update-may-01-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/faust-update-mar-15-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/faust-update-mar-1-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/faust-update-feb-3-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/faust-update-jan-18-2023",
-		destination: "/blog/",
+		destination: "/blog/powered-by-faust/",
 		permanent: true,
 	},
 	{
 		source: "/faust-update-jan-04-2023",
-		destination: "/blog/",
+		destination: "/blog/sprint-26-update/",
 		permanent: true,
 	},
 	{
@@ -499,7 +439,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/sprint-24-update",
-		destination: "/blog/",
+		destination: "/blog/sprint-24-update/",
 		permanent: true,
 	},
 	{
@@ -509,7 +449,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/sprint-22-update",
-		destination: "/blog/",
+		destination: "/blog/sprint-22-update/",
 		permanent: true,
 	},
 	{
@@ -554,7 +494,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/the-future-of-faust",
-		destination: "/blog/",
+		destination: "/blog/the-future-of-faust-js/",
 		permanent: true,
 	},
 	{
