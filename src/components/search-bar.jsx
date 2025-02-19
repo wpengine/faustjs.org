@@ -138,7 +138,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
 					<span className="pl-3">Search docs...</span>
-					<kbd className="ml-8 rounded-sm bg-gray-700 px-2 py-1 text-gray-400">
+					<kbd className="ml-8 rounded-sm bg-gray-700 px-2 py-1 text-gray-300">
 						⌘K
 					</kbd>
 				</span>
