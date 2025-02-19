@@ -7,6 +7,7 @@ const redirectsOldSite = [
 	{
 		source: "/tutorial/react-components-to-gutenberg-blocks",
 		destination: "/docs/explanation/react-components-to-blocks/",
+		permanent: true,
 	},
 	{
 		source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
@@ -21,11 +22,6 @@ const redirectsOldSite = [
 	{
 		source: "/tutorial/get-started-with-wp-graphql-content-blocks",
 		destination: "/docs/how-to/rendering-blocks/",
-		permanent: true,
-	},
-	{
-		source: "/tutorial/react-components-to-gutenberg-blocks",
-		destination: "/docs/how-to/react-components-to-blocks/",
 		permanent: true,
 	},
 	{
@@ -303,11 +299,6 @@ const redirectsOldSite = [
 	{
 		source: "/blog/faust-update-jan-18-202",
 		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/tutorial/react-components-to-gutenberg-blocks",
-		destination: "/docs/",
 		permanent: true,
 	},
 	{
