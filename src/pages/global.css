@@ -150,7 +150,7 @@
 		@apply outline-teal-800;
 	}
 
-	:target {
+	:target:not(#main-content):not(#docs-article) {
 		@apply scroll-mt-[100px] bg-teal-600/50;
 		@apply animate-bounce motion-reduce:animate-none;
 	}
@@ -274,4 +274,26 @@ figcaption[data-language]::after {
 */
 figure[data-rehype-pretty-code-figure] pre {
 	tab-size: 2;
+}
+
+/*
+* - Skip link for accessibility
+*/
+
+.faust-skip-link {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	top: -1px;
+	left: -1px;
+	overflow: hidden;
+}
+
+.faust-skip-link:focus {
+	position: static;
+	padding: calc(var(--spacing) * 2) 0;
+	width: auto;
+	height: auto;
+	text-align: center;
+	color: var(--color-blue-500);
 }

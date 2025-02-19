@@ -83,7 +83,10 @@ export default function BlogIndex() {
 	};
 
 	return (
-		<main className="container-main container-max prose prose-invert prose-h2:mt-0 prose-h2:text-lg container px-8 py-14 lg:px-16 lg:py-24">
+		<main
+			id="main-content"
+			className="container-main container-max prose prose-invert prose-h2:mt-0 prose-h2:text-lg container px-8 py-14 lg:px-16 lg:py-24"
+		>
 			<Seo
 				title="News"
 				description="Faust.js blog feed with the latest news."
