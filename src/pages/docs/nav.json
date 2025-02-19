@@ -12,6 +12,10 @@
 				"route": "/docs/how-to/basic-setup/"
 			},
 			{
+				"title": "Authentication",
+				"route": "/docs/how-to/authentication/"
+			},
+			{
 				"title": "Customize the Toolbar",
 				"route": "/docs/how-to/customize-the-toolbar/"
 			},
@@ -26,10 +30,6 @@
 			{
 				"title": "Custom Blocks",
 				"route": "/docs/how-to/custom-blocks/"
-			},
-			{
-				"title": "Authentication",
-				"route": "/docs/how-to/authentication/"
 			},
 			{
 				"title": "Post Previews",
