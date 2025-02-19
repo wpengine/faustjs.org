@@ -5,6 +5,16 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
+		source: "/tutorial/react-components-to-gutenberg-blocks",
+		destination: "/docs/explanation/react-components-to-blocks/",
+		permanent: true,
+	},
+	{
+		source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
+		destination: "/docs/how-to/custom-blocks/",
+		permanent: true,
+	},
+	{
 		source: "/guide/how-to-migrate-from-legacy-faust",
 		destination: "/docs/how-to/migrate-from-legacy-faust/",
 		permanent: true,
@@ -12,11 +22,6 @@ const redirectsOldSite = [
 	{
 		source: "/tutorial/get-started-with-wp-graphql-content-blocks",
 		destination: "/docs/how-to/rendering-blocks/",
-		permanent: true,
-	},
-	{
-		source: "/tutorial/react-components-to-gutenberg-blocks",
-		destination: "/docs/how-to/react-components-to-blocks/",
 		permanent: true,
 	},
 	{
@@ -273,6 +278,21 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/faust-update-jan-18-202",
+		destination: "/blog/",
+		permanent: true,
+	},
+	{
+		source: "/blog/faust-update-mar-1-2023",
+		destination: "/blog/",
+		permanent: true,
+	},
+	{
+		source: "/blog/faust-update-may-01-2023",
+		destination: "/blog/",
+		permanent: true,
+	},
+	{
+		source: "/blog/faust-update-jan-18-202",
 		destination: "/blog/",
 		permanent: true,
 	},
