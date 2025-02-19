@@ -86,11 +86,8 @@
 	--color-red-1000: #6f0922;
 	--color-red-1100: #4a0616;
 
-	--background-image-hero-gradient: radial-gradient(
-			45% 56% at 91% 74%,
-			#09878dc2 0%,
-			#073aff00 100%
-		),
+	--background-image-hero-gradient:
+		radial-gradient(45% 56% at 91% 74%, #09878dc2 0%, #073aff00 100%),
 		radial-gradient(74% 86% at 67% 50%, #512e99b5 0%, #073aff00 57%),
 		radial-gradient(38% 28% at 24% 50%, #07656a91 7%, #073aff00 100%),
 		radial-gradient(43% 43% at 30% 40%, #00478fbf 0%, #073aff00 100%),
