@@ -5,11 +5,6 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
-		destination: "/docs/how-to/custom-blocks/",
-		permanent: true,
-	},
-	{
 		source: "/guide/how-to-migrate-from-legacy-faust",
 		destination: "/docs/how-to/migrate-from-legacy-faust/",
 		permanent: true,
@@ -72,11 +67,6 @@ const redirectsOldSite = [
 	{
 		source: "/guide/how-to-register-decoupled-blocks",
 		destination: "/docs/reference/blockset/",
-		permanent: true,
-	},
-	{
-		source: "/tutorial/get-started-with-wp-graphql-content-blocks",
-		destination: "/docs/how-to/rendering-blocks/",
 		permanent: true,
 	},
 	{
@@ -237,7 +227,7 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-feb-3-2023",
+		source: "/faust-update-feb-3-2023",
 		destination: "/blog/",
 		permanent: true,
 	},
@@ -277,42 +267,17 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-mar-15-2023",
+		source: "/faust-update-mar-15-2023",
 		destination: "/blog/",
 		permanent: true,
 	},
 	{
-		source: "/blog/faust-update-mar-1-2023",
+		source: "/faust-update-jan-18-202",
 		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/blog/faust-update-mar-1-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/blog/faust-update-may-01-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/blog/faust-update-jan-18-202",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/tutorial/react-components-to-gutenberg-blocks",
-		destination: "/docs/",
 		permanent: true,
 	},
 	{
 		source: "/reference/wp-graphql-content-blocks-filters",
-		destination: "/docs/",
-		permanent: true,
-	},
-	{
-		source: "/guide/how-to-register-decoupled-blocks",
 		destination: "/docs/",
 		permanent: true,
 	},
@@ -352,11 +317,6 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/tutorial/getting-started-with-the-block-support-example-project",
-		destination: "/docs/",
-		permanent: true,
-	},
-	{
 		source: "/guide/how-to-migrate-portfolio-blueprint-to-new-faust-js",
 		destination: "/docs/",
 		permanent: true,
@@ -367,11 +327,6 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/guide/how-to-create-a-block-from-a-third-party-plugin",
-		destination: "/docs/how-to/create-a-plugin/",
-		permanent: true,
-	},
-	{
 		source: "/author/chriswiegman-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
 		destination: "/",
 		permanent: true,
@@ -379,11 +334,6 @@ const redirectsOldSite = [
 	{
 		source: "/author/faustjsorg-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-3",
 		destination: "/",
-		permanent: true,
-	},
-	{
-		source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
-		destination: "/docs/",
 		permanent: true,
 	},
 	{
@@ -473,17 +423,7 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
-		source: "/faust-update-mar-15-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
 		source: "/faust-update-mar-1-2023",
-		destination: "/blog/",
-		permanent: true,
-	},
-	{
-		source: "/faust-update-feb-3-2023",
 		destination: "/blog/",
 		permanent: true,
 	},
