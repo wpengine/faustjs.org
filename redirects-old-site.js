@@ -5,6 +5,10 @@ const redirectsOldSite = [
 		permanent: true,
 	},
 	{
+		source: "/tutorial/react-components-to-gutenberg-blocks",
+		destination: "/docs/explanation/react-components-to-blocks/",
+	},
+	{
 		source: "/guide/how-to-create-a-block-from-the-wordpress-blocks-list",
 		destination: "/docs/how-to/custom-blocks/",
 		permanent: true,
