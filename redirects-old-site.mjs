@@ -358,7 +358,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/taking-customer-inspired-up-a-level",
-		destination: "/blog/faustjs-org-taking-customer-inspired-up-a-level/",
+		destination: "/blog/taking-customer-inspired-up-a-level/",
 		permanent: true,
 	},
 	{
@@ -439,7 +439,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/sprint-24-update",
-		destination: "/blog/sprint-25-update-2/",
+		destination: "/blog/sprint-24-update/",
 		permanent: true,
 	},
 	{
