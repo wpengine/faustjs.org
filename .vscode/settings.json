@@ -6,14 +6,17 @@
 		"faustjs",
 		"faustwp",
 		"heroicons",
+		"innerblock",
 		"Kevinbatdorf",
+		"lastmod",
 		"recma",
 		"rehype",
 		"shiki",
 		"shikijs",
 		"sindresorhus",
 		"stylesheet",
-		"tailwindcss"
+		"tailwindcss",
+		"wpgraphql"
 	],
 	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {

@@ -1,67 +1,75 @@
 export const metadata = {
 	title: "Basic Setup",
+	description:
+		"Step-by-step guide for setting up a WordPress backend and Next.js frontend to use Faust.js toolkit features.",
 };
 
 In order to leverage any of the tools in the Faust.js toolkit, some preliminary setup needs to be done. Follow the steps below to get started.
 
-## Steps
+## 0. Prerequisites
 
-### Set up a WordPress backend and a Next.js frontend
+Before you begin, you'll need:
 
-If you don't have one up and running already, create a new WordPress site. This can be a site running [on your local machine](https://localwp.com/), or one hosted on the web somewhere.
+- A WordPress site (local or remote), if you don't have one yet, we recommend setting up a local WordPress development environment.
+- A Next.js project, if you don't have a Next.js project yet, [create one](https://nextjs.org/docs/getting-started/installation) on your local computer.
 
-Likewise, if you don't have a Next.js project yet, [create one](https://nextjs.org/docs/getting-started/installation) on your local computer.
+> [!INFO]- local WordPress development
+> There are lots of options for setting up a local WordPress development environment. Some popular choices include [LocalWP](https://localwp.com/), [`wp-env`](https://developer.wordpress.org/block-editor/getting-started/devenv/get-started-with-wp-env/), or [MAMP](https://www.mamp.info/en/).
 
-### Activate plugins
+## 1. Set up a WordPress backend and a Next.js frontend
+
+### A. Install plugins
 
 Install and activate the [FaustWP](https://wordpress.org/plugins/faustwp/) and [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) plugins on your WordPress backend site.
 
-### Set permalinks
-
-In the WordPress admin sidebar, go to `Settings` > `Permalinks`. Check the radio button next to `Custom Structure`, type `/blog/%postname%/` into the box next to it, then click the button to save your changes. This will result in Posts having URIs like `/blog/hello-world`, whereas Pages will still exist on the root domain, such as `/about`.
-
-### Set environment variables
+### B. Set environment variables
 
 Create a `.env.local` file in the root of your Next.js project that contains these environment variables:
 
 ```ini title=".env.local"
 # Your WordPress site URL
-NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com // [!code ++]
+NEXT_PUBLIC_WORDPRESS_URL=https://faustexample.wpengine.com
 
 # Plugin secret found in WordPress Settings->Faust
-FAUST_SECRET_KEY=YOUR_PLUGIN_SECRET // [!code ++]
+FAUST_SECRET_KEY=YOUR_PLUGIN_SECRET
 ```
 
 Replace `https://faustexample.wpengine.com` with the URL for your WordPress backend.
 
 Replace `YOUR_PLUGIN_SECRET` with the Secret Key found in `Settings → Faust` in your WordPress admin area.
 
-![Faust.js secret key](./images/headless-admin-secret-1024x743.png)
+![Screenshot of the Headless Settings page in the WordPress admin panel, showing the Faust plugin settings. The Secret Key field is highlighted, which is required to enable authentication features like post previews in Faust.js.](./images/headless-admin-secret.png)
 
 Save your `.env.local` file.
 
-## Install dependencies
+### C. Install dependencies
 
-Install the `@apollo/client`, gql and `@faustwp/core` NPM packages in your Next.js app.
+Install the required NPM packages in your Next.js app.
 
 ```bash
 npm install @apollo/client @faustwp/core graphql @faustwp/cli
 ```
 
-## Create Faust config file
+### D. Create Faust config file
 
 Create a `faust.config.js` file in the root of your project with this code:
 
 ```js title="faust.config.js"
 import { setConfig } from "@faustwp/core";
+import templates from "./wp-templates";
+import possibleTypes from "./possibleTypes.json";
 
 /**
  * @type {import('@faustwp/core').FaustConfig}
  **/
-export default setConfig({});
+export default setConfig({
+	templates,
+	plugins: [],
+	possibleTypes,
+});
 ```
 
-### Create Faust API route
+### E. Create Faust API route
 
 Create an API route for Faust.js to use. You can do this by creating a file in `src/pages/api/faust/[[...route]].js`, with the following code:
 
@@ -72,9 +80,9 @@ export { apiRouter as default } from "@faustwp/core";
 ```
 
 > [!IMPORTANT] Important
-> If you're not using a `/src` folder in your project, you can omit "/src" from the file path above. And the same applies for other file paths mentioned throughout this doc.
+> If you're not using a `src` folder in your project, you can omit "src/" from the file path above. And the same applies for other file paths mentioned throughout this doc.
 
-### Update `_app.js` file
+### F. Update `_app.js` file
 
 Once the API router is set up, head to `src/pages/_app.js`. Add the `import` statements, wrap your app in the `FaustProvider`, and pass `key={router.asPath}` to `Component`, as shown below.
 
@@ -94,9 +102,9 @@ export default function App({ Component, pageProps }) {
 }
 ```
 
-## Set up the Template Hierarchy
+## 2. Set up the Template Hierarchy
 
-### Generate types
+### A. Generate types
 
 In order for Faust.js to run the GraphQL queries it needs to determine the correct template to use, it needs to have a list of all the types available in the GraphQL schema. We'll generate this list of types now.
 
@@ -116,7 +124,10 @@ Add the following generate script to your Next.js project's `package.json` file,
 
 Run `npm run generate` on the command line. Confirm that a possibleTypes.json has been generated in the root of your project.
 
-### Add a template
+> [!IMPORTANT] Important
+> Be sure to enable WPGraphQL introspection before running the `npm run generate` command since it is [disabled by default](https://www.wpgraphql.com/docs/security#introspection-disabled-by-default).
+
+### B. Add a template
 
 Create a new `src/wp-templates` folder (or add the `/wp-templates` folder in the root project folder if you don't use a `/src` folder). This is where your template files will be stored. We'll start by adding a template for rendering single blog posts.
 
@@ -170,27 +181,7 @@ const templates = {
 export default templates;
 ```
 
-### Pass in Templates and Types in Faust.js config
-
-Put the following code inside your `faust.config.js` file:
-
-```js title="faust.config.js"
-import { setConfig } from "@faustwp/core";
-import templates from "./src/wp-templates/index.js"; // Adjust path as necessary // [!code ++]
-import possibleTypes from "./possibleTypes.json"; // [!code ++]
-
-/**
- * @type {import('@faustwp/core').FaustConfig}
- **/
-export default setConfig({
-	templates, // [!code ++]
-	possibleTypes, // [!code ++]
-});
-```
-
-Here, we call the `setConfig()` function that Faust.js provides, passing in our `templates` and `possibleTypes` to it.
-
-### Create a catch-all route
+### C. Create a catch-all route
 
 Create a `[...wordpressNode].js` file inside your `pages` folder. Add the following code to it.
 
@@ -217,15 +208,15 @@ This catch-all route tells Next.js to use the templates to render pages.
 
 Note that it is still possible to override this with hardcoded pages. For example, if you have a page in your WordPress site with a URI of `/about`, Faust.js will render that page using the relevant template in your project's `wp-templates` folder. However, if you add a `src/pages/about.js` file to your project, Next.js will render the `/about` path in your app using that file instead.
 
-## Test your template
+### D. Test your template
 
 You should now be able to make use of this template.
 
-Run `npm run dev` to get your Next.js project running in development mode, then visit the URL for one of the blog posts– something like `http://localhost:3000/blog/hello-world/`.
+Run `npm run dev` to get your Next.js project running in development mode, then visit the URL for one of the blog posts. The default starter blog path in WordPress is the "hello world" one – `http://localhost:3000/hello-world/`.
 
 If you've wired everything up correctly, the page should render and display the post's title and content.
 
-### Next steps
+## 3. Next steps
 
 You are now ready to leverage Faust's other features, including:
 

@@ -34,7 +34,7 @@ export default function DocsBreadcrumbs({ routes }) {
 	const currentPath = router.pathname;
 	const breadcrumbLinks = generateBreadcrumbs(routes, currentPath);
 
-	if (breadcrumbLinks.length === 0 || currentPath === "/docs") {
+	if (breadcrumbLinks.length === 0) {
 		return;
 	}
 
@@ -42,8 +42,12 @@ export default function DocsBreadcrumbs({ routes }) {
 	homeRoute.title = "Docs";
 	breadcrumbLinks.unshift(homeRoute);
 
+	if (currentPath === "/docs") {
+		breadcrumbLinks.shift(0);
+	}
+
 	return (
-		<div className="mb-7 mt-4 md:mb-10 md:mt-2">
+		<div className="mt-4 mb-7 md:mt-2 md:mb-10">
 			<div className="flex flex-wrap items-center gap-2 text-sm">
 				{breadcrumbLinks.map((breadcrumb, index) =>
 					normalizeHref(breadcrumb.route) === normalizeHref(currentPath) ? (

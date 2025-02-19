@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, getNextStaticProps } from "@faustwp/core";
+import Seo from "@/components/seo";
 import blocks from "@/wp-blocks";
 
 export default function SinglePost(properties) {
@@ -15,23 +16,30 @@ export default function SinglePost(properties) {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error! {error.message}</p>;
 
-	const { title, date, author, editorBlocks } = post;
+	const { title, date, author, uri, excerpt, editorBlocks } = post;
 	const blockList = flatListToHierarchical(editorBlocks, {
 		childrenKey: "innerBlocks",
 	});
 
 	return (
-		<div className="container mx-auto px-4 py-8">
-			<h1 className="mb-4 text-3xl font-bold">{title}</h1>
-			<p className="mb-8 text-white">
-				{author.node.name} &middot;{" "}
-				{new Date(date).toLocaleDateString("en-US", {
-					year: "numeric",
-					month: "short",
-					day: "numeric",
-				})}
-			</p>
-			<div className="prose-lg prose-invert">
+		<div className="prose prose-lg prose-invert container mx-auto px-4 py-20">
+			<Seo
+				title={title}
+				url={uri}
+				description={excerpt.replaceAll(/<\/?\S+>/gm, "")}
+			/>
+			<div className="py-4">
+				<h1 className="mb-4">{title}</h1>
+				<p className="mb-8 text-sm text-gray-400">
+					{author.node.name} &middot;{" "}
+					{new Date(date).toLocaleDateString("en-US", {
+						year: "numeric",
+						month: "short",
+						day: "numeric",
+					})}
+				</p>
+			</div>
+			<div className="">
 				<WordPressBlocksViewer blocks={blockList} />
 			</div>
 		</div>
@@ -43,6 +51,8 @@ SinglePost.query = gql`
     post(id: $slug, idType: SLUG) {
       title
       date
+			uri
+			excerpt
       author {
         node {
           name
@@ -85,10 +95,16 @@ SinglePost.query = gql`
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
 
 export async function getStaticProps(context) {
-	return getNextStaticProps(context, {
+	const props = await getNextStaticProps(context, {
 		Page: SinglePost,
 		revalidate: 3_600,
 	});
+
+	if (!props?.props?.data?.post) {
+		return { props: {}, notFound: true };
+	}
+
+	return props;
 }
 
 export async function getStaticPaths() {

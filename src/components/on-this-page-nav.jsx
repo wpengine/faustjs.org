@@ -47,8 +47,8 @@ export default function OnThisPageNav({ children }) {
 
 	return (
 		<>
-			<h2 className="font-semibold">On This Page</h2>
-			{headings.length > 0 ? (
+			<h2 className="py-2 font-semibold">On This Page</h2>
+			{headings.length > 0 && (
 				<ul className="mt-4 text-sm text-gray-400">
 					{headings.map((heading) => (
 						<li
@@ -59,7 +59,7 @@ export default function OnThisPageNav({ children }) {
 										heading.level === 3,
 									"active text-blue-500": activeId === heading.id,
 								},
-								"w-full whitespace-normal break-words py-2",
+								"w-full py-2 break-words whitespace-normal",
 							)}
 						>
 							<Link href={`#${heading.id}`} noDefaultStyles>
@@ -68,8 +68,6 @@ export default function OnThisPageNav({ children }) {
 						</li>
 					))}
 				</ul>
-			) : (
-				<p>Loading...</p>
 			)}
 		</>
 	);

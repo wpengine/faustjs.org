@@ -1,5 +1,7 @@
 export const metadata = {
 	title: "WordPressBlocksProvider",
+	description:
+		"Reference for the WordPressBlocksProvider component that provides block data and configuration for WordPress block rendering.",
 };
 
 `WordPressBlocksProvider` is a React [Context Provider](https://react.dev/reference/react/createContext#provider) that exposes the data that `WordPressBlocksViewer` needs to render WordPress blocks, namely which blocks have been defined as a part of your Faust app.
@@ -25,7 +27,6 @@ export default function MyApp({ Component, pageProps }) {
 				config={{
 					// [!code ++]
 					blocks, // [!code ++]
-					theme: null, // [!code ++]
 				}}
 			>
 				{" "}
@@ -72,7 +73,6 @@ import blocks from "../wp-blocks/index.js"; // [!code ++]
 <WordPressBlocksProvider
 	config={{
 		blocks,
-		theme: null,
 	}}
 />;
 ```

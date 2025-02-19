@@ -1,5 +1,7 @@
 export const metadata = {
 	title: "Using WPGraphQL Smart Cache Network Caching",
+	description:
+		"Guide to optimizing GraphQL queries using WPGraphQL Smart Cache with Faust.js built-in network caching support.",
 };
 
 WPGraphQL Smart Cache optimizes GraphQL queries by caching the results of your requests and automatically evicting outdated data whenever your WordPress content changes. Faust.js provides built-in support for [Network Caching](https://github.com/wp-graphql/wp-graphql-smart-cache/blob/main/docs/network-cache.md). This guide walks you through enabling Automatic Persisted Queries, using GET methods for network requests, and making one-off requests that override your default settings.
@@ -21,7 +23,7 @@ Navigate to your WP Admin to install install and activate the [WPGraphQL Smart C
 
 Navigate to the WPGraphQL Settings from the left hand menu.
 
-![](./images/graphql-admin.png)
+![The WordPress admin sidebar showing the GraphQL menu expanded, revealing the "Settings" and "GraphQL IDE" options.](./images/graphql-admin.png)
 
 You will notice new "**_Cache_**" and "**_Saved Queries_**" tabs in the setting for WPGraphQL.
 
@@ -32,7 +34,7 @@ Navigate to the "**_Cache_**" tab and set the "Cache-Control max-age" for the "*
 > [!INFO]
 > Smart Cache uses tag based cache invalidation. This means that when a post is updated, all queries that include that post will be invalidated. This is a powerful feature that allows for very granular cache invalidation. This is why we can set the cache time to a higher value than we would with a traditional cache. This TTL is the maximum time a query will be cached. If a post is updated, the cache will be invalidated without regard wo this value and the next request will be uncached.
 
-![](./images/smart-cache-wpadmin-cache.png)
+![The "Cache" settings tab in the WPGraphQL admin panel, where the "Cache-Control max-age" value is set to 600 seconds for network caching.](./images/smart-cache-wpadmin-cache.png)
 
 ### C. Configure Saved Queries
 
@@ -43,7 +45,7 @@ Navigate to the "**_Saved Queries_**" tab and select the box to "Display saved q
 >
 > If you are concerned about this abuse, you can adjust these global settings or set "Allow/Deny" on a per query basis. See the [Persisted Query docs](https://github.com/wp-graphql/wp-graphql-smart-cache/blob/main/docs/persisted-queries.md) for more information.
 
-![](./images/smart-cache-wpadmin-saved-queries.png)
+![The "Saved Queries" settings tab in WPGraphQL, displaying options for configuring query persistence, including allow/deny mode and the ability to display saved queries in the admin editor.](./images/smart-cache-wpadmin-saved-queries.png)
 
 ## 3. Enabling Automatic Persisted Queries in Faust.js
 
@@ -71,10 +73,10 @@ export default setConfig({
 
 Start up your development server and navigate to a page that uses GraphQL queries. If you check the "Network tab of your Developer Tools in browser you should see the network requests being made with the `GET` method.
 
-![](./images/network-graphql-get.png)
+![A browser developer tools panel showing network requests for a GraphQL query, including response headers and caching details.](./images/network-graphql-get.png)
 
 ## 5. Seeing your Persisted Queries
 
 Finally, let's go checkout our persisted queries! Selct the "GraphQL Documents" option from the left hand menu in your WP Admin. You should see any queries that have been made by your site. As you add and modify queries, you'll see them appear here.
 
-![](./images/graphql-persisted-queries.png)
+![The GraphQL Documents admin page in WordPress, displaying a list of persisted GraphQL queries, including "PostArchive" and "PostPreview," along with their associated alias names.](./images/graphql-persisted-queries.png)

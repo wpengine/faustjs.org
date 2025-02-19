@@ -1,5 +1,7 @@
 export const metadata = {
 	title: "Auth",
+	description:
+		"Guide to implementing authentication in your Next.js app using Faust.js toolkit features.",
 };
 
 Understanding authentication is crucial for protecting your application's data. This page will guide you through implementing features from the Faust.js toolkit into your Next.js app.
@@ -14,7 +16,7 @@ Before starting, it helps to break down the process into three concepts:
 
 This diagram shows the authentication flow using the Faust.js toolkit auth feature:
 
-![](./images/auth-redirect-flow-2048x989-3.png)
+![Flow diagram illustrating authentication flow](./images/auth-redirect-flow.png)
 
 Redirect-based authentication is the default strategy in the Faust.js toolkit. This strategy involves redirecting the user to WordPress to authenticate. Once the user has shown authentication, the user redirects back to the Next.js application with an authorization code, which you can then use to request a refresh and access token, thus completing the login process.
 

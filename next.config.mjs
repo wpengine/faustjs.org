@@ -9,7 +9,23 @@ import rehypeMdxImportMedia from "rehype-mdx-import-media";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import redirectsOldSite from "./redirects-old-site.mjs";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
+
+const newRedirects = [
+	{
+		source: "/discord",
+		destination: "https://discord.gg/headless-wordpress-836253505944813629",
+		permanent: false,
+	},
+	{
+		source: "/community-meeting",
+		destination:
+			"https://discord.gg/headless-wordpress-836253505944813629?event=1336404483013480588",
+		permanent: false,
+	},
+];
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -24,13 +40,7 @@ const nextConfig = {
 		ignoreDuringBuilds: true,
 	},
 	redirects() {
-		return [
-			{
-				source: "/discord",
-				destination: "https://discord.gg/headless-wordpress-836253505944813629",
-				permanent: false,
-			},
-		];
+		return [...redirectsOldSite, ...newRedirects];
 	},
 	images: {
 		remotePatterns: [
@@ -80,7 +90,11 @@ const withMDX = createMDX({
 			[
 				rehypePrettyCode,
 				{
-					transformers: [transformerNotationDiff()],
+					transformers: [
+						transformerNotationDiff({
+							matchAlgorithm: "v3",
+						}),
+					],
 					theme: "github-dark-dimmed",
 					defaultLang: "plaintext",
 					bypassInlineCode: false,
