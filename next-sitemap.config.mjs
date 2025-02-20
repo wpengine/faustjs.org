@@ -15,7 +15,7 @@ export default {
 		policies: [
 			{
 				userAgent: "*",
-				disallow: "/",
+				allow: "/",
 			},
 		],
 	},
