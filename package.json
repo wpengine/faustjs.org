@@ -1,63 +1,88 @@
 {
-  "private": true,
-  "scripts": {
-    "prebuild": "npm run generate && npm run codegen",
-    "prestart": "npm run generate && npm run codegen",
-    "dev": "concurrently \"faust dev\" \"npm run codegen-watch\"",
-    "build": "faust build",
-    "generate": "faust generatePossibleTypes && faust generateGlobalStylesheet",
-    "start": "faust start",
-    "codegen": "graphql-codegen",
-    "codegen-watch": "graphql-codegen -w",
-    "lint": "eslint ./src --report-unused-disable-directives",
-    "lint-fix": "eslint ./src --fix"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.7.10",
-    "@emotion/cache": "^11.10.7",
-    "@emotion/react": "^11.10.6",
-    "@emotion/server": "^11.10.0",
-    "@emotion/styled": "^11.10.6",
-    "@faustwp/cli": "^1.1.4",
-    "@faustwp/core": "^1.1.2",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.1",
-    "@wpengine/atlas-next": "^1.0.0",
-    "graphql": "^16.8.1",
-    "next": "^14.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-google-recaptcha": "^3.1.0",
-    "use-debounce": "^9.0.4"
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "^3.2.2",
-    "@graphql-codegen/client-preset": "^3.0.1",
-    "@next/eslint-plugin-next": "^13.4.1",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.2.5",
-    "@types/react-google-recaptcha": "^2.1.6",
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
-    "@typescript-eslint/parser": "^5.59.2",
-    "@wordpress/base-styles": "^4.35.0",
-    "@wordpress/block-library": "^8.21.0",
-    "classnames": "^2.3.2",
-    "concurrently": "^8.0.1",
-    "eslint": "^8.39.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-next": "^13.4.1",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "sass": "^1.62.1",
-    "typescript": "^5.0.2"
-  },
-  "overrides": {
-    "semver": "^7.5.2",
-    "debug": "4.3.1"
-  }
+	"name": "faustjs-org-site",
+	"private": true,
+	"scripts": {
+		"dev": "faust dev",
+		"build": "faust build",
+		"postbuild": "next-sitemap --config next-sitemap.config.mjs",
+		"generate": "faust generatePossibleTypes",
+		"stylesheet": "faust generateGlobalStylesheet",
+		"start": "faust start",
+		"test:format": "prettier . --check",
+		"test:lint": "eslint --quiet",
+		"lint": "eslint --fix",
+		"format": "prettier . --write",
+		"prepare": "husky"
+	},
+	"dependencies": {
+		"@apollo/client": "^3.13.1",
+		"@faustwp/blocks": "^6.0.0",
+		"@faustwp/cli": "^3.1.1",
+		"@faustwp/core": "^3.2.0",
+		"@headlessui/react": "^2.2.0",
+		"@heroicons/react": "^2.2.0",
+		"@icons-pack/react-simple-icons": "^12.0.0",
+		"@js-temporal/polyfill": "^0.4.4",
+		"@mdx-js/loader": "^3.0.1",
+		"@mdx-js/react": "^3.0.1",
+		"@next/mdx": "^15.1.7",
+		"@shikijs/transformers": "^3.0.0",
+		"@sindresorhus/slugify": "^2.2.1",
+		"@wpengine/atlas-next": "^2.0.0",
+		"classnames": "^2.5.1",
+		"date-fns": "^4.1.0",
+		"downshift": "^9.0.8",
+		"feed": "^4.2.2",
+		"graphql": "^16.10.0",
+		"html-to-text": "^9.0.5",
+		"http-status-codes": "^2.3.0",
+		"lodash.debounce": "^4.0.8",
+		"next": "^15.1.7",
+		"next-sitemap": "^4.2.3",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"recma-nextjs-static-props": "^2.0.1",
+		"rehype-callouts": "^2.0.1",
+		"rehype-mdx-import-media": "^1.2.0",
+		"rehype-pretty-code": "^0.14.0",
+		"rehype-slug": "^6.0.0",
+		"remark-gfm": "^4.0.1",
+		"shiki": "^3.0.0"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4.0.7",
+		"@tailwindcss/typography": "^0.5.15",
+		"eslint": "^9.20.1",
+		"eslint-config-neon": "^0.2.4",
+		"eslint-plugin-mdx": "^3.1.5",
+		"eslint-plugin-unicorn": "^56.0.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.3",
+		"next-secure-headers": "^2.2.0",
+		"postcss": "^8.5.3",
+		"postcss-nesting": "^13.0.1",
+		"prettier": "^3.5.1",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"tailwindcss": "^4.0.7"
+	},
+	"engines": {
+		"node": "^22",
+		"npm": "use-pnpm"
+	},
+	"packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
+	"lint-staged": {
+		"*": "pnpm format",
+		"*.{js,jsx}": "pnpm lint"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"rehype-pretty-code": "patches/rehype-pretty-code.patch"
+		},
+		"onlyBuiltDependencies": [
+			"sharp"
+		],
+		"overrides": {
+			"eslint-plugin-unicorn": "$eslint-plugin-unicorn"
+		}
+	}
 }

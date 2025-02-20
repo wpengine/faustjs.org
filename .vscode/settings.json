@@ -1,0 +1,50 @@
+{
+	"cSpell.words": [
+		"codegen",
+		"combobox",
+		"Diátaxis",
+		"faustjs",
+		"faustwp",
+		"heroicons",
+		"innerblock",
+		"Kevinbatdorf",
+		"lastmod",
+		"recma",
+		"rehype",
+		"shiki",
+		"shikijs",
+		"sindresorhus",
+		"stylesheet",
+		"tailwindcss",
+		"wpgraphql"
+	],
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.run": "onSave",
+	"eslint.useFlatConfig": true,
+	"eslint.codeActionsOnSave.mode": "problems",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.wordWrap": "on"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"cSpell.ignorePaths": [
+		"package-lock.json",
+		"node_modules",
+		"vscode-extension",
+		".git/objects",
+		".vscode",
+		".vscode-insiders",
+		"pnpm-lock.yaml"
+	]
+}

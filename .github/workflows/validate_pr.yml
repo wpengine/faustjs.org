@@ -1,0 +1,94 @@
+name: Run Checks on PRs
+on:
+  pull_request:
+    branches: [main, toolkit]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    name: Setup Dependencies
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: ./.github/actions/cache-restore
+        id: cache-node-modules
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: ./.github/actions/enable-corepack
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+
+  check_format:
+    name: Validate formatting with Prettier
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: ./.github/actions/cache-restore
+
+      - uses: ./.github/actions/enable-corepack
+
+      - name: Format source code
+        run: pnpm run test:format
+
+  check_lint:
+    name: Validate linting with ES Lint
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: ./.github/actions/cache-restore
+
+      - uses: ./.github/actions/enable-corepack
+
+      - name: Check Linting
+        run: pnpm run test:lint
+
+  # run-tests:
+  #   name: Run package tests on (Node.js v${{ matrix.node }})
+  #   runs-on: ubuntu-latest
+  #   needs: [setup]
+  #   env:
+  #     NODE_OPTIONS: --max-old-space-size=6144
+  #   strategy:
+  #     matrix:
+  #       node: [20]
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v4
+
+  #     - name: Set up Node.js v${{ matrix.node }}
+  #       uses: ./.github/actions/cache-restore
+  #       with:
+  #         node-version: ${{ matrix.node }}
+
+  #     - name: Enable Corepack
+  #       run: corepack enable
+
+  #     - name: Build packages
+  #       run: pnpm build
+
+  #     - name: Set up S3 Server
+  #       uses: ./.github/actions/s3-test-server
+
+  #     - name: Execute tests
+  #       run: yarn test
