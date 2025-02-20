@@ -55,7 +55,7 @@ export default function DocsBreadcrumbs({ routes }) {
 					) : (
 						<Link
 							key={index}
-							className="font-normal text-gray-500 no-underline transition duration-200 ease-in hover:text-white focus:text-white"
+							className="font-normal text-gray-400 no-underline transition duration-200 ease-in hover:text-white focus:text-white"
 							href={breadcrumb.route}
 							noDefaultStyles
 							aria-label={breadcrumb.title}

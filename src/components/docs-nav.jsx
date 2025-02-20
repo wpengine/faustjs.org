@@ -1,9 +1,13 @@
-import { Fragment } from "react";
+import { CloseButton } from "@headlessui/react";
 import Link from "@/components/link";
 import { normalizeHref, classNames } from "@/utils/strings";
 
-export default function DocsNav({ as, routes, level = 0, className }) {
-	const As = as || Fragment;
+export default function DocsNav({
+	isMobileMenu,
+	routes,
+	level = 0,
+	className,
+}) {
 	return (
 		<ul
 			className={classNames(className, "my-1", {
@@ -12,22 +16,28 @@ export default function DocsNav({ as, routes, level = 0, className }) {
 			data-doc-nav-level={level}
 		>
 			{routes.map((item) => (
-				<As key={item.title}>
-					<NavItem item={item} level={level} />
-				</As>
+				<NavItem
+					key={item.title}
+					item={item}
+					level={level}
+					isMobileMenu={isMobileMenu}
+				/>
 			))}
 		</ul>
 	);
 }
 
-function NavItem({ item, level, ...props }) {
+function NavItem({ item, level, isMobileMenu, ...props }) {
 	if (!item?.route) {
 		throw new Error("Item must have a route");
 	}
 
+	const Component = isMobileMenu ? CloseButton : Link;
+
 	return (
 		<li className="py-2 text-gray-400">
-			<Link
+			<Component
+				as={isMobileMenu ? Link : undefined}
 				data-doc-nav-level={level}
 				href={normalizeHref(item.route)}
 				noDefaultStyles
@@ -35,9 +45,13 @@ function NavItem({ item, level, ...props }) {
 				{...props}
 			>
 				{item.title}
-			</Link>
+			</Component>
 			{item.children && (
-				<DocsNav as="ul" level={level + 1} routes={item.children} />
+				<DocsNav
+					isMobileMenu={isMobileMenu}
+					level={level + 1}
+					routes={item.children}
+				/>
 			)}
 		</li>
 	);

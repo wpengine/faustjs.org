@@ -1,4 +1,5 @@
 import CustomLink from "@/components/link";
+import Seo from "@/components/seo";
 
 export default function Custom404() {
 	const suggestions = [
@@ -12,7 +13,10 @@ export default function Custom404() {
 			className="p-16 text-center font-sans"
 			role="main"
 			aria-labelledby="page-title"
+			id="main-content"
 		>
+			<Seo title="Page not found" />
+
 			<h1 id="page-title" className="text-5xl text-white">
 				Oops! Lost in the Web...
 			</h1>

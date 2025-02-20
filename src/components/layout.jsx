@@ -13,6 +13,10 @@ export default function Layout({ children }) {
 		<div
 			className={`${inter.variable} font-inter flex min-h-screen flex-col selection:bg-purple-700`}
 		>
+			<a href="#main-content" className="faust-skip-link">
+				Skip to main content
+			</a>
+
 			<Header />
 			{children}
 			<Footer />

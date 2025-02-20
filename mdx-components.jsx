@@ -1,5 +1,4 @@
 import Image from "next/image";
-import DocsLayout from "@/components/docs-layout";
 import Heading from "@/components/heading";
 import CustomLink from "@/components/link";
 
@@ -18,7 +17,6 @@ export function useMDXComponents(components) {
 			/>
 		),
 		a: (props) => <CustomLink {...props} />,
-		wrapper: DocsLayout,
 		h1: (props) => <Heading level={1} {...props} />,
 		h2: (props) => <Heading level={2} {...props} />,
 		h3: (props) => <Heading level={3} {...props} />,

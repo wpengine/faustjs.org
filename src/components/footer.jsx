@@ -7,11 +7,11 @@ export default function Footer() {
 				<div className="grid grid-cols-1 gap-8 pt-14 sm:grid-cols-2 lg:grid-cols-3 lg:pt-24">
 					<FooterColumns />
 				</div>
-				<div className="mt-2 text-gray-500 lg:mt-24">
+				<div className="mt-2 text-gray-400 lg:mt-24">
 					<p>
 						Powered by{" "}
 						<Link
-							className="font-normal text-gray-300 no-underline"
+							className="font-normal text-gray-200 no-underline"
 							href="/"
 							noDefaultStyles
 						>
@@ -19,14 +19,14 @@ export default function Footer() {
 						</Link>{" "}
 						&amp; WP Engine&apos;s{" "}
 						<Link
-							className="font-normal text-gray-300 no-underline"
+							className="font-normal text-gray-200 no-underline"
 							href="https://wpengine.com/headless-wordpress/"
 							noDefaultStyles
 						>
 							Headless platform
 						</Link>
 					</p>
-					<p className="text-gray-600">
+					<p className="text-gray-400">
 						&copy; 2013-{new Date().getFullYear()} WP Engine, Inc. All rights
 						reserved.
 					</p>

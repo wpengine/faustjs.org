@@ -12,7 +12,7 @@ import Seo from "@/components/seo";
 
 export default function Index() {
 	return (
-		<main>
+		<main id="main-content">
 			<Seo
 				title="Home"
 				description="The Next.js Headless Toolkit for WordPress."
