@@ -55,6 +55,7 @@ export default function DocumentPage({ children, metadata }) {
 					<DocsNav
 						className="container-main h-screen max-h-screen overflow-y-scroll"
 						routes={routes}
+						isMobileMenu
 					/>
 				</DisclosurePanel>
 			</Disclosure>
