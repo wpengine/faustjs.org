@@ -47,7 +47,7 @@ export const getServerSideProps = async (ctx) => {
 
 	const fields = posts.map((post) => ({
 		loc: new URL(post.uri, env.NEXT_PUBLIC_SITE_URL).href, // Absolute url
-		lastmod: post.modified,
+		lastmod: new Date(post.modified).toISOString(),
 	}));
 
 	return getServerSideSitemapLegacy(ctx, fields);
