@@ -123,7 +123,7 @@ export default function BlogIndex() {
 				<div className="mt-8 flex justify-center">
 					<button
 						type="button"
-						className="flex items-center rounded-sm bg-purple-500 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
+						className="flex items-center rounded-sm bg-purple-700 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
 						onClick={loadMorePosts}
 						disabled={loadingMore}
 					>
