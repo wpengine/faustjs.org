@@ -46,7 +46,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/guide/how-to-use-apollo-in-faust",
-		destination: "/docs/how-to/use-wpgraphql-smart-cache/",
+		destination: "/docs/how-to/query-data-in-the-browser/",
 		permanent: true,
 	},
 	{
@@ -308,7 +308,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/guide/how-to-use-the-faust-example-project",
-		destination: "/docs/",
+		destination: "/docs/tutorial/learn-faust/",
 		permanent: true,
 	},
 	{
