@@ -101,23 +101,6 @@ export default function App({ Component, pageProps }) {
 	);
 }
 ```
-### G. Update the "Home" Page
-
-Ensure you have a `/src/pages/index.js` file in order for the catch-all to work properly.
-
-This could either be a hard-coded page or a faust page, such as:
-
-```js title="src/pages/index.js"
-import { getWordPressProps, WordPressTemplate } from "@faustwp/core"
-
-export default function Page(props: any) {
-  return <WordPressTemplate {...props} />
-}
-
-export function getStaticProps(ctx: any) {
-  return getWordPressProps({ ctx })
-}
-```
 
 ## 2. Set up the Template Hierarchy
 
@@ -224,6 +207,25 @@ export async function getStaticPaths() {
 This catch-all route tells Next.js to use the templates to render pages.
 
 Note that it is still possible to override this with hardcoded pages. For example, if you have a page in your WordPress site with a URI of `/about`, Faust.js will render that page using the relevant template in your project's `wp-templates` folder. However, if you add a `src/pages/about.js` file to your project, Next.js will render the `/about` path in your app using that file instead.
+
+### D. Update the "Home" Page
+
+Ensure you have a `/src/pages/index.js` file in order for the catch-all to work properly.
+
+This could either be a hard-coded page or a faust page, such as:
+
+```js title="src/pages/index.js"
+import { getWordPressProps, WordPressTemplate } from "@faustwp/core"
+
+export default function Page(props: any) {
+  return <WordPressTemplate {...props} />
+}
+
+export function getStaticProps(ctx: any) {
+  return getWordPressProps({ ctx })
+}
+```
+Having this index will allow you to have WordPress + Faust on your home page.
 
 ### D. Test your template
 
