@@ -9,6 +9,7 @@ import DocsBreadcrumbs from "./docs-breadcrumbs";
 import DocsPreviousNextLinks from "./docs-previous-next-link";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
+import Link from "@/components/link";
 import Seo from "@/components/seo";
 import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
@@ -71,6 +72,16 @@ export default function DocumentPage({ children, metadata }) {
 				</nav>
 				<nav className="sticky top-[84px] order-last hidden h-[calc(100vh-84px)] w-[240px] overflow-y-auto p-6 lg:block">
 					<OnThisPageNav>{children}</OnThisPageNav>
+
+					<div className="my-6 border-t border-gray-700" />
+
+					<Link
+						className="font-normal text-gray-400 no-underline hover:text-blue-500"
+						href={`https://github.com/wpengine/faustjs.org/edit/main/src/pages${asPath}index.mdx`}
+						noDefaultStyles
+					>
+						Edit this doc on GitHub
+					</Link>
 				</nav>
 				<article
 					id="docs-article"
