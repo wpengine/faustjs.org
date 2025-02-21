@@ -23,7 +23,10 @@ export default function SinglePost(properties) {
 	});
 
 	return (
-		<div className="prose prose-lg prose-invert container mx-auto px-4 py-8">
+		<div
+			id="main-content"
+			className="prose prose-lg prose-invert container mx-auto px-4 py-8"
+		>
 			<Seo
 				title={title}
 				url={uri}
