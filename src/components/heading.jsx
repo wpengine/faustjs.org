@@ -7,12 +7,12 @@ export default function Heading({ level, children, id, ...props }) {
 	return (
 		<Tag
 			id={id.toString()}
-			className="group flex items-center break-words hover:text-blue-500"
+			className="group flex items-center hover:text-blue-500"
 			{...props}
 		>
 			<Link
 				href={`#${id}`}
-				className="no-underline transition-colors group-hover:text-blue-500"
+				className="break-all no-underline transition-colors group-hover:text-blue-500"
 				noDefaultStyles
 			>
 				{children}
