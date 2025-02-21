@@ -63,6 +63,7 @@ export default function DocumentPage({ children, metadata }) {
 			<main
 				id="main-content"
 				className="relative mx-auto flex max-w-full grid-cols-[1fr_auto_1fr] flex-col gap-6 md:grid"
+				style={{ lineHeight: "1.6em" }}
 			>
 				<nav className="custom-scrollbar sticky top-[84px] hidden h-[calc(100vh-84px)] w-64 overflow-y-auto p-4 md:block">
 					<a href="#docs-article" className="faust-skip-link">
@@ -76,11 +77,11 @@ export default function DocumentPage({ children, metadata }) {
 					<div className="my-6 border-t border-gray-700" />
 
 					<Link
-						className="font-normal text-gray-400 no-underline hover:text-blue-500"
+						className="leading-loose font-normal text-gray-400 no-underline hover:text-blue-500"
 						href={`https://github.com/wpengine/faustjs.org/edit/main/src/pages${asPath}index.mdx`}
 						noDefaultStyles
 					>
-						Edit this doc on GitHub
+						Improve & Edit this doc on GitHub
 					</Link>
 				</nav>
 				<article
