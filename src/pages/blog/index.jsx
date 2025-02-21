@@ -53,7 +53,7 @@ export default function BlogIndex() {
 
 	if (loading && !data)
 		return (
-			<div className="container-main flex justify-center">
+			<div className="container-main flex justify-center py-20">
 				Loading <ArrowPathIcon className="ml-2 h-5 w-5 animate-spin" />
 			</div>
 		);
@@ -123,7 +123,7 @@ export default function BlogIndex() {
 				<div className="mt-8 flex justify-center">
 					<button
 						type="button"
-						className="flex items-center rounded-sm bg-purple-700 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
+						className="flex cursor-pointer items-center rounded-sm bg-purple-700 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
 						onClick={loadMorePosts}
 						disabled={loadingMore}
 					>

@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { flatListToHierarchical, getNextStaticProps } from "@faustwp/core";
+import BlogBreadcrumbs from "@/components/blog-breadcrumbs";
 import Seo from "@/components/seo";
 import blocks from "@/wp-blocks";
 
@@ -22,12 +23,17 @@ export default function SinglePost(properties) {
 	});
 
 	return (
-		<div className="prose prose-lg prose-invert container mx-auto px-4 py-20">
+		<div
+			id="main-content"
+			className="prose prose-lg prose-invert container mx-auto px-4 py-8"
+		>
 			<Seo
 				title={title}
 				url={uri}
 				description={excerpt.replaceAll(/<\/?\S+>/gm, "")}
 			/>
+
+			<BlogBreadcrumbs currentPostTitle={title} />
 			<div className="py-4">
 				<h1 className="mb-4">{title}</h1>
 				<p className="mb-8 text-sm text-gray-400">
