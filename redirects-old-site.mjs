@@ -6,7 +6,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/tutorial/react-components-to-gutenberg-blocks",
-		destination: "/docs/explanation/react-components-to-blocks/",
+		destination: "/docs/how-to/custom-blocks/",
 		permanent: true,
 	},
 	{
