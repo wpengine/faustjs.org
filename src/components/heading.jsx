@@ -12,7 +12,7 @@ export default function Heading({ level, children, id, ...props }) {
 		>
 			<Link
 				href={`#${id}`}
-				className="no-underline transition-colors group-hover:text-blue-500"
+				className="break-all no-underline transition-colors group-hover:text-blue-500"
 				noDefaultStyles
 			>
 				{children}
