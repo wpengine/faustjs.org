@@ -11,6 +11,10 @@ export default function PrimaryMenu() {
 		setIsMenuOpen((previous) => !previous);
 	}, []);
 
+	const handleMenuItemClick = useCallback(() => {
+		setIsMenuOpen(false);
+	}, []);
+
 	const navItemClass =
 		"text-gray-200 hover:text-white transition-colors duration-200";
 
@@ -63,7 +67,7 @@ export default function PrimaryMenu() {
 						static
 						className="absolute top-[84.5px] -left-4 flex w-full flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg"
 					>
-						<MenuItem>
+						<MenuItem onClick={handleMenuItemClick}>
 							<CustomLink
 								className={navItemClass}
 								noDefaultStyles
@@ -73,7 +77,7 @@ export default function PrimaryMenu() {
 								Docs
 							</CustomLink>
 						</MenuItem>
-						<MenuItem>
+						<MenuItem onClick={handleMenuItemClick}>
 							<CustomLink
 								className={navItemClass}
 								noDefaultStyles
@@ -83,7 +87,7 @@ export default function PrimaryMenu() {
 								Blog
 							</CustomLink>
 						</MenuItem>
-						<MenuItem>
+						<MenuItem onClick={handleMenuItemClick}>
 							<CustomLink
 								className={navItemClass}
 								noDefaultStyles
