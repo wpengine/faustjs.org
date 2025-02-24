@@ -32,7 +32,7 @@ export default function Header() {
 			)}
 		>
 			<header className="container mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
-				<div className="flex items-center gap-8">
+				<div className="mr-8 flex items-center gap-8">
 					<Link
 						className="transition-duration-75 flex items-center text-xl font-bold transition hover:text-white focus:text-white"
 						href="/"
