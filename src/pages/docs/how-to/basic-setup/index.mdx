@@ -56,7 +56,7 @@ Create a `faust.config.js` file in the root of your project with this code:
 
 ```js title="faust.config.js"
 import { setConfig } from "@faustwp/core";
-import templates from "./wp-templates";
+import templates from "./src/wp-templates";
 import possibleTypes from "./possibleTypes.json";
 
 /**
@@ -89,7 +89,7 @@ Once the API router is set up, head to `src/pages/_app.js`. Add the `import` sta
 ```js title="src/pages/_app.js"
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
-import "../faust.config";
+import "../../faust.config";
 
 export default function App({ Component, pageProps }) {
 	const router = useRouter();
