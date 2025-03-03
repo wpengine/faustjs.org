@@ -1,15 +1,9 @@
 import { env } from "node:process";
 import { withFaust, getWpHostname } from "@faustwp/core";
-import createMDX from "@next/mdx";
-import { transformerNotationDiff } from "@shikijs/transformers";
 import { withWPEConfig } from "@wpengine/atlas-next";
 import { createSecureHeaders } from "next-secure-headers";
-import recmaNextjsStaticProps from "recma-nextjs-static-props";
-import rehypeCallouts from "rehype-callouts";
-import rehypeMdxImportMedia from "rehype-mdx-import-media";
-import { rehypePrettyCode } from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
+// import recmaNextjsStaticProps from "recma-nextjs-static-props";
+// import remarkGfm from "remark-gfm";
 import redirectsOldSite from "./redirects-old-site.mjs";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
 
@@ -80,29 +74,15 @@ const nextConfig = {
 	},
 };
 
-const withMDX = createMDX({
-	options: {
-		recmaPlugins: [recmaNextjsStaticProps],
-		remarkPlugins: [remarkGfm],
-		rehypePlugins: [
-			rehypeMdxImportMedia,
-			rehypeSlug,
-			rehypeCallouts,
-			[
-				rehypePrettyCode,
-				{
-					transformers: [
-						transformerNotationDiff({
-							matchAlgorithm: "v3",
-						}),
-					],
-					theme: "github-dark-dimmed",
-					defaultLang: "plaintext",
-					bypassInlineCode: false,
-				},
-			],
-		],
-	},
-});
+// const withMDX = createMDX({
+// 	options: {
+// 		recmaPlugins: [recmaNextjsStaticProps],
+// 		remarkPlugins: [remarkGfm],
+// 		rehypePlugins: [
+// 			rehypeCallouts,
 
-export default withWPEConfig(withFaust(withMDX(nextConfig)));
+// 		],
+// 	},
+// });
+
+export default withWPEConfig(withFaust(nextConfig));
