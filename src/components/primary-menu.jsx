@@ -1,20 +1,15 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import CustomLink from "./link";
 
+// A helper that portals children to the body (or a different root).
+function MenuPortal({ children }) {
+	if (typeof globalThis === "undefined") return;
+	return createPortal(children, document.body);
+}
+
 export default function PrimaryMenu() {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-	// Use useCallback to memoize the toggle handler
-	const handleMenuToggle = useCallback(() => {
-		setIsMenuOpen((previous) => !previous);
-	}, []);
-
-	const handleMenuItemClick = useCallback(() => {
-		setIsMenuOpen(false);
-	}, []);
-
 	const navItemClass =
 		"text-gray-200 hover:text-white transition-colors duration-200";
 
@@ -47,59 +42,78 @@ export default function PrimaryMenu() {
 				</CustomLink>
 			</div>
 
-			<Menu>
-				<MenuButton
-					className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden"
-					onClick={handleMenuToggle}
-				>
-					<span className="sr-only">
-						{isMenuOpen ? "Close menu" : "Open menu"}
-					</span>
-					{isMenuOpen ? (
-						<XMarkIcon className="size-6" />
-					) : (
-						<Bars3Icon className="size-6" />
-					)}
-				</MenuButton>
+			<div className="md:hidden">
+				<Menu as="div">
+					{({ open }) => (
+						<>
+							<Menu.Button
+								className="rounded-md px-2 py-1.5 text-white/70 hover:text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+								aria-label={open ? "Close menu" : "Open menu"}
+							>
+								{open ? (
+									<XMarkIcon className="size-6" />
+								) : (
+									<Bars3Icon className="size-6" />
+								)}
+							</Menu.Button>
 
-				{isMenuOpen && (
-					<MenuItems
-						static
-						className="absolute top-[84.5px] -left-4 flex w-full flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg"
-					>
-						<MenuItem onClick={handleMenuItemClick}>
-							<CustomLink
-								className={navItemClass}
-								noDefaultStyles
-								href="/docs/"
-								activeClassName="text-purple-500"
-							>
-								Docs
-							</CustomLink>
-						</MenuItem>
-						<MenuItem onClick={handleMenuItemClick}>
-							<CustomLink
-								className={navItemClass}
-								noDefaultStyles
-								href="/blog/"
-								activeClassName="text-purple-500"
-							>
-								Blog
-							</CustomLink>
-						</MenuItem>
-						<MenuItem onClick={handleMenuItemClick}>
-							<CustomLink
-								className={navItemClass}
-								noDefaultStyles
-								href="/showcase/"
-								activeClassName="text-purple-500"
-							>
-								Showcase
-							</CustomLink>
-						</MenuItem>
-					</MenuItems>
-				)}
-			</Menu>
+							{open && (
+								<MenuPortal>
+									<Menu.Items
+										static
+										className="fixed inset-x-0 top-[60px] z-50 border-b-[.5px] border-gray-400 bg-gray-900 outline-none"
+									>
+										<div className="flex flex-col items-center justify-around gap-4 py-4 text-lg">
+											<Menu.Item>
+												{({ active }) => (
+													<CustomLink
+														className={`block w-full p-4 text-center ${navItemClass} ${
+															active ? "bg-purple-500/20" : ""
+														} hover:bg-purple-500/20 focus:bg-purple-500/20 focus:outline-none`}
+														noDefaultStyles
+														href="/docs/"
+														activeClassName="text-purple-500"
+													>
+														Docs
+													</CustomLink>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<CustomLink
+														className={`block w-full p-4 text-center ${navItemClass} ${
+															active ? "bg-purple-500/20" : ""
+														} hover:bg-purple-500/20 focus:bg-purple-500/20 focus:outline-none`}
+														noDefaultStyles
+														href="/blog/"
+														activeClassName="text-purple-500"
+													>
+														Blog
+													</CustomLink>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<CustomLink
+														className={`block w-full p-4 text-center ${navItemClass} ${
+															active ? "bg-purple-500/20" : ""
+														} hover:bg-purple-500/20 focus:bg-purple-500/20 focus:outline-none`}
+														noDefaultStyles
+														href="/showcase/"
+														activeClassName="text-purple-500"
+													>
+														Showcase
+													</CustomLink>
+												)}
+											</Menu.Item>
+										</div>
+									</Menu.Items>
+								</MenuPortal>
+							)}
+						</>
+					)}
+				</Menu>
+			</div>
 		</nav>
 	);
 }
