@@ -522,6 +522,116 @@ const redirectsOldSite = [
 		destination: "/showcase/",
 		permanent: true,
 	},
+	{
+		source: "/docs/how-to/react-components-to-blocks",
+		destination: "/docs/how-to/rendering-blocks",
+		permanent: true,
+	},
+	{
+		source: "/docs/gqty-intro",
+		destination: "/docs",
+		permanent: true,
+	},
+	{
+		source: "/wp-blocks",
+		destination: "/docs/how-to/rendering-blocks",
+		permanent: true,
+	},
+	{
+		source: "/docs/tutorial/querying-data",
+		destination: "/docs/how-to/query-data-in-the-browser",
+		permanent: true,
+	},
+	{
+		source: "/tutorial/CoreParagraph",
+		destination: "/docs/how-to/rendering-blocks",
+		permanent: true,
+	},
+	{
+		source: "/guide/possibleTypes.json",
+		destination: "/docs",
+		permanent: true,
+	},
+	{
+		source: "/docs/tutorial/setup-faustjs",
+		destination: "/docs/tutorial/learn-faust",
+		permanent: true,
+	},
+	{
+		source: "/WordPressBlocksViewer",
+		destination: "/docs/reference/wordpress-blocks-viewer",
+		permanent: true,
+	},
+	{
+		source: "/docs/changelog/next",
+		destination: "/docs",
+		permanent: true,
+	},
+	{
+		source: "/docs/privacy-policy",
+		destination: "/privacy-policy",
+		permanent: true,
+	},
+	{
+		source: "/docs/changelog/faustwp",
+		destination: "/docs",
+		permanent: true,
+	},
+	{
+		source: "/blog/atom.xml",
+		destination: "/blog",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/reference/hooks/usePost",
+		destination: "/docs/reference",
+		permanent: true,
+	},
+	{
+		source: "/headless-wordpress",
+		destination: "/",
+		permanent: true,
+	},
+	{
+		source: "/reference/single",
+		destination: "/docs/reference",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/guides/custom-post-types",
+		destination: "/docs/how-to/setup-cpt-in-faustjs",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/reference/getClient",
+		destination: "/docs/reference",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/reference/hooks/usePreviewNode",
+		destination: "/docs/reference",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/guides/sitemaps",
+		destination: "/docs/how-to/sitemaps",
+		permanent: true,
+	},
+	{
+		source: "/docs/changelog/faustwp-cli",
+		destination: "/docs",
+		permanent: true,
+	},
+	{
+		source: "/guide/wp-templates",
+		destination: "/docs/reference/wordpress-blocks-viewer",
+		permanent: true,
+	},
+	{
+		source: "/docs/tutorial/first-react-component",
+		destination: "/docs/tutorial/learn-faust",
+		permanent: true,
+	},
 ];
 
 export default redirectsOldSite;
