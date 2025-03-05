@@ -579,7 +579,7 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/blog/atom.xml",
-		destination: "/blog",
+		destination: "/api/feeds/feed.atom",
 		permanent: true,
 	},
 	{
@@ -624,12 +624,12 @@ const redirectsOldSite = [
 	},
 	{
 		source: "/guide/wp-templates",
-		destination: "/docs/reference/wordpress-blocks-viewer",
+		destination: "/docs/tutorial/learn-faust/#template-hierarchy",
 		permanent: true,
 	},
 	{
 		source: "/docs/tutorial/first-react-component",
-		destination: "/docs/tutorial/learn-faust",
+		destination: "/docs/how-to/rendering-blocks",
 		permanent: true,
 	},
 ];
