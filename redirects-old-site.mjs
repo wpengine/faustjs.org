@@ -632,6 +632,11 @@ const redirectsOldSite = [
 		destination: "/docs/how-to/rendering-blocks",
 		permanent: true,
 	},
+	{
+		source: "/docs/tutorial/dev-env-setup",
+		destination: "/docs/tutorial/learn-faust",
+		permanent: true,
+	},
 ];
 
 export default redirectsOldSite;
