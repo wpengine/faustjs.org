@@ -70,7 +70,7 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 				<PopoverPanel
 					as="ul"
 					transition
-					className="container-blur-bg absolute top-[84.5px] -left-4 flex w-full origin-top flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg transition duration-200 ease-out focus-within:outline-hidden data-closed:-translate-y-10 data-closed:opacity-0 md:hidden"
+					className="container-blur-bg absolute top-[84.5px] right-0 left-0 flex w-full origin-top flex-col items-center justify-around gap-4 border-b-[.5px] border-gray-400 bg-gray-900/80 py-4 text-lg transition duration-200 ease-out focus-within:outline-hidden data-closed:-translate-y-10 data-closed:opacity-0 md:hidden"
 				>
 					<CustomLink
 						key="docs"
