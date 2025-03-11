@@ -18,7 +18,6 @@ import withSmartQuotes from "remark-smartypants";
 import slugger from "slugger";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
-// remark/rehype markdown plugins
 
 const octokit = new Octokit({
 	auth: env.GITHUB_TOKEN,
@@ -40,8 +39,8 @@ function docUrlFromSlug(slug = []) {
 	return path.join(DOCS_PATH, ...slug, "index.mdx");
 }
 
-function imgUrlFromPath(path) {
-	return `${DOCS_PATH}/${path}`;
+function imgUrlFromPath(imgPath) {
+	return `${DOCS_PATH}/${imgPath}`;
 }
 
 export function getRemoteImgUrl(localPath) {
@@ -59,7 +58,7 @@ export async function getAllDocMeta() {
 		},
 	);
 
-	if (status != 200) {
+	if (status !== 200) {
 		throw new Error(status);
 	}
 
@@ -86,13 +85,14 @@ export async function getAllDocUri() {
 		throw new Error("GitHub response should be an array");
 	}
 
-	return data.reduce((accumulator, file) => {
+	const accumulator = [];
+	for (const file of data) {
 		if (DOCS_EXT_REG.test(file.path)) {
 			accumulator.push(`/docs/${file.path.match(DOCS_EXT_REG).groups.slug}`);
 		}
+	}
 
-		return accumulator;
-	}, []);
+	return accumulator;
 }
 
 export async function getDocContent(slug) {
