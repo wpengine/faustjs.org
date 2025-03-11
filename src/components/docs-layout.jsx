@@ -33,8 +33,8 @@ const flattenRoutes = (routeConfig) => {
 
 export default function DocumentPage({
 	children,
-	metadata,
 	docsNavData: routes,
+	source: { frontmatter },
 }) {
 	const flatRoutes = flattenRoutes(routes);
 	const { asPath } = useRouter();
@@ -42,8 +42,8 @@ export default function DocumentPage({
 	return (
 		<>
 			<Seo
-				title={metadata?.title ?? "FALLBACK TITLE"}
-				description={metadata?.description}
+				title={frontmatter?.title ?? "FALLBACK TITLE"}
+				description={frontmatter?.description}
 				url={asPath}
 			/>
 			<Disclosure
@@ -80,11 +80,11 @@ export default function DocumentPage({
 					<div className="my-6 border-t border-gray-700" />
 
 					<Link
-						className="leading-loose font-normal text-gray-400 no-underline hover:text-blue-500"
+						className="text-xs leading-loose font-normal text-gray-400 no-underline hover:text-blue-500"
 						href={`https://github.com/wpengine/faustjs.org/edit/main/src/pages${asPath}index.mdx`}
 						noDefaultStyles
 					>
-						Improve & Edit this doc on GitHub
+						Edit this doc on GitHub
 					</Link>
 				</nav>
 				<article
@@ -92,8 +92,8 @@ export default function DocumentPage({
 					className="container-main xs:py-20 prose prose-invert min-h-[calc(100vh-120px)] max-w-full py-0 sm:max-w-[80ch] sm:py-20 md:py-8"
 				>
 					<DocsBreadcrumbs routes={flatRoutes} />
-					{metadata?.title && (
-						<h1 className="article-title break-words">{metadata.title}</h1>
+					{frontmatter?.title && (
+						<h1 className="article-title break-words">{frontmatter.title}</h1>
 					)}
 					{children}
 					<DocsPreviousNextLinks routes={flatRoutes} />
