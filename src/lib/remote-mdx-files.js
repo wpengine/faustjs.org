@@ -36,7 +36,7 @@ const DOCS_PATH = `https://raw.githubusercontent.com/${DOCS_OWNER}/${DOCS_REPO}/
 const DOCS_NAV_CONFIG_URL = `${DOCS_PATH}/nav.json`;
 
 function docUrlFromSlug(slug = []) {
-	return path.join(DOCS_PATH, ...slug, "index.mdx");
+	return path.join(DOCS_PATH, ...slug, "index.md");
 }
 
 function imgUrlFromPath(imgPath) {
@@ -61,8 +61,6 @@ export async function getAllDocMeta() {
 	if (status !== 200) {
 		throw new Error(status);
 	}
-
-	console.log("docMeta Data", data);
 
 	return data;
 }
