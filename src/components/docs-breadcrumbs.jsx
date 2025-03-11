@@ -31,7 +31,7 @@ export default function DocsBreadcrumbs({ routes }) {
 	};
 
 	const router = useRouter();
-	const currentPath = router.pathname;
+	const currentPath = router.asPath;
 	const breadcrumbLinks = generateBreadcrumbs(routes, currentPath);
 
 	if (breadcrumbLinks.length === 0) {
