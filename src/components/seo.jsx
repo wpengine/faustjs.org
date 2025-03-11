@@ -1,6 +1,11 @@
 import Head from "next/head";
 
 export default function SEO({ title, description, imageUrl, url }) {
+	const canonicalUrl = url
+		? // eslint-disable-next-line no-restricted-globals, n/prefer-global/process, n/prefer-global/url
+			new URL(url, process.env.NEXT_PUBLIC_SITE_URL)
+		: undefined;
+
 	return (
 		<Head>
 			<meta content="website" property="og:type" />
@@ -30,10 +35,11 @@ export default function SEO({ title, description, imageUrl, url }) {
 				</>
 			)}
 
-			{url && (
+			{canonicalUrl && (
 				<>
-					<meta content={url} property="og:url" />
-					<meta content={url} property="twitter:url" />
+					<link rel="canonical" href={canonicalUrl} />
+					<meta content={canonicalUrl} property="og:url" />
+					<meta content={canonicalUrl} property="twitter:url" />
 				</>
 			)}
 		</Head>
