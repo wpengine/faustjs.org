@@ -41,7 +41,7 @@ const CustomLink = forwardRef(
 					{children}
 					{!disableExternalIcon && (
 						<span>
-							<ArrowTopRightOnSquareIcon className="inline h-4 w-4 align-text-top" />
+							<ArrowTopRightOnSquareIcon className="inline h-[1em] max-h-4 w-[1em] max-w-4 align-text-top" />
 						</span>
 					)}
 				</a>
