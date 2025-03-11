@@ -11,29 +11,7 @@ import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
-// import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
-
-const routes = [
-	{
-		title: "Getting Started",
-		route: "/docs/",
-	},
-	{
-		title: "How-To Guides",
-		route: "/docs/how-to/",
-		children: [
-			{
-				title: "Basic Setup",
-				route: "/docs/how-to/basic-setup/",
-			},
-			{
-				title: "Customize the Toolbar",
-				route: "/docs/how-to/customize-the-toolbar/",
-			},
-		],
-	},
-];
 
 const flattenRoutes = (routeConfig) => {
 	const flatRoutes = [];
@@ -53,7 +31,11 @@ const flattenRoutes = (routeConfig) => {
 	return flatRoutes;
 };
 
-export default function DocumentPage({ children, metadata }) {
+export default function DocumentPage({
+	children,
+	metadata,
+	docsNavData: routes,
+}) {
 	const flatRoutes = flattenRoutes(routes);
 	const { asPath } = useRouter();
 
