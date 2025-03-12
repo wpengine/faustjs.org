@@ -10,11 +10,11 @@ import {
 const {
 	NEXT_PUBLIC_SEARCH_ENDPOINT: endpoint,
 	NEXT_SEARCH_ACCESS_TOKEN: accessToken,
-	INDEX_SMART_SEARCH: indexSmartSearch,
+	HEADLESS_METADATA_ENV_BRANCH: branchName,
 } = env;
 
 async function main() {
-	if (indexSmartSearch === "true" && (!endpoint || !accessToken)) {
+	if (branchName === "main" && (!endpoint || !accessToken)) {
 		console.error("Search endpoint and accessToken are required for indexing.");
 		exit(1);
 	}
@@ -24,7 +24,7 @@ async function main() {
 
 		console.log("Docs Pages collected for indexing:", pages.length);
 
-		if (indexSmartSearch !== "true") {
+		if (branchName !== "main") {
 			console.log("Skipping indexing in non-production mode.");
 			exit(0);
 		}
