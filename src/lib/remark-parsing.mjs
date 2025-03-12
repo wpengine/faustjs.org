@@ -12,16 +12,13 @@ import { matter } from "vfile-matter";
  * @returns {Promise<import("vfile-matter/lib").VFile>}
  */
 export async function getTextContentFromMd(mdContent) {
-	return (
-		unified()
-			.use(remarkParse)
-			// .use(remarkGfm)
-			.use(addFrontmatterToVFile)
-			.use(remarkFm)
-			.use(remarkStrip)
-			.use(remarkStringify)
-			.process(mdContent)
-	);
+	return unified()
+		.use(remarkParse)
+		.use(addFrontmatterToVFile)
+		.use(remarkFm)
+		.use(remarkStrip)
+		.use(remarkStringify)
+		.process(mdContent);
 }
 
 function addFrontmatterToVFile() {
