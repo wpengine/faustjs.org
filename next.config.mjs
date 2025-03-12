@@ -1,12 +1,8 @@
-import { env } from "node:process";
 import { withFaust, getWpHostname } from "@faustwp/core";
 import { withWPEConfig } from "@wpengine/atlas-next";
 import { createSecureHeaders } from "next-secure-headers";
-// import recmaNextjsStaticProps from "recma-nextjs-static-props";
-// import remarkGfm from "remark-gfm";
 import redirectsOldSite from "./redirects-old-site.mjs";
 import { DOCS_PATH } from "./src/lib/remote-mdx-files.mjs";
-import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
 
 const newRedirects = [
 	{
@@ -66,29 +62,6 @@ const nextConfig = {
 			},
 		];
 	},
-	webpack: (config, { isServer }) => {
-		if (isServer) {
-			config.plugins.push(
-				smartSearchPlugin({
-					endpoint: env.NEXT_PUBLIC_SEARCH_ENDPOINT,
-					accessToken: env.NEXT_SEARCH_ACCESS_TOKEN,
-				}),
-			);
-		}
-
-		return config;
-	},
 };
-
-// const withMDX = createMDX({
-// 	options: {
-// 		recmaPlugins: [recmaNextjsStaticProps],
-// 		remarkPlugins: [remarkGfm],
-// 		rehypePlugins: [
-// 			rehypeCallouts,
-
-// 		],
-// 	},
-// });
 
 export default withWPEConfig(withFaust(nextConfig));
