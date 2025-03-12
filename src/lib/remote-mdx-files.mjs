@@ -114,7 +114,7 @@ export async function getDocsNav() {
 	return resp.json();
 }
 
-async function getAllDocUri() {
+export async function getAllDocUri() {
 	const data = await getAllDocMeta();
 
 	if (!Array.isArray(data)) {
@@ -125,9 +125,7 @@ async function getAllDocUri() {
 	const accumulator = [];
 	for (const file of data) {
 		if (DOCS_EXT_REG.test(file.path)) {
-			accumulator.push(path.join("/", getDocUriFromPath(file.path)));
-		} else {
-			console.log("This did not pass", file.path);
+			accumulator.push(getDocUriFromPath(file.path));
 		}
 	}
 
@@ -135,13 +133,13 @@ async function getAllDocUri() {
 }
 
 export function getDocUriFromPath(ghPath) {
-	return ghPath.match(DOCS_EXT_REG).groups.slug;
+	return path.join("/", ghPath.match(DOCS_EXT_REG).groups.slug);
 }
 
 /**
  * Retrieves the content of a document from its slug.
  *
- * @param {string} slug
+ * @param {string} url
  * @returns {Promise<string>}
  */
 export async function getDocContent(url) {
@@ -162,7 +160,7 @@ export async function getDocContent(url) {
 /**
  * Retrieves the parsed content of a document from its slug.
  *
- * @param {string} url
+ * @param {string} slug
  * @returns {Promise<{source: ParsedDoc}>}
  */
 export async function getParsedDoc(slug) {

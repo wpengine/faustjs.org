@@ -13,25 +13,27 @@ const {
 	INDEX_SMART_SEARCH: indexSmartSearch,
 } = env;
 
-if (indexSmartSearch === "true" && (!endpoint || !accessToken)) {
-	console.error("Search endpoint and accessToken are required for indexing.");
-	exit(1);
-}
-
-try {
-	const pages = await collectPages();
-
-	console.log("Docs Pages collected for indexing:", pages.length);
-
-	if (indexSmartSearch !== "true") {
-		console.log("Skipping indexing in non-production mode.");
-		exit(0);
+async function main() {
+	if (indexSmartSearch === "true" && (!endpoint || !accessToken)) {
+		console.error("Search endpoint and accessToken are required for indexing.");
+		exit(1);
 	}
 
-	await deleteOldDocs(pages);
-	await sendPagesToEndpoint(pages);
-} catch (error) {
-	console.error("Error in smartSearchPlugin:", error);
+	try {
+		const pages = await collectPages();
+
+		console.log("Docs Pages collected for indexing:", pages.length);
+
+		if (indexSmartSearch !== "true") {
+			console.log("Skipping indexing in non-production mode.");
+			exit(0);
+		}
+
+		await deleteOldDocs();
+		await sendPagesToEndpoint(pages);
+	} catch (error) {
+		console.error("Error in smartSearchPlugin:", error);
+	}
 }
 
 /**
@@ -50,18 +52,12 @@ async function collectPages() {
 	const pages = [];
 	const entries = await getAllDocMeta();
 
-	console.log("entries", entries, entries.length);
-
 	for (const entry of entries) {
 		const entryContent = await getDocContent(entry.download_url);
 
 		const parsedContent = await getTextContentFromMd(entryContent);
 
 		const cleanedPath = getDocUriFromPath(entry.path);
-
-		// const textContent = htmlToText(content);
-
-		// const cleanedPath = cleanPath(entryPath);
 
 		const id = hash("sha-1", `mdx:${cleanedPath}`);
 
@@ -80,11 +76,35 @@ async function collectPages() {
 	return pages;
 }
 
+async function graphql(body) {
+	const response = await fetch(endpoint, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${accessToken}`,
+		},
+		body: JSON.stringify(body),
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP ${response.status} ${response.statusText}`);
+	}
+
+	const result = await response.json();
+
+	if (result.errors) {
+		throw new Error(result.errors);
+	}
+
+	return result;
+}
+
 const queryDocuments = `
-query FindIndexedMdxDocs($query: String!) {
-	find(query: $query) {
+query FindIndexedMdxDocs($query: String! $limit: Int! $offset: Int! ) {
+	find(query: $query limit: $limit offset: $offset) {
+		total
 		documents {
-		id
+			id
 		}
 	}
 }
@@ -100,69 +120,68 @@ mutation DeleteDocument($id: ID!) {
 }
 `;
 
-async function deleteOldDocs(pages) {
-	const currentMdxDocuments = new Set(pages.map((page) => page.id));
-
-	const variablesForQuery = {
-		query: 'content_type:"mdx_doc"',
-	};
-
+async function deleteOldDocs() {
 	try {
-		const response = await graphql({
-			query: queryDocuments,
-			variables: variablesForQuery,
-		});
+		const existingDocs = [];
+		let total;
+		let totalCollected = 0;
+		let firstRun = true;
 
-		const result = await response.json();
+		while (totalCollected < total || firstRun) {
+			firstRun = false;
+			const response = await graphql({
+				query: queryDocuments,
+				variables: {
+					query: 'content_type:"mdx_doc"',
+					limit: 10,
+					offset: totalCollected,
+				},
+			});
 
-		if (result.errors) {
-			console.error("Error fetching existing documents:", result.errors);
-			return;
+			total = response.data.find.total;
+
+			totalCollected += response.data.find.documents.length;
+
+			existingDocs.push(...response.data.find.documents);
 		}
 
-		const existingIndexedDocuments = new Set(
-			result.data.find.documents.map((doc) => doc.id),
-		);
+		const existingIndexedDocuments = new Set(existingDocs.map((doc) => doc.id));
 
-		const documentsToDelete =
-			existingIndexedDocuments.difference(currentMdxDocuments);
-
-		if (documentsToDelete?.size === 0) {
+		if (existingIndexedDocuments?.size === 0) {
 			console.log("No documents to delete.");
 			return;
 		}
 
-		for (const doc of documentsToDelete.values()) {
+		const deletedDocsCollector = [];
+
+		for (const doc of existingIndexedDocuments.values()) {
 			const variablesForDelete = {
 				id: doc,
 			};
 
-			try {
-				const deleteResponse = await graphql({
+			deletedDocsCollector.push(
+				graphql({
 					query: deleteMutation,
 					variables: variablesForDelete,
-				});
+				}),
+			);
+		}
 
-				const deleteResult = await deleteResponse.json();
+		const results = await Promise.allSettled(deletedDocsCollector);
 
-				if (deleteResult.errors) {
-					console.error(
-						`Error deleting document ID ${doc}:`,
-						deleteResult.errors,
-					);
-				} else {
-					console.log(`Deleted document ID ${doc}:`, deleteResult.data.delete);
-				}
-			} catch (error) {
-				console.error(`Network error deleting document ID ${doc.id}:`, error);
+		for (const result of results) {
+			if (result.status === "rejected") {
+				console.error("Error deleting document:", result.reason);
 			}
 		}
+
+		console.log(`Deleted ${results.length} documents successfully.`);
 	} catch (error) {
 		console.error("Error during deletion process:", error);
 	}
 }
 
-const bulkIndexQuery = `
+const bulkIndexMutation = `
   mutation BulkIndex($input: BulkIndexInput!) {
     bulkIndex(input: $input) {
       code
@@ -187,34 +206,12 @@ async function sendPagesToEndpoint(pages) {
 	const variables = { input: { documents } };
 
 	try {
-		const response = await graphql({ query: bulkIndexQuery, variables });
+		await graphql({ query: bulkIndexMutation, variables });
 
-		if (!response.ok) {
-			console.error(
-				`Error during bulk indexing: ${response.status} ${response.statusText}`,
-			);
-			return;
-		}
-
-		const result = await response.json();
-
-		if (result.errors) {
-			console.error("GraphQL bulk indexing error:", result.errors);
-		} else {
-			console.log(`Indexed ${documents.length} documents successfully.`);
-		}
+		console.log(`Indexed ${documents.length} documents successfully.`);
 	} catch (error) {
 		console.error("Error during bulk indexing:", error);
 	}
 }
 
-async function graphql(body) {
-	return fetch(endpoint, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			Authorization: `Bearer ${accessToken}`,
-		},
-		body: JSON.stringify(body),
-	});
-}
+await main();
