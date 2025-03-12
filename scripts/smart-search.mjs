@@ -10,15 +10,20 @@ import {
 const {
 	NEXT_PUBLIC_SEARCH_ENDPOINT: endpoint,
 	NEXT_SEARCH_ACCESS_TOKEN: accessToken,
-	NODE_ENV: nodeEnvironment,
+	INDEX_SMART_SEARCH: indexSmartSearch,
 } = env;
+
+if (indexSmartSearch === "true" && (!endpoint || !accessToken)) {
+	console.error("Search endpoint and accessToken are required for indexing.");
+	exit(1);
+}
 
 try {
 	const pages = await collectPages();
 
 	console.log("Docs Pages collected for indexing:", pages.length);
 
-	if (nodeEnvironment !== "production") {
+	if (indexSmartSearch !== "true") {
 		console.log("Skipping indexing in non-production mode.");
 		exit(0);
 	}
@@ -39,7 +44,6 @@ try {
  * @property {string} data.content //The text content of the document.
  * @property {string} data.path //A relative path to the document on the internet.
  * @property {string} data.content_type // The type of content. Always "mdx_doc".
- * @param {string} directory
  * @returns Page[]
  */
 async function collectPages() {
