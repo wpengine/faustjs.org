@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote";
 import { useMDXComponents } from "@/components/mdx-components";
-import { getParsedDoc, getDocsNav } from "@/lib/remote-mdx-files";
+import { getParsedDoc, getDocsNav } from "@/lib/remote-mdx-files.mjs";
 
 export default function Doc({ source }) {
 	return <MDXRemote {...source} components={useMDXComponents()} />;

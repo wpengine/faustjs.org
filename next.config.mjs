@@ -5,6 +5,7 @@ import { createSecureHeaders } from "next-secure-headers";
 // import recmaNextjsStaticProps from "recma-nextjs-static-props";
 // import remarkGfm from "remark-gfm";
 import redirectsOldSite from "./redirects-old-site.mjs";
+import { DOCS_PATH } from "./src/lib/remote-mdx-files.mjs";
 import smartSearchPlugin from "./src/lib/smart-search-plugin.mjs";
 
 const newRedirects = [
@@ -43,6 +44,11 @@ const nextConfig = {
 				protocol: "https",
 				hostname: getWpHostname(),
 				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "raw.githubusercontent.com",
+				pathname: DOCS_PATH + "/**",
 			},
 		],
 	},

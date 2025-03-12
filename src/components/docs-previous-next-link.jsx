@@ -5,7 +5,7 @@ import { normalizeHref } from "@/utils/strings";
 
 export default function DocsPreviousNextLinks({ routes }) {
 	const router = useRouter();
-	const currentPath = router.pathname;
+	const currentPath = router.asPath;
 
 	const currentIndex = routes.findIndex(
 		(route) => normalizeHref(route.route) === normalizeHref(currentPath),
