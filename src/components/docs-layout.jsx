@@ -11,8 +11,8 @@ import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
-import routes from "@/pages/docs/nav.json";
 import "rehype-callouts/theme/vitepress";
+import { generateGitHubEditUrl } from "@/lib/github";
 
 const flattenRoutes = (routeConfig) => {
 	const flatRoutes = [];
@@ -32,15 +32,22 @@ const flattenRoutes = (routeConfig) => {
 	return flatRoutes;
 };
 
-export default function DocumentPage({ children, metadata }) {
+export default function DocumentPage({
+	children,
+	docsNavData: routes,
+	source: { frontmatter, scope },
+}) {
 	const flatRoutes = flattenRoutes(routes);
-	const { asPath } = useRouter();
+	const {
+		asPath,
+		query: { slug = [] },
+	} = useRouter();
 
 	return (
 		<>
 			<Seo
-				title={metadata.title}
-				description={metadata?.description}
+				title={frontmatter?.title ?? "FALLBACK TITLE"}
+				description={frontmatter?.description}
 				url={asPath}
 			/>
 			<Disclosure
@@ -72,16 +79,16 @@ export default function DocumentPage({ children, metadata }) {
 					<DocsNav routes={routes} />
 				</nav>
 				<nav className="sticky top-[84px] order-last hidden h-[calc(100vh-84px)] w-[240px] overflow-y-auto p-6 lg:block">
-					<OnThisPageNav>{children}</OnThisPageNav>
+					<OnThisPageNav headings={scope.toc} />
 
 					<div className="my-6 border-t border-gray-700" />
 
 					<Link
-						className="leading-loose font-normal text-gray-400 no-underline hover:text-blue-500"
-						href={`https://github.com/wpengine/faustjs.org/edit/main/src/pages${asPath}index.mdx`}
+						className="text-xs leading-loose font-normal text-gray-400 no-underline hover:text-blue-500"
+						href={generateGitHubEditUrl(slug.join("/"))}
 						noDefaultStyles
 					>
-						Improve & Edit this doc on GitHub
+						Edit this doc on GitHub
 					</Link>
 				</nav>
 				<article
@@ -89,8 +96,8 @@ export default function DocumentPage({ children, metadata }) {
 					className="container-main xs:py-20 prose prose-invert min-h-[calc(100vh-120px)] max-w-full py-0 sm:max-w-[80ch] sm:py-20 md:py-8"
 				>
 					<DocsBreadcrumbs routes={flatRoutes} />
-					{metadata?.title && (
-						<h1 className="article-title break-words">{metadata.title}</h1>
+					{frontmatter?.title && (
+						<h1 className="article-title break-words">{frontmatter.title}</h1>
 					)}
 					{children}
 					<DocsPreviousNextLinks routes={flatRoutes} />

@@ -5,7 +5,7 @@
 const config = {
 	semi: true,
 	plugins: ["prettier-plugin-tailwindcss"],
-	tailwindFunctions: ["classnames"],
+	tailwindFunctions: ["classNames"],
 };
 
 export default config;

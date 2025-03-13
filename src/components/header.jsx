@@ -1,7 +1,7 @@
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
 import { useState } from "react";
 import FaustLogo from "./faust-logo";
-import PrimaryMenu from "./primary-menu";
+import PrimaryNav from "./primary-nav";
 import SearchBar from "./search-bar";
 import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
@@ -48,7 +48,7 @@ export default function Header() {
 					</Link>
 				</div>
 				<div className="flex items-center gap-5 md:w-full md:justify-between">
-					<PrimaryMenu
+					<PrimaryNav
 						onMenuToggle={setIsMenuOpen}
 						setIsMenuOpen={setIsMenuOpen}
 					/>
