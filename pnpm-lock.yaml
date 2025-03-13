@@ -43,15 +43,6 @@ importers:
       '@jsdevtools/rehype-url-inspector':
         specifier: ^2.0.2
         version: 2.0.2
-      '@mdx-js/loader':
-        specifier: ^3.0.1
-        version: 3.1.0(acorn@8.14.0)(webpack@5.96.1)
-      '@mdx-js/react':
-        specifier: ^3.0.1
-        version: 3.1.0(@types/react@18.3.12)(react@19.0.0)
-      '@next/mdx':
-        specifier: ^15.1.7
-        version: 15.1.7(@mdx-js/loader@3.1.0(acorn@8.14.0)(webpack@5.96.1))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@19.0.0))
       '@octokit/core':
         specifier: ^6.1.4
         version: 6.1.4
@@ -64,9 +55,6 @@ importers:
       '@wpengine/atlas-next':
         specifier: ^2.0.0
         version: 2.0.0(next@15.1.7(@babel/core@7.25.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(node-fetch@2.7.0)
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -1212,14 +1200,6 @@ packages:
     resolution: {integrity: sha512-iQL2lb+nOoT+5jFz1nfOa3oBJPF2JyBtPQgGmrRhxLT3QZAGIMLz/mh/9mUmk7FfKF5NB8xq0KoLn5F4/QHpyA==}
     engines: {node: '>=10'}
 
-  '@mdx-js/loader@3.1.0':
-    resolution: {integrity: sha512-xU/lwKdOyfXtQGqn3VnJjlDrmKXEvMi1mgYxVmukEUtVycIz1nh7oQ40bKTd4cA7rLStqu0740pnhGYxGoqsCg==}
-    peerDependencies:
-      webpack: '>=5'
-    peerDependenciesMeta:
-      webpack:
-        optional: true
-
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
 
@@ -1243,17 +1223,6 @@ packages:
 
   '@next/eslint-plugin-next@15.1.6':
     resolution: {integrity: sha512-+slMxhTgILUntZDGNgsKEYHUvpn72WP1YTlkmEhS51vnVd7S9jEEy0n9YAMcI21vUG4akTw9voWH02lrClt/yw==}
-
-  '@next/mdx@15.1.7':
-    resolution: {integrity: sha512-olVOjKA1K8b7/cu0zqWecVkwyCUnB9xlKXxB/CeCRoZYlH0zluLHwhWBX0PR9yf3CG7eNLrK+PfuPBF+LdWODQ==}
-    peerDependencies:
-      '@mdx-js/loader': '>=0.15.0'
-      '@mdx-js/react': '>=0.15.0'
-    peerDependenciesMeta:
-      '@mdx-js/loader':
-        optional: true
-      '@mdx-js/react':
-        optional: true
 
   '@next/swc-darwin-arm64@15.1.7':
     resolution: {integrity: sha512-hPFwzPJDpA8FGj7IKV3Yf1web3oz2YsR8du4amKw8d+jAOHfYHYFpMkoF6vgSY4W6vB29RtZEklK9ayinGiCmQ==}
@@ -6869,16 +6838,6 @@ snapshots:
       url-regex: 5.0.0
       vfile: 4.2.1
 
-  '@mdx-js/loader@3.1.0(acorn@8.14.0)(webpack@5.96.1)':
-    dependencies:
-      '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
-      source-map: 0.7.4
-    optionalDependencies:
-      webpack: 5.96.1(webpack-cli@5.1.4)
-    transitivePeerDependencies:
-      - acorn
-      - supports-color
-
   '@mdx-js/mdx@3.1.0(acorn@8.14.0)':
     dependencies:
       '@types/estree': 1.0.6
@@ -6931,13 +6890,6 @@ snapshots:
   '@next/eslint-plugin-next@15.1.6':
     dependencies:
       fast-glob: 3.3.1
-
-  '@next/mdx@15.1.7(@mdx-js/loader@3.1.0(acorn@8.14.0)(webpack@5.96.1))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@19.0.0))':
-    dependencies:
-      source-map: 0.7.4
-    optionalDependencies:
-      '@mdx-js/loader': 3.1.0(acorn@8.14.0)(webpack@5.96.1)
-      '@mdx-js/react': 3.1.0(@types/react@18.3.12)(react@19.0.0)
 
   '@next/swc-darwin-arm64@15.1.7':
     optional: true
