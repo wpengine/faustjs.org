@@ -42,7 +42,7 @@ export default function DocsBreadcrumbs({ routes }) {
 	homeRoute.title = "Docs";
 	breadcrumbLinks.unshift(homeRoute);
 
-	if (currentPath === "/docs") {
+	if (currentPath === "/docs/") {
 		breadcrumbLinks.shift(0);
 	}
 
