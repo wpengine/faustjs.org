@@ -1,14 +1,14 @@
-import { MDXRemote } from "next-mdx-remote";
+import { MDXClient } from "next-mdx-remote-client";
 import { useMDXComponents } from "@/components/mdx-components";
 import { getParsedDoc, getDocsNav } from "@/lib/remote-mdx-files.mjs";
 
 export default function Doc({ source }) {
-	return <MDXRemote {...source} components={useMDXComponents()} />;
+	return <MDXClient {...source} components={useMDXComponents()} />;
 }
 
 export async function getStaticProps({ params }) {
 	try {
-		const { source } = await getParsedDoc(params.slug);
+		const source = await getParsedDoc(params.slug);
 		const docsNavData = await getDocsNav();
 
 		return {
@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
 	const docs_menu_paths = ["/docs/"];
 	return {
-		paths: docs_menu_paths ?? [],
+		paths: docs_menu_paths,
 		fallback: "blocking",
 	};
 }

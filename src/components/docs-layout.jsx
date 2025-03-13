@@ -12,6 +12,7 @@ import DocsNav from "@/components/docs-nav";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
 import "rehype-callouts/theme/vitepress";
+import { generateGitHubEditUrl } from "@/lib/github";
 
 const flattenRoutes = (routeConfig) => {
 	const flatRoutes = [];
@@ -34,10 +35,13 @@ const flattenRoutes = (routeConfig) => {
 export default function DocumentPage({
 	children,
 	docsNavData: routes,
-	source: { frontmatter },
+	source: { frontmatter, scope },
 }) {
 	const flatRoutes = flattenRoutes(routes);
-	const { asPath } = useRouter();
+	const {
+		asPath,
+		query: { slug },
+	} = useRouter();
 
 	return (
 		<>
@@ -75,13 +79,13 @@ export default function DocumentPage({
 					<DocsNav routes={routes} />
 				</nav>
 				<nav className="sticky top-[84px] order-last hidden h-[calc(100vh-84px)] w-[240px] overflow-y-auto p-6 lg:block">
-					<OnThisPageNav>{children}</OnThisPageNav>
+					<OnThisPageNav headings={scope.toc} />
 
 					<div className="my-6 border-t border-gray-700" />
 
 					<Link
 						className="text-xs leading-loose font-normal text-gray-400 no-underline hover:text-blue-500"
-						href={`https://github.com/wpengine/faustjs.org/edit/main/src/pages${asPath}index.mdx`}
+						href={generateGitHubEditUrl(slug.join("/"))}
 						noDefaultStyles
 					>
 						Edit this doc on GitHub

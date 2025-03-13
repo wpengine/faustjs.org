@@ -1,18 +1,13 @@
 import path from "node:path";
 import { env } from "node:process";
-import rehypeUrlInspector from "@jsdevtools/rehype-url-inspector";
 import { Octokit } from "@octokit/core";
-import { transformerNotationDiff } from "@shikijs/transformers";
-import { serialize } from "next-mdx-remote/serialize";
-import rehypeCallouts from "rehype-callouts";
-import rehypeExternalLinks from "rehype-external-links";
-import { rehypePrettyCode } from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
-// import remarkRehype from "remark-rehype";
-import withSmartQuotes from "remark-smartypants";
-
-// import { visit } from "unist-util-visit";
+import {
+	DOCS_OWNER,
+	DOCS_REPO,
+	DOCS_BRANCH,
+	DOCS_FOLDER,
+} from "../constants/repo.mjs";
+import { getSerializedContextFromMd } from "./remark-parsing.mjs";
 
 if (!env.GITHUB_TOKEN) {
 	throw new Error("GITHUB_TOKEN is required");
@@ -22,11 +17,6 @@ const octokit = new Octokit({
 	auth: env.GITHUB_TOKEN,
 });
 
-const DOCS_OWNER = "wpengine";
-const DOCS_REPO = "faustjs";
-// @TODO: Change to `main/canary` for production
-const DOCS_BRANCH = "new-docs";
-const DOCS_FOLDER = "docs";
 const DOCS_EXT_REG = /(?<slug>.*)index.md(?:x?)$/i;
 const IMG_PATH_REG = /^(?<path>\.\/)?(?<slug>.+)$/i;
 
@@ -142,7 +132,7 @@ export function getDocUriFromPath(ghPath) {
  * @param {string} url
  * @returns {Promise<string>}
  */
-export async function getDocContent(url) {
+export async function getRawDocContent(url) {
 	const resp = await fetch(url);
 
 	if (!resp.ok) {
@@ -161,96 +151,10 @@ export async function getDocContent(url) {
  * Retrieves the parsed content of a document from its slug.
  *
  * @param {string} slug
- * @returns {Promise<{source: ParsedDoc}>}
+ * @returns {ReturnType<typeof import("./remark-parsing.mjs").getSerializedContextFromMd>}
  */
 export async function getParsedDoc(slug) {
-	const content = await getDocContent(docUrlFromSlug(slug));
+	const content = await getRawDocContent(docUrlFromSlug(slug));
 
-	const [source, toc] = await Promise.all([
-		getSourceFromMd(content, slug),
-		// getTOCFromMd(content),
-	]);
-
-	return { source, toc };
+	return getSerializedContextFromMd(content, slug);
 }
-
-/**
- * Returns the parsed content of a document from its markdown content.
- *
- * @typedef {{
- * frontmatter: { title: string; description: string; }
- * compiledSource: string;
- * }} ParsedDoc
- * @param {string} mdContent
- * @param {string} pageUrl
- * @returns {Promise<ParsedDoc>}
- */ async function getSourceFromMd(mdContent, pageUrl) {
-	return serialize(mdContent, {
-		parseFrontmatter: true,
-		mdxOptions: {
-			remarkPlugins: [[remarkGfm, { singleTilde: false }], withSmartQuotes],
-			rehypePlugins: [
-				[
-					rehypeUrlInspector,
-					{
-						selectors: ["img[src]"],
-						inspectEach: ({ url, node }) => {
-							node.properties.src = getRemoteImgUrl(url, pageUrl);
-						},
-					},
-				],
-				// rehypeNextImageMetadata,
-				[rehypeExternalLinks, { target: "_blank" }],
-				rehypeSlug,
-				rehypeCallouts,
-				[
-					rehypePrettyCode,
-					{
-						transformers: [
-							transformerNotationDiff({
-								matchAlgorithm: "v3",
-							}),
-						],
-						theme: "github-dark-dimmed",
-						defaultLang: "plaintext",
-						bypassInlineCode: false,
-					},
-				],
-			],
-		},
-	});
-}
-
-// async function getTOCFromMd(mdContent) {
-// 	const toc = [];
-// 	const parentId = undefined;
-
-// 	await unified()
-// 		.use(remarkParse)
-// 		.use(remarkFm)
-// 		.use(remarkRehype)
-// 		.use(() => {
-// 			return (tree) => {
-// 				visit(tree, "element", (node) => {
-// 					if (
-// 						(node.tagName === "h2" || node.tagName === "h3") &&
-// 						node.children[0].value
-// 					) {
-// 						const title = node.children[0]?.value;
-// 						const id = slugger(title);
-
-// 						toc.push({
-// 							tagName: node.tagName,
-// 							id,
-// 							title: title ?? "title",
-// 							parentId: node.tagName === "h2" ? undefined : parentId,
-// 						});
-// 					}
-// 				});
-// 			};
-// 		})
-// 		.use(remarkStringify)
-// 		.process(mdContent);
-
-// 	return toc;
-// }

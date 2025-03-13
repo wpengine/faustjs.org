@@ -2,26 +2,8 @@ import { useEffect, useState } from "react";
 import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
 
-export default function OnThisPageNav({ children }) {
-	const [headings, setHeadings] = useState([]);
+export default function OnThisPageNav({ headings }) {
 	const [activeId, setActiveId] = useState();
-
-	useEffect(() => {
-		const headingsArray = [];
-		const headingElements = document.querySelectorAll("h2, h3");
-
-		for (const heading of headingElements) {
-			if (heading.id) {
-				headingsArray.push({
-					id: heading.id,
-					text: heading.textContent,
-					level: Number.parseInt(heading.tagName[1], 10),
-				});
-			}
-		}
-
-		setHeadings(headingsArray);
-	}, [children]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -52,18 +34,19 @@ export default function OnThisPageNav({ children }) {
 				<ul className="mt-4 text-sm text-gray-400">
 					{headings.map((heading) => (
 						<li
-							key={heading.id}
+							key={heading.href}
 							className={classNames(
 								{
 									"ml-2 border-l-[1px] border-gray-800 pl-3":
-										heading.level === 3,
-									"active text-blue-500": activeId === heading.id,
+										heading.depth === 3,
+									"active text-blue-500":
+										activeId === heading.href.replace("#", ""),
 								},
 								"w-full py-2 break-words whitespace-normal",
 							)}
 						>
-							<Link href={`#${heading.id}`} noDefaultStyles>
-								{heading.text}
+							<Link href={heading.href} noDefaultStyles>
+								{heading.value}
 							</Link>
 						</li>
 					))}
