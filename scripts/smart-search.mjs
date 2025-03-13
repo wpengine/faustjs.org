@@ -3,7 +3,7 @@ import { env, exit } from "node:process";
 import { getTextContentFromMd } from "../src/lib/remark-parsing.mjs";
 import {
 	getAllDocMeta,
-	getDocContent,
+	getRawDocContent,
 	getDocUriFromPath,
 } from "../src/lib/remote-mdx-files.mjs";
 
@@ -53,7 +53,7 @@ async function collectPages() {
 	const entries = await getAllDocMeta();
 
 	for (const entry of entries) {
-		const entryContent = await getDocContent(entry.download_url);
+		const entryContent = await getRawDocContent(entry.download_url);
 
 		const parsedContent = await getTextContentFromMd(entryContent);
 
