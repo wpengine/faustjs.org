@@ -40,7 +40,7 @@ export default function DocumentPage({
 	const flatRoutes = flattenRoutes(routes);
 	const {
 		asPath,
-		query: { slug },
+		query: { slug = [] },
 	} = useRouter();
 
 	return (
