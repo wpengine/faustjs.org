@@ -30,7 +30,7 @@ export default function MyApp({ Component, pageProps }) {
 			<WordPressBlocksProvider config={{ blocks, theme: null }}>
 				<Layout>
 					{isDocsRoute ? (
-						<DocsLayout metadata={pageProps.metadata}>
+						<DocsLayout {...pageProps}>
 							<Component {...pageProps} />
 						</DocsLayout>
 					) : (
