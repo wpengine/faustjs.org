@@ -23,8 +23,8 @@
 		"@heroicons/react": "^2.2.0",
 		"@icons-pack/react-simple-icons": "^12.3.0",
 		"@js-temporal/polyfill": "^0.4.4",
-		"@mdx-js/loader": "^3.0.1",
-		"@mdx-js/react": "^3.0.1",
+		"@mdx-js/loader": "^3.1.0",
+		"@mdx-js/react": "^3.1.0",
 		"@next/mdx": "^15.2.3",
 		"@shikijs/transformers": "^3.2.1",
 		"@sindresorhus/slugify": "^2.2.1",
@@ -51,11 +51,11 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4.0.14",
-		"@tailwindcss/typography": "^0.5.15",
+		"@tailwindcss/typography": "^0.5.16",
 		"eslint": "^9.22.0",
 		"eslint-config-neon": "^0.2.7",
 		"eslint-plugin-mdx": "^3.2.0",
-		"eslint-plugin-unicorn": "^56.0.1",
+		"eslint-plugin-unicorn": "^57.0.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.5.0",
 		"next-secure-headers": "^2.2.0",
@@ -75,9 +75,6 @@
 		"*.{js,jsx}": "pnpm lint"
 	},
 	"pnpm": {
-		"patchedDependencies": {
-			"rehype-pretty-code": "patches/rehype-pretty-code.patch"
-		},
 		"onlyBuiltDependencies": [
 			"sharp"
 		],
