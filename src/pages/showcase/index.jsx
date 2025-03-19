@@ -46,7 +46,7 @@ export default function Showcase() {
 			<div className="mt-8 grid grid-cols-6 gap-4 md:grid-cols-12 md:gap-6 xl:gap-8">
 				{showcases.map((showcase) => (
 					<Link
-						className="group bg-blue-1000/20 hover:bg-blue-1100/90 col-span-full flex flex-col rounded-xl p-2 no-underline ring-1 shadow-md ring-blue-900/30 transition duration-120 hover:shadow-lg md:col-span-6"
+						className="group bg-blue-1000/20 hover:bg-blue-1100/90 col-span-full flex flex-col rounded-xl p-2 no-underline shadow-md ring-1 ring-blue-900/30 transition duration-120 hover:shadow-lg md:col-span-6"
 						disableExternalIcon
 						href={showcase.url}
 						key={showcase.url}
