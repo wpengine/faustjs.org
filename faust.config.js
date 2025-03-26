@@ -1,13 +1,35 @@
+import { relayStylePagination } from "@apollo/client/utilities";
 import { setConfig } from "@faustwp/core";
 import possibleTypes from "./possibleTypes.json";
 import templates from "./src/wp-templates";
+
+class PostTypePolicyPlugin {
+	apply({ addFilter }) {
+		addFilter(
+			"apolloClientInMemoryCacheOptions",
+			"faust",
+			(inMemoryCacheObject) => {
+				return {
+					...inMemoryCacheObject,
+					typePolicies: {
+						Query: {
+							fields: {
+								posts: relayStylePagination(),
+							},
+						},
+					},
+				};
+			},
+		);
+	}
+}
 
 /**
  * @type {import('@faustwp/core').FaustConfig}
  */
 export default setConfig({
 	templates,
-	plugins: [],
+	plugins: [new PostTypePolicyPlugin()],
 	possibleTypes,
 	usePersistedQueries: true,
 });
