@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { getNextStaticProps } from "@faustwp/core";
 import { ArrowPathIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "@/components/card";
 import Date from "@/components/date";
 import Seo from "@/components/seo";
@@ -16,6 +16,7 @@ const GET_POSTS = gql`
 			}
 			edges {
 				node {
+					id
 					title
 					excerpt
 					date
@@ -29,27 +30,17 @@ const GET_POSTS = gql`
 
 const BATCH_SIZE = 12;
 export default function BlogIndex() {
-	const { data, loading, error, fetchMore } = useQuery(GET_POSTS, {
-		variables: { first: BATCH_SIZE, after: undefined },
+	const {
+		data,
+		loading = true,
+		error,
+		fetchMore,
+	} = useQuery(GET_POSTS, {
+		// eslint-disable-next-line unicorn/no-null
+		variables: { first: BATCH_SIZE, after: null },
 		notifyOnNetworkStatusChange: true,
 		fetchPolicy: "cache-and-network",
 	});
-
-	const [posts, setPosts] = useState([]);
-	const [loadingMore, setLoadingMore] = useState(false);
-	const [cursor, setCursor] = useState(false);
-	const [hasMorePosts, setHasMorePosts] = useState(true);
-
-	useEffect(() => {
-		if (data) {
-			setPosts((previousPosts) => [
-				...previousPosts,
-				...data.posts.edges.map((edge) => edge.node),
-			]);
-			setCursor(data.posts.pageInfo.endCursor);
-			setHasMorePosts(data.posts.pageInfo.hasNextPage);
-		}
-	}, [data]);
 
 	if (loading && !data)
 		return (
@@ -65,21 +56,12 @@ export default function BlogIndex() {
 	}
 
 	const loadMorePosts = async () => {
-		setLoadingMore(true);
-		const { data: moreData } = await fetchMore({
+		await fetchMore({
 			variables: {
 				first: BATCH_SIZE,
-				after: cursor,
+				after: data.posts.pageInfo.endCursor,
 			},
 		});
-
-		setPosts((previousPosts) => [
-			...previousPosts,
-			...moreData.posts.edges.map((edge) => edge.node),
-		]);
-		setCursor(moreData.posts.pageInfo.endCursor);
-		setHasMorePosts(moreData.posts.pageInfo.hasNextPage);
-		setLoadingMore(false);
 	};
 
 	return (
@@ -96,7 +78,7 @@ export default function BlogIndex() {
 				Faust.js news
 			</h1>
 			<ul className="mt-8 grid list-none auto-rows-max grid-cols-6 gap-4 pl-0 md:grid-cols-12 md:gap-6 xl:gap-8">
-				{posts.map((post) => (
+				{data.posts.edges.map(({ node: post }) => (
 					<Card
 						as="li"
 						className="group relative col-span-full flex flex-col rounded-2xl p-4 shadow-gray-900 transition duration-100 hover:bg-gray-900 hover:shadow-xl hover:ring-blue-600/40 md:col-span-6 md:p-6 lg:col-span-4 lg:p-8"
@@ -119,29 +101,53 @@ export default function BlogIndex() {
 					</Card>
 				))}
 			</ul>
-			{hasMorePosts && (
+			{data.posts.pageInfo.hasNextPage && (
 				<div className="mt-8 flex justify-center">
-					<button
-						type="button"
-						className="flex cursor-pointer items-center rounded-sm bg-purple-700 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
-						onClick={loadMorePosts}
-						disabled={loadingMore}
-					>
-						{loadingMore ? (
-							<>
-								Loading <ArrowPathIcon className="ml-2 h-5 w-5 animate-spin" />
-							</>
-						) : (
-							<>
-								Load more <ChevronDownIcon className="ml-2 h-5 w-5" />
-							</>
-						)}
-					</button>
+					<LoadMoreButton onClick={loadMorePosts} />
 				</div>
 			)}
 		</main>
 	);
 }
+
+const LoadMoreButton = ({ onClick }) => {
+	const [loading, setLoading] = useState(false);
+
+	const handleLoadMore = async () => {
+		setLoading(true);
+		await onClick();
+		setLoading(false);
+	};
+
+	return (
+		<button
+			type="button"
+			className="flex cursor-pointer items-center rounded-sm bg-purple-700 px-4 py-2 text-white transition ease-in-out hover:bg-purple-800"
+			onClick={handleLoadMore}
+			disabled={loading}
+		>
+			{loading ? (
+				<>
+					Loading <ArrowPathIcon className="ml-2 h-5 w-5 animate-spin" />
+				</>
+			) : (
+				<>
+					Load more <ChevronDownIcon className="ml-2 h-5 w-5" />
+				</>
+			)}
+		</button>
+	);
+};
+
+BlogIndex.query = GET_POSTS;
+
+BlogIndex.variables = () => {
+	return {
+		// eslint-disable-next-line unicorn/no-null
+		after: null,
+		first: BATCH_SIZE,
+	};
+};
 
 export async function getStaticProps(context) {
 	return getNextStaticProps(context, {
