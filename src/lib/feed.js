@@ -1,7 +1,7 @@
 import { env } from "node:process";
 import { URL } from "node:url";
 import { gql } from "@apollo/client";
-import { Temporal } from "@js-temporal/polyfill";
+import { format } from "date-fns-tz";
 import { Feed } from "feed";
 
 const SITE_URL = env.NEXT_PUBLIC_SITE_URL;
@@ -56,9 +56,9 @@ export function createFeed({ feed_data, last_modified }) {
 		language: "en",
 		image: new URL("/favicon-192x192.png", SITE_URL).href,
 		favicon: new URL("/favicon-32x32.png", SITE_URL).href,
-		copyright: Temporal.Now.plainDateISO(
-			feed_data.generalSettings.timezone,
-		).year.toString(),
+		copyright: format(new Date(), "yyyy", {
+			timeZone: feed_data.generalSettings.timezone,
+		}),
 		updated: new Date(last_modified.toString()),
 		feedLinks: {
 			json: new URL("/api/feeds/feed.json", SITE_URL).href,

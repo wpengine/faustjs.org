@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { getApolloClient } from "@faustwp/core/dist/mjs/client";
-import { Temporal } from "@js-temporal/polyfill";
+import { parseISO, compareAsc } from "date-fns"; // Replaced Temporal with date-fns
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
 import { FEED_QUERY, createFeed } from "@/lib/feed";
 
@@ -18,12 +18,9 @@ export default async function HandleFeeds(req, res) {
 			query: FEED_QUERY,
 		});
 
-		const last_modified = Temporal.PlainDateTime.from(
+		const last_modified = parseISO(
 			feed_data.last_modified.nodes[0].modifiedGmt,
-			{
-				overflow: "constrain",
-			},
-		);
+		); // Replaced Temporal.PlainDateTime.from
 
 		// Create feed
 		const feed = createFeed({ feed_data, last_modified });
@@ -75,14 +72,14 @@ export default async function HandleFeeds(req, res) {
 		);
 		res.setHeader("Content-Type", resp.content_type);
 		res.setHeader("ETag", etag_for_body);
-		res.setHeader("Last-Modified", last_modified.toString());
+		res.setHeader("Last-Modified", last_modified.toUTCString()); // Adjusted to use Date's toUTCString()
 
 		if (
 			// Checks if the `if_none_match` header matches current response' etag
 			if_none_match === etag_for_body ||
 			// Checks `if_modified_since` is after `last_modified`
 			(if_modified_since &&
-				Temporal.PlainDateTime.compare(last_modified, if_modified_since) < 0)
+				compareAsc(last_modified, new Date(if_modified_since)) < 0) // Replaced Temporal.PlainDateTime.compare
 		) {
 			res.status(StatusCodes.NOT_MODIFIED);
 			res.end();
