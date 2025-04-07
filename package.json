@@ -89,7 +89,8 @@
 			"sharp"
 		],
 		"overrides": {
-			"eslint-plugin-unicorn": "$eslint-plugin-unicorn"
+			"eslint-plugin-unicorn": "$eslint-plugin-unicorn",
+			"@babel/runtime": "^7.27.0"
 		}
 	}
 }
