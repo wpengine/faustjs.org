@@ -637,6 +637,246 @@ const redirectsOldSite = [
 		destination: "/docs/tutorial/learn-faust",
 		permanent: true,
 	},
+	{
+		source: "/tutorial/style.scss",
+		destination: "/docs/tutorial/learn-faust/",
+		permanent: true,
+	},
+	{
+		source: "/dashboard",
+		destination: "/",
+		permanent: true,
+	},
+	{
+		source: "/faust-tutorial",
+		destination: "/docs/tutorial/learn-faust/",
+		permanent: true,
+	},
+	{
+		source: "/pages",
+		destination: "/",
+		permanent: true,
+	},
+	{
+		source: "/wp-templates",
+		destination: "/",
+		permanent: true,
+	},
+	{
+		source: "/blog/faust-update-mar-15-2023",
+		destination: "/blog/sprint-30-update/",
+		permanent: true,
+	},
+	{
+		source: "/faust-update-mar-15-2023",
+		destination: "/blog/sprint-30-update/",
+		permanent: true,
+	},
+	{
+		source: "/posts/testing",
+		destination: "/blog/sprint-30-update/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/use-blocks-theme/theme.json",
+		destination: "/docs/reference/use-blocks-theme/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/useLogout",
+		destination: "/docs/reference/use-logout/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/useBlocksTheme",
+		destination: "/docs/reference/use-blocks-theme/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/useLogin",
+		destination: "/docs/reference/use-login/",
+		permanent: true,
+	},
+	{
+		source: "/docs/auth",
+		destination: "/docs/how-to/authentication/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/getting-started",
+		destination: "/docs/tutorial/learn-faust/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/WordPressBlocksViewer",
+		destination: "/docs/reference/wordpress-blocks-viewer/",
+		permanent: true,
+	},
+	{
+		source: "/docs/gutenberg/migration-from-wp-graphql-gutenberg",
+		destination: "/docs/explanation/migrate-from-wp-graphql-gutenberg/",
+		permanent: true,
+	},
+	{
+		source: "/posts/hello-world",
+		destination: "/",
+		permanent: true,
+	},
+	{
+		source: "/docs/plugin-system/creating-a-plugin",
+		destination: "/docs/how-to/create-a-plugin/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/getWordPressProps",
+		destination: "/docs/reference/get-wordpress-props/",
+		permanent: true,
+	},
+	{
+		source: "/docs/faustwp/settings",
+		destination: "/docs/how-to/basic-setup/",
+		permanent: true,
+	},
+	{
+		source: "/docs/gutenberg/getting-started",
+		destination: "/docs/",
+		permanent: true,
+	},
+	{
+		source: "/docs/guides/typescript",
+		destination: "/docs/",
+		permanent: true,
+	},
+	{
+		source: "/apollo",
+		destination: "/docs/",
+		permanent: true,
+	},
+	{
+		source: "/docs/getting-started",
+		destination: "/docs/tutorial/learn-faust/",
+		permanent: true,
+	},
+	{
+		source: "/docs/guides/custom-toolbar",
+		destination: "/docs/how-to/customize-the-toolbar/",
+		permanent: true,
+	},
+	{
+		source: "/docs/templates",
+		destination: "/docs",
+		permanent: true,
+	},
+	{
+		source: "/docs/faustwp/filters",
+		destination: "/docs/reference/faust-plugin-system-filters/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/getSitemapProps",
+		destination: "/docs/reference/get-site-map-props/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/reference/getNextStaticProps",
+		destination: "/docs/reference/get-next-static-props/",
+		permanent: true,
+	},
+	{
+		source: "/docs/plugin-system/filters",
+		destination: "/docs/reference/faust-plugin-system-filters/",
+		permanent: true,
+	},
+	{
+		source: "/docs/guides/custom-post-types",
+		destination: "/docs/how-to/setup-cpt-in-faustjs/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/WordPressBlocksProvider",
+		destination: "/docs/reference/wordpress-blocks-provider/",
+		permanent: true,
+	},
+	{
+		source: "/docs/going-to-production/deployment",
+		destination: "/docs/explanation/deploy-your-app/",
+		permanent: true,
+	},
+	{
+		source: "/docs/reference/useAuth",
+		destination: "/docs/how-to/authentication/",
+		permanent: true,
+	},
+	{
+		source: "/docs/gutenberg/tutorial/create-a-custom-block",
+		destination: "/docs/how-to/custom-blocks/",
+		permanent: true,
+	},
+	{
+		source: "/gutenberg/tutorial/create-a-block-from-wordpress-core",
+		destination: "/docs/how-to/custom-blocks/",
+		permanent: true,
+	},
+	{
+		source: "/docs/gutenberg/wp-graphql-content-blocks",
+		destination: "/docs/how-to/rendering-blocks/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/guides/fetching-data",
+		destination: "/how-to/query-data-in-nextjs-routes/",
+		permanent: true,
+	},
+	{
+		source: "/docs/faustwp/seed-query",
+		destination: "/docs/reference/faust-plugin-system-filters/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/guides/auth",
+		destination: "/docs/how-to/authentication/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/reference/getNextServerSideProps",
+		destination: "/docs/reference/get-next-server-side-props/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/guides/project-walkthrough",
+		destination: "/docs/tutorial/learn-faust/",
+		permanent: true,
+	},
+	{
+		source: "/docs/next/guides/post-page-previews",
+		destination: "/docs/how-to/post-previews/",
+		permanent: true,
+	},
+	{
+		source: "/docs/how-to/react-components-to-blocks",
+		destination: "/docs/how-to/rendering-blocks/",
+		permanent: true,
+	},
+	{
+		source: "/atlas",
+		destination: "/",
+		permanent: true,
+	},
+	{
+		source: "/guide/UbCallToActionBlock",
+		destination: "/docs/",
+		permanent: true,
+	},
+	{
+		source: "/docs/gutenberg/tutorial/create-a-block-from-third-party",
+		destination: "/docs/",
+		permanent: true,
+	},
+	{
+		source: "/docs/templates",
+		destination: "/docs/",
+		permanent: true,
+	},
 ];
 
 export default redirectsOldSite;

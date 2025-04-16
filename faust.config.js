@@ -9,10 +9,15 @@ class PostTypePolicyPlugin {
 			"apolloClientInMemoryCacheOptions",
 			"faust",
 			(inMemoryCacheObject) => {
+				// Merge existing Faust typePolicies with with relayStylePagination for Posts
+				const existingPolicies = inMemoryCacheObject.typePolicies || {};
+
 				return {
 					...inMemoryCacheObject,
 					typePolicies: {
+						...existingPolicies,
 						Query: {
+							...existingPolicies.Query,
 							fields: {
 								posts: relayStylePagination(),
 							},
