@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 export default function SEO({ title, description, imageUrl, url }) {
-	let canonicalUrl = false;
+	let canonicalUrl = undefined;
 
 	if (url) {
 		// eslint-disable-next-line no-restricted-globals, n/prefer-global/process, n/prefer-global/url
