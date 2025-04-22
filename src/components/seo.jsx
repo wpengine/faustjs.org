@@ -1,10 +1,15 @@
 import Head from "next/head";
 
 export default function SEO({ title, description, imageUrl, url }) {
-	const canonicalUrl = url
-		? // eslint-disable-next-line no-restricted-globals, n/prefer-global/process, n/prefer-global/url
-			new URL(url, process.env.NEXT_PUBLIC_SITE_URL)
-		: undefined;
+	let canonicalUrl = false;
+
+	if (url) {
+		// eslint-disable-next-line no-restricted-globals, n/prefer-global/process, n/prefer-global/url
+		const urlObject = new URL(url, process.env.NEXT_PUBLIC_SITE_URL);
+		// Remove any query string as search is writable so we remove any potential query string
+		urlObject.search = "";
+		canonicalUrl = urlObject.toString();
+	}
 
 	return (
 		<Head>
