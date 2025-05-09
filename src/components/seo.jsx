@@ -1,18 +1,10 @@
-import process from "node:process"; // Import process from 'node:process'
-import { URL } from "node:url"; // Import URL from the 'url' module
 import Head from "next/head";
 
 export default function SEO({ title, description, imageUrl, url }) {
-	let canonicalUrl = url
-		? new URL(url, process.env.NEXT_PUBLIC_SITE_URL)
+	const canonicalUrl = url
+		? // eslint-disable-next-line no-restricted-globals, n/prefer-global/process, n/prefer-global/url
+			new URL(url, process.env.NEXT_PUBLIC_SITE_URL)
 		: undefined;
-
-	// If the URL contains query parameters, strip them out
-	if (canonicalUrl && canonicalUrl.includes("?")) {
-		const stripQueryParameters = (path) => path.split("?")[0];
-		canonicalUrl = stripQueryParameters(url);
-		canonicalUrl = new URL(canonicalUrl, process.env.NEXT_PUBLIC_SITE_URL);
-	}
 
 	return (
 		<Head>

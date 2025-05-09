@@ -32,8 +32,6 @@ const flattenRoutes = (routeConfig) => {
 	return flatRoutes;
 };
 
-const stripQueryParameters = (path) => path.split("?")[0];
-
 export default function DocumentPage({
 	children,
 	docsNavData: routes,
@@ -41,19 +39,23 @@ export default function DocumentPage({
 }) {
 	const flatRoutes = flattenRoutes(routes);
 	const {
-		asPath: rawAsPath,
 		query: { slug = [] },
 	} = useRouter();
 
-	// Use the outer-scoped function
-	const cannonicalUrl = stripQueryParameters(rawAsPath);
+	// Build the path from slug
+	const canonicalPath =
+		Array.isArray(slug) && slug.length > 0
+			? `/docs/${slug.join("/")}/`
+			: "/docs/";
+
+	const canonicalUrl = `${canonicalPath}`;
 
 	return (
 		<>
 			<Seo
 				title={frontmatter?.title ?? "FALLBACK TITLE"}
 				description={frontmatter?.description}
-				url={cannonicalUrl}
+				url={canonicalUrl}
 			/>
 			<Disclosure
 				as="div"
