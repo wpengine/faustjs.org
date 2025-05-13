@@ -42,13 +42,8 @@ export default function DocumentPage({
 		query: { slug = [] },
 	} = useRouter();
 
-	// Build the path from slug
-	const canonicalPath =
-		Array.isArray(slug) && slug.length > 0
-			? `/docs/${slug.join("/")}/`
-			: "/docs/";
-
-	const canonicalUrl = `${canonicalPath}`;
+	// Build the canonical path from slug
+	const canonicalUrl = ["/docs", ...slug].join("/") + "/";
 
 	return (
 		<>
