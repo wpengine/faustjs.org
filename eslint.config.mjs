@@ -39,7 +39,7 @@ const config = [
 		rules: {
 			"arrow-body-style": "off",
 			"react/prop-types": "off",
-			...unicorn.configs["flat/recommended"].rules, // neon disables a lot of unicorn rules so this reenables defaults
+			...unicorn.configs.recommended.rules, // neon disables a lot of unicorn rules so this reenables defaults
 			"react/no-danger": "warn",
 			"react/jsx-sort-props": "off",
 			"react/jsx-filename-extension": [

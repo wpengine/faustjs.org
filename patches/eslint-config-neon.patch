@@ -1,0 +1,12 @@
+diff --git a/dist/esm/mdx.mjs b/dist/esm/mdx.mjs
+index 2705aa8116617ca157900cafad5fb00ef49f6737..8a7d35a0a18f837ca1ce5e35ab6bf89b54df68e0 100644
+--- a/dist/esm/mdx.mjs
++++ b/dist/esm/mdx.mjs
+@@ -1,5 +1,5 @@
+-import mdxParser from 'eslint-mdx';
+-import mdxPlugin from 'eslint-plugin-mdx';
++import * as mdxParser from 'eslint-mdx';
++import * as mdxPlugin from 'eslint-plugin-mdx';
+ 
+ // src/mdx.ts
+ var plugins = {
