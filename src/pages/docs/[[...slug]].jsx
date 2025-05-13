@@ -16,7 +16,7 @@ export async function getStaticProps({ params }) {
 				source,
 				docsNavData,
 			},
-			revalidate: 1,
+			revalidate: 600,
 		};
 	} catch (error) {
 		if (error.notFound) {
