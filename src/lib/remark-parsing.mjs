@@ -13,7 +13,6 @@ import withSmartQuotes from "remark-smartypants";
 import remarkStringify from "remark-stringify";
 import remarkStrip from "strip-markdown";
 import { unified } from "unified";
-import { visit } from "unist-util-visit";
 import { matter } from "vfile-matter";
 import { getRemoteImgUrl } from "./remote-mdx-files.mjs";
 /**
@@ -34,28 +33,6 @@ export async function getTextContentFromMd(mdContent) {
 
 function addFrontmatterToVFile() {
 	return (_, file) => matter(file);
-}
-
-export function addTocToVFile() {
-	return (tree, file) => {
-		const toc = [];
-		visit(tree, "element", (node) => {
-			if (
-				(node.tagName === "h2" || node.tagName === "h3") &&
-				node.children[0].value
-			) {
-				const title = node.children[0]?.value;
-
-				toc.push({
-					id: node.properties.id,
-					text: title,
-					level: Number.parseInt(node.tagName[1], 10),
-				});
-			}
-		});
-
-		file.data.toc = toc;
-	};
 }
 
 /**

@@ -39,16 +39,18 @@ export default function DocumentPage({
 }) {
 	const flatRoutes = flattenRoutes(routes);
 	const {
-		asPath,
 		query: { slug = [] },
 	} = useRouter();
+
+	// Build the canonical path from slug
+	const canonicalUrl = ["/docs", ...slug].join("/") + "/";
 
 	return (
 		<>
 			<Seo
 				title={frontmatter?.title ?? "FALLBACK TITLE"}
 				description={frontmatter?.description}
-				url={asPath}
+				url={canonicalUrl}
 			/>
 			<Disclosure
 				as="div"
