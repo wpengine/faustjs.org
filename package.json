@@ -11,7 +11,7 @@
 		"test:format": "prettier . --check",
 		"test:lint": "eslint --quiet",
 		"test:search": "NODE_ENV=test node --env-file=.env.local ./scripts/smart-search.mjs",
-		"build:search": "node ./scripts/smart-search.mjs",
+		"build:search": "node --env-file-if-exists=.env.local ./scripts/smart-search.mjs",
 		"build:sitemap": "next-sitemap --config next-sitemap.config.mjs",
 		"lint": "eslint --fix",
 		"format": "prettier . --write",
