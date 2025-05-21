@@ -2,7 +2,9 @@
 	"name": "faustjs-org-site",
 	"private": true,
 	"scripts": {
+		"predev": "faust generatePossibleTypes",
 		"dev": "faust dev",
+		"prebuild": "faust generatePossibleTypes",
 		"build": "faust build",
 		"postbuild": "concurrently \"pnpm build:sitemap\" \"pnpm build:search\"",
 		"generate": "faust generatePossibleTypes",
