@@ -2,7 +2,12 @@ import { withFaust, getWpHostname } from "@faustwp/core";
 import { withWPEConfig } from "@wpengine/atlas-next";
 import { createSecureHeaders } from "next-secure-headers";
 import redirectsOldSite from "./redirects-old-site.mjs";
-import { DOCS_PATH } from "./src/lib/remote-mdx-files.mjs";
+import {
+	DOCS_BRANCH,
+	DOCS_FOLDER,
+	DOCS_OWNER,
+	DOCS_REPO,
+} from "./src/constants/repo.mjs";
 
 const newRedirects = [
 	{
@@ -44,7 +49,7 @@ const nextConfig = {
 			{
 				protocol: "https",
 				hostname: "raw.githubusercontent.com",
-				pathname: DOCS_PATH + "/**",
+				pathname: `/${DOCS_OWNER}/${DOCS_REPO}/refs/heads/${DOCS_BRANCH}/${DOCS_FOLDER}/**`,
 			},
 		],
 	},

@@ -20,7 +20,7 @@ const octokit = new Octokit({
 const DOCS_EXT_REG = /(?<slug>.*)index.md(?:x?)$/i;
 const IMG_PATH_REG = /^(?<path>\.\/)?(?<slug>.+)$/i;
 
-export const DOCS_PATH = `https://raw.githubusercontent.com/${DOCS_OWNER}/${DOCS_REPO}/refs/heads/${DOCS_BRANCH}/${DOCS_FOLDER}`;
+const DOCS_PATH = `https://raw.githubusercontent.com/${DOCS_OWNER}/${DOCS_REPO}/refs/heads/${DOCS_BRANCH}/${DOCS_FOLDER}`;
 
 const DOCS_NAV_CONFIG_URL = `${DOCS_PATH}/nav.json`;
 
