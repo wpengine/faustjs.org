@@ -1,4 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { sendGAEvent } from "@next/third-parties/google";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
@@ -74,6 +75,10 @@ export default function SearchBar({ setIsSearchOpen }) {
 					return;
 				}
 
+				sendGAEvent("event", "search", {
+					search_term: value,
+				});
+
 				const data = await response.json();
 
 				if (Array.isArray(data)) {
@@ -85,6 +90,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 			} catch (error) {
 				console.error("Error fetching search results:", error);
 				setItems([]);
+			} finally {
 			}
 		}, 500),
 	).current;
@@ -203,11 +209,31 @@ export default function SearchBar({ setIsSearchOpen }) {
 												index,
 												onClick: () => {
 													closeModal();
+													sendGAEvent("event", "search", {
+														item_list_id: "search_results",
+														item_list_name: "Search Results",
+														items: {
+															item_id: item.id,
+															item_name: item.title,
+															item_category: item.type,
+															index,
+														},
+													});
 													router.push(item.path);
 												},
 												onKeyDown: (event) => {
 													if (event.key === "Enter") {
 														closeModal();
+														sendGAEvent("event", "search", {
+															item_list_id: "search_results",
+															item_list_name: "Search Results",
+															items: {
+																item_id: item.id,
+																item_name: item.title,
+																item_category: item.type,
+																index,
+															},
+														});
 														router.push(item.path);
 													}
 												},
