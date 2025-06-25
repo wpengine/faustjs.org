@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 	const graphqlQuery = `
         query RelatedDocuments($docID: String!, $count: Int = 3) {
 					recommendations(count: $count) {
-						documents: relatedDocuments(docID: $docID, minScore: 0.5) {
+						documents: relatedDocuments(docID: $docID, minScore: 0.7) {
 							id: docID
 							data: source
 							score
@@ -56,8 +56,6 @@ export default async function handler(req, res) {
 				.status(StatusCodes.INTERNAL_SERVER_ERROR)
 				.json({ errors: result.errors });
 		}
-
-		console.log("Search result:", result);
 
 		return res
 			.status(StatusCodes.OK)

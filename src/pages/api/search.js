@@ -58,7 +58,6 @@ export default async function handler(req, res) {
 				.json({ errors: result.errors });
 		}
 
-		console.log("Search result:", result);
 		return res
 			.status(StatusCodes.OK)
 			.json(normalizeSmartSearchResponse(result.data.find.documents));
