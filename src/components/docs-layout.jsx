@@ -6,9 +6,9 @@ import {
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import DocsBreadcrumbs from "./docs-breadcrumbs";
-import DocsPreviousNextLinks from "./docs-previous-next-link";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
+import Recommendations from "@/components/docs-recommended";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
 import "rehype-callouts/theme/vitepress";
@@ -93,17 +93,19 @@ export default function DocumentPage({
 						Edit this doc on GitHub
 					</Link>
 				</nav>
-				<article
-					id="docs-article"
-					className="container-main xs:py-20 prose prose-invert min-h-[calc(100vh-120px)] max-w-full py-0 sm:max-w-[80ch] sm:py-20 md:py-8"
-				>
-					<DocsBreadcrumbs routes={flatRoutes} />
-					{frontmatter?.title && (
-						<h1 className="article-title break-words">{frontmatter.title}</h1>
-					)}
-					{children}
-					<DocsPreviousNextLinks routes={flatRoutes} />
-				</article>
+				<div className="container-main xs:py-20 min-h-[calc(100vh-120px)] max-w-full py-0 sm:max-w-[80ch] sm:py-20 md:py-8">
+					<DocsBreadcrumbs
+						routes={flatRoutes}
+						className="mt-4 mb-7 md:mt-2 md:mb-10"
+					/>
+					<article id="docs-article" className="prose prose-invert">
+						{frontmatter?.title && (
+							<h1 className="article-title break-words">{frontmatter.title}</h1>
+						)}
+						{children}
+					</article>
+					<Recommendations />
+				</div>
 			</main>
 		</>
 	);
