@@ -36,6 +36,7 @@ export default function DocumentPage({
 	children,
 	docsNavData: routes,
 	source: { frontmatter, scope },
+	id,
 }) {
 	const flatRoutes = flattenRoutes(routes);
 	const {
@@ -104,7 +105,16 @@ export default function DocumentPage({
 						)}
 						{children}
 					</article>
-					<Recommendations />
+
+					{
+						// This only puts recommendations on content pages and not on the main docs index or category pages
+						slug.length > 1 && (
+							<>
+								<hr className="my-6 border-t border-gray-700" />
+								<Recommendations docID={id} />
+							</>
+						)
+					}
 				</div>
 			</main>
 		</>
