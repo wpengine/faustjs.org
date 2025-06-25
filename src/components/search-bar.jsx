@@ -3,6 +3,7 @@ import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
+import DocTypeTag from "./doc-type-tag";
 
 export default function SearchBar({ setIsSearchOpen }) {
 	const [items, setItems] = useState([]);
@@ -222,9 +223,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 											}`}
 										>
 											<span className="text-left">{item.title}</span>
-											<span className="text-right text-sm text-gray-400">
-												{item.type === "mdx_doc" ? "Doc" : "Blog"}
-											</span>
+											<DocTypeTag type={item.type} />
 										</li>
 									))}
 							</ul>
