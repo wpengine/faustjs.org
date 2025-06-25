@@ -1,10 +1,10 @@
-import { hash } from "node:crypto";
 import { env, exit } from "node:process";
 import { getTextContentFromMd } from "../src/lib/remark-parsing.mjs";
 import {
 	getAllDocMeta,
 	getRawDocContent,
 	getDocUriFromPath,
+	generateDocIdFromUri,
 } from "../src/lib/remote-mdx-files.mjs";
 
 const {
@@ -59,7 +59,7 @@ async function collectPages() {
 
 		const cleanedPath = getDocUriFromPath(entry.path);
 
-		const id = hash("sha-1", `mdx:${cleanedPath}`);
+		const id = generateDocIdFromUri(cleanedPath);
 
 		pages.push({
 			id,
