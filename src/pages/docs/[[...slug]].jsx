@@ -19,7 +19,7 @@ export async function getStaticProps({ params }) {
 		return {
 			props: {
 				id: generateDocIdFromUri(
-					params.slug.length > 1
+					params.slug?.length > 1
 						? path.join("/docs", ...params.slug, "/")
 						: "/docs/",
 				),
