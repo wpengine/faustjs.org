@@ -14,10 +14,10 @@ export default function DocTypeTag(type) {
 
 	if (theType === "mdx_doc") {
 		config.name = "Doc";
-		config.className = "bg-blue-500";
+		config.className = "bg-teal-800";
 	} else if (theType === "post" || theType === "page") {
 		config.name = "Blog";
-		config.className = "bg-green-500";
+		config.className = "bg-purple-600";
 	}
 
 	console.log("DocTypeTag config", theType, config);
