@@ -119,7 +119,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 		onSelectedItemChange: ({ selectedItem }) => {
 			if (selectedItem) {
 				closeModal();
-				router.push(selectedItem.path);
+				router.push(selectedItem.href);
 			}
 		},
 		itemToString: (item) => (item ? item.title : ""),
@@ -203,12 +203,12 @@ export default function SearchBar({ setIsSearchOpen }) {
 												index,
 												onClick: () => {
 													closeModal();
-													router.push(item.path);
+													router.push(item.href);
 												},
 												onKeyDown: (event) => {
 													if (event.key === "Enter") {
 														closeModal();
-														router.push(item.path);
+														router.push(item.href);
 													}
 												},
 											})}

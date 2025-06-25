@@ -1,15 +1,6 @@
 import process from "node:process";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-
-function cleanPath(filePath) {
-	return (
-		filePath
-			.replace(/^\/?src\/pages/, "")
-			.replace(/^\/?pages/, "")
-			.replace(/\/index\.mdx$/, "")
-			.replace(/\.mdx$/, "") || "/"
-	);
-}
+import { normalizeSmartSearchResponse } from "@/utils/content";
 
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
@@ -25,15 +16,15 @@ export default async function handler(req, res) {
 	if (!docID) {
 		return res
 			.status(StatusCodes.BAD_REQUEST)
-			.json({ error: "Search query is required." });
+			.json({ error: "Document ID (docID) is required." });
 	}
 
 	const graphqlQuery = `
-        query RelatedDocuments($docID: String!, $count: Int! = 5) {
+        query RelatedDocuments($docID: String!, $count: Int = 3) {
 					recommendations(count: $count) {
-						relatedDocuments(docID: $docID, minScore: 0.5) {
-							docID
-							source
+						documents: relatedDocuments(docID: $docID, minScore: 0.5) {
+							id: docID
+							data: source
 							score
 						}
 					}
@@ -66,48 +57,13 @@ export default async function handler(req, res) {
 				.json({ errors: result.errors });
 		}
 
-		// const seenIds = new Set();
-		// const formattedResults = [];
+		console.log("Search result:", result);
 
-		// for (const content of result.data.recommendations.relatedDocuments) {
-		// 	const contentType =
-		// 		content.data.content_type || content.data.post_type || "mdx_doc";
-
-		// 	let item = {};
-
-		// 	if (contentType === "mdx_doc" && content.data.title) {
-		// 		const path = content.data.path ? cleanPath(content.data.path) : "/";
-		// 		item = {
-		// 			id: content.id,
-		// 			title: content.data.title,
-		// 			path,
-		// 			type: "mdx_doc",
-		// 		};
-		// 	}
-
-		// 	if (
-		// 		(contentType === "wp_post" || contentType === "post") &&
-		// 		content.data.post_title &&
-		// 		content.data.post_name
-		// 	) {
-		// 		item = {
-		// 			id: content.id,
-		// 			title: content.data.post_title,
-		// 			path: `/blog/${content.data.post_name}`,
-		// 			type: "post",
-		// 		};
-		// 	}
-
-		// 	if (seenIds.has(item.id)) {
-		// 		continue;
-		// 	}
-
-		// 	seenIds.add(item.id);
-		// 	formattedResults.push(item);
-		// }
-
-		// return res.status(StatusCodes.OK).json(formattedResults);
-		return res.status(StatusCodes.OK).json(result);
+		return res
+			.status(StatusCodes.OK)
+			.json(
+				normalizeSmartSearchResponse(result.data.recommendations.documents),
+			);
 	} catch (error) {
 		console.error("Error fetching search data:", error);
 		return res
