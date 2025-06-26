@@ -28,6 +28,7 @@
 		"@heroicons/react": "^2.2.0",
 		"@icons-pack/react-simple-icons": "^13.1.0",
 		"@jsdevtools/rehype-url-inspector": "^2.0.2",
+		"@next/third-parties": "^15.3.4",
 		"@octokit/core": "^7.0.2",
 		"@shikijs/transformers": "^3.6.0",
 		"@sindresorhus/slugify": "^2.2.1",

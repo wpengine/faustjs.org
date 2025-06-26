@@ -1,5 +1,6 @@
 import { CloseButton } from "@headlessui/react";
 import Link from "@/components/link";
+import { sendSelectItemEvent } from "@/lib/analytics.mjs";
 import { normalizeHref, classNames } from "@/utils/strings";
 
 export default function DocsNav({
@@ -42,6 +43,19 @@ function NavItem({ item, level, isMobileMenu, ...props }) {
 				href={normalizeHref(item.route)}
 				noDefaultStyles
 				activeClassName="text-blue-500 active"
+				onClick={() => {
+					sendSelectItemEvent({
+						list: {
+							id: isMobileMenu ? "mobile_docs_nav" : "docs_nav",
+							name: isMobileMenu ? "Mobile Docs Nav" : "Docs Nav",
+						},
+						item: {
+							item_id: item.route,
+							item_name: item.title,
+							item_category: "mdx_doc",
+						},
+					});
+				}}
 				{...props}
 			>
 				{item.title}

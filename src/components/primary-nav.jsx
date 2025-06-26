@@ -7,6 +7,7 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { forwardRef } from "react";
 import Link from "@/components/link";
+import { sendSelectItemEvent } from "@/lib/analytics.mjs";
 import { classNames } from "@/utils/strings";
 
 const navItemClass =
@@ -20,6 +21,16 @@ const CustomLink = forwardRef((props, reference) => {
 	);
 });
 
+const sendMainNavItemSelectEvent = (item) => {
+	sendSelectItemEvent({
+		list: {
+			id: "main_nav",
+			name: "Main Nav",
+		},
+		item,
+	});
+};
+
 export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 	return (
 		<nav className={classNames("flex items-center space-x-4", className)}>
@@ -30,6 +41,13 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						href="/docs/"
 						noDefaultStyles
 						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/docs/",
+								item_name: "Docs",
+								item_category: "mdx_doc",
+							})
+						}
 					>
 						Docs
 					</Link>
@@ -40,6 +58,13 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						href="/blog/"
 						noDefaultStyles
 						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/blog/",
+								item_name: "Blog",
+								item_category: "post",
+							})
+						}
 					>
 						Blog
 					</Link>
@@ -50,6 +75,13 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						href="/showcase/"
 						noDefaultStyles
 						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/showcase/",
+								item_name: "Showcase",
+								item_category: "page",
+							})
+						}
 					>
 						Showcase
 					</Link>
@@ -78,6 +110,13 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						noDefaultStyles
 						href="/docs/"
 						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/docs/",
+								item_name: "Docs",
+								item_category: "mdx_doc",
+							})
+						}
 					>
 						Docs
 					</CustomLink>
@@ -87,6 +126,13 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						noDefaultStyles
 						href="/blog/"
 						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/blog/",
+								item_name: "Blog",
+								item_category: "post",
+							})
+						}
 					>
 						Blog
 					</CustomLink>
@@ -96,6 +142,13 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 						noDefaultStyles
 						href="/showcase/"
 						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/showcase/",
+								item_name: "Showcase",
+								item_category: "page",
+							})
+						}
 					>
 						Showcase
 					</CustomLink>
