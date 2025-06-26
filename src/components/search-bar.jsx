@@ -1,9 +1,9 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { sendGAEvent } from "@next/third-parties/google";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { sendSearchEvent, sendSelectItemEvent } from "@/lib/analytics.mjs";
 
 export default function SearchBar({ setIsSearchOpen }) {
 	const [items, setItems] = useState([]);
@@ -75,9 +75,8 @@ export default function SearchBar({ setIsSearchOpen }) {
 					return;
 				}
 
-				sendGAEvent("event", "search", {
-					search_term: value,
-				});
+				// GA Event
+				sendSearchEvent(value);
 
 				const data = await response.json();
 
@@ -209,14 +208,15 @@ export default function SearchBar({ setIsSearchOpen }) {
 												index,
 												onClick: () => {
 													closeModal();
-													sendGAEvent("event", "search", {
-														item_list_id: "search_results",
-														item_list_name: "Search Results",
-														items: {
-															item_id: item.id,
+													sendSelectItemEvent({
+														list: {
+															id: "search_results",
+															name: "Search Results",
+														},
+														item: {
+															item_id: item.path,
 															item_name: item.title,
 															item_category: item.type,
-															index,
 														},
 													});
 													router.push(item.path);
@@ -224,14 +224,15 @@ export default function SearchBar({ setIsSearchOpen }) {
 												onKeyDown: (event) => {
 													if (event.key === "Enter") {
 														closeModal();
-														sendGAEvent("event", "search", {
-															item_list_id: "search_results",
-															item_list_name: "Search Results",
-															items: {
-																item_id: item.id,
+														sendSelectItemEvent({
+															list: {
+																id: "search_results",
+																name: "Search Results",
+															},
+															item: {
+																item_id: item.path,
 																item_name: item.title,
 																item_category: item.type,
-																index,
 															},
 														});
 														router.push(item.path);

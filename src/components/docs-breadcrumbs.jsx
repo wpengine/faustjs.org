@@ -1,6 +1,7 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import Link from "@/components/link";
+import { sendSelectItemEvent } from "@/lib/analytics.mjs";
 import { normalizeHref } from "@/utils/strings";
 
 export default function DocsBreadcrumbs({ routes }) {
@@ -59,6 +60,16 @@ export default function DocsBreadcrumbs({ routes }) {
 							href={breadcrumb.route}
 							noDefaultStyles
 							aria-label={breadcrumb.title}
+							onClick={() => {
+								sendSelectItemEvent({
+									list: { id: "docs_breadcrumbs", name: "Docs Breadcrumbs" },
+									item: {
+										item_id: breadcrumb.route,
+										item_name: breadcrumb.title,
+										item_category: "docs",
+									},
+								});
+							}}
 						>
 							<span>{breadcrumb.title}</span>
 							<span>
