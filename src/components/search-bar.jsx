@@ -75,9 +75,6 @@ export default function SearchBar({ setIsSearchOpen }) {
 					return;
 				}
 
-				// GA Event
-				sendSearchEvent(value);
-
 				const data = await response.json();
 
 				if (Array.isArray(data)) {
@@ -90,6 +87,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 				console.error("Error fetching search results:", error);
 				setItems([]);
 			} finally {
+				sendSearchEvent(value);
 			}
 		}, 500),
 	).current;
