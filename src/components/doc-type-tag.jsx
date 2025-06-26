@@ -25,7 +25,7 @@ export default function DocTypeTag(type) {
 	return (
 		<span
 			className={classNames(
-				"mr-2 inline-block px-2 py-1 text-xs font-semibold text-gray-200 uppercase",
+				"mr-2 inline-block rounded px-2 py-1 text-xs font-semibold text-gray-200 uppercase",
 				config.className,
 			)}
 		>

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import DocTypeTag from "./doc-type-tag";
+import Link from "./link";
 
 export default function DocsRecommended({ docID, count = 5 }) {
 	const [recommendations, setRecommendations] = useState([]);
@@ -37,22 +38,22 @@ export default function DocsRecommended({ docID, count = 5 }) {
 	return (
 		<div
 			ref={ref}
-			className="prose prose-invert docs-recommended bg-blue-1100/20 rounded-lg p-6 text-white shadow-lg ring-1 ring-blue-500/10"
+			className="docs-recommended bg-blue-1100/20 rounded-lg p-6 text-white shadow-lg ring-1 ring-blue-500/10"
 		>
-			<h2>Further Reading:</h2>
+			<h2 className="pb-8 font-semibold">Further Reading</h2>
 
 			{loading ? (
 				<p>Loading recommendations...</p>
 			) : !recommendations || recommendations.length === 0 ? (
 				<p>No recommendations available.</p>
 			) : (
-				<ul>
+				<ul className="flex flex-col gap-4">
 					{recommendations?.map((rec) => (
-						<li key={rec.id} className="list-none">
-							<a href={rec.href}>
+						<li key={rec.id}>
+							<Link href={rec.href}>
 								<DocTypeTag type={rec.type} />
 								{rec.title}
-							</a>
+							</Link>
 						</li>
 					))}
 				</ul>

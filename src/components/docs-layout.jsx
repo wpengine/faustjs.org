@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import DocsBreadcrumbs from "./docs-breadcrumbs";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
-import Recommendations from "@/components/docs-recommended";
+import Recommendations from "@/components/docs-recommendations";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
 import "rehype-callouts/theme/vitepress";
@@ -110,7 +110,7 @@ export default function DocumentPage({
 						// This only puts recommendations on content pages and not on the main docs index or category pages
 						slug.length > 1 && (
 							<>
-								<hr className="my-6 border-t border-gray-700" />
+								<hr className="my-16 border-t border-gray-700" />
 								<Recommendations docID={id} />
 							</>
 						)
