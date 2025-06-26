@@ -14,6 +14,11 @@ export default function Document() {
 					async
 					src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
 				/>
+				{/* eslint-disable-next-line @next/next/no-sync-scripts */}
+				<script
+					type="module"
+					src="https://cdn.jsdelivr.net/npm/dialog-closedby-polyfill/index.js"
+				/>
 				<script
 					// eslint-disable-next-line react/no-danger
 					dangerouslySetInnerHTML={{
