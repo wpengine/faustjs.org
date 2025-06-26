@@ -41,6 +41,7 @@ function NavItem({ item, level, isMobileMenu, ...props }) {
 				data-doc-nav-level={level}
 				href={normalizeHref(item.route)}
 				noDefaultStyles
+				prefetch={false}
 				activeClassName="text-blue-500 active"
 				{...props}
 			>
