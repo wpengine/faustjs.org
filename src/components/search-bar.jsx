@@ -3,6 +3,7 @@ import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
+import DocTypeTag from "./doc-type-tag";
 
 export default function SearchBar({ setIsSearchOpen }) {
 	const [items, setItems] = useState([]);
@@ -119,7 +120,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 		onSelectedItemChange: ({ selectedItem }) => {
 			if (selectedItem) {
 				closeModal();
-				router.push(selectedItem.path);
+				router.push(selectedItem.href);
 			}
 		},
 		itemToString: (item) => (item ? item.title : ""),
@@ -203,12 +204,12 @@ export default function SearchBar({ setIsSearchOpen }) {
 												index,
 												onClick: () => {
 													closeModal();
-													router.push(item.path);
+													router.push(item.href);
 												},
 												onKeyDown: (event) => {
 													if (event.key === "Enter") {
 														closeModal();
-														router.push(item.path);
+														router.push(item.href);
 													}
 												},
 											})}
@@ -222,9 +223,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 											}`}
 										>
 											<span className="text-left">{item.title}</span>
-											<span className="text-right text-sm text-gray-400">
-												{item.type === "mdx_doc" ? "Doc" : "Blog"}
-											</span>
+											<DocTypeTag type={item.type} />
 										</li>
 									))}
 							</ul>
