@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { HiOutlineArrowPath } from "react-icons/hi2";
 import { useInView } from "react-intersection-observer";
 import DocTypeTag from "./doc-type-tag";
 import Link from "./link";
@@ -9,7 +10,7 @@ export default function DocsRecommended({ docID, count = 5 }) {
 
 	const { ref, inView } = useInView({
 		/* Optional options */
-		threshold: 0,
+		threshold: 0.1,
 		triggerOnce: true, // Fetch only once when the component comes into view
 	});
 	const fetchRecommendations = useCallback(async () => {
@@ -40,12 +41,12 @@ export default function DocsRecommended({ docID, count = 5 }) {
 			ref={ref}
 			className="docs-recommended bg-blue-1100/20 rounded-lg p-6 text-white shadow-lg ring-1 ring-blue-500/10"
 		>
-			<h2 className="pb-8 font-semibold">Further Reading</h2>
+			<h2 className="pb-8 font-semibold">Related</h2>
 
 			{loading ? (
-				<p>Loading recommendations...</p>
+				<HiOutlineArrowPath className="mx-auto h-5 w-5 animate-spin" />
 			) : !recommendations || recommendations.length === 0 ? (
-				<p>No recommendations available.</p>
+				<p>No related content available.</p>
 			) : (
 				<ul className="flex flex-col gap-4">
 					{recommendations?.map((rec) => (

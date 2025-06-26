@@ -1,8 +1,8 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import DocTypeTag from "./doc-type-tag";
 
 export default function SearchBar({ setIsSearchOpen }) {
@@ -136,7 +136,7 @@ export default function SearchBar({ setIsSearchOpen }) {
 				type="button"
 			>
 				<span className="sr-only md:hidden">Open search</span>
-				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400 md:hidden" />
+				<HiOutlineMagnifyingGlass className="h-6 w-6 text-gray-400 md:hidden" />
 				<span className="hidden md:inline">
 					<span className="pl-3">Search docs...</span>
 					<kbd className="ml-8 rounded-sm bg-gray-700 px-2 py-1 font-sans text-gray-400">

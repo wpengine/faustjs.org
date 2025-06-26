@@ -1,5 +1,5 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { HiOutlineChevronRight } from "react-icons/hi2";
 import Link from "@/components/link";
 import { classNames, normalizeHref } from "@/utils/strings";
 
@@ -66,7 +66,7 @@ export default function DocsBreadcrumbs({ routes, className }) {
 					>
 						<span>{breadcrumb.title}</span>
 						<span>
-							<ChevronRightIcon className="inline h-5 w-10 pl-4 align-text-top" />
+							<HiOutlineChevronRight className="inline h-5 w-10 pl-4 align-text-top" />
 						</span>
 					</Link>
 				),

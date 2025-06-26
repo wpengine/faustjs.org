@@ -3,8 +3,8 @@ import {
 	DisclosureButton,
 	DisclosurePanel,
 } from "@headlessui/react";
-import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import { HiOutlineChevronRight, HiOutlineChevronDown } from "react-icons/hi2";
 import DocsBreadcrumbs from "./docs-breadcrumbs";
 import OnThisPageNav from "./on-this-page-nav";
 import DocsNav from "@/components/docs-nav";
@@ -58,8 +58,8 @@ export default function DocumentPage({
 				className="sticky top-[84px] z-5 border-b-[1px] border-gray-800 bg-gray-900/80 backdrop-blur-xs md:hidden"
 			>
 				<DisclosureButton className="group flex items-center rounded-md px-2 py-1.5 text-white/70 hover:text-white">
-					<ChevronDownIcon className="relative z-20 hidden h-4 w-4 group-data-open:inline" />
-					<ChevronRightIcon className="inline h-4 w-4 group-data-open:hidden" />
+					<HiOutlineChevronDown className="relative z-20 hidden h-4 w-4 group-data-open:inline" />
+					<HiOutlineChevronRight className="inline h-4 w-4 group-data-open:hidden" />
 					<span className="pl-1">Menu</span>
 				</DisclosureButton>
 				<DisclosurePanel as="nav" className="hidden data-open:block">

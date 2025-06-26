@@ -1,4 +1,4 @@
-import { LinkIcon } from "@heroicons/react/24/outline";
+import { HiOutlineLink } from "react-icons/hi2";
 import Link from "./link";
 
 // Custom heading component with clickable anchor links
@@ -16,7 +16,7 @@ export default function Heading({ level, children, id, ...props }) {
 				noDefaultStyles
 			>
 				{children}
-				<LinkIcon className="ml-2 inline-block size-5" />
+				<HiOutlineLink className="ml-2 inline-block size-5" />
 			</Link>
 		</Tag>
 	);
