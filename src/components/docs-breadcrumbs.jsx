@@ -66,7 +66,7 @@ export default function DocsBreadcrumbs({ routes }) {
 									item: {
 										item_id: breadcrumb.route,
 										item_name: breadcrumb.title,
-										item_category: "docs",
+										item_category: "mdx_doc",
 									},
 								});
 							}}
