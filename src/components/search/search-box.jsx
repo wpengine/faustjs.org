@@ -1,8 +1,7 @@
-import { XCircleIcon } from "@heroicons/react/24/outline";
-import { useCombobox } from "downshift";
+import { XCircleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import debounce from "lodash.debounce";
-import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
+import SearchResults from "./search-results";
 import { useSearch } from "./state";
 import { sendSearchEvent, sendSelectItemEvent } from "@/lib/analytics.mjs";
 
@@ -10,25 +9,21 @@ export default function SearchBar() {
 	const { dialog } = useSearch();
 	const [items, setItems] = useState([]);
 	const [inputValue, setInputValue] = useState("");
-	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
 
-	const openModal = useCallback(() => {
-		dialog.current?.showModal();
-	}, [dialog]);
-
-	const closeModal = useCallback(() => {
-		dialog.current?.close();
+	const handleClose = useCallback(() => {
 		setInputValue("");
-	}, [dialog]);
+		setItems([]);
+	}, [setInputValue, setItems]);
 
 	const handleKeyDown = useCallback(
 		(event) => {
 			if (event.metaKey && event.key === "k") {
 				event.preventDefault();
-				openModal();
+				dialog.current?.showModal();
 			}
 		},
-		[openModal],
+		[dialog],
 	);
 
 	// Add event listener for keydown on the document
@@ -70,46 +65,28 @@ export default function SearchBar() {
 				console.error("Error fetching search results:", error);
 				setItems([]);
 			} finally {
+				setIsLoading(false);
 				sendSearchEvent(value);
 			}
-		}, 500),
+		}, 300),
 	).current;
 
+	// Cleanup the debounced function on unmount
 	useEffect(() => {
 		return () => {
 			debouncedFetchItems.cancel();
 		};
 	}, [debouncedFetchItems]);
 
-	const {
-		isOpen,
-		getMenuProps,
-		getInputProps,
-		getItemProps,
-		highlightedIndex,
-		openMenu,
-		closeMenu,
-	} = useCombobox({
-		items,
-		inputValue,
-		defaultHighlightedIndex: 0,
-		onInputValueChange: ({ inputValue: newValue }) => {
-			setInputValue(newValue);
-			debouncedFetchItems(newValue);
-			if (newValue.trim() === "") {
-				closeMenu();
-			} else {
-				openMenu();
-			}
+	const handleInputChange = useCallback(
+		(event) => {
+			setIsLoading(true);
+			const value = event.target.value;
+			setInputValue(value);
+			debouncedFetchItems(value);
 		},
-		onSelectedItemChange: ({ selectedItem }) => {
-			if (selectedItem) {
-				closeModal();
-				router.push(selectedItem.path);
-			}
-		},
-		itemToString: (item) => (item ? item.title : ""),
-	});
+		[debouncedFetchItems, setInputValue],
+	);
 
 	return (
 		<dialog
@@ -117,104 +94,66 @@ export default function SearchBar() {
 			className="m-auto bg-transparent p-0 backdrop:backdrop-blur-sm"
 			// eslint-disable-next-line react/no-unknown-property
 			closedby="any"
+			onClose={handleClose}
 		>
 			<section className="relative w-full max-w-3xl rounded-lg bg-gray-800 p-6 shadow-lg md:w-[70vw]">
 				<div
-					role="combobox"
-					aria-expanded={isOpen}
 					aria-haspopup="listbox"
 					aria-controls="search-results"
 					className="h rounded-lg bg-gray-800 p-6 shadow-lg"
 				>
 					<div className="relative">
 						<input
+							value={inputValue}
+							onChange={handleInputChange}
 							autoFocus
-							{...getInputProps({
-								placeholder: "What are you searching for?",
-								"aria-label": "Search input",
-								className:
-									"w-full pr-10 p-2 bg-gray-700 text-white placeholder-gray-400 border border-gray-700 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500",
-							})}
+							type="text"
+							placeholder="What are you searching for?"
+							aria-label="Search input"
+							className="w-full rounded-sm border border-gray-700 bg-gray-700 p-2 pr-10 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
 						/>
 						<button
 							type="button"
 							className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
 							onClick={() => {
-								closeModal();
+								dialog.current?.close();
 							}}
 							aria-label="Close search"
 						>
 							<XCircleIcon className="h-5 w-5" />
 						</button>
 					</div>
-					<ul
-						{...getMenuProps({
-							id: "search-results",
-						})}
-						className="mt-2 max-h-60 overflow-y-auto"
+					<div
+						id="search-results"
+						aria-live="polite"
+						aria-label="Search results"
 					>
-						{isOpen &&
-							items &&
-							items.length > 0 &&
-							items.map((item, index) => (
-								<li
-									key={item.id}
-									{...getItemProps({
-										item,
-										index,
-										onClick: () => {
-											closeModal();
-											sendSelectItemEvent({
-												list: {
-													id: "search_results",
-													name: "Search Results",
-												},
-												item: {
-													item_id: item.path,
-													item_name: item.title,
-													item_category: item.type,
-												},
-											});
-											router.push(item.path);
-										},
-										onKeyDown: (event) => {
-											if (event.key === "Enter") {
-												closeModal();
-												sendSelectItemEvent({
-													list: {
-														id: "search_results",
-														name: "Search Results",
-													},
-													item: {
-														item_id: item.path,
-														item_name: item.title,
-														item_category: item.type,
-													},
-												});
-												router.push(item.path);
-											}
-										},
-									})}
-									role="option"
-									aria-selected={highlightedIndex === index}
-									tabIndex={0}
-									className={`flex w-full cursor-pointer items-center justify-between px-4 py-4 ${
-										highlightedIndex === index
-											? "bg-blue-600 text-white"
-											: "bg-gray-800 text-white"
-									}`}
-								>
-									<span className="text-left">{item.title}</span>
-									<span className="text-right text-sm text-gray-400">
-										{item.type === "mdx_doc" ? "Doc" : "Blog"}
-									</span>
-								</li>
+						{inputValue.length > 0 &&
+							(isLoading ? (
+								<div className="flex items-center justify-center p-4">
+									<ArrowPathIcon className="h-5 w-5 animate-spin text-gray-400" />
+									<span className="sr-only">Searching</span>
+								</div>
+							) : (
+								<SearchResults
+									items={items}
+									onSelectItem={(item) => {
+										dialog.current?.close();
+										sendSelectItemEvent({
+											list: {
+												id: "search_results",
+												name: "Search Results",
+											},
+											item: {
+												item_id: item.path,
+												item_name: item.title,
+												item_category: item.type,
+											},
+										});
+									}}
+								/>
 							))}
-					</ul>
-
-					{isOpen && items.length === 0 && (
-						<div className="mt-2 text-gray-500">No results found.</div>
-					)}
+					</div>
 				</div>
 			</section>
 		</dialog>
