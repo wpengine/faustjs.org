@@ -88,6 +88,7 @@ export default function BlogIndex() {
 							<Link
 								className="text-gray-300 no-underline before:absolute before:inset-0 before:block"
 								href={post.uri}
+								prefetch={false}
 							>
 								{post.title}
 							</Link>

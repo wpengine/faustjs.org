@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import DocTypeTag from "./doc-type-tag";
+import { sendSearchEvent, sendSelectItemEvent } from "@/lib/analytics.mjs";
 
 export default function SearchBar({ setIsSearchOpen }) {
 	const [items, setItems] = useState([]);
@@ -86,6 +87,8 @@ export default function SearchBar({ setIsSearchOpen }) {
 			} catch (error) {
 				console.error("Error fetching search results:", error);
 				setItems([]);
+			} finally {
+				sendSearchEvent(value);
 			}
 		}, 500),
 	).current;
@@ -204,12 +207,34 @@ export default function SearchBar({ setIsSearchOpen }) {
 												index,
 												onClick: () => {
 													closeModal();
-													router.push(item.href);
+													sendSelectItemEvent({
+														list: {
+															id: "search_results",
+															name: "Search Results",
+														},
+														item: {
+															item_id: item.path,
+															item_name: item.title,
+															item_category: item.type,
+														},
+													});
+													router.push(item.path);
 												},
 												onKeyDown: (event) => {
 													if (event.key === "Enter") {
 														closeModal();
-														router.push(item.href);
+														sendSelectItemEvent({
+															list: {
+																id: "search_results",
+																name: "Search Results",
+															},
+															item: {
+																item_id: item.path,
+																item_name: item.title,
+																item_category: item.type,
+															},
+														});
+														router.push(item.path);
 													}
 												},
 											})}
