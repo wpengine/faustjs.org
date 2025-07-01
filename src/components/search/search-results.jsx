@@ -1,8 +1,6 @@
 import SearchResultsList from "./search-results-list";
 
 export default function SearchResults({ items, onSelectItem }) {
-	console.log("SearchResults items:", items);
-
 	return (
 		<>
 			{items.length > 0 ? (
