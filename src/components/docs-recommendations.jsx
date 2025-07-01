@@ -3,6 +3,7 @@ import { HiOutlineArrowPath } from "react-icons/hi2";
 import { useInView } from "react-intersection-observer";
 import DocTypeTag from "./doc-type-tag";
 import Link from "./link";
+import { sendSelectItemEvent } from "@/lib/analytics.mjs";
 
 export default function DocsRecommended({ docID, count = 5 }) {
 	const [recommendations, setRecommendations] = useState([]);
@@ -51,7 +52,22 @@ export default function DocsRecommended({ docID, count = 5 }) {
 				<ul className="flex flex-col gap-4">
 					{recommendations?.map((rec) => (
 						<li key={rec.id}>
-							<Link href={rec.href}>
+							<Link
+								href={rec.href}
+								onClick={() => {
+									sendSelectItemEvent({
+										list: {
+											id: "docs_recommendations",
+											name: "Docs Recommendations",
+										},
+										item: {
+											item_id: rec.href,
+											item_name: rec.title,
+											item_category: rec.type,
+										},
+									});
+								}}
+							>
 								<DocTypeTag type={rec.type} />
 								{rec.title}
 							</Link>
