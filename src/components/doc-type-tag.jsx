@@ -20,8 +20,6 @@ export default function DocTypeTag(type) {
 		config.className = "bg-purple-600";
 	}
 
-	console.log("DocTypeTag config", theType, config);
-
 	return (
 		<span
 			className={classNames(
