@@ -1,3 +1,4 @@
+import { XCircleIcon } from "@heroicons/react/24/outline";
 import { useCombobox } from "downshift";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
@@ -26,10 +27,6 @@ export default function SearchBar() {
 				event.preventDefault();
 				openModal();
 			}
-
-			// if (event.key === "Escape") {
-			// 	closeModal();
-			// }
 		},
 		[openModal],
 	);
@@ -129,21 +126,27 @@ export default function SearchBar() {
 					aria-controls="search-results"
 					className="h rounded-lg bg-gray-800 p-6 shadow-lg"
 				>
-					<input
-						autoFocus
-						{...getInputProps({
-							placeholder: "What are you searching for?",
-							"aria-label": "Search input",
-							className:
-								"w-full pr-10 p-2 bg-gray-700 text-white placeholder-gray-400 border border-gray-700 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500",
-						})}
-					/>
-					<kbd
-						type="button"
-						className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
-					>
-						Esc
-					</kbd>
+					<div className="relative">
+						<input
+							autoFocus
+							{...getInputProps({
+								placeholder: "What are you searching for?",
+								"aria-label": "Search input",
+								className:
+									"w-full pr-10 p-2 bg-gray-700 text-white placeholder-gray-400 border border-gray-700 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500",
+							})}
+						/>
+						<button
+							type="button"
+							className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
+							onClick={() => {
+								closeModal();
+							}}
+							aria-label="Close search"
+						>
+							<XCircleIcon className="h-5 w-5" />
+						</button>
+					</div>
 					<ul
 						{...getMenuProps({
 							id: "search-results",
