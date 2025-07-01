@@ -20,7 +20,8 @@ export default function DocsRecommended({ docID, count = 5 }) {
 				`/api/recommend/?docID=${docID}&count=${count}`,
 			);
 			if (!response.ok) {
-				throw new Error("Failed to fetch recommendations");
+				console.error("Failed to fetch recommendations:", response.statusText);
+				return;
 			}
 
 			const data = await response.json();
