@@ -12,7 +12,7 @@ export default function Search() {
 		<button
 			className="inline-flex items-center rounded-md bg-gray-800 px-2 py-1.5 text-sm font-medium text-gray-400 hover:bg-gray-700"
 			type="button"
-			aria-label="Search (shortcut: {shortcut}K)"
+			aria-label={`Search (shortcut: ${shortcut}K)`}
 			onClick={() => dialog.current?.showModal()}
 		>
 			<span className="sr-only md:hidden">Open search</span>

@@ -18,7 +18,7 @@ export default function SearchBar() {
 
 	const handleKeyDown = useCallback(
 		(event) => {
-			if (event.metaKey && event.key === "k") {
+			if ((event.metaKey || event.ctrlKey) && event.key === "k") {
 				event.preventDefault();
 				dialog.current?.showModal();
 			}
