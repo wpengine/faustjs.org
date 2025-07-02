@@ -6,6 +6,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { useRouter } from "next/router";
 import DocsLayout from "@/components/docs-layout";
 import Layout from "@/components/layout";
+import { SearchProvider } from "@/components/search/state";
 import blocks from "@/wp-blocks";
 import "../../faust.config";
 import "./global.css";
@@ -20,18 +21,20 @@ export default function MyApp({ Component, pageProps }) {
 	return (
 		<FaustProvider pageProps={pageProps}>
 			<GoogleAnalytics gaId={GA_TRACKING_ID} />
-			{/*  eslint-disable-next-line unicorn/no-null */}
-			<WordPressBlocksProvider config={{ blocks, theme: null }}>
-				<Layout>
-					{isDocsRoute ? (
-						<DocsLayout {...pageProps}>
+			<SearchProvider>
+				{/*  eslint-disable-next-line unicorn/no-null */}
+				<WordPressBlocksProvider config={{ blocks, theme: null }}>
+					<Layout>
+						{isDocsRoute ? (
+							<DocsLayout {...pageProps}>
+								<Component {...pageProps} />
+							</DocsLayout>
+						) : (
 							<Component {...pageProps} />
-						</DocsLayout>
-					) : (
-						<Component {...pageProps} />
-					)}
-				</Layout>
-			</WordPressBlocksProvider>
+						)}
+					</Layout>
+				</WordPressBlocksProvider>
+			</SearchProvider>
 		</FaustProvider>
 	);
 }

@@ -31,7 +31,7 @@ const sendMainNavItemSelectEvent = (item) => {
 	});
 };
 
-export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
+export default function PrimaryMenu({ className }) {
 	return (
 		<nav className={classNames("flex items-center space-x-4", className)}>
 			<ul className="hidden flex-row space-x-4 pl-4 md:flex">
@@ -88,10 +88,7 @@ export default function PrimaryMenu({ isMenuOpen, setIsMenuOpen, className }) {
 				</li>
 			</ul>
 			<Popover>
-				<PopoverButton
-					className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden"
-					onClick={() => setIsMenuOpen(!isMenuOpen)}
-				>
+				<PopoverButton className="group rounded-md px-2 py-1.5 text-white/70 hover:text-white md:hidden">
 					<span className="sr-only hidden group-data-open:block">
 						Open main nav
 					</span>
