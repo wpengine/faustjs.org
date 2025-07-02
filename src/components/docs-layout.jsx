@@ -111,7 +111,11 @@ export default function DocumentPage({
 						slug.length > 1 && (
 							<>
 								<hr className="my-16 border-t border-gray-700" />
-								<Recommendations docID={id} />
+								<Recommendations
+									// Passing in key is important to force re-render when routing between docs, otherwise the recommendations may not update
+									key={id}
+									docID={id}
+								/>
 							</>
 						)
 					}
