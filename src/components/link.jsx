@@ -1,7 +1,7 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { forwardRef } from "react";
+import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
 import { classNames } from "@/utils/strings";
 
 const CustomLink = forwardRef(
@@ -41,7 +41,7 @@ const CustomLink = forwardRef(
 					{children}
 					{!disableExternalIcon && (
 						<span>
-							<ArrowTopRightOnSquareIcon className="inline h-[1em] max-h-4 w-[1em] max-w-4 align-text-top" />
+							<HiOutlineArrowTopRightOnSquare className="inline h-[1em] max-h-4 w-[1em] max-w-4 align-text-top" />
 						</span>
 					)}
 				</a>

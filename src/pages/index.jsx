@@ -1,11 +1,11 @@
 import {
-	ArrowTopRightOnSquareIcon,
-	ChevronRightIcon,
-	CodeBracketIcon,
-	CursorArrowRaysIcon,
-	KeyIcon,
-	RectangleGroupIcon,
-} from "@heroicons/react/24/outline";
+	HiOutlineArrowTopRightOnSquare,
+	HiOutlineChevronRight,
+	HiOutlineCodeBracket,
+	HiOutlineCursorArrowRays,
+	HiOutlineKey,
+	HiOutlineRectangleGroup,
+} from "react-icons/hi2";
 import Card from "@/components/card";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
@@ -35,7 +35,7 @@ export default function Index() {
 								noDefaultStyles
 							>
 								Read the Docs
-								<ChevronRightIcon
+								<HiOutlineChevronRight
 									className="group-hover:fill-gray-1000 inline h-5 w-5 transition group-hover:translate-x-1"
 									focusable="false"
 								/>
@@ -47,7 +47,7 @@ export default function Index() {
 								noDefaultStyles
 							>
 								Join the Discord
-								<ArrowTopRightOnSquareIcon
+								<HiOutlineArrowTopRightOnSquare
 									className="group-hover:fill-gray-1000 inline h-5 transition group-hover:translate-x-1"
 									focusable="false"
 								/>
@@ -67,7 +67,7 @@ export default function Index() {
 							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
 						>
 							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
-								<KeyIcon className="h-8 w-8" />
+								<HiOutlineKey className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Authentication</h3>
 							<p>
@@ -80,7 +80,7 @@ export default function Index() {
 							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
 						>
 							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
-								<CursorArrowRaysIcon className="h-8 w-8" />
+								<HiOutlineCursorArrowRays className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Post previews</h3>
 							<p>
@@ -94,7 +94,7 @@ export default function Index() {
 							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-5 lg:p-8"
 						>
 							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
-								<CodeBracketIcon className="h-8 w-8" />
+								<HiOutlineCodeBracket className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Template hierarchy</h3>
 							<p>
@@ -115,7 +115,7 @@ export default function Index() {
 							className="bg-blue-1100/20 col-span-full flex flex-col overflow-hidden rounded-2xl p-4 ring-1 ring-blue-500/10 md:col-span-6 md:p-6 lg:col-span-7 lg:p-8"
 						>
 							<div className="bg-opacity-30 flex h-14 w-14 items-center justify-center rounded-full bg-blue-800 text-teal-200">
-								<RectangleGroupIcon className="h-8 w-8" />
+								<HiOutlineRectangleGroup className="h-8 w-8" />
 							</div>
 							<h3 className="text-purple-100">Block editor support</h3>
 							<p>
@@ -135,7 +135,7 @@ export default function Index() {
 							noDefaultStyles
 						>
 							Get Started
-							<ChevronRightIcon
+							<HiOutlineChevronRight
 								className="group-hover:fill-gray-1000 inline h-5 w-5 transition group-hover:translate-x-1"
 								focusable="false"
 							/>

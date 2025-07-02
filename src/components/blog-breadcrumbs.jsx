@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { HiOutlineChevronRight } from "react-icons/hi2";
 import Link from "@/components/link";
 
 export default function BlogBreadcrumbs({ currentPostTitle }) {
@@ -13,7 +13,7 @@ export default function BlogBreadcrumbs({ currentPostTitle }) {
 				>
 					<span>Blog</span>
 					<span>
-						<ChevronRightIcon className="inline h-5 w-10 pl-4 align-text-top" />
+						<HiOutlineChevronRight className="inline h-5 w-10 pl-4 align-text-top" />
 					</span>
 				</Link>
 

@@ -4,8 +4,8 @@ import {
 	PopoverPanel,
 	CloseButton,
 } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { forwardRef } from "react";
+import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 import Link from "@/components/link";
 import { sendSelectItemEvent } from "@/lib/analytics.mjs";
 import { classNames } from "@/utils/strings";
@@ -92,9 +92,9 @@ export default function PrimaryMenu({ className }) {
 					<span className="sr-only hidden group-data-open:block">
 						Open main nav
 					</span>
-					<XMarkIcon className="hidden size-6 group-data-open:block" />
+					<HiOutlineXMark className="hidden size-6 group-data-open:block" />
 					<span className="sr-only group-data-open:hidden">Open main nav</span>
-					<Bars3Icon className="size-6 group-data-open:hidden" />
+					<HiOutlineBars3 className="size-6 group-data-open:hidden" />
 				</PopoverButton>
 				<PopoverPanel
 					as="ul"

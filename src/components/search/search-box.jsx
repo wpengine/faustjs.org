@@ -1,6 +1,6 @@
-import { XCircleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import debounce from "lodash.debounce";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { HiOutlineXCircle, HiOutlineArrowPath } from "react-icons/hi2";
 import SearchResults from "./search-results";
 import { useSearch } from "./state";
 import { sendSearchEvent, sendSelectItemEvent } from "@/lib/analytics.mjs";
@@ -117,7 +117,7 @@ export default function SearchBar() {
 						}}
 						aria-label="Close search"
 					>
-						<XCircleIcon className="h-5 w-5" />
+						<HiOutlineXCircle className="h-5 w-5" />
 					</button>
 				</div>
 				{inputValue.length > 0 && (
@@ -129,7 +129,7 @@ export default function SearchBar() {
 					>
 						{isLoading ? (
 							<div className="flex items-center justify-center">
-								<ArrowPathIcon className="h-5 w-5 animate-spin text-gray-400" />
+								<HiOutlineArrowPath className="h-5 w-5 animate-spin text-gray-400" />
 								<span className="sr-only">Searching</span>
 							</div>
 						) : (
@@ -143,7 +143,7 @@ export default function SearchBar() {
 											name: "Search Results",
 										},
 										item: {
-											item_id: item.path,
+											item_id: item.href,
 											item_name: item.title,
 											item_category: item.type,
 										},
