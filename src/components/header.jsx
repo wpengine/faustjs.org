@@ -1,8 +1,7 @@
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
-import { useState } from "react";
 import FaustLogo from "./faust-logo";
 import PrimaryNav from "./primary-nav";
-import SearchBar from "./search-bar";
+import Search from "./search/search";
 import Link from "@/components/link";
 import { classNames } from "@/utils/strings";
 
@@ -20,15 +19,11 @@ const socialIcons = [
 ];
 
 export default function Header() {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isSearchOpen, setIsSearchOpen] = useState(false);
-
 	return (
 		<div
 			className={classNames(
 				"container-blur-bg top-0 border-b-[1px] border-gray-800 bg-gray-900/80",
-				isMenuOpen ? "fixed z-11 w-full" : "sticky z-10",
-				isSearchOpen ? "z-11" : "z-10",
+				"sticky z-10",
 			)}
 		>
 			<header className="container mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:max-w-6xl md:px-8">
@@ -48,12 +43,9 @@ export default function Header() {
 					</Link>
 				</div>
 				<div className="flex items-center gap-5 md:w-full md:justify-between">
-					<PrimaryNav
-						onMenuToggle={setIsMenuOpen}
-						setIsMenuOpen={setIsMenuOpen}
-					/>
+					<PrimaryNav />
 					<span className="flex gap-5">
-						<SearchBar setIsSearchOpen={setIsSearchOpen} />
+						<Search />
 						<div className="hidden items-center space-x-4 md:flex">
 							{socialIcons.map(({ url, name, icon: Icon }) => (
 								<Link
