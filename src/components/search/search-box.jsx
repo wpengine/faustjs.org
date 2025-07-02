@@ -91,70 +91,68 @@ export default function SearchBar() {
 	return (
 		<dialog
 			ref={dialog}
-			className="m-auto bg-transparent p-0 backdrop:backdrop-blur-sm"
+			className="mx-auto mt-[10vh] bg-transparent p-0 backdrop:backdrop-blur-sm md:mt-[20vh]"
 			// eslint-disable-next-line react/no-unknown-property
 			closedby="any"
 			onClose={handleClose}
 		>
-			<section className="relative w-full max-w-3xl rounded-lg bg-gray-800 p-6 shadow-lg md:w-[70vw]">
-				<div
-					aria-haspopup="listbox"
-					aria-controls="search-results"
-					className="h rounded-lg bg-gray-800 p-6 shadow-lg"
-				>
-					<div className="relative">
-						<input
-							value={inputValue}
-							onChange={handleInputChange}
-							autoFocus
-							type="text"
-							placeholder="What are you searching for?"
-							aria-label="Search input"
-							className="w-full rounded-sm border border-gray-700 bg-gray-700 p-2 pr-10 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
-						/>
-						<button
-							type="button"
-							className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
-							onClick={() => {
-								dialog.current?.close();
-							}}
-							aria-label="Close search"
-						>
-							<XCircleIcon className="h-5 w-5" />
-						</button>
-					</div>
+			<section className="relative w-[85dvi] max-w-3xl rounded-lg bg-gray-800 p-4 md:w-[70vw] md:p-6">
+				<div className="relative">
+					<input
+						aria-haspopup="listbox"
+						aria-controls="search-results"
+						value={inputValue}
+						onChange={handleInputChange}
+						autoFocus
+						type="text"
+						placeholder="What are you searching for?"
+						aria-label="Search input"
+						className="w-full rounded-sm border border-gray-700 bg-gray-700 p-2 pr-10 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
+					/>
+					<button
+						type="button"
+						className="absolute top-1/2 right-2 -translate-y-1/2 transform text-xs text-gray-400 hover:text-white"
+						onClick={() => {
+							dialog.current?.close();
+						}}
+						aria-label="Close search"
+					>
+						<XCircleIcon className="h-5 w-5" />
+					</button>
+				</div>
+				{inputValue.length > 0 && (
 					<div
 						id="search-results"
 						aria-live="polite"
 						aria-label="Search results"
+						className="mt-6 transition duration-300 ease-in-out"
 					>
-						{inputValue.length > 0 &&
-							(isLoading ? (
-								<div className="flex items-center justify-center p-4">
-									<ArrowPathIcon className="h-5 w-5 animate-spin text-gray-400" />
-									<span className="sr-only">Searching</span>
-								</div>
-							) : (
-								<SearchResults
-									items={items}
-									onSelectItem={(item) => {
-										dialog.current?.close();
-										sendSelectItemEvent({
-											list: {
-												id: "search_results",
-												name: "Search Results",
-											},
-											item: {
-												item_id: item.path,
-												item_name: item.title,
-												item_category: item.type,
-											},
-										});
-									}}
-								/>
-							))}
+						{isLoading ? (
+							<div className="flex items-center justify-center">
+								<ArrowPathIcon className="h-5 w-5 animate-spin text-gray-400" />
+								<span className="sr-only">Searching</span>
+							</div>
+						) : (
+							<SearchResults
+								items={items}
+								onSelectItem={(item) => {
+									dialog.current?.close();
+									sendSelectItemEvent({
+										list: {
+											id: "search_results",
+											name: "Search Results",
+										},
+										item: {
+											item_id: item.path,
+											item_name: item.title,
+											item_category: item.type,
+										},
+									});
+								}}
+							/>
+						)}
 					</div>
-				</div>
+				)}
 			</section>
 		</dialog>
 	);
