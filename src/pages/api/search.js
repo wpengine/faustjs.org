@@ -21,7 +21,13 @@ export default async function handler(req, res) {
 
 	const graphqlQuery = `
         query FindDocuments($query: String!) {
-            find(query: $query) {
+            find(
+							query: $query
+							semanticSearch: {
+								searchBias: 5,
+								fields: ["post_title", "post_content", "content"]
+							}
+            ) {
                 total
                 documents {
                     id
