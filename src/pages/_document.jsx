@@ -28,6 +28,15 @@ export default function Document() {
 					type="application/atom+xml"
 					title="WPGraphQL Blog Atom Feed"
 				/>
+				{/*
+					We use the dialog-closedby-polyfill to support the closedby attribute
+					in Safari.
+				*/}
+				{/* eslint-disable-next-line @next/next/no-sync-scripts */}
+				<script
+					type="module"
+					src="https://cdn.jsdelivr.net/npm/dialog-closedby-polyfill/index.js"
+				/>
 			</Head>
 			<body className="bg-gray-900 text-gray-200">
 				<Main />

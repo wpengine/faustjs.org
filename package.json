@@ -37,7 +37,6 @@
 		"ai": "^4.3.16",
 		"date-fns": "^4.1.0",
 		"date-fns-tz": "^3.2.0",
-		"downshift": "^9.0.9",
 		"feed": "^5.1.0",
 		"graphql": "^16.11.0",
 		"http-status-codes": "^2.3.0",

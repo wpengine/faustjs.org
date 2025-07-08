@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import Footer from "./footer";
 import Header from "./header";
+import SearchBox from "./search/search-box";
 
 const inter = localFont({
 	src: "../fonts/inter-variable-font.woff2",
@@ -20,6 +21,7 @@ export default function Layout({ children }) {
 			<Header />
 			{children}
 			<Footer />
+			<SearchBox />
 		</div>
 	);
 }
