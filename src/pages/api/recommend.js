@@ -5,7 +5,7 @@ import { normalizeSmartSearchResponse } from "@/utils/content";
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
 	const accessToken = process.env.NEXT_SEARCH_ACCESS_TOKEN;
-	const { query } = req.query;
+	const { docID, count } = req.query;
 
 	if (req.method !== "GET") {
 		return res
@@ -13,29 +13,22 @@ export default async function handler(req, res) {
 			.json({ error: ReasonPhrases.METHOD_NOT_ALLOWED });
 	}
 
-	if (!query) {
+	if (!docID) {
 		return res
 			.status(StatusCodes.BAD_REQUEST)
-			.json({ error: "Search query is required." });
+			.json({ error: "Document ID (docID) is required." });
 	}
 
 	const graphqlQuery = `
-        query FindDocuments($query: String!) {
-            find(
-							query: $query
-							semanticSearch: {
-								searchBias: 5,
-								fields: ["post_title", "post_content", "content"]
-							}
-            ) {
-                total
-                documents {
-                    id
-                    data
-                }
-            }
-        }
-    `;
+        query RelatedDocuments($docID: String!, $count: Int = 3) {
+					recommendations(count: $count) {
+						documents: relatedDocuments(docID: $docID, minScore: 0.7) {
+							id: docID
+							data: source
+							score
+						}
+					}
+			}`;
 
 	try {
 		const response = await fetch(endpoint, {
@@ -46,7 +39,7 @@ export default async function handler(req, res) {
 			},
 			body: JSON.stringify({
 				query: graphqlQuery,
-				variables: { query },
+				variables: { docID, count },
 			}),
 		});
 
@@ -66,7 +59,9 @@ export default async function handler(req, res) {
 
 		return res
 			.status(StatusCodes.OK)
-			.json(normalizeSmartSearchResponse(result.data.find.documents));
+			.json(
+				normalizeSmartSearchResponse(result.data.recommendations.documents),
+			);
 	} catch (error) {
 		console.error("Error fetching search data:", error);
 		return res

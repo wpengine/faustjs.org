@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { getNextStaticProps } from "@faustwp/core";
-import { ArrowPathIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
+import { HiOutlineArrowPath, HiOutlineChevronDown } from "react-icons/hi2";
 import Card from "@/components/card";
 import Date from "@/components/date";
 import Seo from "@/components/seo";
@@ -45,7 +45,7 @@ export default function BlogIndex() {
 	if (loading && !data)
 		return (
 			<div className="container-main flex justify-center py-20">
-				Loading <ArrowPathIcon className="ml-2 h-5 w-5 animate-spin" />
+				Loading <HiOutlineArrowPath className="ml-2 h-5 w-5 animate-spin" />
 			</div>
 		);
 
@@ -129,11 +129,11 @@ const LoadMoreButton = ({ onClick }) => {
 		>
 			{loading ? (
 				<>
-					Loading <ArrowPathIcon className="ml-2 h-5 w-5 animate-spin" />
+					Loading <HiOutlineArrowPath className="ml-2 h-5 w-5 animate-spin" />
 				</>
 			) : (
 				<>
-					Load more <ChevronDownIcon className="ml-2 h-5 w-5" />
+					Load more <HiOutlineChevronDown className="ml-2 h-5 w-5" />
 				</>
 			)}
 		</button>

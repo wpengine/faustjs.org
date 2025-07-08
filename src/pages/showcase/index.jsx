@@ -1,5 +1,5 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
 import Link from "@/components/link";
 import Seo from "@/components/seo";
 
@@ -63,7 +63,7 @@ export default function Showcase() {
 						{/* Applying solid blue background with opacity and making it fit the card width */}
 						<div className="flex items-center justify-between px-4 pt-4 pb-2 text-gray-300 group-hover:text-gray-100">
 							<span className="text-xl font-normal">{showcase.title}</span>
-							<ArrowTopRightOnSquareIcon className="h-6 w-6" />
+							<HiOutlineArrowTopRightOnSquare className="h-6 w-6" />
 						</div>
 					</Link>
 				))}
