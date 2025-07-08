@@ -10,6 +10,6 @@ export function sendSelectItemEvent({ list: { name, id }, item }) {
 	sendGAEvent("event", "select_item", {
 		item_list_id: id,
 		item_list_name: name,
-		item: [item],
+		items: [item],
 	});
 }
