@@ -60,7 +60,8 @@
 		"shiki": "^3.6.0",
 		"strip-markdown": "^6.0.0",
 		"unified": "^11.0.5",
-		"vfile-matter": "^5.0.1"
+		"vfile-matter": "^5.0.1",
+		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4.1.9",

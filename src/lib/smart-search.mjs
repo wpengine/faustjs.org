@@ -5,7 +5,7 @@ const token = env.NEXT_SEARCH_ACCESS_TOKEN ?? "";
 
 // Field might need to be adjusted to include the correct field for your search index, e.g. "content", "post_title", etc.
 export async function getContext(message) {
-	const query = `query GetRagContext($message: String!) {
+	const query = `query GetContext($message: String!) {
     similarity(
       input: {
         nearest: {
