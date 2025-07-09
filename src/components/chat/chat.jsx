@@ -1,36 +1,26 @@
-// import { Message } from "ai/react";
-import Messages from "./Messages";
-
-// interface Chat {
-//   input: string;
-//   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
-//   handleMessageSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-//   messages: Message[];
-// }
+import { HiOutlineArrowPath } from "react-icons/hi2";
+import ChatInput from "./chat-input";
+import Messages from "./messages";
 
 export default function Chat({
 	input,
 	handleInputChange,
 	handleMessageSubmit,
+	status,
 	messages,
 }) {
 	return (
-		<div id="chat" className="mx-2 flex w-full flex-col">
+		<div id="chat" className="flex h-full w-full flex-col">
 			<Messages messages={messages} />
+			{status === "submitted" && (
+				<HiOutlineArrowPath className="mx-auto h-5 w-5 animate-spin" />
+			)}
 			<form
+				id="chat-form"
 				onSubmit={handleMessageSubmit}
-				className="relative mt-5 mb-5 ml-1 rounded-lg bg-gray-500"
+				className="relative mt-5 mb-5 ml-1 rounded-lg"
 			>
-				<input
-					type="text"
-					className="input-glow focus:shadow-outline w-full appearance-none rounded border border-gray-100 bg-gray-100 px-3 py-2 pr-10 pl-3 leading-tight text-gray-700 transition-shadow duration-200 focus:outline-none"
-					value={input}
-					onChange={handleInputChange}
-				/>
-
-				<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
-					Press ⮐ to send
-				</span>
+				<ChatInput input={input} handleInputChange={handleInputChange} />
 			</form>
 		</div>
 	);

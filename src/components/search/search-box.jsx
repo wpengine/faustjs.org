@@ -91,6 +91,7 @@ export default function SearchBar() {
 	return (
 		<dialog
 			ref={dialog}
+			id="search-dialog"
 			className="mx-auto mt-[10vh] bg-transparent p-0 backdrop:backdrop-blur-sm md:mt-[20vh]"
 			// eslint-disable-next-line react/no-unknown-property
 			closedby="any"

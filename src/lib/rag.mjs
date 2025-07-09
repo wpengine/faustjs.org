@@ -1,6 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
 import { getContext } from "./smart-search.mjs";
+import { normalizeSmartSearchResponse } from "@/utils/content";
 
 export const smartSearchTool = tool({
 	description:
@@ -35,22 +36,11 @@ export const smartSearchTool = tool({
 				};
 			}
 
-			const formattedResults = context.data.similarity.docs.map((doc) => {
-				if (!doc) {
-					return {};
-				}
+			const formattedResults = normalizeSmartSearchResponse(
+				context.data.similarity.docs,
+			);
 
-				return {
-					id: doc.id,
-					title: doc.data.post_title,
-					content: doc.data.post_content,
-					url: doc.data.post_url,
-					categories: doc.data.categories.map((category) => category.name),
-					searchScore: doc.score,
-				};
-			});
-
-			// console.log("[Tool Execution] Search results:", formattedResults);
+			console.log("[Tool Execution] Search results:", formattedResults);
 
 			return { searchResults: formattedResults }; // Return the formatted string
 		} catch (error) {

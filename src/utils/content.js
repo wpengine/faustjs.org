@@ -17,7 +17,6 @@ export function normalizeSmartSearchResponse(results) {
 
 	return results.map((result) => {
 		const { id, data } = result;
-		// console.log("Data:", result);
 		if (data.content_type === "mdx_doc") {
 			const path = data.path ? cleanPath(data.path) : "/";
 
@@ -26,6 +25,7 @@ export function normalizeSmartSearchResponse(results) {
 				title: data.title,
 				href: path,
 				type: data.content_type,
+				content: data.content,
 			};
 		} else if (["post", "page"].includes(data.post_type)) {
 			return {
@@ -33,6 +33,7 @@ export function normalizeSmartSearchResponse(results) {
 				title: data.post_title,
 				href: new URL(data.post_url).pathname,
 				type: data.post_type,
+				content: data.post_content,
 			};
 		} else {
 			throw new TypeError(
