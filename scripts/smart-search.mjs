@@ -66,7 +66,7 @@ async function collectPages() {
 				description: parsedContent.data.matter.description,
 				post_content: parsedContent.value,
 				post_url: cleanedPath,
-				type: "mdx_doc",
+				post_type: "mdx_doc",
 			},
 		});
 	}
