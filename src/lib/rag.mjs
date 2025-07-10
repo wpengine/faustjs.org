@@ -1,7 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
 import { getContext } from "./smart-search.mjs";
-import { normalizeSmartSearchResponse } from "@/utils/content";
+import { normalizeSmartSearchResponse } from "@/lib/smart-search.mjs";
 
 export const smartSearchTool = tool({
 	description:
