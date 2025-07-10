@@ -5,7 +5,6 @@ export default function SearchResults({ items, onSelectItem }) {
 	return (
 		<ul className="custom-scrollbar max-h-[75dvh] overflow-y-auto md:max-h-96">
 			{items.map((item) => {
-				console.log("Search result item:", item);
 				if (!item?.id || !item?.title || !item?.href) {
 					console.warn("Invalid item in search results:", item);
 					return;

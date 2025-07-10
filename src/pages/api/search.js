@@ -1,6 +1,6 @@
 import process from "node:process";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { normalizeSmartSearchResponse } from "@/utils/content";
+import { normalizeSmartSearchResponse } from "@/lib/smart-search.mjs";
 
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 							query: $query
 							semanticSearch: {
 								searchBias: 5,
-								fields: ["post_title", "post_content", "content"]
+								fields: ["post_title", "post_content"]
 							}
             ) {
                 total
@@ -70,7 +70,7 @@ export default async function handler(req, res) {
 	} catch (error) {
 		console.error("Error fetching search data:", error);
 		return res
-			.status(StatusCodes.Inter)
+			.status(StatusCodes.INTERNAL_SERVER_ERROR)
 			.json({ error: ReasonPhrases.INTERNAL_SERVER_ERROR });
 	}
 }
