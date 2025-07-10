@@ -11,11 +11,10 @@ import { smartSearchConfig } from "../src/lib/smart-search.mjs";
 const {
 	NEXT_PUBLIC_SEARCH_ENDPOINT: endpoint,
 	NEXT_SEARCH_ACCESS_TOKEN: accessToken,
-	HEADLESS_METADATA_ENV_BRANCH: branchName,
 } = env;
 
 async function main() {
-	if (branchName === "main" && (!endpoint || !accessToken)) {
+	if (!endpoint || !accessToken) {
 		console.error("Search endpoint and accessToken are required for indexing.");
 		exit(1);
 	}
@@ -24,11 +23,6 @@ async function main() {
 		const pages = await collectPages();
 
 		console.log("Docs Pages collected for indexing:", pages.length);
-
-		if (branchName !== "main") {
-			console.log("Skipping indexing in non-production mode.");
-			exit(0);
-		}
 
 		await deleteOldDocs();
 
