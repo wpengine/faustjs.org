@@ -40,10 +40,10 @@ async function main() {
  * @typedef {object} Page
  * @property {string} id //The unique identifier of the document.
  * @property {object} data //The data to be indexed.
- * @property {string} data.title //The title of the document.
- * @property {string} data.content //The text content of the document.
- * @property {string} data.path //A relative path to the document on the internet.
- * @property {string} data.content_type // The type of content. Always "mdx_doc".
+ * @property {string} data.post_title //The title of the document.
+ * @property {string} data.post_content //The text content of the document.
+ * @property {string} data.post_url //A relative path to the document on the internet.
+ * @property {string} data.post_type // The type of content. Always "mdx_doc".
  * @returns Page[]
  */
 async function collectPages() {
@@ -130,7 +130,7 @@ async function deleteOldDocs() {
 			const response = await graphql({
 				query: queryDocuments,
 				variables: {
-					query: 'content_type:"mdx_doc"',
+					query: 'post_type:"mdx_doc"',
 					limit: 10,
 					offset: totalCollected,
 				},

@@ -41,9 +41,7 @@ export function normalizeSmartSearchResponse(results) {
 			}
 
 			default: {
-				throw new TypeError(
-					`Unknown content type: ${data.content_type ?? data.post_type}`,
-				);
+				throw new TypeError(`Unknown content type: ${data.post_type}`);
 			}
 		}
 	});

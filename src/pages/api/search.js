@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 							query: $query
 							semanticSearch: {
 								searchBias: 5,
-								fields: ["post_title", "post_content", "content"]
+								fields: ["post_title", "post_content"]
 							}
             ) {
                 total
