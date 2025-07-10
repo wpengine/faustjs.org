@@ -1,4 +1,4 @@
-import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
+import { SiDiscord, SiGithub } from "react-icons/si";
 import FaustLogo from "./faust-logo";
 import PrimaryNav from "./primary-nav";
 import Search from "./search/search";

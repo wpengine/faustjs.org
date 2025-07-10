@@ -1,11 +1,12 @@
-import { hash } from "node:crypto";
 import { env, exit } from "node:process";
 import { getTextContentFromMd } from "../src/lib/remark-parsing.mjs";
 import {
 	getAllDocMeta,
 	getRawDocContent,
 	getDocUriFromPath,
+	generateDocIdFromUri,
 } from "../src/lib/remote-mdx-files.mjs";
+import { smartSearchConfig } from "../src/lib/smart-search.mjs";
 
 const {
 	NEXT_PUBLIC_SEARCH_ENDPOINT: endpoint,
@@ -24,6 +25,9 @@ async function main() {
 		console.log("Docs Pages collected for indexing:", pages.length);
 
 		await deleteOldDocs();
+
+		await setSearchConfig();
+
 		await sendPagesToEndpoint(pages);
 	} catch (error) {
 		console.error("Error in smartSearchPlugin:", error);
@@ -36,10 +40,10 @@ async function main() {
  * @typedef {object} Page
  * @property {string} id //The unique identifier of the document.
  * @property {object} data //The data to be indexed.
- * @property {string} data.title //The title of the document.
- * @property {string} data.content //The text content of the document.
- * @property {string} data.path //A relative path to the document on the internet.
- * @property {string} data.content_type // The type of content. Always "mdx_doc".
+ * @property {string} data.post_title //The title of the document.
+ * @property {string} data.post_content //The text content of the document.
+ * @property {string} data.post_url //A relative path to the document on the internet.
+ * @property {string} data.post_type // The type of content. Always "mdx_doc".
  * @returns Page[]
  */
 async function collectPages() {
@@ -53,16 +57,16 @@ async function collectPages() {
 
 		const cleanedPath = getDocUriFromPath(entry.path);
 
-		const id = hash("sha-1", `mdx:${cleanedPath}`);
+		const id = generateDocIdFromUri(cleanedPath);
 
 		pages.push({
 			id,
 			data: {
-				title: parsedContent.data.matter.title,
+				post_title: parsedContent.data.matter.title,
 				description: parsedContent.data.matter.description,
-				content: parsedContent.value,
-				path: cleanedPath,
-				content_type: "mdx_doc",
+				post_content: parsedContent.value,
+				post_url: cleanedPath,
+				post_type: "mdx_doc",
 			},
 		});
 	}
@@ -126,7 +130,7 @@ async function deleteOldDocs() {
 			const response = await graphql({
 				query: queryDocuments,
 				variables: {
-					query: 'content_type:"mdx_doc"',
+					query: 'post_type:"mdx_doc"',
 					limit: 10,
 					offset: totalCollected,
 				},
@@ -205,6 +209,36 @@ async function sendPagesToEndpoint(pages) {
 		console.log(`Indexed ${documents.length} documents successfully.`);
 	} catch (error) {
 		console.error("Error during bulk indexing:", error);
+	}
+}
+
+const searchConfigMutation = `
+mutation setSemanticSearchConfiguration($fields: [String!]!, $chunking: ChunkingConfig!) {
+  config {
+    semanticSearch(fields: $fields, chunking: $chunking) {
+      type
+      fields
+      chunking {
+        enabled
+      }
+    }
+  }
+}`;
+
+async function setSearchConfig() {
+	const variables = {
+		fields: smartSearchConfig.fields,
+		chunking: smartSearchConfig.chunking,
+	};
+
+	try {
+		const response = await graphql({ query: searchConfigMutation, variables });
+		console.log(
+			"Search configuration updated successfully.",
+			JSON.stringify(response.data.config.semanticSearch, undefined, 2),
+		);
+	} catch (error) {
+		console.error("Error updating search configuration:", error);
 	}
 }
 

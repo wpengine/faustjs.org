@@ -1,3 +1,4 @@
+import { hash } from "node:crypto";
 import path from "node:path";
 import { env } from "node:process";
 import { Octokit } from "@octokit/core";
@@ -157,4 +158,14 @@ export async function getParsedDoc(slug) {
 	const content = await getRawDocContent(docUrlFromSlug(slug));
 
 	return getSerializedContextFromMd(content, slug);
+}
+
+/**
+ * Generates Document ID from a URI
+ *
+ * @param {string} uri
+ * @returns {string}
+ */
+export function generateDocIdFromUri(uri) {
+	return `mdx:${hash("sha-1", uri)}`;
 }
