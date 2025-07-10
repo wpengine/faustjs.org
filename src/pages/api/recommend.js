@@ -1,6 +1,6 @@
 import process from "node:process";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { normalizeSmartSearchResponse } from "@/utils/content";
+import { normalizeSmartSearchResponse } from "@/lib/smart-search.mjs";
 
 export default async function handler(req, res) {
 	const endpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;

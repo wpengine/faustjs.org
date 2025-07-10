@@ -6,6 +6,7 @@ import {
 	getDocUriFromPath,
 	generateDocIdFromUri,
 } from "../src/lib/remote-mdx-files.mjs";
+import { smartSearchConfig } from "../src/lib/smart-search.mjs";
 
 const {
 	NEXT_PUBLIC_SEARCH_ENDPOINT: endpoint,
@@ -30,6 +31,9 @@ async function main() {
 		}
 
 		await deleteOldDocs();
+
+		await setSearchConfig();
+
 		await sendPagesToEndpoint(pages);
 	} catch (error) {
 		console.error("Error in smartSearchPlugin:", error);
@@ -64,11 +68,11 @@ async function collectPages() {
 		pages.push({
 			id,
 			data: {
-				title: parsedContent.data.matter.title,
+				post_title: parsedContent.data.matter.title,
 				description: parsedContent.data.matter.description,
-				content: parsedContent.value,
-				path: cleanedPath,
-				content_type: "mdx_doc",
+				post_content: parsedContent.value,
+				post_url: cleanedPath,
+				type: "mdx_doc",
 			},
 		});
 	}
@@ -211,6 +215,36 @@ async function sendPagesToEndpoint(pages) {
 		console.log(`Indexed ${documents.length} documents successfully.`);
 	} catch (error) {
 		console.error("Error during bulk indexing:", error);
+	}
+}
+
+const searchConfigMutation = `
+mutation setSemanticSearchConfiguration($fields: [String!]!, $chunking: ChunkingConfig!) {
+  config {
+    semanticSearch(fields: $fields, chunking: $chunking) {
+      type
+      fields
+      chunking {
+        enabled
+      }
+    }
+  }
+}`;
+
+async function setSearchConfig() {
+	const variables = {
+		fields: smartSearchConfig.fields,
+		chunking: smartSearchConfig.chunking,
+	};
+
+	try {
+		const response = await graphql({ query: searchConfigMutation, variables });
+		console.log(
+			"Search configuration updated successfully.",
+			JSON.stringify(response.data.config.semanticSearch, undefined, 2),
+		);
+	} catch (error) {
+		console.error("Error updating search configuration:", error);
 	}
 }
 
