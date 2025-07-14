@@ -4,7 +4,6 @@ import { streamText, convertToCoreMessages } from "ai";
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { smartSearchTool } from "@/lib/rag.mjs";
 
-console.log("Initializing Google Vertex AI...");
 // Ensure all required environment variables are set
 if (!env.GOOGLE_VERTEX_PROJECT) {
 	throw new Error("GOOGLE_VERTEX_PROJECT is not set");
@@ -65,7 +64,7 @@ export async function POST(req) {
 		const coreMessages = convertToCoreMessages(messages);
 
 		const response = await streamText({
-			model: vertex("gemini-2.5-pro"),
+			model: vertex("gemini-2.5-flash"),
 			system: [systemPromptContent, smartSearchPrompt].join("\n"),
 			messages: coreMessages,
 			tools: {
@@ -81,7 +80,6 @@ export async function POST(req) {
 				console.log("Tool call initiated:", toolCall);
 			},
 			onStepFinish: async (result) => {
-				console.log("Step finished:", result);
 				if (result.usage) {
 					console.log(
 						`[Token Usage] Prompt tokens: ${result.usage.promptTokens}, Completion tokens: ${result.usage.completionTokens}, Total tokens: ${result.usage.totalTokens}`,

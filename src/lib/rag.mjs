@@ -30,7 +30,7 @@ export const smartSearchTool = tool({
 			}
 
 			if (context?.data?.similarity?.docs?.length === 0) {
-				console.log("[Tool Execution] No documents found for query:", query);
+				console.warn("[Tool Execution] No documents found for query:", query);
 				return {
 					searchResults: "No relevant information found for your query.",
 				};
@@ -39,8 +39,6 @@ export const smartSearchTool = tool({
 			const formattedResults = normalizeSmartSearchResponse(
 				context.data.similarity.docs,
 			);
-
-			console.log("[Tool Execution] Search results:", formattedResults);
 
 			return { searchResults: formattedResults }; // Return the formatted string
 		} catch (error) {
