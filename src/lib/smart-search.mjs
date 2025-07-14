@@ -9,6 +9,7 @@ export async function getContext(message) {
 	const query = `query GetContext($message: String!) {
     similarity(
       input: {
+				minScore: 1,
         nearest: {
           text: $message,
           field: "post_content"

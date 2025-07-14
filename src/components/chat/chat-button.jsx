@@ -27,7 +27,7 @@ export default function ChatButton() {
 		<button
 			id="chat-button"
 			type="button"
-			className="fixed right-4 bottom-4 z-50 flex h-12 w-12 animate-pulse cursor-pointer items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-transform hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 md:right-8 md:bottom-12"
+			className="fixed right-4 bottom-4 z-50 flex h-12 w-12 animate-pulse cursor-pointer items-center justify-center rounded-full bg-blue-800 text-white shadow-lg transition-transform hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 md:right-8 md:bottom-12"
 			aria-label={isOpen ? "Open chat" : "Close chat"}
 			onClick={() => {
 				return isOpen ? dialog.current?.close() : dialog.current?.show();

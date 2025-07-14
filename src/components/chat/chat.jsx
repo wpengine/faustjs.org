@@ -10,16 +10,12 @@ export default function Chat({
 	messages,
 }) {
 	return (
-		<div id="chat" className="flex h-full w-full flex-col">
+		<div id="chat" className="flex h-full w-full flex-col gap-4">
 			<Messages messages={messages} />
 			{status === "submitted" && (
-				<HiOutlineArrowPath className="mx-auto h-5 w-5 animate-spin" />
+				<HiOutlineArrowPath className="mx-auto h-6 w-6 animate-spin text-gray-200" />
 			)}
-			<form
-				id="chat-form"
-				onSubmit={handleMessageSubmit}
-				className="relative mt-5 mb-5 ml-1 rounded-lg"
-			>
+			<form id="chat-form" onSubmit={handleMessageSubmit} className="relative">
 				<ChatInput input={input} handleInputChange={handleInputChange} />
 			</form>
 		</div>

@@ -2,26 +2,26 @@ import { HiOutlinePaperAirplane } from "react-icons/hi2";
 
 export default function Input({ input, handleInputChange }) {
 	return (
-		<div className="mx-auto w-full max-w-2xl rounded-xl bg-gray-800 p-4 shadow-lg">
+		<div className="flex w-full items-end justify-between gap-2">
 			<input
+				id="chat-input"
 				type="text"
+				wrap="soft"
 				value={input}
 				onChange={handleInputChange}
 				autoFocus
-				placeholder="Ask Smart Search about Faust..."
-				className="text-md mb-3 w-full bg-transparent text-gray-200 placeholder-gray-500 focus:outline-none"
+				placeholder="Ask about Faust..."
+				className="no-scrollbar text-md w-full max-w-full rounded-xl bg-gray-700 p-2 text-wrap text-gray-200 placeholder-gray-400 shadow-lg transition-colors focus:ring-2 focus:ring-teal-500 focus:outline-none"
 			/>
 
-			<div className="flex">
-				<button
-					type="submit"
-					className="ml-auto rounded-md p-1 transition-colors hover:bg-gray-700"
-					aria-label="Send message"
-					disabled={!input.trim()}
-				>
-					<HiOutlinePaperAirplane className="h-5 w-5" />
-				</button>
-			</div>
+			<button
+				type="submit"
+				className="enabled:bg-hero-gradient ml-auto cursor-pointer rounded-xl bg-gray-700 p-2 text-gray-400 shadow-lg enabled:text-gray-200"
+				aria-label="Send message"
+				disabled={!input.trim()}
+			>
+				<HiOutlinePaperAirplane className="h-6 w-6" />
+			</button>
 		</div>
 	);
 }
