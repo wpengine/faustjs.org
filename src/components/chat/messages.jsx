@@ -19,7 +19,6 @@ export default function Messages({ messages, className }) {
 			role="log"
 		>
 			{messages.map((message) => {
-				console.log("Rendering message:", message);
 				const isAssistant = message.role === "assistant";
 				const isLoading = message.content === "";
 				return (
