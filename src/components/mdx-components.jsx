@@ -1,7 +1,7 @@
 import Heading from "@/components/heading";
 import CustomLink from "@/components/link";
 
-export function useMDXComponents(components) {
+export function getMDXComponents(components) {
 	return {
 		a: (props) => <CustomLink {...props} />,
 		h1: (props) => <Heading level={1} {...props} />,

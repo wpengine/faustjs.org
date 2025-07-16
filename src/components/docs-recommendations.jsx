@@ -43,7 +43,7 @@ export default function DocsRecommended({ docID, count = 5 }) {
 			ref={ref}
 			className="docs-recommended bg-blue-1100/20 rounded-lg p-6 text-white shadow-lg ring-1 ring-blue-500/10"
 		>
-			<h2 className="pb-8 font-semibold">Related</h2>
+			<h2 className="pb-8 font-semibold">Related Content</h2>
 
 			{loading ? (
 				<HiOutlineArrowPath className="mx-auto h-5 w-5 animate-spin" />

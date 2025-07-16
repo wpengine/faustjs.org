@@ -46,13 +46,14 @@ const smartSearchPrompt = `
   	- You MUST then formulate a conversational response to the user based on those results but also use the tool if the users query is deemed plausible.
       - If search results are found, summarize them for the user.
       - If no information is found or an error occurs, inform the user clearly.
-		- All links from this tool are root relative to the Faust documentation site (https://faustjs.org).`;
+		- You only run on the faustjs.org domain. Don't prefix root-relative links in post_url so client-side routing works.
+`;
 
 const systemPromptContent = `
     - You are a friendly and helpful AI assistant.
     - Format your responses using Github Flavored Markdown.
     - Make sure to format links as [link text](path).
-		- Make sure to clink out to the source of the information you provide.
+		- Make sure to link out to the source of the information you provide.
 		- Prefer new information over old information.
     - Do not invent information. Stick to the data provided by the tool.`;
 

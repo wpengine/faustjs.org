@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { getMDXComponents } from "@/components/mdx-components";
 import { classNames } from "@/utils/strings";
 
 export default function Messages({ messages, className }) {
@@ -29,7 +31,12 @@ export default function Messages({ messages, className }) {
 							"prose prose-invert slide-in-bottom message-glow w-fit max-w-[90%] rounded-xl p-2 shadow-md transition-shadow duration-200 first:mt-0 last:mb-0 hover:shadow-lg",
 						)}
 					>
-						<ReactMarkdown>{message.content}</ReactMarkdown>
+						<Markdown
+							remarkPlugins={[remarkGfm]}
+							components={getMDXComponents()}
+						>
+							{message.content}
+						</Markdown>
 					</div>
 				);
 			})}
