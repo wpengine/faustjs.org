@@ -21,8 +21,9 @@ export default function ChatDialog() {
 			setMessages([
 				{
 					role: "assistant",
-					content: "Welcome to the Smart Search chatbot!",
-					id: "welcome",
+					content:
+						"I'm an AI driven chat assistant here to help you with Faust.js! I'm trained on the documentation and can help you with coding tasks, learning, and more. What can I assist you with today?",
+					id: "welcome-intro",
 				},
 			]);
 		}
