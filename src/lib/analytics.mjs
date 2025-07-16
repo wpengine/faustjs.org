@@ -14,7 +14,7 @@ export function sendSelectItemEvent({ list: { name, id }, item }) {
 	});
 }
 
-export function sendToggleChatEvent({ status }) {
+export function sendChatToggleEvent({ status }) {
 	sendGAEvent("event", "chat_toggle", {
 		status,
 	});
