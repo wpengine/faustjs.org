@@ -22,7 +22,7 @@ export default function ChatDialog() {
 				{
 					role: "assistant",
 					content:
-						"I'm an AI driven chat assistant here to help you with Faust.js! I'm trained on the documentation and can help you with coding tasks, learning, and more. What can I assist you with today?",
+						"Hey there! I'm an AI driven chat assistant here to help you with Faust.js! I'm trained on the documentation and can help you with coding tasks, learning, and more. What can I assist you with today?",
 					id: "welcome-intro",
 				},
 			]);
