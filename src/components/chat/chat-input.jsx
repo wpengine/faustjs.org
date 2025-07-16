@@ -1,6 +1,9 @@
-import { HiOutlinePaperAirplane } from "react-icons/hi2";
+import { HiOutlinePaperAirplane, HiOutlineArrowPath } from "react-icons/hi2";
 
-export default function Input({ input, handleInputChange }) {
+export default function Input({ input, handleInputChange, status }) {
+	const isReady = status === "ready";
+	const isSubmitted = status === "submitted";
+
 	return (
 		<div className="flex w-full items-end justify-between gap-2">
 			<input
@@ -18,9 +21,13 @@ export default function Input({ input, handleInputChange }) {
 				type="submit"
 				className="enabled:bg-hero-gradient ml-auto cursor-pointer rounded-xl bg-gray-700 p-2 text-gray-400 shadow-lg enabled:text-gray-200"
 				aria-label="Send message"
-				disabled={!input.trim()}
+				disabled={!input.trim() || !isReady}
 			>
-				<HiOutlinePaperAirplane className="h-6 w-6" />
+				{isSubmitted ? (
+					<HiOutlineArrowPath className="b-white mx-auto h-6 w-6 animate-spin text-gray-200" />
+				) : (
+					<HiOutlinePaperAirplane className="h-6 w-6" />
+				)}
 			</button>
 		</div>
 	);
