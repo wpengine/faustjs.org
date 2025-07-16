@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import ChatLink from "./chat-link";
 import { getMDXComponents } from "@/components/mdx-components";
 import { classNames } from "@/utils/strings";
 
@@ -9,6 +10,7 @@ export default function Messages({ messages, className }) {
 	useEffect(() => {
 		messagesEndReference.current?.scrollIntoView({ behavior: "smooth" });
 	}, [messages]);
+
 	return (
 		<div
 			className={classNames(
@@ -40,7 +42,10 @@ export default function Messages({ messages, className }) {
 						) : (
 							<Markdown
 								remarkPlugins={[remarkGfm]}
-								components={getMDXComponents()}
+								components={{
+									...getMDXComponents(),
+									a: ChatLink,
+								}}
 							>
 								{message.content}
 							</Markdown>

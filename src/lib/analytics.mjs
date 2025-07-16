@@ -13,3 +13,15 @@ export function sendSelectItemEvent({ list: { name, id }, item }) {
 		items: [item],
 	});
 }
+
+export function sendToggleChatEvent({ status }) {
+	sendGAEvent("event", "chat_toggle", {
+		status,
+	});
+}
+
+export function sendChatMessageEvent({ message }) {
+	sendGAEvent("event", "chat_message", {
+		message,
+	});
+}

@@ -4,6 +4,7 @@ import {
 	HiOutlineXCircle,
 } from "react-icons/hi2";
 import { useChatDialog } from "./state";
+import { sendChatToggleEvent } from "@/lib/analytics.mjs";
 import { classNames } from "@/utils/strings";
 
 export default function ChatButton() {
@@ -17,6 +18,10 @@ export default function ChatButton() {
 		const handleDialogToggle = () => {
 			setIsOpen(!isOpen);
 			setWasEverOpen(true);
+
+			sendChatToggleEvent({
+				is_open: !isOpen,
+			});
 		};
 
 		dialogElement?.addEventListener("toggle", handleDialogToggle);
