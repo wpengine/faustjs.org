@@ -21,6 +21,7 @@ export default function Messages({ messages, className }) {
 			{messages.map((message) => {
 				console.log("Rendering message:", message);
 				const isAssistant = message.role === "assistant";
+				const isLoading = message.content === "";
 				return (
 					<div
 						key={message.id}
@@ -31,12 +32,20 @@ export default function Messages({ messages, className }) {
 							"prose prose-invert slide-in-bottom message-glow w-fit max-w-[90%] rounded-xl p-2 shadow-md transition-shadow duration-200 first:mt-0 last:mb-0 hover:shadow-lg",
 						)}
 					>
-						<Markdown
-							remarkPlugins={[remarkGfm]}
-							components={getMDXComponents()}
-						>
-							{message.content}
-						</Markdown>
+						{isLoading ? (
+							<div className="flex items-center justify-center gap-1">
+								<div className="animate-think h-2 w-2 rounded-full bg-gray-200 [animation-delay:-1s]" />
+								<div className="animate-think h-2 w-2 rounded-full bg-gray-200 [animation-delay:-.5s]" />
+								<div className="animate-think h-2 w-2 rounded-full bg-gray-200" />
+							</div>
+						) : (
+							<Markdown
+								remarkPlugins={[remarkGfm]}
+								components={getMDXComponents()}
+							>
+								{message.content}
+							</Markdown>
+						)}
 					</div>
 				);
 			})}

@@ -6,7 +6,7 @@ export default function Heading({ level, children, id, ...props }) {
 	const Tag = `h${level}`;
 	return (
 		<Tag
-			id={id.toString()}
+			id={id?.toString()}
 			className="group flex items-center hover:text-blue-500"
 			{...props}
 		>
