@@ -100,6 +100,7 @@ export default function SearchBar() {
 			<section className="relative w-[85dvi] max-w-3xl rounded-lg bg-gray-800 p-4 md:w-[70vw] md:p-6">
 				<div className="relative">
 					<input
+						id="search-input"
 						aria-haspopup="listbox"
 						aria-controls="search-results"
 						value={inputValue}
