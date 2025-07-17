@@ -15,8 +15,6 @@ export default function Chat({
 			<form
 				id="chat-form"
 				onSubmit={(event) => {
-					event.preventDefault();
-
 					sendChatMessageEvent({
 						message: input,
 					});
