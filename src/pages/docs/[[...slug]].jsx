@@ -1,6 +1,6 @@
 import path from "node:path";
 import { MDXClient } from "next-mdx-remote-client";
-import { useMDXComponents } from "@/components/mdx-components";
+import { getMDXComponents } from "@/components/mdx-components";
 import {
 	getParsedDoc,
 	getDocsNav,
@@ -8,7 +8,7 @@ import {
 } from "@/lib/remote-mdx-files.mjs";
 
 export default function Doc({ source }) {
-	return <MDXClient {...source} components={useMDXComponents()} />;
+	return <MDXClient {...source} components={getMDXComponents()} />;
 }
 
 export async function getStaticProps({ params }) {

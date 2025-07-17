@@ -1,0 +1,27 @@
+.gemini-text {
+	font-family:
+		Google Sans,
+		Helvetica Neue,
+		sans-serif;
+	/* Choose a font that matches, Arial is a common sans-serif */
+	/* font-size: 100px; */
+	/* Adjust size as needed */
+	/* Gradient: Adjust colors and angles as needed */
+	background: linear-gradient(to right, #6b50d2, #c25cb6, #ea668a);
+	/*
+    Color Hex codes approximated from the image:
+    Left (Blue-Purple): #6B50D2
+    Middle (Pink-Purple): #C25CB6
+    Right (Reddish-Pink): #EA668A
+  */
+
+	/* Crucial properties for text gradient */
+	-webkit-background-clip: text;
+	/* For Safari/Chrome */
+	background-clip: text;
+	color: transparent;
+	/* Makes the original text color transparent */
+
+	/* Optional: A slight text shadow can make it pop on some backgrounds */
+	/* text-shadow: 2px 2px 4px rgba(0,0,0,0.1); */
+}

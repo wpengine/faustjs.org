@@ -95,6 +95,19 @@
 		linear-gradient(210deg, #111827ff 0%, #29174cff 100%);
 
 	--font-inter: Inter, serif;
+
+	--animate-think: think 2s ease-in-out infinite;
+
+	@keyframes think {
+		0%,
+		80%,
+		100% {
+			transform: scale(0);
+		}
+		40% {
+			transform: scale(1);
+		}
+	}
 }
 
 /*

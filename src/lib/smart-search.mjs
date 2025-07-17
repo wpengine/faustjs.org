@@ -1,4 +1,40 @@
+import { env } from "node:process";
 import { URL } from "node:url";
+
+const url = env.NEXT_PUBLIC_SEARCH_ENDPOINT ?? "";
+const token = env.NEXT_SEARCH_ACCESS_TOKEN ?? "";
+
+// Field might need to be adjusted to include the correct field for your search index, e.g. "content", "post_title", etc.
+export async function getContext(message) {
+	const query = `query GetContext($message: String!) {
+    similarity(
+      input: {
+				minScore: 1,
+        nearest: {
+          text: $message,
+          field: "post_content"
+        }
+      }) {
+      total
+      docs {
+        id
+        data
+        score
+      }
+    }
+  }`;
+
+	const response = await fetch(url, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({ query, variables: { message } }),
+	});
+
+	return response.json();
+}
 
 function cleanPath(filePath) {
 	return (
@@ -17,7 +53,6 @@ export function normalizeSmartSearchResponse(results) {
 
 	return results.map((result) => {
 		const { id, data } = result;
-		// console.log("Data:", result);
 		switch (data.post_type) {
 			case "mdx_doc": {
 				const path = data.post_url ? cleanPath(data.post_url) : "/";
@@ -27,6 +62,7 @@ export function normalizeSmartSearchResponse(results) {
 					title: data.post_title,
 					href: path,
 					type: data.post_type,
+					content: data.post_content,
 				};
 			}
 
@@ -37,6 +73,7 @@ export function normalizeSmartSearchResponse(results) {
 					title: data.post_title,
 					href: new URL(data.post_url).pathname,
 					type: data.post_type,
+					content: data.post_content,
 				};
 			}
 

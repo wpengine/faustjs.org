@@ -1,4 +1,6 @@
 import localFont from "next/font/local";
+import ChatButton from "./chat/chat-button";
+import ChatDialog from "./chat/chat-dialog";
 import Footer from "./footer";
 import Header from "./header";
 import SearchBox from "./search/search-box";
@@ -19,9 +21,11 @@ export default function Layout({ children }) {
 			</a>
 
 			<Header />
+			<ChatButton />
 			{children}
 			<Footer />
 			<SearchBox />
+			<ChatDialog />
 		</div>
 	);
 }

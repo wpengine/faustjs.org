@@ -91,6 +91,7 @@ export default function SearchBar() {
 	return (
 		<dialog
 			ref={dialog}
+			id="search-dialog"
 			className="mx-auto mt-[10vh] bg-transparent p-0 backdrop:backdrop-blur-sm md:mt-[20vh]"
 			// eslint-disable-next-line react/no-unknown-property
 			closedby="any"
@@ -99,6 +100,7 @@ export default function SearchBar() {
 			<section className="relative w-[85dvi] max-w-3xl rounded-lg bg-gray-800 p-4 md:w-[70vw] md:p-6">
 				<div className="relative">
 					<input
+						id="search-input"
 						aria-haspopup="listbox"
 						aria-controls="search-results"
 						value={inputValue}

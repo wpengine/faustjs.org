@@ -9,15 +9,15 @@ export default function Footer() {
 				</div>
 				<div className="mt-2 text-gray-400 lg:mt-24">
 					<p>
-						Powered by{" "}
+						Powered by&nbsp;
 						<Link
 							className="font-normal text-gray-200 no-underline"
 							href="/"
 							noDefaultStyles
 						>
 							Faust.js
-						</Link>{" "}
-						&amp; WP Engine&apos;s{" "}
+						</Link>
+						&nbsp;&amp;&nbsp;WP Engine&apos;s&nbsp;
 						<Link
 							className="font-normal text-gray-200 no-underline"
 							href="https://wpengine.com/headless-wordpress/"
