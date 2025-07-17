@@ -39,8 +39,7 @@ export default function ChatDialog() {
 			closedby="any"
 		>
 			<button
-				// eslint-disable-next-line react/no-unknown-property
-				formmethod="dialog"
+				formMethod="dialog"
 				type="button"
 				form="chat-form"
 				aria-label="Close chat"
