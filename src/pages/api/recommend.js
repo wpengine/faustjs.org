@@ -65,7 +65,7 @@ export default async function handler(req, res) {
 	} catch (error) {
 		console.error("Error fetching search data:", error);
 		return res
-			.status(StatusCodes.Inter)
+			.status(StatusCodes.INTERNAL_SERVER_ERROR)
 			.json({ error: ReasonPhrases.INTERNAL_SERVER_ERROR });
 	}
 }
