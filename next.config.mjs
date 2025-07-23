@@ -65,6 +65,35 @@ const nextConfig = {
 					xssProtection: false,
 				}),
 			},
+			// Fix for ISR pages - ensure proper Cache-Control headers
+			{
+				source: "/blog/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=60, stale-while-revalidate=300",
+					},
+				],
+			},
+			{
+				source: "/docs/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=600, stale-while-revalidate=3600",
+					},
+				],
+			},
+			// Ensure ISR pages have proper headers
+			{
+				source: "/:path*",
+				headers: [
+					{
+						key: "Vary",
+						value: "Accept-Encoding",
+					},
+				],
+			},
 		];
 	},
 };
