@@ -19,7 +19,7 @@ importers:
     dependencies:
       '@ai-sdk/google-vertex':
         specifier: ^2.2.27
-        version: 2.2.27(zod@3.25.76)
+        version: 2.2.27(zod@4.0.10)
       '@apollo/client':
         specifier: ^3.13.8
         version: 3.13.8(@types/react@18.3.12)(graphql@16.11.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -55,7 +55,7 @@ importers:
         version: 3.0.0(next@15.4.4(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(node-fetch@2.7.0)
       ai:
         specifier: ^4.3.19
-        version: 4.3.19(react@19.1.1)(zod@3.25.76)
+        version: 4.3.19(react@19.1.1)(zod@4.0.10)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -141,8 +141,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.0.10
+        version: 4.0.10
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.11
@@ -320,6 +320,10 @@ packages:
 
   '@babel/runtime@7.27.6':
     resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.28.2':
+    resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -1080,8 +1084,8 @@ packages:
   '@types/node@22.15.31':
     resolution: {integrity: sha512-jnVe5ULKl6tijxUhvQeNbQG/84fHfg+yMak02cT8QVhBx/F05rAVxCGBYYTh2EKz22D6JF5ktXuNwdx7b9iEGw==}
 
-  '@types/node@24.0.13':
-    resolution: {integrity: sha512-Qm9OYVOFHFYg3wJoTSrz80hoec5Lia/dPp84do3X7dZvLikQvM1YpmvTBEdIr/e+U8HTkFjLHLnl78K/qjf+jQ==}
+  '@types/node@24.1.0':
+    resolution: {integrity: sha512-ut5FthK5moxFKH2T1CUOC6ctR67rQRvvHdFLCD2Ql6KXmMuCrjsSsRI9UsLCm9M18BMwClv4pn327UvB7eeO1w==}
 
   '@types/prop-types@15.7.15':
     resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
@@ -4819,65 +4823,65 @@ packages:
     peerDependencies:
       zod: ^3.24.1
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+  zod@4.0.10:
+    resolution: {integrity: sha512-3vB+UU3/VmLL2lvwcY/4RV2i9z/YU0DTV/tDuYjrwmx5WeJ7hwy+rGEEx8glHp6Yxw7ibRbKSaIFBgReRPe5KA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
 
-  '@ai-sdk/anthropic@1.2.12(zod@3.25.76)':
+  '@ai-sdk/anthropic@1.2.12(zod@4.0.10)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
-      zod: 3.25.76
+      '@ai-sdk/provider-utils': 2.2.8(zod@4.0.10)
+      zod: 4.0.10
 
-  '@ai-sdk/google-vertex@2.2.27(zod@3.25.76)':
+  '@ai-sdk/google-vertex@2.2.27(zod@4.0.10)':
     dependencies:
-      '@ai-sdk/anthropic': 1.2.12(zod@3.25.76)
-      '@ai-sdk/google': 1.2.22(zod@3.25.76)
+      '@ai-sdk/anthropic': 1.2.12(zod@4.0.10)
+      '@ai-sdk/google': 1.2.22(zod@4.0.10)
       '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
+      '@ai-sdk/provider-utils': 2.2.8(zod@4.0.10)
       google-auth-library: 9.15.1
-      zod: 3.25.76
+      zod: 4.0.10
     transitivePeerDependencies:
       - encoding
       - supports-color
 
-  '@ai-sdk/google@1.2.22(zod@3.25.76)':
+  '@ai-sdk/google@1.2.22(zod@4.0.10)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
-      zod: 3.25.76
+      '@ai-sdk/provider-utils': 2.2.8(zod@4.0.10)
+      zod: 4.0.10
 
-  '@ai-sdk/provider-utils@2.2.8(zod@3.25.76)':
+  '@ai-sdk/provider-utils@2.2.8(zod@4.0.10)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
       nanoid: 3.3.11
       secure-json-parse: 2.7.0
-      zod: 3.25.76
+      zod: 4.0.10
 
   '@ai-sdk/provider@1.1.3':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@1.2.12(react@19.1.1)(zod@3.25.76)':
+  '@ai-sdk/react@1.2.12(react@19.1.1)(zod@4.0.10)':
     dependencies:
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
-      '@ai-sdk/ui-utils': 1.2.11(zod@3.25.76)
+      '@ai-sdk/provider-utils': 2.2.8(zod@4.0.10)
+      '@ai-sdk/ui-utils': 1.2.11(zod@4.0.10)
       react: 19.1.1
       swr: 2.3.4(react@19.1.1)
       throttleit: 2.1.0
     optionalDependencies:
-      zod: 3.25.76
+      zod: 4.0.10
 
-  '@ai-sdk/ui-utils@1.2.11(zod@3.25.76)':
+  '@ai-sdk/ui-utils@1.2.11(zod@4.0.10)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
-      zod: 3.25.76
-      zod-to-json-schema: 3.24.6(zod@3.25.76)
+      '@ai-sdk/provider-utils': 2.2.8(zod@4.0.10)
+      zod: 4.0.10
+      zod-to-json-schema: 3.24.6(zod@4.0.10)
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -4969,6 +4973,8 @@ snapshots:
       '@babel/types': 7.27.6
 
   '@babel/runtime@7.27.6': {}
+
+  '@babel/runtime@7.28.2': {}
 
   '@babel/template@7.27.2':
     dependencies:
@@ -5818,7 +5824,7 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/node@24.0.13':
+  '@types/node@24.1.0':
     dependencies:
       undici-types: 7.8.0
 
@@ -6136,7 +6142,7 @@ snapshots:
 
   '@wordpress/style-engine@2.11.0':
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       change-case: 4.1.2
 
   '@wpengine/atlas-next@3.0.0(next@15.4.4(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(node-fetch@2.7.0)':
@@ -6177,15 +6183,15 @@ snapshots:
 
   agent-base@7.1.3: {}
 
-  ai@4.3.19(react@19.1.1)(zod@3.25.76):
+  ai@4.3.19(react@19.1.1)(zod@4.0.10):
     dependencies:
       '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.76)
-      '@ai-sdk/react': 1.2.12(react@19.1.1)(zod@3.25.76)
-      '@ai-sdk/ui-utils': 1.2.11(zod@3.25.76)
+      '@ai-sdk/provider-utils': 2.2.8(zod@4.0.10)
+      '@ai-sdk/react': 1.2.12(react@19.1.1)(zod@4.0.10)
+      '@ai-sdk/ui-utils': 1.2.11(zod@4.0.10)
       '@opentelemetry/api': 1.9.0
       jsondiffpatch: 0.6.0
-      zod: 3.25.76
+      zod: 4.0.10
     optionalDependencies:
       react: 19.1.1
 
@@ -8101,7 +8107,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.0.13
+      '@types/node': 24.1.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -10540,10 +10546,10 @@ snapshots:
       compress-commons: 5.0.3
       readable-stream: 3.6.2
 
-  zod-to-json-schema@3.24.6(zod@3.25.76):
+  zod-to-json-schema@3.24.6(zod@4.0.10):
     dependencies:
-      zod: 3.25.76
+      zod: 4.0.10
 
-  zod@3.25.76: {}
+  zod@4.0.10: {}
 
   zwitch@2.0.4: {}
