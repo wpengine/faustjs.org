@@ -130,7 +130,7 @@ async function deleteOldDocs() {
 			const response = await graphql({
 				query: queryDocuments,
 				variables: {
-					query: 'post_type:"mdx_doc"',
+					query: "post_type:mdx_doc OR content_type:mdx_doc",
 					limit: 10,
 					offset: totalCollected,
 				},
