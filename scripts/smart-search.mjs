@@ -22,7 +22,7 @@ async function main() {
 	try {
 		const pages = await collectPages();
 
-		console.log("Docs Pages collected for indexing:", pages.length);
+		console.info("Docs Pages collected for indexing:", pages.length);
 
 		await deleteOldDocs();
 
@@ -146,7 +146,7 @@ async function deleteOldDocs() {
 		const existingIndexedDocuments = new Set(existingDocs.map((doc) => doc.id));
 
 		if (existingIndexedDocuments?.size === 0) {
-			console.log("No documents to delete.");
+			console.info("No documents to delete.");
 			return;
 		}
 
@@ -173,7 +173,7 @@ async function deleteOldDocs() {
 			}
 		}
 
-		console.log(`Deleted ${results.length} documents successfully.`);
+		console.info(`Deleted ${results.length} documents successfully.`);
 	} catch (error) {
 		console.error("Error during deletion process:", error);
 	}
@@ -206,7 +206,7 @@ async function sendPagesToEndpoint(pages) {
 	try {
 		await graphql({ query: bulkIndexMutation, variables });
 
-		console.log(`Indexed ${documents.length} documents successfully.`);
+		console.info(`Indexed ${documents.length} documents successfully.`);
 	} catch (error) {
 		console.error("Error during bulk indexing:", error);
 	}
@@ -233,7 +233,7 @@ async function setSearchConfig() {
 
 	try {
 		const response = await graphql({ query: searchConfigMutation, variables });
-		console.log(
+		console.info(
 			"Search configuration updated successfully.",
 			JSON.stringify(response.data.config.semanticSearch, undefined, 2),
 		);

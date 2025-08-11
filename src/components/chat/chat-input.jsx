@@ -1,6 +1,6 @@
 import { HiOutlinePaperAirplane, HiOutlineArrowPath } from "react-icons/hi2";
 
-export default function Input({ input, handleInputChange, status }) {
+export default function Input({ input, setInput, status }) {
 	const isReady = status === "ready";
 	const isSubmitted = status === "submitted";
 
@@ -11,7 +11,9 @@ export default function Input({ input, handleInputChange, status }) {
 				type="text"
 				wrap="soft"
 				value={input}
-				onChange={handleInputChange}
+				onChange={(event) => {
+					setInput(event.target.value);
+				}}
 				autoFocus
 				placeholder="Ask about Faust..."
 				className="no-scrollbar text-md w-full max-w-full rounded-xl bg-gray-700 p-2 text-wrap text-gray-200 placeholder-gray-400 shadow-lg transition-colors focus:ring-2 focus:ring-teal-500 focus:outline-none"

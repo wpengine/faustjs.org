@@ -1,6 +1,6 @@
 import { env } from "node:process";
 import { createVertex } from "@ai-sdk/google-vertex";
-import { streamText, convertToCoreMessages } from "ai";
+import { streamText, convertToModelMessages } from "ai";
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { smartSearchTool } from "@/lib/rag.mjs";
 
@@ -68,12 +68,10 @@ export async function POST(req) {
 			});
 		}
 
-		const coreMessages = convertToCoreMessages(messages);
-
 		const response = await streamText({
 			model: vertex("gemini-2.5-flash"),
 			system: [systemPromptContent, smartSearchPrompt].join("\n"),
-			messages: coreMessages,
+			messages: convertToModelMessages(messages),
 			tools: {
 				smartSearchTool,
 			},
@@ -84,19 +82,19 @@ export async function POST(req) {
 				});
 			},
 			onToolCall: async (toolCall) => {
-				console.log("Tool call initiated:", toolCall);
+				console.info("Tool call initiated:", toolCall);
 			},
 			onStepFinish: async (result) => {
 				if (result.usage) {
-					console.log(
-						`[Token Usage] Prompt tokens: ${result.usage.promptTokens}, Completion tokens: ${result.usage.completionTokens}, Total tokens: ${result.usage.totalTokens}`,
+					console.info(
+						`[Token Usage] Prompt tokens: ${result.usage.inputTokens}, Completion tokens: ${result.usage.outputTokens}, Total tokens: ${result.usage.totalTokens}`,
 					);
 				}
 			},
 			maxSteps: 5,
 		});
 
-		return response.toDataStreamResponse();
+		return response.toUIMessageStreamResponse();
 	} catch (error) {
 		console.error("Error in chat API:", error);
 		return new Response(ReasonPhrases.INTERNAL_SERVER_ERROR, {

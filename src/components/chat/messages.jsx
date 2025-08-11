@@ -20,8 +20,12 @@ export default function Messages({ messages, className }) {
 			role="log"
 		>
 			{messages.map((message) => {
-				const isAssistant = message.role === "assistant";
-				const isLoading = message.content === "";
+				const isAssistant = message.role !== "user";
+				const isLoading =
+					message.parts?.length <= 2 &&
+					message.parts[0].type === "step-start" &&
+					!Object.hasOwn(message.parts?.at(-1), "text");
+
 				return (
 					<div
 						key={message.id}
@@ -39,14 +43,17 @@ export default function Messages({ messages, className }) {
 								<div className="animate-think h-2 w-2 rounded-full bg-gray-200" />
 							</div>
 						) : (
-							<Markdown
-								remarkPlugins={[remarkGfm]}
-								components={{
-									a: ChatLink,
-								}}
-							>
-								{message.content}
-							</Markdown>
+							message.parts?.map((part, index) => (
+								<Markdown
+									key={index}
+									remarkPlugins={[remarkGfm]}
+									components={{
+										a: ChatLink,
+									}}
+								>
+									{part.text}
+								</Markdown>
+							))
 						)}
 					</div>
 				);

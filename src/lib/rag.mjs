@@ -6,7 +6,7 @@ import { normalizeSmartSearchResponse } from "@/lib/smart-search.mjs";
 export const smartSearchTool = tool({
 	description:
 		"Search for information about Faust using WP Engine Smart Search. Use this to answer questions about Faust, its features, capabilities, and more when the information is not already known.",
-	parameters: z.object({
+	inputSchema: z.object({
 		query: z
 			.string()
 			.describe(
@@ -14,7 +14,7 @@ export const smartSearchTool = tool({
 			),
 	}),
 	execute: async ({ query }) => {
-		console.log(`[Tool Execution] Searching with query: "${query}"`);
+		console.info(`[Tool Execution] Searching with query: "${query}"`);
 		try {
 			const context = await getContext(query);
 

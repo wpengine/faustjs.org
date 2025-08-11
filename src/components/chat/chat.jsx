@@ -4,8 +4,8 @@ import { sendChatMessageEvent } from "@/lib/analytics.mjs";
 
 export default function Chat({
 	input,
-	handleInputChange,
-	handleMessageSubmit,
+	setInput,
+	sendMessage,
 	status,
 	messages,
 }) {
@@ -15,19 +15,19 @@ export default function Chat({
 			<form
 				id="chat-form"
 				onSubmit={(event) => {
+					event.preventDefault();
+
 					sendChatMessageEvent({
 						message: input,
 					});
 
-					return handleMessageSubmit(event);
+					sendMessage({ text: input });
+
+					setInput("");
 				}}
 				className="absolute bottom-0 left-0 w-[calc(100%-theme(spacing.[1.5]))] bg-gradient-to-b from-transparent via-gray-800 to-gray-800 p-4 md:p-6"
 			>
-				<ChatInput
-					input={input}
-					handleInputChange={handleInputChange}
-					status={status}
-				/>
+				<ChatInput input={input} setInput={setInput} status={status} />
 			</form>
 		</div>
 	);
