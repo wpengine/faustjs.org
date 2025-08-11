@@ -1,5 +1,6 @@
-import { useChat } from "ai/react";
-import { useEffect } from "react";
+import { useChat } from "@ai-sdk/react";
+import { lastAssistantMessageIsCompleteWithToolCalls } from "ai";
+import { useState } from "react";
 import { HiXCircle } from "react-icons/hi2";
 import { useChatDialog } from "./state";
 import Chat from "@/components/chat/chat";
@@ -7,27 +8,26 @@ import "./chat.css";
 
 export default function ChatDialog() {
 	const { dialog } = useChatDialog();
-	const {
-		messages,
-		input,
-		handleInputChange,
-		handleSubmit,
-		setMessages,
-		status,
-	} = useChat();
+	const { messages, sendMessage, status } = useChat({
+		onError: (error) => {
+			console.error("Error sending message:", error);
+		},
+		sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
+		messages: [
+			{
+				role: "assistant",
+				parts: [
+					{
+						type: "text",
+						text: "Hey there! I'm an AI driven chat assistant here to help you with Faust.js! I'm trained on the documentation and can help you with coding tasks, learning, and more. What can I assist you with today?",
+					},
+				],
+				id: "welcome-intro",
+			},
+		],
+	});
 
-	useEffect(() => {
-		if (messages.length === 0) {
-			setMessages([
-				{
-					role: "assistant",
-					content:
-						"Hey there! I'm an AI driven chat assistant here to help you with Faust.js! I'm trained on the documentation and can help you with coding tasks, learning, and more. What can I assist you with today?",
-					id: "welcome-intro",
-				},
-			]);
-		}
-	}, [messages, setMessages]);
+	const [input, setInput] = useState("");
 
 	return (
 		<dialog
@@ -54,8 +54,8 @@ export default function ChatDialog() {
 			<section>
 				<Chat
 					input={input}
-					handleInputChange={handleInputChange}
-					handleMessageSubmit={handleSubmit}
+					setInput={setInput}
+					sendMessage={sendMessage}
 					messages={messages}
 					status={status}
 				/>
