@@ -24,7 +24,7 @@ export default function Messages({ messages, className }) {
 				const isLoading =
 					message.parts?.length <= 2 &&
 					message.parts[0].type === "step-start" &&
-					!Object.hasOwn(message.parts?.at(-1), "text");
+					!(message.parts?.length && Object.hasOwn(message.parts.at(-1), "text"));
 
 				return (
 					<div
