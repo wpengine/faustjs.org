@@ -107,7 +107,7 @@ export function getRemoteImgUrl(localPath, pageUrl, type = "docs") {
  * @param {string} type
  * @param {string} pathToFolder
  */
-export async function getAllDocMeta(type = "docs", pathToFolder) {
+export async function getAllDocMeta(type, pathToFolder) {
 	const { owner, repo, branch, folder } = getRepoConfig(type);
 	const { status, data } = await octokit.request(
 		"GET /repos/{owner}/{repo}/contents/{path}",
