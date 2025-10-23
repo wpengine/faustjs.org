@@ -5,6 +5,7 @@ import {
 	getParsedDoc,
 	getDocsNav,
 	generateDocIdFromUri,
+	findAppendForRoute,
 } from "@/lib/remote-mdx-files.mjs";
 
 export default function Doc({ source }) {
@@ -13,8 +14,16 @@ export default function Doc({ source }) {
 
 export async function getStaticProps({ params }) {
 	try {
-		const source = await getParsedDoc(params.slug, "toolkit");
 		const docsNavData = await getDocsNav("toolkit");
+
+		const currentRoute =
+			params.slug?.length > 1
+				? path.join("/toolkit", ...params.slug, "/")
+				: "/toolkit/";
+
+		const append = findAppendForRoute(docsNavData, currentRoute);
+
+		const source = await getParsedDoc(params.slug, "toolkit", append);
 
 		return {
 			props: {
