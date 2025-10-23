@@ -168,7 +168,7 @@ function FooterColumns() {
 					<li className={listItemClass}>
 						<Link
 							className={linkClass}
-							href="https://wpengine.com/atlas?ref=faustjs"
+							href="https://wpengine.com/headless-wordpress/?ref=faustjs"
 							noDefaultStyles
 						>
 							Headless Hosting
