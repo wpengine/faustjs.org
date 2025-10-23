@@ -48,14 +48,16 @@ async function main() {
  */
 async function collectPages() {
 	const pages = [];
-	const entries = await getAllDocMeta();
+	const docsEntries = await getAllDocMeta("docs");
+	const toolkitEntries = await getAllDocMeta("toolkit");
+	const entries = [...docsEntries, ...toolkitEntries];
 
 	for (const entry of entries) {
 		const entryContent = await getRawDocContent(entry.download_url);
 
 		const parsedContent = await getTextContentFromMd(entryContent);
 
-		const cleanedPath = getDocUriFromPath(entry.path);
+		const cleanedPath = getDocUriFromPath(entry.path, "docs");
 
 		const id = generateDocIdFromUri(cleanedPath);
 

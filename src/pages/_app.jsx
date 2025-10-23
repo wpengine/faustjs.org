@@ -18,6 +18,7 @@ const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 export default function MyApp({ Component, pageProps }) {
 	const router = useRouter();
 	const isDocsRoute = router.pathname.startsWith("/docs");
+	const isToolkitRoute = router.pathname.startsWith("/toolkit");
 
 	return (
 		<FaustProvider pageProps={pageProps}>
@@ -27,7 +28,7 @@ export default function MyApp({ Component, pageProps }) {
 					{/*  eslint-disable-next-line unicorn/no-null */}
 					<WordPressBlocksProvider config={{ blocks, theme: null }}>
 						<Layout>
-							{isDocsRoute ? (
+							{isDocsRoute || isToolkitRoute ? (
 								<DocsLayout {...pageProps}>
 									<Component {...pageProps} />
 								</DocsLayout>

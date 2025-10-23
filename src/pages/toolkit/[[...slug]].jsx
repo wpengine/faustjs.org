@@ -5,6 +5,7 @@ import {
 	getParsedDoc,
 	getDocsNav,
 	generateDocIdFromUri,
+	findAppendForRoute,
 } from "@/lib/remote-mdx-files.mjs";
 
 export default function Doc({ source }) {
@@ -13,15 +14,23 @@ export default function Doc({ source }) {
 
 export async function getStaticProps({ params }) {
 	try {
-		const source = await getParsedDoc(params.slug, "docs");
-		const docsNavData = await getDocsNav("docs");
+		const docsNavData = await getDocsNav("toolkit");
+
+		const currentRoute =
+			params.slug?.length > 1
+				? path.join("/toolkit", ...params.slug, "/")
+				: "/toolkit/";
+
+		const append = findAppendForRoute(docsNavData, currentRoute);
+
+		const source = await getParsedDoc(params.slug, "toolkit", append);
 
 		return {
 			props: {
 				id: generateDocIdFromUri(
 					params.slug?.length > 1
-						? path.join("/docs", ...params.slug, "/")
-						: "/docs/",
+						? path.join("/toolkit", ...params.slug, "/")
+						: "/toolkit/",
 				),
 				source,
 				docsNavData,
@@ -39,9 +48,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const docs_menu_paths = ["/docs/"];
+	const toolkit_menu_paths = ["/toolkit/"];
 	return {
-		paths: docs_menu_paths,
+		paths: toolkit_menu_paths,
 		fallback: "blocking",
 	};
 }

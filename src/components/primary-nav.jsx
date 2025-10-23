@@ -52,6 +52,23 @@ export default function PrimaryMenu({ className }) {
 						Docs
 					</Link>
 				</li>
+				<li key="toolkit" className={navItemClass}>
+					<Link
+						className="block px-1"
+						href="/toolkit/"
+						noDefaultStyles
+						activeClassName="text-purple-500"
+						onClick={() =>
+							sendMainNavItemSelectEvent({
+								item_id: "/toolkit/",
+								item_name: "Toolkit",
+								item_category: "mdx_doc",
+							})
+						}
+					>
+						Toolkit
+					</Link>
+				</li>
 				<li key="blog" className={navItemClass}>
 					<Link
 						className="block px-1"
