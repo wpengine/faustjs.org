@@ -46,7 +46,11 @@ function addFrontmatterToVFile() {
  * scope: { toc: { href: string; value: string; depth: number; }[]; }
  * }>}
  */
-export async function getSerializedContextFromMd(mdContent, pageUrl) {
+export async function getSerializedContextFromMd(
+	mdContent,
+	pageUrl,
+	type = "docs",
+) {
 	return serialize({
 		source: mdContent,
 		options: {
@@ -64,7 +68,7 @@ export async function getSerializedContextFromMd(mdContent, pageUrl) {
 						{
 							selectors: ["img[src]"],
 							inspectEach: ({ url, node }) => {
-								node.properties.src = getRemoteImgUrl(url, pageUrl);
+								node.properties.src = getRemoteImgUrl(url, pageUrl, type);
 							},
 						},
 					],

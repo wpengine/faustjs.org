@@ -7,6 +7,10 @@ import {
 	DOCS_REPO,
 	DOCS_BRANCH,
 	DOCS_FOLDER,
+	TOOLKIT_OWNER,
+	TOOLKIT_REPO,
+	TOOLKIT_BRANCH,
+	TOOLKIT_FOLDER,
 } from "../constants/repo.mjs";
 import { getSerializedContextFromMd } from "./remark-parsing.mjs";
 
@@ -21,12 +25,39 @@ const octokit = new Octokit({
 const DOCS_EXT_REG = /(?<slug>.*)index.md(?:x?)$/i;
 const IMG_PATH_REG = /^(?<path>\.\/)?(?<slug>.+)$/i;
 
-const DOCS_PATH = `https://raw.githubusercontent.com/${DOCS_OWNER}/${DOCS_REPO}/refs/heads/${DOCS_BRANCH}/${DOCS_FOLDER}`;
+function getRepoConfig(type = "docs") {
+	switch (type) {
+		case "toolkit": {
+			return {
+				owner: TOOLKIT_OWNER,
+				repo: TOOLKIT_REPO,
+				branch: TOOLKIT_BRANCH,
+				folder: TOOLKIT_FOLDER,
+			};
+		}
 
-const DOCS_NAV_CONFIG_URL = `${DOCS_PATH}/nav.json`;
+		default: {
+			return {
+				owner: DOCS_OWNER,
+				repo: DOCS_REPO,
+				branch: DOCS_BRANCH,
+				folder: DOCS_FOLDER,
+			};
+		}
+	}
+}
 
-function docUrlFromSlug(slug = []) {
-	return path.join(DOCS_PATH, ...slug, "index.md");
+function getDocsPath(type = "docs") {
+	const { owner, repo, branch, folder } = getRepoConfig(type);
+	return `https://raw.githubusercontent.com/${owner}/${repo}/refs/heads/${branch}/${folder}`;
+}
+
+function getDocsNavConfigUrl(type = "docs") {
+	return `${getDocsPath(type)}/nav.json`;
+}
+
+function docUrlFromSlug(slug = [], type = "docs") {
+	return path.join(getDocsPath(type), ...slug, "index.md");
 }
 
 /**
@@ -34,14 +65,15 @@ function docUrlFromSlug(slug = []) {
  *
  * @param {string} imgPath
  * @param {string[]} pageUrl
+ * @param {string} type
  * @returns
  */
-function imgUrlFromPath(imgPath, pageUrl) {
+function imgUrlFromPath(imgPath, pageUrl, type = "docs") {
 	if (!Array.isArray(pageUrl)) {
 		throw new TypeError("pageUrl should be an array");
 	}
 
-	return `${DOCS_PATH}/${pageUrl.join("/")}/${imgPath}`;
+	return `${getDocsPath(type)}/${pageUrl.join("/")}/${imgPath}`;
 }
 
 /**
@@ -49,24 +81,32 @@ function imgUrlFromPath(imgPath, pageUrl) {
  *
  * @param {string} localPath
  * @param {string[]} pageUrl
+ * @param {string} type
  * @returns {string}
  */
-export function getRemoteImgUrl(localPath, pageUrl) {
-	return imgUrlFromPath(localPath.match(IMG_PATH_REG).groups.slug, pageUrl);
+export function getRemoteImgUrl(localPath, pageUrl, type = "docs") {
+	return imgUrlFromPath(
+		localPath.match(IMG_PATH_REG).groups.slug,
+		pageUrl,
+		type,
+	);
 }
 
 /**
  * Retrieves the metadata for all documents in the docs folder.
  *
+ * @param {string} type
+ * @param {string} pathToFolder
  */
-export async function getAllDocMeta(pathToFolder = DOCS_FOLDER) {
+export async function getAllDocMeta(type = "docs", pathToFolder) {
+	const { owner, repo, branch, folder } = getRepoConfig(type);
 	const { status, data } = await octokit.request(
 		"GET /repos/{owner}/{repo}/contents/{path}",
 		{
-			owner: DOCS_OWNER,
-			repo: DOCS_REPO,
-			path: pathToFolder,
-			ref: DOCS_BRANCH, // This makes it so only released features show up in the docs.
+			owner,
+			repo,
+			path: pathToFolder ?? folder,
+			ref: branch, // This makes it so only released features show up in the docs.
 		},
 	);
 
@@ -82,7 +122,7 @@ export async function getAllDocMeta(pathToFolder = DOCS_FOLDER) {
 		if (item.type === "file" && item.name === "index.md") {
 			items.push(item);
 		} else if (item.type === "dir" && item.name !== "images") {
-			subItems.push(getAllDocMeta(item.path));
+			subItems.push(getAllDocMeta(type, item.path));
 		}
 	}
 
@@ -94,9 +134,10 @@ export async function getAllDocMeta(pathToFolder = DOCS_FOLDER) {
 /**
  * Retrieves the nav.json file from the docs folder.
  *
+ * @param {string} type
  */
-export async function getDocsNav() {
-	const resp = await fetch(DOCS_NAV_CONFIG_URL);
+export async function getDocsNav(type = "docs") {
+	const resp = await fetch(getDocsNavConfigUrl(type));
 
 	if (!resp.ok) {
 		throw new Error(resp.statusText);
@@ -105,8 +146,8 @@ export async function getDocsNav() {
 	return resp.json();
 }
 
-export async function getAllDocUri() {
-	const data = await getAllDocMeta();
+export async function getAllDocUri(type = "docs") {
+	const data = await getAllDocMeta(type);
 
 	if (!Array.isArray(data)) {
 		console.error(data);
@@ -116,15 +157,17 @@ export async function getAllDocUri() {
 	const accumulator = [];
 	for (const file of data) {
 		if (DOCS_EXT_REG.test(file.path)) {
-			accumulator.push(getDocUriFromPath(file.path));
+			accumulator.push(getDocUriFromPath(file.path, type));
 		}
 	}
 
 	return accumulator;
 }
 
-export function getDocUriFromPath(ghPath) {
-	return path.join("/", ghPath.match(DOCS_EXT_REG).groups.slug);
+export function getDocUriFromPath(ghPath, type = "docs") {
+	const { folder } = getRepoConfig(type);
+	const relativePath = path.relative(folder, ghPath);
+	return path.join("/", relativePath.match(DOCS_EXT_REG).groups.slug);
 }
 
 /**
@@ -152,12 +195,13 @@ export async function getRawDocContent(url) {
  * Retrieves the parsed content of a document from its slug.
  *
  * @param {string} slug
+ * @param {string} type
  * @returns {ReturnType<typeof import("./remark-parsing.mjs").getSerializedContextFromMd>}
  */
-export async function getParsedDoc(slug) {
-	const content = await getRawDocContent(docUrlFromSlug(slug));
+export async function getParsedDoc(slug, type = "docs") {
+	const content = await getRawDocContent(docUrlFromSlug(slug, type));
 
-	return getSerializedContextFromMd(content, slug);
+	return getSerializedContextFromMd(content, slug, type);
 }
 
 /**
