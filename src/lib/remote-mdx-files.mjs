@@ -56,17 +56,8 @@ function getDocsNavConfigUrl(type = "docs") {
 	return `${getDocsPath(type)}/nav.json`;
 }
 
-function docUrlFromSlug(slug = [], type = "docs", append = "index.md") {
-	if (append === "index.md") {
-		return path.join(getDocsPath(type), ...slug, append);
-	}
-
-	let url = path.join(getDocsPath(type), ...slug);
-	if (url.endsWith("/")) {
-		url = url.slice(0, -1);
-	}
-
-	return url + append;
+function docUrlFromSlug(slug = [], type = "docs") {
+	return path.join(getDocsPath(type), ...slug, "index.md");
 }
 
 /**
@@ -205,11 +196,10 @@ export async function getRawDocContent(url) {
  *
  * @param {string} slug
  * @param {string} type
- * @param {string} append
  * @returns {ReturnType<typeof import("./remark-parsing.mjs").getSerializedContextFromMd>}
  */
-export async function getParsedDoc(slug, type = "docs", append = "index.md") {
-	const content = await getRawDocContent(docUrlFromSlug(slug, type, append));
+export async function getParsedDoc(slug, type = "docs") {
+	const content = await getRawDocContent(docUrlFromSlug(slug, type));
 
 	return getSerializedContextFromMd(content, slug, type);
 }
@@ -222,31 +212,4 @@ export async function getParsedDoc(slug, type = "docs", append = "index.md") {
  */
 export function generateDocIdFromUri(uri) {
 	return `mdx:${hash("sha-1", uri)}`;
-}
-
-/**
- * Finds the append for a route in the docs nav data.
- *
- * @param {Array} items
- * @param {string} currentRoute
- * @returns {string}
- */
-export function findAppendForRoute(items, currentRoute) {
-	const defaultAppend = "index.md";
-	if (!Array.isArray(items)) {
-		return defaultAppend;
-	}
-
-	for (const item of items) {
-		if (item?.route === currentRoute) {
-			return item.append ?? defaultAppend;
-		}
-
-		if (Array.isArray(item?.children)) {
-			const found = findAppendForRoute(item.children, currentRoute);
-			if (found) return found;
-		}
-	}
-
-	return defaultAppend;
 }

@@ -30,7 +30,7 @@ export default function OnThisPageNav({ headings }) {
 	return (
 		<>
 			<h2 className="py-2 font-semibold">On This Page</h2>
-			{headings.length > 0 && (
+			{headings && headings.length > 0 && (
 				<ul className="mt-4 text-sm text-gray-400">
 					{headings.map((heading) => (
 						<li
