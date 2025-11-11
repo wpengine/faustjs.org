@@ -49,7 +49,7 @@ function getRepoConfig(type = "docs") {
 }
 
 function getDocsPath(type = "docs") {
-	if (env.USE_LOCAL_FILES) {
+	if (env.LOCAL_FILE_PATH) {
 		const { folder: docsFolder } = getRepoConfig(type);
 		return path.join(env.LOCAL_FILE_PATH, docsFolder);
 	}
@@ -145,7 +145,7 @@ async function getLocalDocMeta(type, pathToFolder) {
  * @param {string} pathToFolder
  */
 export async function getAllDocMeta(type, pathToFolder) {
-	if (env.USE_LOCAL_FILES) {
+	if (env.LOCAL_FILE_PATH) {
 		return getLocalDocMeta(type, pathToFolder);
 	}
 
@@ -187,7 +187,7 @@ export async function getAllDocMeta(type, pathToFolder) {
  * @param {string} type
  */
 export async function getDocsNav(type = "docs") {
-	if (env.USE_LOCAL_FILES) {
+	if (env.LOCAL_FILE_PATH) {
 		const navPath = getDocsNavConfigUrl(type);
 		const content = await fs.readFile(navPath, "utf8");
 		return JSON.parse(content);
@@ -233,7 +233,7 @@ export function getDocUriFromPath(ghPath, type = "docs") {
  * @returns {Promise<string>}
  */
 export async function getRawDocContent(url) {
-	if (env.USE_LOCAL_FILES) {
+	if (env.LOCAL_FILE_PATH) {
 		try {
 			return await fs.readFile(url, "utf8");
 		} catch (error) {
