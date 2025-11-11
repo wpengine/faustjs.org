@@ -1,4 +1,5 @@
 import { hash } from "node:crypto";
+import fs from "node:fs/promises";
 import path from "node:path";
 import { env } from "node:process";
 import { Octokit } from "@octokit/core";
@@ -48,6 +49,11 @@ function getRepoConfig(type = "docs") {
 }
 
 function getDocsPath(type = "docs") {
+	if (env.USE_LOCAL_FILES) {
+		const { folder: docsFolder } = getRepoConfig(type);
+		return path.join(env.LOCAL_FILE_PATH, docsFolder);
+	}
+
 	const { owner, repo, branch, folder } = getRepoConfig(type);
 	return `https://raw.githubusercontent.com/${owner}/${repo}/refs/heads/${branch}/${folder}`;
 }
@@ -93,12 +99,56 @@ export function getRemoteImgUrl(localPath, pageUrl, type = "docs") {
 }
 
 /**
+ * Helper function to get local file metadata
+ *
+ * @param {string} type
+ * @param {string} pathToFolder
+ */
+async function getLocalDocMeta(type, pathToFolder) {
+	const { folder: docsFolder } = getRepoConfig(type);
+	const basePath = pathToFolder
+		? path.join(env.LOCAL_FILE_PATH, pathToFolder)
+		: path.join(env.LOCAL_FILE_PATH, docsFolder);
+
+	const localItems = [];
+	const localSubItems = [];
+
+	const entries = await fs.readdir(basePath, { withFileTypes: true });
+
+	for (const entry of entries) {
+		if (entry.isFile() && entry.name === "index.md") {
+			const relativePath = pathToFolder
+				? path.join(pathToFolder, entry.name)
+				: path.join(docsFolder, entry.name);
+			localItems.push({
+				type: "file",
+				name: entry.name,
+				path: relativePath,
+			});
+		} else if (entry.isDirectory() && entry.name !== "images") {
+			const subPath = pathToFolder
+				? path.join(pathToFolder, entry.name)
+				: path.join(docsFolder, entry.name);
+			localSubItems.push(getAllDocMeta(type, subPath));
+		}
+	}
+
+	const localSubFolderItems = await Promise.all(localSubItems);
+
+	return [...localItems, ...localSubFolderItems.flat()];
+}
+
+/**
  * Retrieves the metadata for all documents in the docs folder.
  *
  * @param {string} type
  * @param {string} pathToFolder
  */
 export async function getAllDocMeta(type, pathToFolder) {
+	if (env.USE_LOCAL_FILES) {
+		return getLocalDocMeta(type, pathToFolder);
+	}
+
 	const { owner, repo, branch, folder } = getRepoConfig(type);
 	const { status, data } = await octokit.request(
 		"GET /repos/{owner}/{repo}/contents/{path}",
@@ -137,6 +187,12 @@ export async function getAllDocMeta(type, pathToFolder) {
  * @param {string} type
  */
 export async function getDocsNav(type = "docs") {
+	if (env.USE_LOCAL_FILES) {
+		const navPath = getDocsNavConfigUrl(type);
+		const content = await fs.readFile(navPath, "utf8");
+		return JSON.parse(content);
+	}
+
 	const resp = await fetch(getDocsNavConfigUrl(type));
 
 	if (!resp.ok) {
@@ -177,6 +233,19 @@ export function getDocUriFromPath(ghPath, type = "docs") {
  * @returns {Promise<string>}
  */
 export async function getRawDocContent(url) {
+	if (env.USE_LOCAL_FILES) {
+		try {
+			return await fs.readFile(url, "utf8");
+		} catch (error) {
+			if (error.code === "ENOENT") {
+				// eslint-disable-next-line no-throw-literal
+				throw { notFound: true };
+			}
+
+			throw error;
+		}
+	}
+
 	const resp = await fetch(url);
 
 	if (!resp.ok) {
