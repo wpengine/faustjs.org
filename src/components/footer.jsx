@@ -139,9 +139,8 @@ function FooterColumns() {
 					<li className={listItemClass}>
 						<Link
 							className={linkClass}
-							href="/privacy-policy/"
+							href="https://wpengine.com/legal/privacy/"
 							noDefaultStyles
-							target="_self"
 						>
 							Privacy Policy
 						</Link>
