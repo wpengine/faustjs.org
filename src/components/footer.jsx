@@ -141,7 +141,6 @@ function FooterColumns() {
 							className={linkClass}
 							href="https://wpengine.com/legal/privacy/"
 							noDefaultStyles
-							target="_self"
 						>
 							Privacy Policy
 						</Link>
