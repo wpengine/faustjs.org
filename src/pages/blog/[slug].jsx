@@ -69,6 +69,7 @@ SinglePost.query = gql`
         name
         id: clientId
         parentId: parentClientId
+				renderedHtml
         ...${blocks.CoreParagraph.fragments.key}
         ...${blocks.CoreColumns.fragments.key}
         ...${blocks.CoreColumn.fragments.key}
@@ -81,6 +82,7 @@ SinglePost.query = gql`
         ...${blocks.CoreList.fragments.key}
         ...${blocks.CoreHeading.fragments.key}
         ...${blocks.CoreCode.fragments.key}
+        ...${blocks.CoreEmbed.fragments.key}
       }
     }
   }
@@ -96,6 +98,7 @@ SinglePost.query = gql`
   ${blocks.CoreList.fragments.entry}
   ${blocks.CoreHeading.fragments.entry}
   ${blocks.CoreCode.fragments.entry}
+  ${blocks.CoreEmbed.fragments.entry}
 `;
 
 SinglePost.variables = ({ params }) => ({ slug: params.slug });
