@@ -10,6 +10,8 @@ overrides:
   minimatch@>=10.0.0 <10.2.3: ^10.2.3
   ajv@>=7.0.0-alpha.0 <8.18.0: ^8.18.0
   postcss@<8.5.10: ^8.5.10
+  brace-expansion@>=5.0.0 <5.0.6: ^5.0.6
+  js-cookie@<=3.0.5: ^3.0.7
 
 patchedDependencies:
   eslint-config-neon:
@@ -1753,8 +1755,8 @@ packages:
   brace-expansion@2.0.3:
     resolution: {integrity: sha512-MCV/fYJEbqx68aE58kv2cA/kiky1G8vux3OR6/jbS+jIMe/6fJWa0DTzJU7dqijOWYwHi1t29FlfYI9uytqlpA==}
 
-  brace-expansion@5.0.5:
-    resolution: {integrity: sha512-VZznLgtwhn+Mact9tfiwx64fA9erHH/MCXEUfB/0bX/6Fz6ny5EGTXYltMocqg4xFAQZtnO3DHWWXi8RiuN7cQ==}
+  brace-expansion@5.0.6:
+    resolution: {integrity: sha512-kLpxurY4Z4r9sgMsyG0Z9uzsBlgiU/EFKhj/h91/8yHu0edo7XuixOIH3VcJ8kkxs6/jPzoI6U9Vj3WqbMQ94g==}
     engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
@@ -3095,9 +3097,8 @@ packages:
   jju@1.4.0:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
 
-  js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
+  js-cookie@3.0.8:
+    resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
 
   js-sha256@0.9.0:
     resolution: {integrity: sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==}
@@ -5353,7 +5354,7 @@ snapshots:
       deepmerge: 4.3.1
       fast-xml-parser: 5.7.3
       isomorphic-fetch: 3.0.0
-      js-cookie: 3.0.5
+      js-cookie: 3.0.8
       js-sha256: 0.9.0
       lodash: 4.18.1
       next: 15.5.18(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -6649,7 +6650,7 @@ snapshots:
     dependencies:
       balanced-match: 1.0.2
 
-  brace-expansion@5.0.5:
+  brace-expansion@5.0.6:
     dependencies:
       balanced-match: 4.0.4
 
@@ -8347,7 +8348,7 @@ snapshots:
 
   jju@1.4.0: {}
 
-  js-cookie@3.0.5: {}
+  js-cookie@3.0.8: {}
 
   js-sha256@0.9.0: {}
 
@@ -9028,7 +9029,7 @@ snapshots:
 
   minimatch@10.2.5:
     dependencies:
-      brace-expansion: 5.0.5
+      brace-expansion: 5.0.6
 
   minimatch@3.1.5:
     dependencies:
