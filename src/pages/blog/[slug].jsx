@@ -16,6 +16,7 @@ export default function SinglePost(properties) {
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error! {error.message}</p>;
+	if (!post) return null;
 
 	const { title, date, author, uri, excerpt, editorBlocks } = post;
 	const blockList = flatListToHierarchical(editorBlocks, {
@@ -30,7 +31,7 @@ export default function SinglePost(properties) {
 			<Seo
 				title={title}
 				url={uri}
-				description={excerpt.replaceAll(/<\/?\S+>/gm, "")}
+				description={(excerpt ?? "").replaceAll(/<\/?\S+>/gm, "")}
 			/>
 
 			<BlogBreadcrumbs currentPostTitle={title} />
@@ -73,7 +74,6 @@ SinglePost.query = gql`
         ...${blocks.CoreParagraph.fragments.key}
         ...${blocks.CoreColumns.fragments.key}
         ...${blocks.CoreColumn.fragments.key}
-        ...${blocks.CoreCode.fragments.key}
         ...${blocks.CoreButtons.fragments.key}
         ...${blocks.CoreButton.fragments.key}
         ...${blocks.CoreQuote.fragments.key}
@@ -97,7 +97,6 @@ SinglePost.query = gql`
   ${blocks.CoreSeparator.fragments.entry}
   ${blocks.CoreList.fragments.entry}
   ${blocks.CoreHeading.fragments.entry}
-  ${blocks.CoreCode.fragments.entry}
   ${blocks.CoreEmbed.fragments.entry}
 `;
 
