@@ -16,7 +16,7 @@ export default function SinglePost(properties) {
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error! {error.message}</p>;
-	if (!post) return null;
+	if (!post) return undefined;
 
 	const { title, date, author, uri, excerpt, editorBlocks } = post;
 	const blockList = flatListToHierarchical(editorBlocks, {
