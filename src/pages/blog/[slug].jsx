@@ -108,8 +108,14 @@ export async function getStaticProps(context) {
 		revalidate: 3_600,
 	});
 
+	/**
+	 * An empty response is not proof the post is gone. A failed query returns
+	 * the same shape, so a `notFound` without `revalidate` pins a one year
+	 * `s-maxage` on what may be a transient upstream failure. Re-check on a
+	 * short interval instead.
+	 */
 	if (!props?.props?.data?.post) {
-		return { props: {}, notFound: true };
+		return { notFound: true, revalidate: 300 };
 	}
 
 	return props;
